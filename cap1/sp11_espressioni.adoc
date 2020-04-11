@@ -1,0 +1,130 @@
+==== Espressioni
+
+Un modo semplice per iniziare a programmare in JavaScript è interagire
+con l'interprete JavaScript integrato nel browser che si sta utilizzando
+per visualizzare questa pagina.
+Per trovare l'interprete, in genere, basta digitare il tasto kbd:[F12] e selezionare la scheda "Console".
+
+
+
+Un *programma* JavaScript è una *sequenza di istruzioni*.
+
+Un tipo di istruzione è una **istruzione espressione**, che consiste in
+una **espressione**footnote:[Un espressione è tutto ciò che produce un valore.], seguita da un punto e virgola. Un semplice tipo di
+espressione è un numero. (Più precisamente, l'espressione è detta *numerale* ed costituita dalle cifre che rappresentano il numero nella rappresentazione posizionale in base 10.)
+
+[source,javascript]
+----
+486;
+----
+
+Le espressioni che rappresentano numeri possono essere combinate con
+*operatori* (come ``+`` o ``*``) per formare una **espressione composta** che
+rappresenta l'applicazione di una funzione primitiva corrispondente a
+tali numeri. Ad esempio:
+
+[source,javascript]
+----
+137 + 349;
+----
+
+[source,javascript]
+----
+1000 - 334;
+----
+
+[source,javascript]
+----
+5 * 99;
+----
+
+[source,javascript]
+----
+10 / 5;
+----
+
+[source,javascript]
+----
+2.7 + 10;
+----
+
+Espressioni come queste, che contengono altre espressioni come
+componenti, sono chiamate *combinazioni* o _espressioni composte_. Le combinazioni che sono formate da un simbolo di operatore scritto in mezzo alle espressioni degli operandi sono dette **combinazioni mediante operatori**. Il valore di una combinazione mediante operatori si ottiene applicando la funzione (una procedura) specificata dall'operatore agli argomenti, ossia ai valori degli operandi.
+
+La convenzione di posizionare l'operatore tra gli operandi è nota come
+notazione infissa. Segue la notazione matematica con cui il lettore ha
+certamente familiarità. Come in matematica, le combinazioni mediante
+operatori possono essere nidificate, ovvero possono prendere argomenti
+che sono esse stesse combinazioni di operatori:
+
+[source,javascript]
+----
+(3 * 5) + (10 - 6);
+----
+
+Come al solito, le parentesi vengono utilizzate per raggruppare le
+combinazioni di operatori al fine di evitare ambiguità. JavaScript segue
+anche le consuete convenzioni quando vengono omesse le parentesi; la
+moltiplicazione e la divisione legano maggiormente di addizioni e
+sottrazioni. Per esempio,
+
+[source,javascript]
+----
+3 * 5 + 10 / 2;
+----
+
+sta per
+
+[source,javascript]
+----
+(3 * 5) + (10 / 2);
+----
+
+Diciamo che ``*`` e ``/`` hanno una precedenza maggiore di ``+`` e ``-``. Le
+sequenze di addizioni e sottrazioni vengono lette da sinistra a destra,
+così come le sequenze di moltiplicazioni e divisioni. Così,
+
+[source,javascript]
+----
+3 / 5 * 2 - 4 + 3;
+----
+
+sta per
+
+[source,javascript]
+----
+(((3 / 5) * 2) - 4) + 3;
+----
+
+Si dice che gli operatori ``+``, ``-``, ``*`` e ``/`` sono **associativi a
+sinistra**.
+
+In linea di principio, non c'è limite alla profondità degli annidamenti
+o alla complessità delle espressioni che l'interprete JavaScript possa
+valutare. Noi essere umani, invece, possiamo restare confusi anche
+valutando con semplici espressioni come:
+
+[source,javascript]
+----
+3 * 2 * (4 + (3 - 5)) + 10 * (27 / 6);
+----
+
+che l'interprete invece valuta rapidamente producendo il numero 57. 
+Possiamo aiutarci scrivendo una tale espressione nella forma
+
+[source,javascript]
+----
+3 * 2 * (4 + (3 - 5))
++
+10 * (27/6);
+----
+
+per separare visivamente i principali componenti dell'espressione.
+
+L'interprete opera sempre nello stesso ciclo di base: legge
+un'istruzione dal browser, valuta l'istruzione e stampa il risultato.
+Questa modalità operativa viene spesso espressa dicendo che l'interprete
+funziona in un *ciclo di lettura-valutazione-stampa*
+(read-eval-print-loop, *REPL*). Si noti in particolare che non è
+necessario istruire esplicitamente l'interprete a stampare il valore
+dell'istruzione.

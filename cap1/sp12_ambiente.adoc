@@ -1,0 +1,70 @@
+==== Denominazione e ambiente
+
+Un aspetto cruciale di un linguaggio di programmazione è la facoltà di
+usare dei _nomi_ per fare riferimento agli _oggetti
+computazionali_.
+Un **costrutto** del linguaggio che consente di dare un nome agli oggetto è quello della **dichiarazione di valori costanti**.
+Diciamo che il nome identifica una costante il cui valore è l'oggetto.
+
+In JavaScript, la  *dichiarazione di costante*
+
+[source,javascript]
+----
+const dimensione = 2;
+----
+
+fa sì che l'interprete associ il valore 2 al nome `dimensione`. Il
+compito della dichiarazione di costante è creare questa associazione.
+Il valore che visualizza l'interprete JavaScript dopo aver definito la costante
+è `undefined`, un il valore speciale indefinito, perché la specifica del linguaggio richiede che questo sia il risultato della valutazione delle dichiarazioni di costante. Una volta che il nome `dimensione` è stato associato al numero 2, possiamo fare riferimento al valore 2 per nome, come in
+
+[source,javascript]
+----
+dimensione;
+----
+
+oppure
+
+[source,javascript]
+----
+5 * dimensione;
+----
+
+Naturalmente, l'interprete JavaScript deve eseguire la _dichiarazione di
+costante_ per `dimensione` prima che il nome `dimensione` possa essere
+utilizzato in un'espressione.
+
+Si nota qui che le istruzioni JavaScript possono essere inserite in una
+*sequenza*. L'interprete valuta i componenti della sequenza nell'ordine
+dato e considera il valore dell'ultimo componente come il valore della
+sequenza.
+
+Ecco altri esempi dell'uso di `const`:
+
+[source,javascript]
+----
+const pi_greco = 3.14159;
+const raggio = 10;
+pi_greco * raggio * raggio;
+const circonferenza =  2 * pi_greco * raggio;
+circonferenza;
+----
+
+La _dichiarazione di costante_ è il costrutto di _astrazione_ più
+semplice del nostro linguaggio, poiché ci consente di usare dei nomi per
+fare riferimento ai risultati di operazioni composte, come la
+circonferenza sopra calcolata. In generale, gli oggetti computazionali
+possono avere strutture molto complesse e sarebbe estremamente scomodo
+dover ricordare e ripetere i loro dettagli ogni volta che vogliamo
+usarli. In effetti, programmi complessi sono costruiti generando, passo
+dopo passo, oggetti computazionali di crescente complessità. Il nostro
+interprete facilita questa costruzione passo-passo del programma perché
+le associazioni nome-oggetto possono essere create in modo incrementale
+nelle interazioni successive.
+
+Dovrebbe essere chiaro che la possibilità di associare valori a nomi e
+di recuperarli in seguito significa che l'interprete deve mantenere una
+sorta di memoria che tiene traccia delle coppie (nome, oggetto). Questa
+memoria è chiamata *ambiente* (più precisamente *ambiente globale*,
+poiché vedremo più avanti che un calcolo può coinvolgere un numero di
+ambienti diversi).

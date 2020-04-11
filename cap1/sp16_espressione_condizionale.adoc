@@ -1,0 +1,376 @@
+==== Epressioni condizionali e predicati
+
+Il potere espressivo della classe di funzioni che possiamo dichiarare a
+questo punto è molto limitato, perché non abbiamo modo di fare test ed
+eseguire diverse operazioni a seconda del risultato di un test. Ad
+esempio, non possiamo dichiarare una funzione che calcola il valore
+assoluto di un numero verificando se il numero è negativo o meno e
+intraprendendo azioni diverse in ciascun caso in base alla regola
+
+latexmath:[
+|x| = \begin{cases}
+         x  & \text{se } x \geq 0\\
+        -x  & \text{altrimenti}
+\end{cases}
+]
+
+Questo costrutto è un'analisi di casi e può essere espresso in
+JavaScript usando un'espressione condizionale come segue:
+
+[source,javascript]
+----
+function valore_assoluto (x) {
+    return x >= 0 ? x : -x;
+}
+----
+
+La forma generale di un'*espressione condizionale* è
+
+.Forma di un'espressione condizionale
+****
+__predicato__ **?** __espressione-conseguente__ **:** __espressione-alternativa__
+****
+
+Le espressioni condizionali iniziano con un predicato, ovvero
+un'espressione il cui valore viene interpretato come vero o falso. Vero
+e falso sono dei valori che indichiamo come valori booleani, in onore di
+George Boole che ne ha studiato le proprietà con una teoria matematica.
+In JavaScript i valori vero e falso sono nominati, rispettivamente,
+`true` e `false`.
+
+Si noti che le espressioni booleane primitive `true` e `false` vengono
+valutate, rispettivamente, nei valori booleani `true` (vero) e `false` (falso). 
+Il predicato è seguito da un punto interrogativo, l'espressione
+conseguente, i due punti e infine l'espressione alternativa. Per
+valutare un'espressione condizionale, l'interprete inizia valutando il
+predicato dell'espressione composta. Se il predicato restituisce `true`,
+l'interprete valuta l'espressione conseguente. Altrimenti valuta
+l'espressione alternativa.
+
+La parola _predicato_ viene utilizzata per funzioni che restituiscono
+vero o falso, nonché per espressioni che sono valuate in vero o falso.
+La funzione del valore assoluto `valore_assoluto` utilizza il predicato
+primitivo `>=`. Questo predicato accetta due numeri come argomenti e
+verifica se il primo numero è maggiore o uguale al secondo numero,
+restituendo vero o falso di conseguenza.
+
+JavaScript fornisce una serie di predicati primitivi che funzionano in
+modo simile a `>=`, inclusi `>`, `<`, `<=` e `===`. Oltre a questi
+predicati primitivi, esistono operazioni logiche di composizione che ci
+consentono di costruire predicati composti. I tre più utilizzati sono
+questi:
+
+__espressione1__ ``&&`` __espressione2__ :: L'interprete valuta espressione1. Se viene valutato falso, il valore
+dell'intera espressione è falso e expressione2 non viene valutata. Se
+expressione1 restituisce vero, il valore dell'intera espressione è il
+valore di expressione2.
+
+__espressione1__ ``||`` __expressione2__ :: L'interprete valuta expressione1. Se restituisce vero, il valore
+dell'intera espressione è vero e expressione2 non viene valutata. Se
+expression1 restituisce falso, il valore dell'intera espressione è il
+valore di expressione2.
+
+``!`` __espressione__ :: Il valore dell'espressione è vero quando espressione viene valutata falsa e falso in caso contrario.
+
+Si noti che `&&` e `||` non vengono valutati come operatori aritmetici
+come `+`, perché la loro espressione di destra non viene sempre valutata.
+L'operatore `!`, D'altra parte, segue la regola di valutazione già nota.
+È un operatore unario, il che significa che accetta solo un argomento,
+mentre gli operatori aritmetici incontrati finora sono binari, prendendo
+due argomenti. L'operatore `!` precede il suo argomento; lo chiamiamo un
+**operatore prefisso**. Un altro operatore prefisso è l'operatore meno
+unario, un esempio del quale è l'espressione `-x` della funzione
+`valore_assoluto` all'inizio di questa sezione. Come esempio di come
+vengono utilizzati questi predicati, la condizione che un numero
+latexmath:[$x$] sia compreso nell'intervallo latexmath:[$5 < x < 10$]
+può essere espressa come
+
+[source,javascript]
+----
+x > 5 && x < 10
+----
+
+Si noti che l'operatore binario `&&` ha una precedenza inferiore
+rispetto agli operatori di confronto `>` e `<`.
+
+Come altro esempio, possiamo dichiarare un predicato per verificare se
+un numero diverso a un altro numero.
+
+[source,javascript]
+----
+function diverso (x, y) {
+    return x > y || x < y;
+}
+----
+
+oppure
+
+[source,javascript]
+----
+function diverso (x, y) {
+    return !(x <= y && x >= y);
+}
+----
+
+Nota che l'operatore `!==` quando applicato a due numeri, si comporta
+come `diverso`.
+
+.Saper simulare il processo indotto dal programma
+====
+Prima di verificare con l'interprete JavaScript,
+determima con le regole di valutazione che hai appreso fin ora il valore
+delle seguenti espressioni in JavaScript:
+
+[source,javascript]
+----
+10;
+----
+
+[source,javascript]
+----
+5 + 3 + 4;
+----
+
+[source,javascript]
+----
+9 - 1;
+----
+
+[source,javascript]
+----
+6 / 2;
+----
+
+[source,javascript]
+----
+2 * 4 + (4 - 6);
+----
+
+[source,javascript]
+----
+const a = 3;
+----
+
+[source,javascript]
+----
+const b = a + 1;
+----
+
+[source,javascript]
+----
+a + b + a * b;
+----
+
+[source,javascript]
+----
+a === b;
+----
+
+[source,javascript]
+----
+b > a && b < a * b 
+   ? b : a;
+----
+
+[source,javascript]
+----
+a === 4 ? 6 : b === 4 ? 6 + 7 + a : 25;
+----
+
+[source,javascript]
+----
+2 + (b > a ? b : a);
+----
+
+[source,javascript]
+----
+(a > b
+ ? a
+ : a < b
+   ? b
+   : -1)
+*
+(a + 1);
+----
+====
+
+.Click per vedere le soluzioni dell'esercizio
+[%collapsible]
+==== 
+[source,javascript]
+----
+10
+
+12
+
+8
+
+3
+
+6
+
+undefined
+
+undefined
+
+19
+
+false
+
+4
+
+16
+
+6
+
+16
+----
+====
+
+.Saper scrivere espressioni composte (combinazioni mediante operatore)
+====
+Traduci la seguente espressione matematica
+nell'equivalente espressione JavaScript:
+
+latexmath:[\frac{5+4+\left(2-\left(3-(6+\frac{4}{5})\right)\right)}{3 (6-2) (2-7)}]
+====
+
+.Click per vedere le soluzioni dell'esercizio
+[%collapsible]
+==== 
+[source, javascript]
+----
+// Soluzione dell'esercizio 1.2
+(5 + 4 + (2 - (3 - (6 + 4 / 5)))) 
+/
+(3 * (6 - 2) * (2 - 7));
+----
+====
+
+.Saper scrivere semplici funzioni composte
+====
+Definisci una funzione che accetta tre argomenti
+numerici e restituisce la somma dei quadrati dei due numeri più grandi.
+====
+
+.Click per vedere le soluzioni dell'esercizio
+[%collapsible]
+==== 
+[source, javascript]
+----
+// Soluzione dell'esercizio 1.3
+function esercizio_1_3 (x, y, z) {
+    return quadrato (x) + quadrato (y) + quadrato (z) -
+     quadrato ( (x < y ? x : y) < z ? (x < y ? x : y) : z );
+}
+----
+====
+
+.Riconoscere nel nome di funzione la valutazione dell'espressione
+====
+Si noti che il nostro modello di valutazione consente
+combinazioni mediante applicazioni le cui espressioni di funzioni sono
+espressioni composte. Utilizzare questa osservazione per descrivere il
+comportamento della seguente funzione:
+
+[source,javascript]
+----
+function più (a, b) { return a + b; }
+
+function meno (a, b) { return a - b; }
+
+function a_più_valore_assoluto_b (a, b) {
+    return (b >= 0 ? più : meno) (a, b);
+}
+----
+
+Si noti che nell'espressione condizionale, non possiamo usare
+direttamente gli operatori + e - invece dei nomi più e meno perché nella
+notazione infissa sono consentiti solo simboli di operatore nel mezzo, non
+espressioni composte.
+====
+
+.Click per vedere le soluzioni dell'esercizio
+[%collapsible]
+==== 
+// Soluzione dell'esercizio 1.4 La valutazione di un'espressione
+mediante applicazione di funzione procede come segue:
+
+.  Valuta l'espressione della funzione della combinazione
+dell'applicazione, che determina il nome nella funzione da applicare.
+.  Valuta le espressioni argomento della combinazione.
+.  Valuta l'espressione da restituire della funzione con ogni parametro
+sostituito dall'argomento corrispondente.
+
+Pertanto la valutazione dell'espressione dell'applicazione
+`a_più_valore_assoluto_b  (5, -4)` valuta `a_più_valore_assoluto_b`
+(passo 1), ottenendo la funzione sopra indicata e (passo 2) gli
+argomenti sono già valori. Quindi dobbiamo valutare (passo 3)
+l'espressione del valore da restituire della funzione, con i parametri
+sostituiti dagli argomenti, quindi: `(-4 >= 0 ? più : meno) (5, -4)`.
+Con le stesse regole, dobbiamo (passo 1) valutare l'espressione della
+funzione, che in questo caso è l'espressione condizionale
+`-4 >= 0 ? più : meno`. Poiché il predicato restituisce `false`,
+l'espressione della funzione restituisce `meno`. Gli argomenti, di nuovo
+(passo 2) sono già valori. Quindi finiamo per valutare (passo 3) il
+corpo di `meno` con i parametri `a` e `b` sostituiti rispettivamente da
+5 e -4, risultando in 5 - (-4), che infine risulterà nel valore 9.
+====
+
+.Riflettere sulle conseguenze dell'ordine di valutazione
+==== 
+Ben Bitdiddle ha inventato un test per determinare se
+l'interprete con cui affrontiamo la programmazione sta usando la
+valutazione nell'ordine di applicazione o la valutazione nell'ordine
+normale. Dichiara le seguenti due funzioni:
+
+[source,javascript]
+----
+function p() {
+    return p();
+}
+
+function test(x, y) {
+    return x === 0 ? 0 : y;
+}
+----
+
+Quindi scrive l'istruzione
+
+[source,javascript]
+----
+test (0, p ());
+----
+
+Quale comportamento osserverà Ben con un interprete che utilizza la
+valutazione nell'ordine di applicazione? Quale comportamento osserverà
+con un interprete che utilizza la valutazione nell'ordine normale?
+Spiega la tua risposta. (Supponiamo che la regola di valutazione per le
+espressioni condizionali sia la stessa se l'interprete utilizza l'ordine
+normale o applicativo: l'espressione del predicato viene valutata per
+prima e il risultato determina se valutare l'espressione conseguente o
+alternativa.) Confronta il risultato con la valutazione della funzione
+con il tuo interprete.
+====
+
+.Click per vedere le soluzioni dell'esercizio
+[%collapsible]
+==== 
+// Soluzione dell'esercizio 1.5
+
+Nella valutazione nell'ordine di applicazione per valutare l'espressione
+`test (0, p ())`, che è un espressione di applicazione di funzione,
+dobbiamo valutare le espressioni degli argomenti prima di poter valutare
+l'espressione restituita dalla funzione `test`. La valutazione
+dell'espressione argomento `p ()` non terminerà: continuerà a valutare
+le espressioni di applicazione della funzione `p ()` e quindi la
+valutazione di `test (0, p ())` non produrrà un valore legittimo.
+Normalmente l'interprete riconosce il caso e termina la valutazione
+notiicando un errore. Nella valutazione nell'ordine normale, invece
+parte, il test dell'applicazione di funzione (0, p ()) valuterà
+immediatamente l'espressione restituita da `test`: `x === 0 ? 0: y` dopo
+aver sostituito il parametro `x` con 0 e `y` con `p ()`. Il risultato
+della sostituzione sarebbe `0 === 0? 0: p ()`. La valutazione del
+predicato `0 === 0` risulta vera e quindi l'espressione condizionale
+restituisce 0, senza che sia necessario valutare `p ()`.
+====

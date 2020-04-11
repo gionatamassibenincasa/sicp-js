@@ -1,0 +1,365 @@
+==== Esempio: radici quadrate con il metodo di Newton
+
+Le funzioni, come introdotto sopra, sono molto simili alle normali
+funzioni matematiche che si studiano nel quinto anno. Specificano un
+valore determinato da uno o più parametri. Ma c'è una differenza
+importante tra le funzioni matematiche e le funzioni del computer. Le
+funzioni del computer devono essere _efficaci_, devono cioè fornire un
+valore. Dovrebbero essere anche _efficienti_, cioè fornire un valore in un
+tempo ragionevole.
+
+Ad esempio, considera il problema del calcolo delle radici quadrate.
+Possiamo definire la funzione radice quadrata come
+
+latexmath:[\sqrt{x} = \text{ quel numero }y\text{ tale che } y \geq 0\text{ e }
+                y^2 = x]
+
+Questo descrive una funzione matematica perfettamente legittima.
+Potremmo usare la definizione per riconoscere se un numero è la radice
+quadrata di un altro o per dedurre delle proposizioni vere sulle radici
+quadrate in generale. D'altra parte, la definizione non descrive una
+funzione del computer. In effetti, non ci dice quasi nulla su come
+trovare effettivamente la radice quadrata di un dato numero. Non aiuterà
+le cose a riformulare questa definizione in pseudo-JavaScript:
+
+[source,javascript]
+----
+function sqrt (x) {
+    return y con y> = 0 &&
+                      quadrato (y) === x;
+}
+----
+
+Il contrasto tra la funzione matematica e quella del computer riflette
+la distinzione generale tra la descrizione delle proprietà delle cose e
+la descrizione di come fare le cose, o, come viene talvolta indicato, la
+distinzione tra *conoscenza dichiarativa* e *conoscenza imperativa*. In
+matematica di solito ci occupiamo di descrizioni dichiarative (cos'è),
+mentre in informatica ci occupiamo di solito di descrizioni imperative
+(come).
+
+Come si calcolano le radici quadrate? Il modo più comune è usare il
+metodo di Newton per approssimazioni successive, che dice che ogni volta
+che abbiamo una supposizione latexmath:[$y$] per il valore della radice
+quadrata di un numero latexmath:[$x$], possiamo eseguire una semplice
+manipolazione per ottenere una stima migliore (più vicina alla radice
+quadrata) facendo la media di latexmath:[$y$] con
+latexmath:[$\frac x y$]. [2] Ad esempio, possiamo calcolare la radice
+quadrata di 2 come segue. Supponiamo che la nostra ipotesi iniziale sia
+1:
+
+[width="100%",cols="^,^,^",options="header",]
+|=======================================================================
+|Stima |Quoziente |Valor medio
+|latexmath:[$1$] |latexmath:[$\frac 2 1$]
+|latexmath:[$\frac{1 + 2}2=\frac 3 2=1.5$]
+
+|latexmath:[$1.5$] |latexmath:[$\frac 4 3$]
+|latexmath:[$\frac 1 2\left(\frac 3 2 + \frac 4 3\right)=\frac 17 12 \approx 1.4167$]
+
+|latexmath:[$1.4167$] |latexmath:[$\frac{24}{17}$]
+|latexmath:[$\frac 1 2\left(\frac{17}{12}+\frac{24}{17}\right)=\frac{577}{408}\approx 1.4142$]
+
+|latexmath:[$1.4142$] |latexmath:[$\cdots$] |latexmath:[$\cdots$]
+|=======================================================================
+
+Continuando questo processo, otteniamo approssimazioni sempre migliori
+alla radice quadrata.
+
+Ora formalizziamo il processo in termini di funzioni. Iniziamo con un
+valore per il radicando (il numero di cui stiamo provando a calcolare la
+radice quadrata) e un valore per la stima iniziale. Se la stima iniziale
+è abbastanza buona per i nostri scopi, abbiamo finito; in caso
+contrario, dobbiamo ripetere il processo con una stima migliore.
+Scriviamo questa strategia di base come funzione:
+
+[source,javascript]
+----
+function radq_iter (stima, x) {
+    return suff_accurata (stima, x)
+           ? stima
+           : radq_iter (migliora (stima, x), x);
+}
+----
+
+Una stima viene migliorata facendo una media tra il quoziente del
+radicando e la vecchia stima:
+
+[source,javascript]
+----
+function migliora (stima, x) {
+    return valor_medio (stima, x / stima);
+}
+----
+
+dove
+
+[source,javascript]
+----
+function valor_medio (x, y) {
+    return (x + y) / 2;
+}
+----
+
+Dobbiamo anche dire cosa intendiamo con stima __sufficientemente
+accurata__, che codifichiamo con il predicato `suff_accurata`. Un'idea è
+quella di migliorare il risultato della nostra funzione fino a quando il
+suo quadrato differisca dal radicando per una tolleranza inferiore a una
+predeterminata soglia (qui 0,001):
+
+[source,javascript]
+----
+function suff_accurata (stima, x) {
+    return valore_assoluto (quadrato (stima) - x) < 0.001;
+}
+----
+
+Infine, abbiamo bisogno di un modo per iniziare. Ad esempio, possiamo
+sempre supporre che la radice quadrata di qualsiasi numero sia 1:
+
+[source,javascript]
+----
+function radq (x) {
+    return radq_iter (1, x);
+}
+----
+
+Se scriviamo queste dichiarazioni all'interprete, possiamo usare radq
+così come possiamo usare qualsiasi funzione:
+
+[source, javascript]
+----
+function radq_iter (stima, x) {
+    return suff_accurata (stima, x)
+           ? stima
+           : radq_iter (migliora (stima, x), x);
+}
+
+function migliora (stima, x) {
+    return valor_medio (stima, x / stima);
+}
+
+function valor_medio (x, y) {
+    return (x + y) / 2;
+}
+
+function suff_accurata (stima, x) {
+    return valore_assoluto (quadrato (stima) - x) < 0.001;
+}
+
+function radq (x) {
+    return radq_iter (1, x);
+}
+
+function valore_assoluto (x) {
+    return x >= 0 ? x : -x;
+}
+
+function quadrato (x) {
+    return x * x;
+}
+----
+
+Alcuni esempi di applicazione della nostra nuova funzione composta:
+
+[source, javascript]
+----
+radq (9);
+----
+
+[source, javascript]
+----
+radq (100 + 37);
+----
+
+[source, javascript]
+----
+radq (radq (2) + radq (3));
+----
+
+[source, javascript]
+----
+quadrato (radq (1000));
+----
+
+Il programma `radq` fornisce l'idea che anche il semplice linguaggio
+funzionale che abbiamo introdotto finora sia sufficiente per scrivere
+qualsiasi programma puramente numerico come quelli che si potrebbero
+scrivere in altri linguaggi come il C o Pascal. Ciò potrebbe sembrare
+sorprendente, dal momento che non abbiamo ancora introdotto i costrutti
+iterativi (cicli o loop) che istruiscono il computer a fare qualcosa più
+e più volte. La funzione `radq_iter`, d'altra parte, dimostra come
+l'iterazione può essere realizzata senza ricorrere a nessun costrutto
+speciale diverso dalla normale capacità di chiamare una funzione.
+
+
+.Comprendere la necessità delle forme speciali
+====
+*Esercizio 1.6* Alyssa P. Hacker non ama la sintassi delle espressioni
+condizionali, che coinvolgono i caratteri *?* e *:*. «Perché non posso
+semplicemente dichiarare una normale funzione condizionale la cui
+applicazione funziona esattamente come le espressioni condizionali?» lei
+chiede. La sua amica Eva Lu Ator afferma che questo può davvero essere
+fatto e dichiara una funzione condizionale come segue:
+
+[source,javascript]
+----
+function condizionale (predicato, clausola_allora, clausola_altrimenti) {
+    return predicato ? clausola_allora: clausola_altrimenti;
+}
+----
+
+Eva dimostra ad Alyssa che il programma:
+
+[source,javascript]
+----
+condizionale (2 === 3, 0, 5);
+----
+
+viene valutato come previsto, a 5, e
+
+[source,javascript]
+----
+condizionale (1 === 1, 0, 5);
+----
+
+viene valutato come previsto, a 0. Felicissima, Alyssa usa il
+condizionale per riscrivere il programma per il calcolo della radice
+quadrata:
+
+[source,javascript]
+----
+function radq_iter (stima, x) {
+    return condizionale (suff_accurata (stima, x),
+                       stima,
+                       radq_iter (migliora (stima, x),
+                                 x));
+}
+----
+
+Cosa succede quando Alyssa tenta di usarlo per calcolare le radici
+quadrate? Spiegarlo.
+====
+
+.Click per vedere le soluzioni dell'esercizio
+[%collapsible]
+==== 
+// Soluzione esercizio 1.6
+
+Qualsiasi chiamata di `radq_iter` porta immediatamente a un ciclo
+infinito. La ragione di ciò è la valutazione nell'ordine applicativo. La
+valutazione dell'espressione da restituire di `radq_iter` deve prima
+valutare i suoi argomenti, inclusa la chiamata ricorsiva di `radq_iter`,
+indipendentemente dal fatto che il predicato sia valutato vero o falso.
+Lo stesso ovviamente accade con la chiamata ricorsiva, e quindi la
+funzione condizionale non viene mai effettivamente applicata.
+====
+
+.Comprensione del concetto di criterio di terminazione
+====
+*Esercizio 1.7* Il controllo `suff_accurata` utilizzato nel calcolo
+delle radici quadrate non sarà molto efficace per trovare le radici
+quadrate di numeri molto piccoli. Inoltre, nei computer reali, le
+operazioni aritmetiche vengono quasi sempre eseguite con una precisione
+limitata. Questo rende il nostro controllo inadeguato per numeri molto
+grandi. Spiega queste affermazioni, con esempi che mostrano come il test
+fallisce per numeri piccoli e grandi. Una strategia alternativa per
+implementare `suff_accurata` è guardare come le stime cambiano da
+un'iterazione alla successiva e fermarsi quando il cambiamento è una
+frazione molto piccola della stima. Progettare una funzione per il
+calcolo della radice quadrata che utilizza questo tipo di controllo di
+terminazione. Funziona meglio?
+====
+
+.Click per vedere le soluzioni dell'esercizio
+[%collapsible]
+==== 
+[source, javascript]
+----
+// Soluzione esercizio 1.7
+
+/*
+La tolleranza assoluta di 0,001 è troppo grande quando si calcola la radice quadrata di un valore piccolo.
+Ad esempio, radq (0,0001) genera 0,03230844833048122 anziché il valore previsto 0,01 con
+un errore percentuale superiore al 200%.
+D'altra parte, per valori molto grandi, gli errori di arrotondamento potrebbero impedire la terminazione del processo.
+Il seguente programma allevia il problema considerando l'errore relativo in sostituzione di quello assoluto.
+Si verifichi se si creano soluzioni mal gestite se si prova a calcolare la radice quadrata di zero.
+*/
+
+const soglia_tolleranza = 0.01;
+function radq_iter (stima, x) {
+    return errore_relativo (stima, migliora (stima, x)) < soglia_tolleranza
+           ? stima
+           : radq_iter (migliora (stima, x), x);
+}
+
+function migliora (stima, x) {
+    return valor_medio (stima, x / stima);
+}
+
+function valor_medio (x, y) {
+    return (x + y) / 2;
+}
+
+function suff_accurata (stima, x) {
+    return errore_relativo (stima, migliora (stima, x)) < soglia_tolleranza;
+}
+
+function errore_relativo (stima, riferimento) {
+    return valore_assoluto ((stima- riferimento) / riferimento)
+}
+
+function radq (x) {
+    return radq_iter (1, x);
+}
+
+function valore_assoluto (x) {
+    return x >= 0 ? x : -x;
+}
+
+function quadrato (x) {
+    return x * x;
+}
+----
+====
+
+.Riscrivere alcune funzioni, verso il concetto di scatola nera
+==== 
+*Esercizio 1.8* Il metodo di Newton per le radici dei cubi si basa sul
+fatto che se latexmath:[$y$] è un'approssimazione alla radice del cubo
+di latexmath:[$x$], allora una migliore approssimazione è data dal
+valore
+
+latexmath:[\frac{x/y^{2}+2y} {3}]
+
+Si utilizzi questa formula per implementare una funzione `radc` per il
+calcolo della radice cubica analoga alla funzione `radq`.
+
+[source, javascript]
+----
+// Soluzione dell'esercizio 1.8
+
+function suff_accurata (stima, x) {
+    return valore_assoluto (cubo (stima) - x) < 0.001;
+}
+
+function migliora (stima, x) {
+    return (x / quadrato (stima) + 2 * stima) / 3;
+}
+
+function radc_iter (stima, x) {
+    return suff_accurata (stima, x)
+               ? stima
+               : radc_iter (migliora (stima, x), x);
+}
+
+function radc (x) {
+    return radc_iter (1, x);
+}
+
+function cubo (x) {
+    return quadrato (x) * x;
+}
+----
+====

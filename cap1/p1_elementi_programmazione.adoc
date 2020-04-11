@@ -1,0 +1,48 @@
+=== Gli elementi della programmazione
+
+Un linguaggio di programmazione è più di un semplice strumento per
+istruire un computer a svolgere compiti. Il linguaggio funge anche da
+framework all'interno del quale organizziamo le nostre idee sui
+processi. Pertanto, quando descriviamo un linguaggio, dovremmo prestare
+particolare attenzione ai costrutti esso fornisce per combinare idee
+semplici e formare idee più complesse. Ogni linguaggio potente ha tre
+meccanismi per raggiungere questo obiettivo:
+
+espressioni primitive:: che rappresentano le entità più semplici di
+cui il linguaggio si occupa,
+
+costrutti di combinazione:: mediante i
+quali gli elementi più semplici si combinamo per formare gli elementi
+composti, e
+
+costrutti di astrazione:: mediante i quali gli elementi
+composti possono essere denominati e manipolati come unità.
+
+Nella programmazione ci occupiamo di due tipi di elementi: *funzioni* e
+*dati*. Più avanti scopriremo che in realtà non sono così distinti.
+Informalmente, i dati sono cose che vogliamo manipolare e le funzioni
+sono descrizioni delle regole per manipolare i dati. Pertanto, qualsiasi
+linguaggio di programmazione dovrebbe essere in grado di descrivere dati
+primitivi e funzioni primitive e dovrebbe avere metodi per combinare e
+astrarre funzioni e dati.
+
+In questo capitolo tratteremo solo semplici dati numerici in modo da
+poterci concentrare sulle regole per la costruzione di funzioni. Nei
+capitoli successivi vedremo che queste stesse regole ci consentono di
+creare funzioni per manipolare anche i dati composti.
+
+include::sp11_espressioni.adoc[]
+
+include::sp12_ambiente.adoc[]
+
+include::sp13_valutazione_combinazioni_op.adoc[]
+
+include::sp14_funzioni_composte.adoc[]
+
+include::sp15_modello_sostituzione.adoc[]
+
+include::sp16_espressione_condizionale.adoc[]
+
+include::sp17_radq.adoc[]
+
+include::sp18_scatola_nera.adoc[]

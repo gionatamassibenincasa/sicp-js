@@ -1,0 +1,221 @@
+==== Il modello di sostituzione per l'applicazione delle funzioni
+
+Per valutare una combinazione mediante applicazione, l'interprete segue
+un processo simile a quello delle combinazioni mediante operatori,
+descritto sopra. Cioè, l'interprete valuta gli elementi della
+combinazione e applica la funzione (che è il valore dell'espressione
+della funzione) agli argomenti (che sono i valori delle espressioni
+degli argomenti della combinazione dell'applicazione).
+
+Più in dettaglio, l'interprete procede come segue quando valuta le
+combinazioni di applicazioni:
+
+* Per valutare una combinazione di applicazioni della forma *funzione-espressione (* _argomenti-espressioni_ *)* fare quanto segue:
+
+. Valuta l'espressione della funzione della combinazione
+dell'applicazione, risultante nella funzione da applicare.
+. Valuta le espressioni argomento della combinazione.
+. Applica la funzione agli argomenti:
+.. Se la funzione è primitiva, applichiamo semplicemente la funzione
+matematica corrispondente agli argomenti.
+.. Se la funzione è composta, valutiamo l'espressione da restituire
+della funzione con ogni parametro sostituito dall'argomento corrispondente.
+
+Per illustrare questo processo, valutiamo la combinazione
+dell'applicazione di funzione
+
+[source,javascript]
+----
+f (5);
+----
+
+La valutazione del nome `f` restituisce il corpo della funzione. La
+valutazione dell'espressione dell'argomento 5 produce il valore
+dell'argomento 5. Ora, recuperiamo l'espressione da restituire di `f`:
+
+[source,javascript]
+----
+somma_di_quadrati (a + 1, a * 2)
+----
+
+in cui sostituiamo il parametro `a` con l'argomento 5:
+
+[source,javascript]
+----
+somma_di_quadrati (5 + 1, 5 * 2)
+----
+
+Pertanto, il problema si riduce alla valutazione di una combinazione di
+applicazioni con due argomenti e un'espressione di funzione
+`somma_di_quadrati`. La valutazione di questa combinazione comporta tre
+sottoproblemi. Dobbiamo valutare l'espressione della funzione per
+ottenere l'applicazione della funzione e dobbiamo valutare le
+espressioni degli argomenti per ottenere gli argomenti. Ora `5 + 1`
+produce 6 e ``5 * 2`` produce 10, quindi dobbiamo applicare la funzione
+`somma_di_quadrati` a 6 e 10. Questi valori vengono sostituiti con i
+parametri `x` e `y` nell'espressione restituita da `somma_di_quadrati`,
+riducendo l'espressione a
+
+[source,javascript]
+----
+quadrato (6) + quadrato (10)
+----
+
+Se usiamo la dichiarazione di `quadrato` una volta, questo si riduce a
+
+[source,javascript]
+----
+(6 * 6) + quadrato (10)
+----
+
+che effettuata la moltiplicazione si riduce a
+
+[source,javascript]
+----
+36 + quadrato (10)
+----
+
+Una seconda applicazione di `quadrato` porta all'espressione composta
+per mezzo di operatori
+
+[source,javascript]
+----
+36 + (10 * 10)
+----
+
+che si riduce con la moltiplicazione a
+
+[source,javascript]
+----
+36 + 100
+----
+
+e infine viene valutato l'operatore primitivo di somma applicato agli
+argomenti primitivi ottenendo, finalmente
+
+[source,javascript]
+----
+136
+----
+
+Il processo che abbiamo appena descritto si chiama *modello di
+sostituzione per l'applicazione delle funzioni*. Può essere usato come
+un modello per determinare il significato dell'applicazione delle
+funzioni, per quanto riguarda le funzioni di questo capitolo. Tuttavia,
+ci sono due punti che dovrebbero essere sottolineati:
+
+* Lo scopo della sostituzione è di aiutarci a pensare all'applicazione
+della funzione, non a fornire una descrizione di come funziona davvero
+l'interprete. Gli interpreti tipici non valutano le applicazioni delle
+funzioni manipolando il testo di una funzione per sostituire i valori
+con i parametri. In pratica, la sostituzione viene eseguita utilizzando
+un _ambiente locale_ per i parametri.
+
+* Ci sono modelli più elaborati di come funzionano gli interpreti.
+Il modello di sostituzione è solo il
+primo di questi modelli: un modo per iniziare a pensare formalmente al
+processo di valutazione. In generale, quando modelliamo i fenomeni
+scientifici e ingegneristici, iniziamo con modelli semplificati e
+incompleti. Man mano che esaminiamo le cose in modo più dettagliato,
+questi semplici modelli diventano inadeguati e devono essere sostituiti
+da modelli più raffinati. Il modello di sostituzione non fa eccezione.
+
+[discrete]
+==== Ordine di applicazione e ordine normale
+
+Secondo la descrizione della valutazione di cui sopra, l'interprete
+valuta prima la funzione e le espressioni degli argomenti, quindi
+applica la funzione risultante agli argomenti risultanti. Questo non è
+l'unico modo per eseguire la valutazione. Un modello di valutazione
+alternativo non valuterebbe gli operandi fino a quando non fossero
+necessari i loro valori. Sostituirebbe invece le espressioni degli
+argomenti con i parametri fino a quando non ottenesse un'espressione che
+coinvolge solo operatori, per poi eseguire la valutazione. Se usassimo
+questo metodo, la valutazione di
+
+[source,javascript]
+----
+f (5)
+----
+
+procederebbe secondo la sequenza di espansioni
+
+[source,javascript]
+----
+somma_di_quadrati (5 + 1, 5 * 2)
+----
+
+[source,javascript]
+----
+quadrato (5 + 1) + quadrato (5 * 2)
+----
+
+[source,javascript]
+----
+(5 + 1) * (5 + 1) + quadrato (5 * 2)
+----
+
+[source,javascript]
+----
+(5 + 1) * (5 + 1) + (5 * 2) * (5 * 2)
+----
+
+seguita dalle riduzioni
+
+[source,javascript]
+----
+6 * (5 + 1) + (5 * 2) * (5 * 2)
+----
+
+[source,javascript]
+----
+6 * 6 + (5 * 2) * (5 * 2)
+----
+
+[source,javascript]
+----
+36 + (5 * 2) * (5 * 2)
+----
+
+[source,javascript]
+----
+36 + 10 * (5 * 2)
+----
+
+[source,javascript]
+----
+36 + 10 * 10
+----
+
+[source,javascript]
+----
+36 + 100
+----
+
+[source,javascript]
+----
+136
+----
+
+Ciò fornisce la stessa risposta del nostro modello di valutazione
+precedente, ma il processo è diverso. In particolare, le valutazioni di
+``5 + 1`` e ``5 * 2`` vengono eseguite due volte ciascuna qui, corrispondente
+alla riduzione dell'espressione x * x con x sostituita rispettivamente
+da ``5 + 1`` e ``5 * 2``. Questa alternativa si espande completamente e quindi
+riduce il metodo di valutazione è noto come valutazione dell'ordine
+normale, in contrasto con la valutazione degli argomenti e quindi
+applica il metodo che l'interprete effettivamente utilizza, che è
+chiamato valutazione dell'ordine applicativo. Si può dimostrare che, per
+le applicazioni di funzioni che possono essere modellate usando la
+sostituzione (comprese tutte le funzioni nei primi due capitoli di
+questo libro) e che producono valori legittimi, la valutazione
+dell'ordine normale e dell'ordine applicativo producono lo stesso
+valore.
+
+JavaScript utilizza la valutazione nell'ordine applicativo, in parte a
+causa dell'ulteriore efficienza ottenuta dall'evitare valutazioni
+multiple di espressioni come quelle illustrate sopra e, in modo più
+significativo, perché la valutazione dell'ordine normale diventa molto
+più complicata da affrontare quando lasciamo il regno delle procedure
+che può essere modellato per sostituzione. D'altra parte, la valutazione
+dell'ordine normale può essere uno strumento estremamente prezioso.

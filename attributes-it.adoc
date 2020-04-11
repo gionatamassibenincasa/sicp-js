@@ -1,0 +1,32 @@
+//:part-refsig: ???
+//:section-refsig: ???
+:appendix-caption: Appendice
+:appendix-refsig: {appendix-caption}
+:caution-caption: Attenzione
+:chapter-caption: Capitolo
+:chapter-label: Capitolo
+:chapter-refsig: capitolo
+:chapter-refsig: {chapter-label}
+//:example-caption: Esempio
+:example-caption: Esercizio
+:example-refsig: esercizio
+:figure-caption: Figura
+:figure-refsig: figura
+:important-caption: Importante
+:last-update-label: Ultimo aggiornamento
+ifdef::listing-caption[:listing-caption: Elenco]
+ifdef::manname-title[:manname-title: Nome]
+:note-caption: Nota
+:part-caption: Parte
+:part-label:
+:part-sigref: parte
+ifdef::preface-title[:preface-title: Prefazione]
+:sect-label: Paragrafo
+:section-refsig: paragrafo
+:table-caption: Tabella
+:table-refsig: tabella
+:tip-caption: Suggerimento
+:toc-title: Indice
+:untitled-label: Senza titolo
+:version-label: Versione
+:warning-caption: Attenzione
