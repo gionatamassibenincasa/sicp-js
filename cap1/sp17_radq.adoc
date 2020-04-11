@@ -44,7 +44,7 @@ che abbiamo una supposizione latexmath:[$y$] per il valore della radice
 quadrata di un numero latexmath:[$x$], possiamo eseguire una semplice
 manipolazione per ottenere una stima migliore (più vicina alla radice
 quadrata) facendo la media di latexmath:[$y$] con
-latexmath:[$\frac x y$]. [2] Ad esempio, possiamo calcolare la radice
+latexmath:[$\frac x y$]. Ad esempio, possiamo calcolare la radice
 quadrata di 2 come segue. Supponiamo che la nostra ipotesi iniziale sia
 1:
 
@@ -75,10 +75,10 @@ Scriviamo questa strategia di base come funzione:
 
 [source,javascript]
 ----
-function radq_iter (stima, x) {
+function radice_quadrata_iter (stima, x) {
     return suff_accurata (stima, x)
            ? stima
-           : radq_iter (migliora (stima, x), x);
+           : radice_quadrata_iter (migliora (stima, x), x);
 }
 ----
 
@@ -119,20 +119,22 @@ sempre supporre che la radice quadrata di qualsiasi numero sia 1:
 
 [source,javascript]
 ----
-function radq (x) {
-    return radq_iter (1, x);
+function radice_quadrata (x) {
+    return radice_quadrata_iter (1, x);
 }
 ----
 
-Se scriviamo queste dichiarazioni all'interprete, possiamo usare radq
-così come possiamo usare qualsiasi funzione:
+Se scriviamo queste dichiarazioni all'interprete, possiamo usare radice_quadrata
+così come possiamo usare qualsiasi funzione.
 
+.Programma per il calcolo della radice quadrata e funzioni da cui dipende
+[[radq1]]
 [source, javascript]
 ----
-function radq_iter (stima, x) {
+function radice_quadrata_iter (stima, x) {
     return suff_accurata (stima, x)
            ? stima
-           : radq_iter (migliora (stima, x), x);
+           : radice_quadrata_iter (migliora (stima, x), x);
 }
 
 function migliora (stima, x) {
@@ -147,8 +149,8 @@ function suff_accurata (stima, x) {
     return valore_assoluto (quadrato (stima) - x) < 0.001;
 }
 
-function radq (x) {
-    return radq_iter (1, x);
+function radice_quadrata (x) {
+    return radice_quadrata_iter (1, x);
 }
 
 function valore_assoluto (x) {
@@ -164,31 +166,31 @@ Alcuni esempi di applicazione della nostra nuova funzione composta:
 
 [source, javascript]
 ----
-radq (9);
+radice_quadrata (9);
 ----
 
 [source, javascript]
 ----
-radq (100 + 37);
+radice_quadrata (100 + 37);
 ----
 
 [source, javascript]
 ----
-radq (radq (2) + radq (3));
+radice_quadrata (radice_quadrata (2) + radice_quadrata (3));
 ----
 
 [source, javascript]
 ----
-quadrato (radq (1000));
+quadrato (radice_quadrata (1000));
 ----
 
-Il programma `radq` fornisce l'idea che anche il semplice linguaggio
+Il programma `radice_quadrata` fornisce l'idea che anche il semplice linguaggio
 funzionale che abbiamo introdotto finora sia sufficiente per scrivere
 qualsiasi programma puramente numerico come quelli che si potrebbero
 scrivere in altri linguaggi come il C o Pascal. Ciò potrebbe sembrare
 sorprendente, dal momento che non abbiamo ancora introdotto i costrutti
 iterativi (cicli o loop) che istruiscono il computer a fare qualcosa più
-e più volte. La funzione `radq_iter`, d'altra parte, dimostra come
+e più volte. La funzione `radice_quadrata_iter`, d'altra parte, dimostra come
 l'iterazione può essere realizzata senza ricorrere a nessun costrutto
 speciale diverso dalla normale capacità di chiamare una funzione.
 
@@ -229,10 +231,10 @@ quadrata:
 
 [source,javascript]
 ----
-function radq_iter (stima, x) {
+function radice_quadrata_iter (stima, x) {
     return condizionale (suff_accurata (stima, x),
                        stima,
-                       radq_iter (migliora (stima, x),
+                       radice_quadrata_iter (migliora (stima, x),
                                  x));
 }
 ----
@@ -246,10 +248,10 @@ quadrate? Spiegarlo.
 ==== 
 // Soluzione esercizio 1.6
 
-Qualsiasi chiamata di `radq_iter` porta immediatamente a un ciclo
+Qualsiasi chiamata di `radice_quadrata_iter` porta immediatamente a un ciclo
 infinito. La ragione di ciò è la valutazione nell'ordine applicativo. La
-valutazione dell'espressione da restituire di `radq_iter` deve prima
-valutare i suoi argomenti, inclusa la chiamata ricorsiva di `radq_iter`,
+valutazione dell'espressione da restituire di `radice_quadrata_iter` deve prima
+valutare i suoi argomenti, inclusa la chiamata ricorsiva di `radice_quadrata_iter`,
 indipendentemente dal fatto che il predicato sia valutato vero o falso.
 Lo stesso ovviamente accade con la chiamata ricorsiva, e quindi la
 funzione condizionale non viene mai effettivamente applicata.
@@ -280,7 +282,7 @@ terminazione. Funziona meglio?
 
 /*
 La tolleranza assoluta di 0,001 è troppo grande quando si calcola la radice quadrata di un valore piccolo.
-Ad esempio, radq (0,0001) genera 0,03230844833048122 anziché il valore previsto 0,01 con
+Ad esempio, radice_quadrata (0,0001) genera 0,03230844833048122 anziché il valore previsto 0,01 con
 un errore percentuale superiore al 200%.
 D'altra parte, per valori molto grandi, gli errori di arrotondamento potrebbero impedire la terminazione del processo.
 Il seguente programma allevia il problema considerando l'errore relativo in sostituzione di quello assoluto.
@@ -288,10 +290,10 @@ Si verifichi se si creano soluzioni mal gestite se si prova a calcolare la radic
 */
 
 const soglia_tolleranza = 0.01;
-function radq_iter (stima, x) {
+function radice_quadrata_iter (stima, x) {
     return errore_relativo (stima, migliora (stima, x)) < soglia_tolleranza
            ? stima
-           : radq_iter (migliora (stima, x), x);
+           : radice_quadrata_iter (migliora (stima, x), x);
 }
 
 function migliora (stima, x) {
@@ -310,8 +312,8 @@ function errore_relativo (stima, riferimento) {
     return valore_assoluto ((stima- riferimento) / riferimento)
 }
 
-function radq (x) {
-    return radq_iter (1, x);
+function radice_quadrata (x) {
+    return radice_quadrata_iter (1, x);
 }
 
 function valore_assoluto (x) {
@@ -334,7 +336,7 @@ valore
 latexmath:[\frac{x/y^{2}+2y} {3}]
 
 Si utilizzi questa formula per implementare una funzione `radc` per il
-calcolo della radice cubica analoga alla funzione `radq`.
+calcolo della radice cubica analoga alla funzione `radice_quadrata`.
 
 [source, javascript]
 ----
@@ -351,11 +353,11 @@ function migliora (stima, x) {
 function radc_iter (stima, x) {
     return suff_accurata (stima, x)
                ? stima
-               : radc_iter (migliora (stima, x), x);
+               : radice_cubica_iter (migliora (stima, x), x);
 }
 
-function radc (x) {
-    return radc_iter (1, x);
+function radice_cubica (x) {
+    return radice_cubica_iter (1, x);
 }
 
 function cubo (x) {

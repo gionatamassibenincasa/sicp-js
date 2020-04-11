@@ -1,8 +1,8 @@
 ==== Funzioni come astrazioni nella forma di una scatola nera
 
-La funzione `radq` è il nostro primo esempio di un processo definito da
+La funzione `radice_quadrata` è il nostro primo esempio di un processo definito da
 un insieme di funzioni che si definiscono l'una con l'altra. Si noti che
-la dichiarazione di `radq_iter` è ricorsiva; la funzione è cioè definita
+la dichiarazione di `radice_quadrata_iter` è ricorsiva; la funzione è cioè definita
 in termini di se stessa. L'idea di poter definire una funzione in
 termini di se stessa può essere inquietante; potrebbe non essere chiaro
 come una definizione circolare del genere possa avere senso, tanto meno
@@ -13,15 +13,24 @@ Osserva che il problema del calcolo delle radici quadrate si scompone
 naturalmente in una serie di sottoproblemi: come capire se una stima è
 abbastanza accurata, come migliorare una stima e così via. Ognuna di
 queste attività è svolta da una funzione separata. L'intero programma
-`radq` può essere visualizzato come un raggruppamento di funzioni
+`radice_quadrata` può essere visualizzato come un raggruppamento di funzioni
 (mostrato nella Figura 1.2) che rispecchia la decomposizione del
 problema in sottoproblemi.
 
 
-
-`radq                |            radq_iter            /       \   suff_accurata   migliora   /          /            \ quadrato valore_assoluto valor_medio`
-
-Figura 1.2 Decomposizione funzionale del programma radq.
+.Decomposizione funzionale del programma radice_quadrata
+[blockdiag,ca_fig1_2,svg]
+....
+blockdiag {
+  radice_quadrata -> radice_quadrata_iter;
+  radice_quadrata_iter -> suff_accurata;
+  radice_quadrata_iter -> migliora;
+  radice_quadrata_iter -> radice_quadrata_iter;
+  suff_accurata -> quadrato;
+  suff_accurata -> valore_assoltuto;
+  migliora -> valor_medio;
+}
+....
 
 L'importanza di questa strategia di decomposizione non è semplicemente
 quella di dividere il programma in parti. Dopotutto, potremmo prendere
@@ -29,15 +38,15 @@ qualsiasi programma di grandi dimensioni e dividerlo in parti: le prime
 dieci righe, le successive dieci righe, le successive dieci righe e così
 via. Piuttosto, è cruciale che ogni funzione compia un compito
 identificabile che può essere usato come modulo nella definizione di
-altre funzioni. Ad esempio, quando definiamo la funzione suff_accurata
-in termini di quadrato, siamo in grado di considerare la funzione
-quadrata come una scatola nera. In quel momento non ci occupiamo di come
+altre funzioni. Ad esempio, quando definiamo la funzione `suff_accurata`
+in termini di `quadrato`, siamo in grado di considerare la funzione
+`quadrato` come una scatola nera. In quel momento non ci occupiamo di come
 la funzione calcola il suo risultato, ma solo del fatto che calcola il
 quadrato. I dettagli di come viene calcolato il quadrato possono essere
 soppressi, per essere considerati in un secondo momento. In effetti, per
-quanto riguarda la funzione suff_accurata, il quadrato non è proprio una
+quanto riguarda la funzione `suff_accurata`, il __quadrato__ non è proprio una
 funzione ma piuttosto un'astrazione di una funzione, una cosiddetta
-astrazione funzionale. A questo livello di astrazione, qualsiasi
+**astrazione funzionale**. A questo livello di astrazione, qualsiasi
 funzione che calcola il quadrato è ugualmente buona.
 
 Pertanto, considerando solo i valori che restituiscono, le seguenti due
@@ -66,7 +75,8 @@ soli, ma potrebbero averla ottenuta da un altro programmatore come una
 scatola nera. Un utente non dovrebbe avere bisogno di sapere come viene
 implementata la funzione per poterla utilizzare.
 
-*Nomi locali*
+[discrete]
+===== Nomi locali
 
 Un dettaglio dell'implementazione di una funzione che non dovrebbe
 interessare all'utente della funzione è la scelta dei nomi da parte
@@ -85,94 +95,126 @@ function quadrato (y) {
 ----
 
 Questo principio - che il significato di una funzione dovrebbe essere
-indipendente dai nomi dei parametri usati dal suo autore - sembra in
-superficie evidente, ma le sue conseguenze sono profonde. La conseguenza
+indipendente dai nomi dei parametri usati dal suo autore - sembra evidente
+ma ha conseguenze profonde. 
+La conseguenza
 più semplice è che i nomi dei parametri di una funzione devono essere
-locali al corpo della funzione. Ad esempio, abbiamo usato abbastanza
-quadrato nella dichiarazione di suff_accurata nella nostra funzione
-radice quadrata:
+locali al corpo della funzione. Ad esempio, abbiamo usato
+`quadrato` nella dichiarazione di `suff_accurata` nella nostra funzione
+`radice_quadrata`:
 
- abbastanza buono _(indovinate, x) \{     ritorno abs (quadrato
-(ipotesi) - x) <0,001; }                                                
-L'intenzione dell'autore del bene_ è di determinare se il quadrato del
-primo argomento rientri in una determinata tolleranza del secondo
-argomento. Vediamo che l'autore del bene _ha usato abbastanza il nome
-ipotesi per riferirsi al primo argomento e x per riferirsi al secondo
-argomento. L'argomento di quadrato è indovinare. Se l'autore di square
-ha usato x (come sopra) per fare riferimento a tale argomento, vediamo
-che la x in good_ abbastanza deve essere una x diversa da quella in
-square. L'esecuzione del quadratino delle funzioni non deve influire sul
-valore di x che viene utilizzato da _abbastanza bene, perché quel valore
-di x può essere necessario da <<> bene dopo che il calcolo del quadrato
+[source,javascript]
+----
+function suff_accurata(stima, x) {
+    return valore_assoluto ( quadrato (stima) - x) < 0.001;
+}
+----
+
+L'intenzione dell'autore di `suff_accurata` è di determinare se il quadrato del
+primo argomento rientri in un determinato intorno del secondo
+argomento. Vediamo che l'autore di `suff_accurata` ha usato il nome
+`stima` per riferirsi al primo argomento e `x` per riferirsi al secondo
+argomento. L'argomento di quadrato è `stima`. Se l'autore di `quadrato`
+ha usato `x` per fare riferimento al secondo argomento, vediamo
+che la `x` in `suff_accurata` deve essere una `x` diversa da quella usata in
+`quadrato`. L'esecuzione della funzione `quadrato` non deve influire sul
+valore di `x` che viene utilizzato da `suff_accurata`, perché quel valore
+di `x` può essere necessario per `suff_accurata` dopo che il calcolo del `quadrato`
 è terminato.
 
 Se i parametri non fossero locali ai corpi delle loro rispettive
-funzioni, allora il parametro x in square potrebbe essere confuso con il
-parametro x in good_ abbastanza, e il comportamento di good _abbastanza
-dipenderebbe da quale versione di square abbiamo usato. Pertanto,
-quadrato non sarebbe la scatola nera che desideravamo.
+funzioni, allora il parametro `x` in `quadrato` potrebbe essere confuso con il
+parametro `x` in `suff_accurata`, e il comportamento di `suff_accurata`
+dipenderebbe da quale versione di `quadrato` abbiamo usato. Pertanto,
+`quadrato` non sarebbe la scatola nera che desideravamo.
 
 Un parametro di una funzione ha un ruolo molto speciale nella
 dichiarazione di funzione, in quanto non ha importanza il nome del
-parametro. Tale nome è chiamato associato e diciamo che la dichiarazione
-di funzione lega i suoi parametri. Il significato di una dichiarazione
+parametro. Tale nome è chiamato **legame** o _associazione_, __binding__ in inglese,
+e diciamo che la dichiarazione
+di funzione associa i suoi parametri. Il significato di una dichiarazione
 di funzione rimane invariato se un nome associato viene costantemente
-rinominato in tutta la dichiarazione. [2] Se un nome non è associato,
-diciamo che è gratuito. L'insieme di espressioni per cui un'associazione
-dichiara un nome è chiamato ambito di quel nome. In una dichiarazione di
+rinominato in tutta la dichiarazione. Se un nome non è associato,
+diciamo che è libero. L'insieme di espressioni per cui un'associazione
+dichiara un nome è chiamato **visibilità**, __scope__ in inglese, di quel nome. In una dichiarazione di
 funzione, i nomi associati dichiarati come parametri della funzione
-hanno il corpo della funzione come ambito.
+hanno il corpo della funzione come visibilità.
 
-Nella dichiarazione del bene_ abbastanza sopra, indovina e x sono nomi
-associati ma abs e quadrato sono liberi. Il significato del bene
-_dovrebbe essere indipendente dai nomi che scegliamo per ipotesi e x
-fintanto che sono distinti e diversi dagli addominali e quadrati. (Se
-rinominassimo ipotesi in abs avremmo introdotto un bug catturando il
-nome abs. Sarebbe cambiato da libero a limite.) Il significato di buono_
-non è indipendente dalla scelta dei suoi nomi liberi, tuttavia. Dipende
+Nella dichiarazione di `suff_accurata` sopra, `stima` e `x` sono nomi
+associati ma `valore_assoluto` e `quadrato` sono liberi. Il significato 
+di `suff_accurata` dovrebbe essere indipendente dai nomi che scegliamo per `stima` e `x`
+fintanto che sono distinti e diversi da `valore_assoluto` e `quadrato`. (Se
+rinominassimo `stima` in `valore_assoluto` avremmo introdotto un bug catturando il
+nome `valore_assoluto`. Sarebbe cambiato da libero a legato.) Il significato di `suff_accurata`
+non è indipendente dalla scelta dei suoi nomi liberi. Dipende
 sicuramente dal fatto (esterno a questa dichiarazione) che il simbolo
-abs nomina una funzione per calcolare il valore assoluto di un numero.
-La funzione JavaScript abbastanza buona _calcolerà una diversa funzione
-matematica se sostituiamo la matematica_ cos (funzione coseno di
-JavaScript) con gli addominali nella sua dichiarazione.
+`valore_assoluto` denota una funzione per calcolare il valore assoluto di un numero.
+La funzione JavaScript `valore_assoluto` calcolerà una diversa funzione
+matematica se sostituiamo `Math.cos` (funzione coseno di
+JavaScript) con `valore_assoluto` nella sua dichiarazione.
 
-Dichiarazioni interne e struttura a blocchi Finora abbiamo un tipo di
-isolamento del nome a nostra disposizione: i parametri di una funzione
-sono locali al corpo della funzione. Il programma con radice quadrata
+[discrete]
+===== Dichiarazioni interne e struttura a blocchi
+
+Finora abbiamo un tipo di isolamento del nome a nostra disposizione: i parametri di una funzione
+sono locali al corpo della funzione.
+Il programma per il calcolo della radice quadrata
 illustra un altro modo in cui vorremmo controllare l'uso dei nomi. Il
-programma esistente è costituito da funzioni separate:
+programma <<radq1>> è costituito da funzioni separate.
 
- funzione sqrt (x) \{     return sqrt _iter (1.0, x); } funzione sqrt_
-iter (indovina, x) \{     restituisce abbastanza _abbastanza (indovina,
-x)            ? indovina            : sqrt_ iter (migliora (indovina,
-x), x); } abbastanza buono _(indovinate, x) \{     ritorno abs (quadrato
-(ipotesi) - x) <0,001; } funzione migliorare (indovina, x) \{     media
-di ritorno (indovina, x / indovina); }
-                                                Il problema con questo
-programma è che l'unica funzione importante per gli utenti di sqrt è
-sqrt. Le altre funzioni (sqrt_ iter, good _abbastanza e migliorano)
+Il problema di questo programma è che l'unica funzione importante per gli utenti è
+`radice_quadrata`. Le altre funzioni (`radice_quatrata_iter`, `suff_accurata` e `migliora`)
 ingombrano solo le loro menti. Non possono dichiarare qualsiasi altra
-funzione chiamata abbastanza bene_ come parte di un altro programma per
-collaborare con il programma radice quadrata, perché sqrt ne ha bisogno.
+funzione chiamata `suff_accurata` come parte di un altro programma che opera
+insieme con il programma per la radice quadrata, perché la funzione `radice_quadrata` ne ha bisogno.
 Il problema è particolarmente grave nella costruzione di grandi sistemi
 da parte di molti programmatori separati. Ad esempio, nella costruzione
-di una vasta libreria di funzioni numeriche, molte funzioni numeriche
+di una libreria di funzioni numeriche, molte funzioni numeriche
 vengono calcolate come approssimazioni successive e quindi potrebbero
-avere funzioni nominate abbastanza buone _e migliorare come funzioni
+avere funzioni gli stessi nomi come funzioni
 ausiliarie. Vorremmo localizzare le sottofunzioni, nascondendole
-all'interno di sqrt in modo che sqrt possa coesistere con altre
-approssimazioni successive, ognuna con il proprio bene privato_ funzione
-sufficiente. Per renderlo possibile, consentiamo a una funzione di avere
+all'interno di `radice_quadrata` in modo che `radice_quadrata` possa coesistere con altre
+funzioni basate sulle approssimazioni successive, ognuna con la propria funzione `suff_accurata`.
+Per renderlo possibile, consentiamo a una funzione di avere
 dichiarazioni interne locali a tale funzione. Ad esempio, nel problema
 della radice quadrata possiamo scrivere
 
- funzione sqrt (x) \{     abbastanza buono _(indovinate, x) \{
-        ritorno abs (quadrato (ipotesi) - x) <0,001;     }     funzione
-migliorare (indovina, x) \{         media di ritorno (indovina, x /
-indovina);     }     funzione sqrt_ iter (indovina, x) \{
-        restituisce abbastanza _abbastanza (indovina, x)
-                   ? indovina                    : sqrt_ iter (migliora
-(indovina, x), x);     }    return sqrt _iter (1.0, x); }
+
+[source, javascript]
+----
+// MODIFICARE. NON HO FATTO LA RISCRITTURA
+function radice_quadrata_iter (stima, x) {
+    return suff_accurata (stima, x)
+           ? stima
+           : radice_quadrata_iter (migliora (stima, x), x);
+}
+
+function migliora (stima, x) {
+    return valor_medio (stima, x / stima);
+}
+
+function valor_medio (x, y) {
+    return (x + y) / 2;
+}
+
+function suff_accurata (stima, x) {
+    return valore_assoluto (quadrato (stima) - x) < 0.001;
+}
+
+function radice_quadrata (x) {
+    return radice_quadrata_iter (1, x);
+}
+
+function valore_assoluto (x) {
+    return x >= 0 ? x : -x;
+}
+
+function quadrato (x) {
+    return x * x;
+}
+----
+
+
                                                     Il corpo di una
 funzione - un'istruzione racchiusa tra parentesi graffe - è chiamato
 blocco. Le dichiarazioni di funzione nidificate all'interno di un blocco
