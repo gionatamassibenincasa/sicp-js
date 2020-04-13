@@ -1104,7 +1104,7 @@ stesso. Questo è espresso in</p>
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="javascript"><span class="kd">function</span> <span class="nx">quadrato</span> <span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="nx">x</span> <span class="o">*</span> <span class="nx">x</span><span class="p">;</span>
+	<span class="k">return</span> <span class="nx">x</span> <span class="o">*</span> <span class="nx">x</span><span class="p">;</span>
 <span class="p">}</span></code></pre>
 </div>
 </div>
@@ -1113,9 +1113,9 @@ stesso. Questo è espresso in</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="javascript"><span class="kd">function</span> <span class="nx">quadrato</span><span class="p">(</span>    <span class="nx">x</span>   <span class="p">)</span> <span class="p">{</span> <span class="k">return</span>      <span class="nx">x</span>        <span class="o">*</span>           <span class="nx">x</span><span class="p">;</span> <span class="p">}</span>
-<span class="c1">//  ^       ^         ^         ^         ^        ^           ^</span>
-<span class="c1">// Per    quadrare un numero,             lo moltiplichi per se stesso.</span></code></pre>
+<pre class="rouge highlight"><code data-lang="javascript"><span class="kd">function</span> <span class="nx">quadrato</span><span class="p">(</span>	<span class="nx">x</span>   <span class="p">)</span> <span class="p">{</span> <span class="k">return</span>	  <span class="nx">x</span>		<span class="o">*</span>		   <span class="nx">x</span><span class="p">;</span> <span class="p">}</span>
+<span class="c1">//  ^	   ^		 ^		 ^		 ^		^		   ^</span>
+<span class="c1">// Per	quadrare un numero,			 lo moltiplichi per se stesso.</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1502,8 +1502,8 @@ intraprendendo azioni diverse in ciascun caso in base alla regola</p>
 <div class="paragraph">
 <p>\(
 |x| = \begin{cases}
-        \phantom{-}x  &amp; \text{se } x \geq 0\\
-                  -x  &amp; \text{altrimenti}
+		\phantom{-}x  &amp; \text{se } x \geq 0\\
+				  -x  &amp; \text{altrimenti}
 \end{cases}
 \)</p>
 </div>
@@ -1514,7 +1514,7 @@ JavaScript usando un&#8217;espressione condizionale come segue:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="javascript"><span class="kd">function</span> <span class="nx">valore_assoluto</span> <span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="nx">x</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="p">?</span> <span class="nx">x</span> <span class="p">:</span> <span class="o">-</span><span class="nx">x</span><span class="p">;</span>
+	<span class="k">return</span> <span class="nx">x</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="p">?</span> <span class="nx">x</span> <span class="p">:</span> <span class="o">-</span><span class="nx">x</span><span class="p">;</span>
 <span class="p">}</span></code></pre>
 </div>
 </div>
@@ -1614,7 +1614,7 @@ un numero diverso a un altro numero.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="javascript"><span class="kd">function</span> <span class="nx">diverso</span> <span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="nx">x</span> <span class="o">&gt;</span> <span class="nx">y</span> <span class="o">||</span> <span class="nx">x</span> <span class="o">&lt;</span> <span class="nx">y</span><span class="p">;</span>
+	<span class="k">return</span> <span class="nx">x</span> <span class="o">&gt;</span> <span class="nx">y</span> <span class="o">||</span> <span class="nx">x</span> <span class="o">&lt;</span> <span class="nx">y</span><span class="p">;</span>
 <span class="p">}</span></code></pre>
 </div>
 </div>
@@ -1624,7 +1624,7 @@ un numero diverso a un altro numero.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="javascript"><span class="kd">function</span> <span class="nx">diverso</span> <span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="o">!</span><span class="p">(</span><span class="nx">x</span> <span class="o">&lt;=</span> <span class="nx">y</span> <span class="o">&amp;&amp;</span> <span class="nx">x</span> <span class="o">&gt;=</span> <span class="nx">y</span><span class="p">);</span>
+	<span class="k">return</span> <span class="o">!</span><span class="p">(</span><span class="nx">x</span> <span class="o">&lt;=</span> <span class="nx">y</span> <span class="o">&amp;&amp;</span> <span class="nx">x</span> <span class="o">&gt;=</span> <span class="nx">y</span><span class="p">);</span>
 <span class="p">}</span></code></pre>
 </div>
 </div>
@@ -1789,8 +1789,8 @@ numerici e restituisce la somma dei quadrati dei due numeri più grandi.</p>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="javascript"><span class="c1">// Soluzione dell'esercizio 1.3</span>
 <span class="kd">function</span> <span class="nx">esercizio_1_3</span> <span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">,</span> <span class="nx">z</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="nx">quadrato</span> <span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="o">+</span> <span class="nx">quadrato</span> <span class="p">(</span><span class="nx">y</span><span class="p">)</span> <span class="o">+</span> <span class="nx">quadrato</span> <span class="p">(</span><span class="nx">z</span><span class="p">)</span> <span class="o">-</span>
-     <span class="nx">quadrato</span> <span class="p">(</span> <span class="p">(</span><span class="nx">x</span> <span class="o">&lt;</span> <span class="nx">y</span> <span class="p">?</span> <span class="nx">x</span> <span class="p">:</span> <span class="nx">y</span><span class="p">)</span> <span class="o">&lt;</span> <span class="nx">z</span> <span class="p">?</span> <span class="p">(</span><span class="nx">x</span> <span class="o">&lt;</span> <span class="nx">y</span> <span class="p">?</span> <span class="nx">x</span> <span class="p">:</span> <span class="nx">y</span><span class="p">)</span> <span class="p">:</span> <span class="nx">z</span> <span class="p">);</span>
+	<span class="k">return</span> <span class="nx">quadrato</span> <span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="o">+</span> <span class="nx">quadrato</span> <span class="p">(</span><span class="nx">y</span><span class="p">)</span> <span class="o">+</span> <span class="nx">quadrato</span> <span class="p">(</span><span class="nx">z</span><span class="p">)</span> <span class="o">-</span>
+	 <span class="nx">quadrato</span> <span class="p">(</span> <span class="p">(</span><span class="nx">x</span> <span class="o">&lt;</span> <span class="nx">y</span> <span class="p">?</span> <span class="nx">x</span> <span class="p">:</span> <span class="nx">y</span><span class="p">)</span> <span class="o">&lt;</span> <span class="nx">z</span> <span class="p">?</span> <span class="p">(</span><span class="nx">x</span> <span class="o">&lt;</span> <span class="nx">y</span> <span class="p">?</span> <span class="nx">x</span> <span class="p">:</span> <span class="nx">y</span><span class="p">)</span> <span class="p">:</span> <span class="nx">z</span> <span class="p">);</span>
 <span class="p">}</span></code></pre>
 </div>
 </div>
@@ -1807,12 +1807,12 @@ comportamento della seguente funzione:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="javascript"><span class="kd">function</span> <span class="nx">pi</span><span class="err">ù</span> <span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span><span class="p">;</span> <span class="p">}</span>
+<pre class="rouge highlight"><code data-lang="javascript"><span class="kd">function</span> <span class="nx">piu</span> <span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span><span class="p">;</span> <span class="p">}</span>
 
 <span class="kd">function</span> <span class="nx">meno</span> <span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">a</span> <span class="o">-</span> <span class="nx">b</span><span class="p">;</span> <span class="p">}</span>
 
-<span class="kd">function</span> <span class="nx">a_pi</span><span class="err">ù</span><span class="nx">_valore_assoluto_b</span> <span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="p">(</span><span class="nx">b</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="p">?</span> <span class="nx">pi</span><span class="err">ù</span> <span class="p">:</span> <span class="nx">meno</span><span class="p">)</span> <span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">);</span>
+<span class="kd">function</span> <span class="nx">a_piu_valore_assoluto_b</span> <span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
+	<span class="k">return</span> <span class="p">(</span><span class="nx">b</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="p">?</span> <span class="nx">pi</span><span class="err">ù</span> <span class="p">:</span> <span class="nx">meno</span><span class="p">)</span> <span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">);</span>
 <span class="p">}</span></code></pre>
 </div>
 </div>
@@ -1874,11 +1874,11 @@ normale. Dichiara le seguenti due funzioni:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="javascript"><span class="kd">function</span> <span class="nx">p</span><span class="p">()</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="nx">p</span><span class="p">();</span>
+	<span class="k">return</span> <span class="nx">p</span><span class="p">();</span>
 <span class="p">}</span>
 
 <span class="kd">function</span> <span class="nx">test</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="nx">x</span> <span class="o">===</span> <span class="mi">0</span> <span class="p">?</span> <span class="mi">0</span> <span class="p">:</span> <span class="nx">y</span><span class="p">;</span>
+	<span class="k">return</span> <span class="nx">x</span> <span class="o">===</span> <span class="mi">0</span> <span class="p">?</span> <span class="mi">0</span> <span class="p">:</span> <span class="nx">y</span><span class="p">;</span>
 <span class="p">}</span></code></pre>
 </div>
 </div>
@@ -1943,7 +1943,7 @@ Possiamo definire la funzione radice quadrata come</p>
 </div>
 <div class="paragraph">
 <p>\(\sqrt{x} = \text{ quel numero }y\text{ tale che } y \geq 0\text{ e }
-                y^2 = x\)</p>
+				y^2 = x\)</p>
 </div>
 <div class="paragraph">
 <p>Questo descrive una funzione matematica perfettamente legittima.
@@ -1956,7 +1956,7 @@ le cose a riformulare questa definizione in pseudo-JavaScript:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="javascript"><span class="kd">function</span> <span class="nx">sqrt</span> <span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
+<pre class="rouge highlight"><code data-lang="javascript"><span class="kd">function</span> <span class="nx">radice_quadrata</span> <span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
 <span class="err">    </span><span class="k">return</span> <span class="nx">y</span> <span class="nx">con</span> <span class="nx">y</span><span class="o">&gt;</span> <span class="o">=</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span>
 <span class="err">                      </span><span class="nx">quadrato</span> <span class="p">(</span><span class="nx">y</span><span class="p">)</span> <span class="o">===</span> <span class="nx">x</span><span class="p">;</span>
 <span class="p">}</span></code></pre>
@@ -2115,11 +2115,11 @@ così come possiamo usare qualsiasi funzione.</p>
 <span class="p">}</span>
 
 <span class="kd">function</span> <span class="nx">valore_assoluto</span> <span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="nx">x</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="p">?</span> <span class="nx">x</span> <span class="p">:</span> <span class="o">-</span><span class="nx">x</span><span class="p">;</span>
+	<span class="k">return</span> <span class="nx">x</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="p">?</span> <span class="nx">x</span> <span class="p">:</span> <span class="o">-</span><span class="nx">x</span><span class="p">;</span>
 <span class="p">}</span>
 
 <span class="kd">function</span> <span class="nx">quadrato</span> <span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="nx">x</span> <span class="o">*</span> <span class="nx">x</span><span class="p">;</span>
+	<span class="k">return</span> <span class="nx">x</span> <span class="o">*</span> <span class="nx">x</span><span class="p">;</span>
 <span class="p">}</span></code></pre>
 </div>
 </div>
@@ -2281,7 +2281,7 @@ Si verifichi se si creano soluzioni mal gestite se si prova a calcolare la radic
 <span class="p">}</span>
 
 <span class="kd">function</span> <span class="nx">errore_relativo</span> <span class="p">(</span><span class="nx">stima</span><span class="p">,</span> <span class="nx">riferimento</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="nx">valore_assoluto</span> <span class="p">((</span><span class="nx">stima</span><span class="o">-</span> <span class="nx">riferimento</span><span class="p">)</span> <span class="o">/</span> <span class="nx">riferimento</span><span class="p">)</span>
+	<span class="k">return</span> <span class="nx">valore_assoluto</span> <span class="p">((</span><span class="nx">stima</span><span class="o">-</span> <span class="nx">riferimento</span><span class="p">)</span> <span class="o">/</span> <span class="nx">riferimento</span><span class="p">)</span>
 <span class="p">}</span>
 
 <span class="kd">function</span> <span class="nx">radice_quadrata</span> <span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
@@ -2289,11 +2289,11 @@ Si verifichi se si creano soluzioni mal gestite se si prova a calcolare la radic
 <span class="p">}</span>
 
 <span class="kd">function</span> <span class="nx">valore_assoluto</span> <span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="nx">x</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="p">?</span> <span class="nx">x</span> <span class="p">:</span> <span class="o">-</span><span class="nx">x</span><span class="p">;</span>
+	<span class="k">return</span> <span class="nx">x</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="p">?</span> <span class="nx">x</span> <span class="p">:</span> <span class="o">-</span><span class="nx">x</span><span class="p">;</span>
 <span class="p">}</span>
 
 <span class="kd">function</span> <span class="nx">quadrato</span> <span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="nx">x</span> <span class="o">*</span> <span class="nx">x</span><span class="p">;</span>
+	<span class="k">return</span> <span class="nx">x</span> <span class="o">*</span> <span class="nx">x</span><span class="p">;</span>
 <span class="p">}</span></code></pre>
 </div>
 </div>
@@ -2329,21 +2329,21 @@ calcolo della radice cubica analoga alla funzione <code>radice_quadrata</code>.<
 <span class="p">}</span>
 
 <span class="kd">function</span> <span class="nx">migliora</span> <span class="p">(</span><span class="nx">stima</span><span class="p">,</span> <span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="p">(</span><span class="nx">x</span> <span class="o">/</span> <span class="nx">quadrato</span> <span class="p">(</span><span class="nx">stima</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="nx">stima</span><span class="p">)</span> <span class="o">/</span> <span class="mi">3</span><span class="p">;</span>
+	<span class="k">return</span> <span class="p">(</span><span class="nx">x</span> <span class="o">/</span> <span class="nx">quadrato</span> <span class="p">(</span><span class="nx">stima</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="nx">stima</span><span class="p">)</span> <span class="o">/</span> <span class="mi">3</span><span class="p">;</span>
 <span class="p">}</span>
 
 <span class="kd">function</span> <span class="nx">radc_iter</span> <span class="p">(</span><span class="nx">stima</span><span class="p">,</span> <span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="nx">suff_accurata</span> <span class="p">(</span><span class="nx">stima</span><span class="p">,</span> <span class="nx">x</span><span class="p">)</span>
-               <span class="p">?</span> <span class="nx">stima</span>
-               <span class="p">:</span> <span class="nx">radice_cubica_iter</span> <span class="p">(</span><span class="nx">migliora</span> <span class="p">(</span><span class="nx">stima</span><span class="p">,</span> <span class="nx">x</span><span class="p">),</span> <span class="nx">x</span><span class="p">);</span>
+	<span class="k">return</span> <span class="nx">suff_accurata</span> <span class="p">(</span><span class="nx">stima</span><span class="p">,</span> <span class="nx">x</span><span class="p">)</span>
+			   <span class="p">?</span> <span class="nx">stima</span>
+			   <span class="p">:</span> <span class="nx">radice_cubica_iter</span> <span class="p">(</span><span class="nx">migliora</span> <span class="p">(</span><span class="nx">stima</span><span class="p">,</span> <span class="nx">x</span><span class="p">),</span> <span class="nx">x</span><span class="p">);</span>
 <span class="p">}</span>
 
 <span class="kd">function</span> <span class="nx">radice_cubica</span> <span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="nx">radice_cubica_iter</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nx">x</span><span class="p">);</span>
+	<span class="k">return</span> <span class="nx">radice_cubica_iter</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nx">x</span><span class="p">);</span>
 <span class="p">}</span>
 
 <span class="kd">function</span> <span class="nx">cubo</span> <span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="nx">quadrato</span> <span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="o">*</span> <span class="nx">x</span><span class="p">;</span>
+	<span class="k">return</span> <span class="nx">quadrato</span> <span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="o">*</span> <span class="nx">x</span><span class="p">;</span>
 <span class="p">}</span></code></pre>
 </div>
 </div>
@@ -2454,7 +2454,7 @@ locali al corpo della funzione. Ad esempio, abbiamo usato
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="javascript"><span class="kd">function</span> <span class="nx">suff_accurata</span><span class="p">(</span><span class="nx">stima</span><span class="p">,</span> <span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="nx">valore_assoluto</span> <span class="p">(</span> <span class="nx">quadrato</span> <span class="p">(</span><span class="nx">stima</span><span class="p">)</span> <span class="o">-</span> <span class="nx">x</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">0.001</span><span class="p">;</span>
+	<span class="k">return</span> <span class="nx">valore_assoluto</span> <span class="p">(</span> <span class="nx">quadrato</span> <span class="p">(</span><span class="nx">stima</span><span class="p">)</span> <span class="o">-</span> <span class="nx">x</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">0.001</span><span class="p">;</span>
 <span class="p">}</span></code></pre>
 </div>
 </div>
@@ -2535,31 +2535,31 @@ della radice quadrata possiamo scrivere</p>
 <div class="title">Programma per il calcolo della radice quadrata con funzioni annidate</div>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="javascript"><span class="kd">function</span> <span class="nx">radice_quadrata</span> <span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kd">function</span> <span class="nx">radice_quadrata_iter</span> <span class="p">(</span><span class="nx">stima</span><span class="p">,</span> <span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
-    <span class="err">    </span><span class="k">return</span> <span class="nx">suff_accurata</span> <span class="p">(</span><span class="nx">stima</span><span class="p">,</span> <span class="nx">x</span><span class="p">)</span>
-    <span class="err">           </span><span class="p">?</span> <span class="nx">stima</span>
-    <span class="err">           </span><span class="p">:</span> <span class="nx">radice_quadrata_iter</span> <span class="p">(</span><span class="nx">migliora</span> <span class="p">(</span><span class="nx">stima</span><span class="p">,</span> <span class="nx">x</span><span class="p">),</span> <span class="nx">x</span><span class="p">);</span>
-    <span class="p">}</span>
+	<span class="kd">function</span> <span class="nx">radice_quadrata_iter</span> <span class="p">(</span><span class="nx">stima</span><span class="p">,</span> <span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
+	<span class="err">    </span><span class="k">return</span> <span class="nx">suff_accurata</span> <span class="p">(</span><span class="nx">stima</span><span class="p">,</span> <span class="nx">x</span><span class="p">)</span>
+	<span class="err">           </span><span class="p">?</span> <span class="nx">stima</span>
+	<span class="err">           </span><span class="p">:</span> <span class="nx">radice_quadrata_iter</span> <span class="p">(</span><span class="nx">migliora</span> <span class="p">(</span><span class="nx">stima</span><span class="p">,</span> <span class="nx">x</span><span class="p">),</span> <span class="nx">x</span><span class="p">);</span>
+	<span class="p">}</span>
 
-    <span class="kd">function</span> <span class="nx">migliora</span> <span class="p">(</span><span class="nx">stima</span><span class="p">,</span> <span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
-    <span class="err">    </span><span class="k">return</span> <span class="nx">valor_medio</span> <span class="p">(</span><span class="nx">stima</span><span class="p">,</span> <span class="nx">x</span> <span class="o">/</span> <span class="nx">stima</span><span class="p">);</span>
-    <span class="p">}</span>
+	<span class="kd">function</span> <span class="nx">migliora</span> <span class="p">(</span><span class="nx">stima</span><span class="p">,</span> <span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
+	<span class="err">    </span><span class="k">return</span> <span class="nx">valor_medio</span> <span class="p">(</span><span class="nx">stima</span><span class="p">,</span> <span class="nx">x</span> <span class="o">/</span> <span class="nx">stima</span><span class="p">);</span>
+	<span class="p">}</span>
 
-    <span class="kd">function</span> <span class="nx">valor_medio</span> <span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> <span class="p">{</span>
-    <span class="err">    </span><span class="k">return</span> <span class="p">(</span><span class="nx">x</span> <span class="o">+</span> <span class="nx">y</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
-    <span class="p">}</span>
+	<span class="kd">function</span> <span class="nx">valor_medio</span> <span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> <span class="p">{</span>
+	<span class="err">    </span><span class="k">return</span> <span class="p">(</span><span class="nx">x</span> <span class="o">+</span> <span class="nx">y</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+	<span class="p">}</span>
 
-    <span class="kd">function</span> <span class="nx">suff_accurata</span> <span class="p">(</span><span class="nx">stima</span><span class="p">,</span> <span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
-    <span class="err">    </span><span class="k">return</span> <span class="nx">valore_assoluto</span> <span class="p">(</span><span class="nx">quadrato</span> <span class="p">(</span><span class="nx">stima</span><span class="p">)</span> <span class="o">-</span> <span class="nx">x</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">0.001</span><span class="p">;</span>
-    <span class="p">}</span>
+	<span class="kd">function</span> <span class="nx">suff_accurata</span> <span class="p">(</span><span class="nx">stima</span><span class="p">,</span> <span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
+	<span class="err">    </span><span class="k">return</span> <span class="nx">valore_assoluto</span> <span class="p">(</span><span class="nx">quadrato</span> <span class="p">(</span><span class="nx">stima</span><span class="p">)</span> <span class="o">-</span> <span class="nx">x</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">0.001</span><span class="p">;</span>
+	<span class="p">}</span>
 
-    <span class="kd">function</span> <span class="nx">valore_assoluto</span> <span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="nx">x</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="p">?</span> <span class="nx">x</span> <span class="p">:</span> <span class="o">-</span><span class="nx">x</span><span class="p">;</span>
-    <span class="p">}</span>
+	<span class="kd">function</span> <span class="nx">valore_assoluto</span> <span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
+		<span class="k">return</span> <span class="nx">x</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="p">?</span> <span class="nx">x</span> <span class="p">:</span> <span class="o">-</span><span class="nx">x</span><span class="p">;</span>
+	<span class="p">}</span>
 
-    <span class="kd">function</span> <span class="nx">quadrato</span> <span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="nx">x</span> <span class="o">*</span> <span class="nx">x</span><span class="p">;</span>
-    <span class="p">}</span>
+	<span class="kd">function</span> <span class="nx">quadrato</span> <span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
+		<span class="k">return</span> <span class="nx">x</span> <span class="o">*</span> <span class="nx">x</span><span class="p">;</span>
+	<span class="p">}</span>
 
 <span class="err">    </span><span class="k">return</span> <span class="nx">radice_quadrata_iter</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nx">x</span><span class="p">);</span>
 <span class="p">}</span></code></pre>
@@ -2585,31 +2585,31 @@ Questa disciplina si chiama visibilità lessicale, o visibilità statica (static
 <div class="title">Programma per il calcolo della radice quadrata che sfrutta la visibilià statica</div>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="javascript"><span class="kd">function</span> <span class="nx">radice_quadrata</span> <span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kd">function</span> <span class="nx">radice_quadrata_iter</span> <span class="p">(</span><span class="nx">stima</span><span class="p">)</span> <span class="p">{</span>
-    <span class="err">    </span><span class="k">return</span> <span class="nx">suff_accurata</span> <span class="p">(</span><span class="nx">stima</span><span class="p">)</span>
-    <span class="err">           </span><span class="p">?</span> <span class="nx">stima</span>
-    <span class="err">           </span><span class="p">:</span> <span class="nx">radice_quadrata_iter</span> <span class="p">(</span><span class="nx">migliora</span> <span class="p">(</span><span class="nx">stima</span><span class="p">));</span>
-    <span class="p">}</span>
+	<span class="kd">function</span> <span class="nx">radice_quadrata_iter</span> <span class="p">(</span><span class="nx">stima</span><span class="p">)</span> <span class="p">{</span>
+	<span class="err">    </span><span class="k">return</span> <span class="nx">suff_accurata</span> <span class="p">(</span><span class="nx">stima</span><span class="p">)</span>
+	<span class="err">           </span><span class="p">?</span> <span class="nx">stima</span>
+	<span class="err">           </span><span class="p">:</span> <span class="nx">radice_quadrata_iter</span> <span class="p">(</span><span class="nx">migliora</span> <span class="p">(</span><span class="nx">stima</span><span class="p">));</span>
+	<span class="p">}</span>
 
-    <span class="kd">function</span> <span class="nx">migliora</span> <span class="p">(</span><span class="nx">stima</span><span class="p">)</span> <span class="p">{</span>
-    <span class="err">    </span><span class="k">return</span> <span class="nx">valor_medio</span> <span class="p">(</span><span class="nx">stima</span><span class="p">,</span> <span class="nx">x</span> <span class="o">/</span> <span class="nx">stima</span><span class="p">);</span>
-    <span class="p">}</span>
+	<span class="kd">function</span> <span class="nx">migliora</span> <span class="p">(</span><span class="nx">stima</span><span class="p">)</span> <span class="p">{</span>
+	<span class="err">    </span><span class="k">return</span> <span class="nx">valor_medio</span> <span class="p">(</span><span class="nx">stima</span><span class="p">,</span> <span class="nx">x</span> <span class="o">/</span> <span class="nx">stima</span><span class="p">);</span>
+	<span class="p">}</span>
 
-    <span class="kd">function</span> <span class="nx">valor_medio</span> <span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> <span class="p">{</span>
-    <span class="err">    </span><span class="k">return</span> <span class="p">(</span><span class="nx">x</span> <span class="o">+</span> <span class="nx">y</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
-    <span class="p">}</span>
+	<span class="kd">function</span> <span class="nx">valor_medio</span> <span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> <span class="p">{</span>
+	<span class="err">    </span><span class="k">return</span> <span class="p">(</span><span class="nx">x</span> <span class="o">+</span> <span class="nx">y</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+	<span class="p">}</span>
 
-    <span class="kd">function</span> <span class="nx">suff_accurata</span> <span class="p">(</span><span class="nx">stima</span><span class="p">)</span> <span class="p">{</span>
-    <span class="err">    </span><span class="k">return</span> <span class="nx">valore_assoluto</span> <span class="p">(</span><span class="nx">quadrato</span> <span class="p">(</span><span class="nx">stima</span><span class="p">)</span> <span class="o">-</span> <span class="nx">x</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">0.001</span><span class="p">;</span>
-    <span class="p">}</span>
+	<span class="kd">function</span> <span class="nx">suff_accurata</span> <span class="p">(</span><span class="nx">stima</span><span class="p">)</span> <span class="p">{</span>
+	<span class="err">    </span><span class="k">return</span> <span class="nx">valore_assoluto</span> <span class="p">(</span><span class="nx">quadrato</span> <span class="p">(</span><span class="nx">stima</span><span class="p">)</span> <span class="o">-</span> <span class="nx">x</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">0.001</span><span class="p">;</span>
+	<span class="p">}</span>
 
-    <span class="kd">function</span> <span class="nx">valore_assoluto</span> <span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="nx">x</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="p">?</span> <span class="nx">x</span> <span class="p">:</span> <span class="o">-</span><span class="nx">x</span><span class="p">;</span>
-    <span class="p">}</span>
+	<span class="kd">function</span> <span class="nx">valore_assoluto</span> <span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
+		<span class="k">return</span> <span class="nx">x</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="p">?</span> <span class="nx">x</span> <span class="p">:</span> <span class="o">-</span><span class="nx">x</span><span class="p">;</span>
+	<span class="p">}</span>
 
-    <span class="kd">function</span> <span class="nx">quadrato</span> <span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="nx">x</span> <span class="o">*</span> <span class="nx">x</span><span class="p">;</span>
-    <span class="p">}</span>
+	<span class="kd">function</span> <span class="nx">quadrato</span> <span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
+		<span class="k">return</span> <span class="nx">x</span> <span class="o">*</span> <span class="nx">x</span><span class="p">;</span>
+	<span class="p">}</span>
 
 <span class="err">   </span><span class="k">return</span> <span class="nx">radice_quadrata_iter</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nx">x</span><span class="p">);</span>
 <span class="p">}</span></code></pre>

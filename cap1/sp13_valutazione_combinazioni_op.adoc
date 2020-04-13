@@ -6,8 +6,8 @@ nel valutare le combinazioni mediante operatori, l'interprete proceda
 come segue.
 
 * Per valutare una combinazione mediante operatori, procedi come segue:
-    .  Valuta le espressioni operando della combinazione.
-    .  Applicare la funzione indicata dall'operatore agli argomenti che
+	.  Valuta le espressioni operando della combinazione.
+	.  Applicare la funzione indicata dall'operatore agli argomenti che
 sono i valori degli operandi.
 
 Anche questa semplice regola illustra alcuni punti importanti sui

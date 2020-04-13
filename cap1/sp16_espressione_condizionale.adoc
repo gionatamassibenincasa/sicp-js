@@ -9,8 +9,8 @@ intraprendendo azioni diverse in ciascun caso in base alla regola
 
 latexmath:[
 |x| = \begin{cases}
-        \phantom{-}x  & \text{se } x \geq 0\\
-                  -x  & \text{altrimenti}
+		\phantom{-}x  & \text{se } x \geq 0\\
+				  -x  & \text{altrimenti}
 \end{cases}
 ]
 
@@ -20,7 +20,7 @@ JavaScript usando un'espressione condizionale come segue:
 [source,javascript]
 ----
 function valore_assoluto (x) {
-    return x >= 0 ? x : -x;
+	return x >= 0 ? x : -x;
 }
 ----
 
@@ -99,7 +99,7 @@ un numero diverso a un altro numero.
 [source,javascript]
 ----
 function diverso (x, y) {
-    return x > y || x < y;
+	return x > y || x < y;
 }
 ----
 
@@ -108,7 +108,7 @@ oppure
 [source,javascript]
 ----
 function diverso (x, y) {
-    return !(x <= y && x >= y);
+	return !(x <= y && x >= y);
 }
 ----
 
@@ -260,8 +260,8 @@ numerici e restituisce la somma dei quadrati dei due numeri più grandi.
 ----
 // Soluzione dell'esercizio 1.3
 function esercizio_1_3 (x, y, z) {
-    return quadrato (x) + quadrato (y) + quadrato (z) -
-     quadrato ( (x < y ? x : y) < z ? (x < y ? x : y) : z );
+	return quadrato (x) + quadrato (y) + quadrato (z) -
+	 quadrato ( (x < y ? x : y) < z ? (x < y ? x : y) : z );
 }
 ----
 ====
@@ -275,12 +275,12 @@ comportamento della seguente funzione:
 
 [source,javascript]
 ----
-function più (a, b) { return a + b; }
+function piu (a, b) { return a + b; }
 
 function meno (a, b) { return a - b; }
 
-function a_più_valore_assoluto_b (a, b) {
-    return (b >= 0 ? più : meno) (a, b);
+function a_piu_valore_assoluto_b (a, b) {
+	return (b >= 0 ? più : meno) (a, b);
 }
 ----
 
@@ -327,11 +327,11 @@ normale. Dichiara le seguenti due funzioni:
 [source,javascript]
 ----
 function p() {
-    return p();
+	return p();
 }
 
 function test(x, y) {
-    return x === 0 ? 0 : y;
+	return x === 0 ? 0 : y;
 }
 ----
 

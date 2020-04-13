@@ -12,7 +12,7 @@ Ad esempio, considera il problema del calcolo delle radici quadrate.
 Possiamo definire la funzione radice quadrata come
 
 latexmath:[\sqrt{x} = \text{ quel numero }y\text{ tale che } y \geq 0\text{ e }
-                y^2 = x]
+				y^2 = x]
 
 Questo descrive una funzione matematica perfettamente legittima.
 Potremmo usare la definizione per riconoscere se un numero è la radice
@@ -24,7 +24,7 @@ le cose a riformulare questa definizione in pseudo-JavaScript:
 
 [source,javascript]
 ----
-function sqrt (x) {
+function radice_quadrata (x) {
     return y con y> = 0 &&
                       quadrato (y) === x;
 }
@@ -154,11 +154,11 @@ function radice_quadrata (x) {
 }
 
 function valore_assoluto (x) {
-    return x >= 0 ? x : -x;
+	return x >= 0 ? x : -x;
 }
 
 function quadrato (x) {
-    return x * x;
+	return x * x;
 }
 ----
 
@@ -309,7 +309,7 @@ function suff_accurata (stima, x) {
 }
 
 function errore_relativo (stima, riferimento) {
-    return valore_assoluto ((stima- riferimento) / riferimento)
+	return valore_assoluto ((stima- riferimento) / riferimento)
 }
 
 function radice_quadrata (x) {
@@ -317,11 +317,11 @@ function radice_quadrata (x) {
 }
 
 function valore_assoluto (x) {
-    return x >= 0 ? x : -x;
+	return x >= 0 ? x : -x;
 }
 
 function quadrato (x) {
-    return x * x;
+	return x * x;
 }
 ----
 ====
@@ -352,21 +352,21 @@ function suff_accurata (stima, x) {
 }
 
 function migliora (stima, x) {
-    return (x / quadrato (stima) + 2 * stima) / 3;
+	return (x / quadrato (stima) + 2 * stima) / 3;
 }
 
 function radc_iter (stima, x) {
-    return suff_accurata (stima, x)
-               ? stima
-               : radice_cubica_iter (migliora (stima, x), x);
+	return suff_accurata (stima, x)
+			   ? stima
+			   : radice_cubica_iter (migliora (stima, x), x);
 }
 
 function radice_cubica (x) {
-    return radice_cubica_iter (1, x);
+	return radice_cubica_iter (1, x);
 }
 
 function cubo (x) {
-    return quadrato (x) * x;
+	return quadrato (x) * x;
 }
 ----
 ====

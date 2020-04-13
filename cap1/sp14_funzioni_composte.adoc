@@ -20,7 +20,7 @@ stesso. Questo è espresso in
 [source,javascript]
 ----
 function quadrato (x) {
-    return x * x;
+	return x * x;
 }
 ----
 
@@ -28,9 +28,9 @@ possiamo aiutarci nel modo seguente:
 
 [source,javascript]
 ----
-function quadrato(    x   ) { return      x        *           x; }
-//  ^       ^         ^         ^         ^        ^           ^
-// Per    quadrare un numero,             lo moltiplichi per se stesso.
+function quadrato(	x   ) { return	  x		*		   x; }
+//  ^	   ^		 ^		 ^		 ^		^		   ^
+// Per	quadrare un numero,			 lo moltiplichi per se stesso.
 ----
 
 Qui abbiamo una funzione composta, a cui è stato dato il nome

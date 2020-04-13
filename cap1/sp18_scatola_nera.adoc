@@ -106,7 +106,7 @@ locali al corpo della funzione. Ad esempio, abbiamo usato
 [source,javascript]
 ----
 function suff_accurata(stima, x) {
-    return valore_assoluto ( quadrato (stima) - x) < 0.001;
+	return valore_assoluto ( quadrato (stima) - x) < 0.001;
 }
 ----
 
@@ -184,31 +184,31 @@ della radice quadrata possiamo scrivere
 [source, javascript]
 ----
 function radice_quadrata (x) {
-    function radice_quadrata_iter (stima, x) {
-        return suff_accurata (stima, x)
-               ? stima
-               : radice_quadrata_iter (migliora (stima, x), x);
-    }
+	function radice_quadrata_iter (stima, x) {
+	    return suff_accurata (stima, x)
+	           ? stima
+	           : radice_quadrata_iter (migliora (stima, x), x);
+	}
 
-    function migliora (stima, x) {
-        return valor_medio (stima, x / stima);
-    }
+	function migliora (stima, x) {
+	    return valor_medio (stima, x / stima);
+	}
 
-    function valor_medio (x, y) {
-        return (x + y) / 2;
-    }
+	function valor_medio (x, y) {
+	    return (x + y) / 2;
+	}
 
-    function suff_accurata (stima, x) {
-        return valore_assoluto (quadrato (stima) - x) < 0.001;
-    }
+	function suff_accurata (stima, x) {
+	    return valore_assoluto (quadrato (stima) - x) < 0.001;
+	}
 
-    function valore_assoluto (x) {
-        return x >= 0 ? x : -x;
-    }
+	function valore_assoluto (x) {
+		return x >= 0 ? x : -x;
+	}
 
-    function quadrato (x) {
-        return x * x;
-    }
+	function quadrato (x) {
+		return x * x;
+	}
 
     return radice_quadrata_iter (1, x);
 }
@@ -234,31 +234,31 @@ Questa disciplina si chiama visibilità lessicale, o visibilità statica (static
 [source, javascript]
 ----
 function radice_quadrata (x) {
-    function radice_quadrata_iter (stima) {
-        return suff_accurata (stima)
-               ? stima
-               : radice_quadrata_iter (migliora (stima));
-    }
+	function radice_quadrata_iter (stima) {
+	    return suff_accurata (stima)
+	           ? stima
+	           : radice_quadrata_iter (migliora (stima));
+	}
 
-    function migliora (stima) {
-        return valor_medio (stima, x / stima);
-    }
+	function migliora (stima) {
+	    return valor_medio (stima, x / stima);
+	}
 
-    function valor_medio (x, y) {
-        return (x + y) / 2;
-    }
+	function valor_medio (x, y) {
+	    return (x + y) / 2;
+	}
 
-    function suff_accurata (stima) {
-        return valore_assoluto (quadrato (stima) - x) < 0.001;
-    }
+	function suff_accurata (stima) {
+	    return valore_assoluto (quadrato (stima) - x) < 0.001;
+	}
 
-    function valore_assoluto (x) {
-        return x >= 0 ? x : -x;
-    }
+	function valore_assoluto (x) {
+		return x >= 0 ? x : -x;
+	}
 
-    function quadrato (x) {
-        return x * x;
-    }
+	function quadrato (x) {
+		return x * x;
+	}
 
    return radice_quadrata_iter (1, x);
 }
