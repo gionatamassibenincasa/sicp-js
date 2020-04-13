@@ -46,3 +46,5 @@ include::sp16_espressione_condizionale.adoc[]
 include::sp17_radq.adoc[]
 
 include::sp18_scatola_nera.adoc[]
+
+include::sp1esercizi_aggiunti.adoc[]

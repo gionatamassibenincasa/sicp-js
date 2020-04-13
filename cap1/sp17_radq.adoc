@@ -335,9 +335,14 @@ valore
 
 latexmath:[\frac{x/y^{2}+2y} {3}]
 
-Si utilizzi questa formula per implementare una funzione `radc` per il
+Si utilizzi questa formula per implementare una funzione `radice_cubica` per il
 calcolo della radice cubica analoga alla funzione `radice_quadrata`.
+====
 
+
+.Click per vedere le soluzioni dell'esercizio
+[%collapsible]
+==== 
 [source, javascript]
 ----
 // Soluzione dell'esercizio 1.8
