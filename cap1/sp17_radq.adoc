@@ -342,7 +342,7 @@ calcolo della radice cubica analoga alla funzione `radice_quadrata`.
 
 .Click per vedere le soluzioni dell'esercizio
 [%collapsible]
-==== 
+====
 [source, javascript]
 ----
 // Soluzione dell'esercizio 1.8

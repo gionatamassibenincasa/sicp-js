@@ -9,8 +9,8 @@ intraprendendo azioni diverse in ciascun caso in base alla regola
 
 latexmath:[
 |x| = \begin{cases}
-         x  & \text{se } x \geq 0\\
-        -x  & \text{altrimenti}
+        \phantom{-}x  & \text{se } x \geq 0\\
+                  -x  & \text{altrimenti}
 \end{cases}
 ]
 

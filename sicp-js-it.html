@@ -1,0 +1,2995 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.10">
+<meta name="description" content="Struttura e interpretazione dei programmi del calcolatore adattato al JavaScript">
+<meta name="keywords" content="SICP, JS, JavaScript">
+<meta name="author" content="Gionata Massi">
+<title>Struttura e interpretazione dei programmi del calcolatore - adattato al JavaScript</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
+<style>
+/* Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
+/* Uncomment @import statement to use as custom stylesheet */
+/*@import "https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700";*/
+article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section{display:block}
+audio,video{display:inline-block}
+audio:not([controls]){display:none;height:0}
+html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}
+a{background:none}
+a:focus{outline:thin dotted}
+a:active,a:hover{outline:0}
+h1{font-size:2em;margin:.67em 0}
+abbr[title]{border-bottom:1px dotted}
+b,strong{font-weight:bold}
+dfn{font-style:italic}
+hr{-moz-box-sizing:content-box;box-sizing:content-box;height:0}
+mark{background:#ff0;color:#000}
+code,kbd,pre,samp{font-family:monospace;font-size:1em}
+pre{white-space:pre-wrap}
+q{quotes:"\201C" "\201D" "\2018" "\2019"}
+small{font-size:80%}
+sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}
+sup{top:-.5em}
+sub{bottom:-.25em}
+img{border:0}
+svg:not(:root){overflow:hidden}
+figure{margin:0}
+fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}
+legend{border:0;padding:0}
+button,input,select,textarea{font-family:inherit;font-size:100%;margin:0}
+button,input{line-height:normal}
+button,select{text-transform:none}
+button,html input[type="button"],input[type="reset"],input[type="submit"]{-webkit-appearance:button;cursor:pointer}
+button[disabled],html input[disabled]{cursor:default}
+input[type="checkbox"],input[type="radio"]{box-sizing:border-box;padding:0}
+button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0}
+textarea{overflow:auto;vertical-align:top}
+table{border-collapse:collapse;border-spacing:0}
+*,*::before,*::after{-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box}
+html,body{font-size:100%}
+body{background:#fff;color:rgba(0,0,0,.8);padding:0;margin:0;font-family:"Noto Serif","DejaVu Serif",serif;font-weight:400;font-style:normal;line-height:1;position:relative;cursor:auto;tab-size:4;-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased}
+a:hover{cursor:pointer}
+img,object,embed{max-width:100%;height:auto}
+object,embed{height:100%}
+img{-ms-interpolation-mode:bicubic}
+.left{float:left!important}
+.right{float:right!important}
+.text-left{text-align:left!important}
+.text-right{text-align:right!important}
+.text-center{text-align:center!important}
+.text-justify{text-align:justify!important}
+.hide{display:none}
+img,object,svg{display:inline-block;vertical-align:middle}
+textarea{height:auto;min-height:50px}
+select{width:100%}
+.center{margin-left:auto;margin-right:auto}
+.stretch{width:100%}
+.subheader,.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{line-height:1.45;color:#7a2518;font-weight:400;margin-top:0;margin-bottom:.25em}
+div,dl,dt,dd,ul,ol,li,h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6,pre,form,p,blockquote,th,td{margin:0;padding:0;direction:ltr}
+a{color:#2156a5;text-decoration:underline;line-height:inherit}
+a:hover,a:focus{color:#1d4b8f}
+a img{border:0}
+p{font-family:inherit;font-weight:400;font-size:1em;line-height:1.6;margin-bottom:1.25em;text-rendering:optimizeLegibility}
+p aside{font-size:.875em;line-height:1.35;font-style:italic}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{font-family:"Open Sans","DejaVu Sans",sans-serif;font-weight:300;font-style:normal;color:#ba3925;text-rendering:optimizeLegibility;margin-top:1em;margin-bottom:.5em;line-height:1.0125em}
+h1 small,h2 small,h3 small,#toctitle small,.sidebarblock>.content>.title small,h4 small,h5 small,h6 small{font-size:60%;color:#e99b8f;line-height:0}
+h1{font-size:2.125em}
+h2{font-size:1.6875em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.375em}
+h4,h5{font-size:1.125em}
+h6{font-size:1em}
+hr{border:solid #dddddf;border-width:1px 0 0;clear:both;margin:1.25em 0 1.1875em;height:0}
+em,i{font-style:italic;line-height:inherit}
+strong,b{font-weight:bold;line-height:inherit}
+small{font-size:60%;line-height:inherit}
+code{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;font-weight:400;color:rgba(0,0,0,.9)}
+ul,ol,dl{font-size:1em;line-height:1.6;margin-bottom:1.25em;list-style-position:outside;font-family:inherit}
+ul,ol{margin-left:1.5em}
+ul li ul,ul li ol{margin-left:1.25em;margin-bottom:0;font-size:1em}
+ul.square li ul,ul.circle li ul,ul.disc li ul{list-style:inherit}
+ul.square{list-style-type:square}
+ul.circle{list-style-type:circle}
+ul.disc{list-style-type:disc}
+ol li ul,ol li ol{margin-left:1.25em;margin-bottom:0}
+dl dt{margin-bottom:.3125em;font-weight:bold}
+dl dd{margin-bottom:1.25em}
+abbr,acronym{text-transform:uppercase;font-size:90%;color:rgba(0,0,0,.8);border-bottom:1px dotted #ddd;cursor:help}
+abbr{text-transform:none}
+blockquote{margin:0 0 1.25em;padding:.5625em 1.25em 0 1.1875em;border-left:1px solid #ddd}
+blockquote cite{display:block;font-size:.9375em;color:rgba(0,0,0,.6)}
+blockquote cite::before{content:"\2014 \0020"}
+blockquote cite a,blockquote cite a:visited{color:rgba(0,0,0,.6)}
+blockquote,blockquote p{line-height:1.6;color:rgba(0,0,0,.85)}
+@media screen and (min-width:768px){h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2}
+h1{font-size:2.75em}
+h2{font-size:2.3125em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.6875em}
+h4{font-size:1.4375em}}
+table{background:#fff;margin-bottom:1.25em;border:solid 1px #dedede}
+table thead,table tfoot{background:#f7f8f7}
+table thead tr th,table thead tr td,table tfoot tr th,table tfoot tr td{padding:.5em .625em .625em;font-size:inherit;color:rgba(0,0,0,.8);text-align:left}
+table tr th,table tr td{padding:.5625em .625em;font-size:inherit;color:rgba(0,0,0,.8)}
+table tr.even,table tr.alt{background:#f8f8f7}
+table thead tr th,table tfoot tr th,table tbody tr td,table tr td,table tfoot tr td{display:table-cell;line-height:1.6}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2;word-spacing:-.05em}
+h1 strong,h2 strong,h3 strong,#toctitle strong,.sidebarblock>.content>.title strong,h4 strong,h5 strong,h6 strong{font-weight:400}
+.clearfix::before,.clearfix::after,.float-group::before,.float-group::after{content:" ";display:table}
+.clearfix::after,.float-group::after{clear:both}
+:not(pre):not([class^=L])>code{font-size:.9375em;font-style:normal!important;letter-spacing:0;padding:.1em .5ex;word-spacing:-.15em;background:#f7f7f8;-webkit-border-radius:4px;border-radius:4px;line-height:1.45;text-rendering:optimizeSpeed;word-wrap:break-word}
+:not(pre)>code.nobreak{word-wrap:normal}
+:not(pre)>code.nowrap{white-space:nowrap}
+pre{color:rgba(0,0,0,.9);font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;line-height:1.45;text-rendering:optimizeSpeed}
+pre code,pre pre{color:inherit;font-size:inherit;line-height:inherit}
+pre>code{display:block}
+pre.nowrap,pre.nowrap pre{white-space:pre;word-wrap:normal}
+em em{font-style:normal}
+strong strong{font-weight:400}
+.keyseq{color:rgba(51,51,51,.8)}
+kbd{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;display:inline-block;color:rgba(0,0,0,.8);font-size:.65em;line-height:1.45;background:#f7f7f7;border:1px solid #ccc;-webkit-border-radius:3px;border-radius:3px;-webkit-box-shadow:0 1px 0 rgba(0,0,0,.2),0 0 0 .1em white inset;box-shadow:0 1px 0 rgba(0,0,0,.2),0 0 0 .1em #fff inset;margin:0 .15em;padding:.2em .5em;vertical-align:middle;position:relative;top:-.1em;white-space:nowrap}
+.keyseq kbd:first-child{margin-left:0}
+.keyseq kbd:last-child{margin-right:0}
+.menuseq,.menuref{color:#000}
+.menuseq b:not(.caret),.menuref{font-weight:inherit}
+.menuseq{word-spacing:-.02em}
+.menuseq b.caret{font-size:1.25em;line-height:.8}
+.menuseq i.caret{font-weight:bold;text-align:center;width:.45em}
+b.button::before,b.button::after{position:relative;top:-1px;font-weight:400}
+b.button::before{content:"[";padding:0 3px 0 2px}
+b.button::after{content:"]";padding:0 2px 0 3px}
+p a>code:hover{color:rgba(0,0,0,.9)}
+#header,#content,#footnotes,#footer{width:100%;margin-left:auto;margin-right:auto;margin-top:0;margin-bottom:0;max-width:62.5em;*zoom:1;position:relative;padding-left:.9375em;padding-right:.9375em}
+#header::before,#header::after,#content::before,#content::after,#footnotes::before,#footnotes::after,#footer::before,#footer::after{content:" ";display:table}
+#header::after,#content::after,#footnotes::after,#footer::after{clear:both}
+#content{margin-top:1.25em}
+#content::before{content:none}
+#header>h1:first-child{color:rgba(0,0,0,.85);margin-top:2.25rem;margin-bottom:0}
+#header>h1:first-child+#toc{margin-top:8px;border-top:1px solid #dddddf}
+#header>h1:only-child,body.toc2 #header>h1:nth-last-child(2){border-bottom:1px solid #dddddf;padding-bottom:8px}
+#header .details{border-bottom:1px solid #dddddf;line-height:1.45;padding-top:.25em;padding-bottom:.25em;padding-left:.25em;color:rgba(0,0,0,.6);display:-ms-flexbox;display:-webkit-flex;display:flex;-ms-flex-flow:row wrap;-webkit-flex-flow:row wrap;flex-flow:row wrap}
+#header .details span:first-child{margin-left:-.125em}
+#header .details span.email a{color:rgba(0,0,0,.85)}
+#header .details br{display:none}
+#header .details br+span::before{content:"\00a0\2013\00a0"}
+#header .details br+span.author::before{content:"\00a0\22c5\00a0";color:rgba(0,0,0,.85)}
+#header .details br+span#revremark::before{content:"\00a0|\00a0"}
+#header #revnumber{text-transform:capitalize}
+#header #revnumber::after{content:"\00a0"}
+#content>h1:first-child:not([class]){color:rgba(0,0,0,.85);border-bottom:1px solid #dddddf;padding-bottom:8px;margin-top:0;padding-top:1rem;margin-bottom:1.25rem}
+#toc{border-bottom:1px solid #e7e7e9;padding-bottom:.5em}
+#toc>ul{margin-left:.125em}
+#toc ul.sectlevel0>li>a{font-style:italic}
+#toc ul.sectlevel0 ul.sectlevel1{margin:.5em 0}
+#toc ul{font-family:"Open Sans","DejaVu Sans",sans-serif;list-style-type:none}
+#toc li{line-height:1.3334;margin-top:.3334em}
+#toc a{text-decoration:none}
+#toc a:active{text-decoration:underline}
+#toctitle{color:#7a2518;font-size:1.2em}
+@media screen and (min-width:768px){#toctitle{font-size:1.375em}
+body.toc2{padding-left:15em;padding-right:0}
+#toc.toc2{margin-top:0!important;background:#f8f8f7;position:fixed;width:15em;left:0;top:0;border-right:1px solid #e7e7e9;border-top-width:0!important;border-bottom-width:0!important;z-index:1000;padding:1.25em 1em;height:100%;overflow:auto}
+#toc.toc2 #toctitle{margin-top:0;margin-bottom:.8rem;font-size:1.2em}
+#toc.toc2>ul{font-size:.9em;margin-bottom:0}
+#toc.toc2 ul ul{margin-left:0;padding-left:1em}
+#toc.toc2 ul.sectlevel0 ul.sectlevel1{padding-left:0;margin-top:.5em;margin-bottom:.5em}
+body.toc2.toc-right{padding-left:0;padding-right:15em}
+body.toc2.toc-right #toc.toc2{border-right-width:0;border-left:1px solid #e7e7e9;left:auto;right:0}}
+@media screen and (min-width:1280px){body.toc2{padding-left:20em;padding-right:0}
+#toc.toc2{width:20em}
+#toc.toc2 #toctitle{font-size:1.375em}
+#toc.toc2>ul{font-size:.95em}
+#toc.toc2 ul ul{padding-left:1.25em}
+body.toc2.toc-right{padding-left:0;padding-right:20em}}
+#content #toc{border-style:solid;border-width:1px;border-color:#e0e0dc;margin-bottom:1.25em;padding:1.25em;background:#f8f8f7;-webkit-border-radius:4px;border-radius:4px}
+#content #toc>:first-child{margin-top:0}
+#content #toc>:last-child{margin-bottom:0}
+#footer{max-width:100%;background:rgba(0,0,0,.8);padding:1.25em}
+#footer-text{color:rgba(255,255,255,.8);line-height:1.44}
+#content{margin-bottom:.625em}
+.sect1{padding-bottom:.625em}
+@media screen and (min-width:768px){#content{margin-bottom:1.25em}
+.sect1{padding-bottom:1.25em}}
+.sect1:last-child{padding-bottom:0}
+.sect1+.sect1{border-top:1px solid #e7e7e9}
+#content h1>a.anchor,h2>a.anchor,h3>a.anchor,#toctitle>a.anchor,.sidebarblock>.content>.title>a.anchor,h4>a.anchor,h5>a.anchor,h6>a.anchor{position:absolute;z-index:1001;width:1.5ex;margin-left:-1.5ex;display:block;text-decoration:none!important;visibility:hidden;text-align:center;font-weight:400}
+#content h1>a.anchor::before,h2>a.anchor::before,h3>a.anchor::before,#toctitle>a.anchor::before,.sidebarblock>.content>.title>a.anchor::before,h4>a.anchor::before,h5>a.anchor::before,h6>a.anchor::before{content:"\00A7";font-size:.85em;display:block;padding-top:.1em}
+#content h1:hover>a.anchor,#content h1>a.anchor:hover,h2:hover>a.anchor,h2>a.anchor:hover,h3:hover>a.anchor,#toctitle:hover>a.anchor,.sidebarblock>.content>.title:hover>a.anchor,h3>a.anchor:hover,#toctitle>a.anchor:hover,.sidebarblock>.content>.title>a.anchor:hover,h4:hover>a.anchor,h4>a.anchor:hover,h5:hover>a.anchor,h5>a.anchor:hover,h6:hover>a.anchor,h6>a.anchor:hover{visibility:visible}
+#content h1>a.link,h2>a.link,h3>a.link,#toctitle>a.link,.sidebarblock>.content>.title>a.link,h4>a.link,h5>a.link,h6>a.link{color:#ba3925;text-decoration:none}
+#content h1>a.link:hover,h2>a.link:hover,h3>a.link:hover,#toctitle>a.link:hover,.sidebarblock>.content>.title>a.link:hover,h4>a.link:hover,h5>a.link:hover,h6>a.link:hover{color:#a53221}
+details,.audioblock,.imageblock,.literalblock,.listingblock,.stemblock,.videoblock{margin-bottom:1.25em}
+details>summary:first-of-type{cursor:pointer;display:list-item;outline:none;margin-bottom:.75em}
+.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{text-rendering:optimizeLegibility;text-align:left;font-family:"Noto Serif","DejaVu Serif",serif;font-size:1rem;font-style:italic}
+table.tableblock.fit-content>caption.title{white-space:nowrap;width:0}
+.paragraph.lead>p,#preamble>.sectionbody>[class="paragraph"]:first-of-type p{font-size:1.21875em;line-height:1.6;color:rgba(0,0,0,.85)}
+table.tableblock #preamble>.sectionbody>[class="paragraph"]:first-of-type p{font-size:inherit}
+.admonitionblock>table{border-collapse:separate;border:0;background:none;width:100%}
+.admonitionblock>table td.icon{text-align:center;width:80px}
+.admonitionblock>table td.icon img{max-width:none}
+.admonitionblock>table td.icon .title{font-weight:bold;font-family:"Open Sans","DejaVu Sans",sans-serif;text-transform:uppercase}
+.admonitionblock>table td.content{padding-left:1.125em;padding-right:1.25em;border-left:1px solid #dddddf;color:rgba(0,0,0,.6)}
+.admonitionblock>table td.content>:last-child>:last-child{margin-bottom:0}
+.exampleblock>.content{border-style:solid;border-width:1px;border-color:#e6e6e6;margin-bottom:1.25em;padding:1.25em;background:#fff;-webkit-border-radius:4px;border-radius:4px}
+.exampleblock>.content>:first-child{margin-top:0}
+.exampleblock>.content>:last-child{margin-bottom:0}
+.sidebarblock{border-style:solid;border-width:1px;border-color:#dbdbd6;margin-bottom:1.25em;padding:1.25em;background:#f3f3f2;-webkit-border-radius:4px;border-radius:4px}
+.sidebarblock>:first-child{margin-top:0}
+.sidebarblock>:last-child{margin-bottom:0}
+.sidebarblock>.content>.title{color:#7a2518;margin-top:0;text-align:center}
+.exampleblock>.content>:last-child>:last-child,.exampleblock>.content .olist>ol>li:last-child>:last-child,.exampleblock>.content .ulist>ul>li:last-child>:last-child,.exampleblock>.content .qlist>ol>li:last-child>:last-child,.sidebarblock>.content>:last-child>:last-child,.sidebarblock>.content .olist>ol>li:last-child>:last-child,.sidebarblock>.content .ulist>ul>li:last-child>:last-child,.sidebarblock>.content .qlist>ol>li:last-child>:last-child{margin-bottom:0}
+.literalblock pre,.listingblock>.content>pre{-webkit-border-radius:4px;border-radius:4px;word-wrap:break-word;overflow-x:auto;padding:1em;font-size:.8125em}
+@media screen and (min-width:768px){.literalblock pre,.listingblock>.content>pre{font-size:.90625em}}
+@media screen and (min-width:1280px){.literalblock pre,.listingblock>.content>pre{font-size:1em}}
+.literalblock pre,.listingblock>.content>pre:not(.highlight),.listingblock>.content>pre[class="highlight"],.listingblock>.content>pre[class^="highlight "]{background:#f7f7f8}
+.literalblock.output pre{color:#f7f7f8;background:rgba(0,0,0,.9)}
+.listingblock>.content{position:relative}
+.listingblock code[data-lang]::before{display:none;content:attr(data-lang);position:absolute;font-size:.75em;top:.425rem;right:.5rem;line-height:1;text-transform:uppercase;color:inherit;opacity:.5}
+.listingblock:hover code[data-lang]::before{display:block}
+.listingblock.terminal pre .command::before{content:attr(data-prompt);padding-right:.5em;color:inherit;opacity:.5}
+.listingblock.terminal pre .command:not([data-prompt])::before{content:"$"}
+.listingblock pre.highlightjs{padding:0}
+.listingblock pre.highlightjs>code{padding:1em;-webkit-border-radius:4px;border-radius:4px}
+.listingblock pre.prettyprint{border-width:0}
+.prettyprint{background:#f7f7f8}
+pre.prettyprint .linenums{line-height:1.45;margin-left:2em}
+pre.prettyprint li{background:none;list-style-type:inherit;padding-left:0}
+pre.prettyprint li code[data-lang]::before{opacity:1}
+pre.prettyprint li:not(:first-child) code[data-lang]::before{display:none}
+table.linenotable{border-collapse:separate;border:0;margin-bottom:0;background:none}
+table.linenotable td[class]{color:inherit;vertical-align:top;padding:0;line-height:inherit;white-space:normal}
+table.linenotable td.code{padding-left:.75em}
+table.linenotable td.linenos{border-right:1px solid currentColor;opacity:.35;padding-right:.5em}
+pre.pygments .lineno{border-right:1px solid currentColor;opacity:.35;display:inline-block;margin-right:.75em}
+pre.pygments .lineno::before{content:"";margin-right:-.125em}
+.quoteblock{margin:0 1em 1.25em 1.5em;display:table}
+.quoteblock:not(.excerpt)>.title{margin-left:-1.5em;margin-bottom:.75em}
+.quoteblock blockquote,.quoteblock p{color:rgba(0,0,0,.85);font-size:1.15rem;line-height:1.75;word-spacing:.1em;letter-spacing:0;font-style:italic;text-align:justify}
+.quoteblock blockquote{margin:0;padding:0;border:0}
+.quoteblock blockquote::before{content:"\201c";float:left;font-size:2.75em;font-weight:bold;line-height:.6em;margin-left:-.6em;color:#7a2518;text-shadow:0 1px 2px rgba(0,0,0,.1)}
+.quoteblock blockquote>.paragraph:last-child p{margin-bottom:0}
+.quoteblock .attribution{margin-top:.75em;margin-right:.5ex;text-align:right}
+.verseblock{margin:0 1em 1.25em}
+.verseblock pre{font-family:"Open Sans","DejaVu Sans",sans;font-size:1.15rem;color:rgba(0,0,0,.85);font-weight:300;text-rendering:optimizeLegibility}
+.verseblock pre strong{font-weight:400}
+.verseblock .attribution{margin-top:1.25rem;margin-left:.5ex}
+.quoteblock .attribution,.verseblock .attribution{font-size:.9375em;line-height:1.45;font-style:italic}
+.quoteblock .attribution br,.verseblock .attribution br{display:none}
+.quoteblock .attribution cite,.verseblock .attribution cite{display:block;letter-spacing:-.025em;color:rgba(0,0,0,.6)}
+.quoteblock.abstract blockquote::before,.quoteblock.excerpt blockquote::before,.quoteblock .quoteblock blockquote::before{display:none}
+.quoteblock.abstract blockquote,.quoteblock.abstract p,.quoteblock.excerpt blockquote,.quoteblock.excerpt p,.quoteblock .quoteblock blockquote,.quoteblock .quoteblock p{line-height:1.6;word-spacing:0}
+.quoteblock.abstract{margin:0 1em 1.25em;display:block}
+.quoteblock.abstract>.title{margin:0 0 .375em;font-size:1.15em;text-align:center}
+.quoteblock.excerpt>blockquote,.quoteblock .quoteblock{padding:0 0 .25em 1em;border-left:.25em solid #dddddf}
+.quoteblock.excerpt,.quoteblock .quoteblock{margin-left:0}
+.quoteblock.excerpt blockquote,.quoteblock.excerpt p,.quoteblock .quoteblock blockquote,.quoteblock .quoteblock p{color:inherit;font-size:1.0625rem}
+.quoteblock.excerpt .attribution,.quoteblock .quoteblock .attribution{color:inherit;text-align:left;margin-right:0}
+table.tableblock{max-width:100%;border-collapse:separate}
+p.tableblock:last-child{margin-bottom:0}
+td.tableblock>.content>:last-child{margin-bottom:-1.25em}
+td.tableblock>.content>:last-child.sidebarblock{margin-bottom:0}
+table.tableblock,th.tableblock,td.tableblock{border:0 solid #dedede}
+table.grid-all>thead>tr>.tableblock,table.grid-all>tbody>tr>.tableblock{border-width:0 1px 1px 0}
+table.grid-all>tfoot>tr>.tableblock{border-width:1px 1px 0 0}
+table.grid-cols>*>tr>.tableblock{border-width:0 1px 0 0}
+table.grid-rows>thead>tr>.tableblock,table.grid-rows>tbody>tr>.tableblock{border-width:0 0 1px}
+table.grid-rows>tfoot>tr>.tableblock{border-width:1px 0 0}
+table.grid-all>*>tr>.tableblock:last-child,table.grid-cols>*>tr>.tableblock:last-child{border-right-width:0}
+table.grid-all>tbody>tr:last-child>.tableblock,table.grid-all>thead:last-child>tr>.tableblock,table.grid-rows>tbody>tr:last-child>.tableblock,table.grid-rows>thead:last-child>tr>.tableblock{border-bottom-width:0}
+table.frame-all{border-width:1px}
+table.frame-sides{border-width:0 1px}
+table.frame-topbot,table.frame-ends{border-width:1px 0}
+table.stripes-all tr,table.stripes-odd tr:nth-of-type(odd),table.stripes-even tr:nth-of-type(even),table.stripes-hover tr:hover{background:#f8f8f7}
+th.halign-left,td.halign-left{text-align:left}
+th.halign-right,td.halign-right{text-align:right}
+th.halign-center,td.halign-center{text-align:center}
+th.valign-top,td.valign-top{vertical-align:top}
+th.valign-bottom,td.valign-bottom{vertical-align:bottom}
+th.valign-middle,td.valign-middle{vertical-align:middle}
+table thead th,table tfoot th{font-weight:bold}
+tbody tr th{display:table-cell;line-height:1.6;background:#f7f8f7}
+tbody tr th,tbody tr th p,tfoot tr th,tfoot tr th p{color:rgba(0,0,0,.8);font-weight:bold}
+p.tableblock>code:only-child{background:none;padding:0}
+p.tableblock{font-size:1em}
+ol{margin-left:1.75em}
+ul li ol{margin-left:1.5em}
+dl dd{margin-left:1.125em}
+dl dd:last-child,dl dd:last-child>:last-child{margin-bottom:0}
+ol>li p,ul>li p,ul dd,ol dd,.olist .olist,.ulist .ulist,.ulist .olist,.olist .ulist{margin-bottom:.625em}
+ul.checklist,ul.none,ol.none,ul.no-bullet,ol.no-bullet,ol.unnumbered,ul.unstyled,ol.unstyled{list-style-type:none}
+ul.no-bullet,ol.no-bullet,ol.unnumbered{margin-left:.625em}
+ul.unstyled,ol.unstyled{margin-left:0}
+ul.checklist{margin-left:.625em}
+ul.checklist li>p:first-child>.fa-square-o:first-child,ul.checklist li>p:first-child>.fa-check-square-o:first-child{width:1.25em;font-size:.8em;position:relative;bottom:.125em}
+ul.checklist li>p:first-child>input[type="checkbox"]:first-child{margin-right:.25em}
+ul.inline{display:-ms-flexbox;display:-webkit-box;display:flex;-ms-flex-flow:row wrap;-webkit-flex-flow:row wrap;flex-flow:row wrap;list-style:none;margin:0 0 .625em -1.25em}
+ul.inline>li{margin-left:1.25em}
+.unstyled dl dt{font-weight:400;font-style:normal}
+ol.arabic{list-style-type:decimal}
+ol.decimal{list-style-type:decimal-leading-zero}
+ol.loweralpha{list-style-type:lower-alpha}
+ol.upperalpha{list-style-type:upper-alpha}
+ol.lowerroman{list-style-type:lower-roman}
+ol.upperroman{list-style-type:upper-roman}
+ol.lowergreek{list-style-type:lower-greek}
+.hdlist>table,.colist>table{border:0;background:none}
+.hdlist>table>tbody>tr,.colist>table>tbody>tr{background:none}
+td.hdlist1,td.hdlist2{vertical-align:top;padding:0 .625em}
+td.hdlist1{font-weight:bold;padding-bottom:1.25em}
+.literalblock+.colist,.listingblock+.colist{margin-top:-.5em}
+.colist td:not([class]):first-child{padding:.4em .75em 0;line-height:1;vertical-align:top}
+.colist td:not([class]):first-child img{max-width:none}
+.colist td:not([class]):last-child{padding:.25em 0}
+.thumb,.th{line-height:0;display:inline-block;border:solid 4px #fff;-webkit-box-shadow:0 0 0 1px #ddd;box-shadow:0 0 0 1px #ddd}
+.imageblock.left{margin:.25em .625em 1.25em 0}
+.imageblock.right{margin:.25em 0 1.25em .625em}
+.imageblock>.title{margin-bottom:0}
+.imageblock.thumb,.imageblock.th{border-width:6px}
+.imageblock.thumb>.title,.imageblock.th>.title{padding:0 .125em}
+.image.left,.image.right{margin-top:.25em;margin-bottom:.25em;display:inline-block;line-height:0}
+.image.left{margin-right:.625em}
+.image.right{margin-left:.625em}
+a.image{text-decoration:none;display:inline-block}
+a.image object{pointer-events:none}
+sup.footnote,sup.footnoteref{font-size:.875em;position:static;vertical-align:super}
+sup.footnote a,sup.footnoteref a{text-decoration:none}
+sup.footnote a:active,sup.footnoteref a:active{text-decoration:underline}
+#footnotes{padding-top:.75em;padding-bottom:.75em;margin-bottom:.625em}
+#footnotes hr{width:20%;min-width:6.25em;margin:-.25em 0 .75em;border-width:1px 0 0}
+#footnotes .footnote{padding:0 .375em 0 .225em;line-height:1.3334;font-size:.875em;margin-left:1.2em;margin-bottom:.2em}
+#footnotes .footnote a:first-of-type{font-weight:bold;text-decoration:none;margin-left:-1.05em}
+#footnotes .footnote:last-of-type{margin-bottom:0}
+#content #footnotes{margin-top:-.625em;margin-bottom:0;padding:.75em 0}
+.gist .file-data>table{border:0;background:#fff;width:100%;margin-bottom:0}
+.gist .file-data>table td.line-data{width:99%}
+div.unbreakable{page-break-inside:avoid}
+.big{font-size:larger}
+.small{font-size:smaller}
+.underline{text-decoration:underline}
+.overline{text-decoration:overline}
+.line-through{text-decoration:line-through}
+.aqua{color:#00bfbf}
+.aqua-background{background:#00fafa}
+.black{color:#000}
+.black-background{background:#000}
+.blue{color:#0000bf}
+.blue-background{background:#0000fa}
+.fuchsia{color:#bf00bf}
+.fuchsia-background{background:#fa00fa}
+.gray{color:#606060}
+.gray-background{background:#7d7d7d}
+.green{color:#006000}
+.green-background{background:#007d00}
+.lime{color:#00bf00}
+.lime-background{background:#00fa00}
+.maroon{color:#600000}
+.maroon-background{background:#7d0000}
+.navy{color:#000060}
+.navy-background{background:#00007d}
+.olive{color:#606000}
+.olive-background{background:#7d7d00}
+.purple{color:#600060}
+.purple-background{background:#7d007d}
+.red{color:#bf0000}
+.red-background{background:#fa0000}
+.silver{color:#909090}
+.silver-background{background:#bcbcbc}
+.teal{color:#006060}
+.teal-background{background:#007d7d}
+.white{color:#bfbfbf}
+.white-background{background:#fafafa}
+.yellow{color:#bfbf00}
+.yellow-background{background:#fafa00}
+span.icon>.fa{cursor:default}
+a span.icon>.fa{cursor:inherit}
+.admonitionblock td.icon [class^="fa icon-"]{font-size:2.5em;text-shadow:1px 1px 2px rgba(0,0,0,.5);cursor:default}
+.admonitionblock td.icon .icon-note::before{content:"\f05a";color:#19407c}
+.admonitionblock td.icon .icon-tip::before{content:"\f0eb";text-shadow:1px 1px 2px rgba(155,155,0,.8);color:#111}
+.admonitionblock td.icon .icon-warning::before{content:"\f071";color:#bf6900}
+.admonitionblock td.icon .icon-caution::before{content:"\f06d";color:#bf3400}
+.admonitionblock td.icon .icon-important::before{content:"\f06a";color:#bf0000}
+.conum[data-value]{display:inline-block;color:#fff!important;background:rgba(0,0,0,.8);-webkit-border-radius:100px;border-radius:100px;text-align:center;font-size:.75em;width:1.67em;height:1.67em;line-height:1.67em;font-family:"Open Sans","DejaVu Sans",sans-serif;font-style:normal;font-weight:bold}
+.conum[data-value] *{color:#fff!important}
+.conum[data-value]+b{display:none}
+.conum[data-value]::after{content:attr(data-value)}
+pre .conum[data-value]{position:relative;top:-.125em}
+b.conum *{color:inherit!important}
+.conum:not([data-value]):empty{display:none}
+dt,th.tableblock,td.content,div.footnote{text-rendering:optimizeLegibility}
+h1,h2,p,td.content,span.alt{letter-spacing:-.01em}
+p strong,td.content strong,div.footnote strong{letter-spacing:-.005em}
+p,blockquote,dt,td.content,span.alt{font-size:1.0625rem}
+p{margin-bottom:1.25rem}
+.sidebarblock p,.sidebarblock dt,.sidebarblock td.content,p.tableblock{font-size:1em}
+.exampleblock>.content{background:#fffef7;border-color:#e0e0dc;-webkit-box-shadow:0 1px 4px #e0e0dc;box-shadow:0 1px 4px #e0e0dc}
+.print-only{display:none!important}
+@page{margin:1.25cm .75cm}
+@media print{*{-webkit-box-shadow:none!important;box-shadow:none!important;text-shadow:none!important}
+html{font-size:80%}
+a{color:inherit!important;text-decoration:underline!important}
+a.bare,a[href^="#"],a[href^="mailto:"]{text-decoration:none!important}
+a[href^="http:"]:not(.bare)::after,a[href^="https:"]:not(.bare)::after{content:"(" attr(href) ")";display:inline-block;font-size:.875em;padding-left:.25em}
+abbr[title]::after{content:" (" attr(title) ")"}
+pre,blockquote,tr,img,object,svg{page-break-inside:avoid}
+thead{display:table-header-group}
+svg{max-width:100%}
+p,blockquote,dt,td.content{font-size:1em;orphans:3;widows:3}
+h2,h3,#toctitle,.sidebarblock>.content>.title{page-break-after:avoid}
+#toc,.sidebarblock,.exampleblock>.content{background:none!important}
+#toc{border-bottom:1px solid #dddddf!important;padding-bottom:0!important}
+body.book #header{text-align:center}
+body.book #header>h1:first-child{border:0!important;margin:2.5em 0 1em}
+body.book #header .details{border:0!important;display:block;padding:0!important}
+body.book #header .details span:first-child{margin-left:0!important}
+body.book #header .details br{display:block}
+body.book #header .details br+span::before{content:none!important}
+body.book #toc{border:0!important;text-align:left!important;padding:0!important;margin:0!important}
+body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-break-before:always}
+.listingblock code[data-lang]::before{display:block}
+#footer{padding:0 .9375em}
+.hide-on-print{display:none!important}
+.print-only{display:block!important}
+.hide-for-print{display:none!important}
+.show-for-print{display:inherit!important}}
+@media print,amzn-kf8{#header>h1:first-child{margin-top:1.25rem}
+.sect1{padding:0!important}
+.sect1+.sect1{border:0}
+#footer{background:none}
+#footer-text{color:rgba(0,0,0,.6);font-size:.9em}}
+@media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body class="book">
+<div id="header">
+<h1>Struttura e interpretazione dei programmi del calcolatore - adattato al JavaScript</h1>
+<div class="details">
+<span id="author" class="author">Gionata Massi</span><br>
+<span id="email" class="email"><a href="mailto:gionata.massi@savoiabenincasa.it">gionata.massi@savoiabenincasa.it</a></span><br>
+<span id="revnumber">versione 0.1.1,</span>
+<span id="revdate">2020-04-10</span>
+<br><span id="revremark">Prima bozza con paragrafo 1.1</span>
+</div>
+<div id="toc" class="toc">
+<div id="toctitle">Indice</div>
+<ul class="sectlevel1">
+<li><a href="#_costruire_astrazioni_con_le_funzioni">1. Costruire astrazioni con le funzioni</a>
+<ul class="sectlevel2">
+<li><a href="#_gli_elementi_della_programmazione">1.1. Gli elementi della programmazione</a>
+<ul class="sectlevel3">
+<li><a href="#_espressioni">1.1.1. Espressioni</a></li>
+<li><a href="#_denominazione_e_ambiente">1.1.2. Denominazione e ambiente</a></li>
+<li><a href="#_valutazione_delle_combinazioni_mediante_operatori">1.1.3. Valutazione delle combinazioni mediante operatori</a></li>
+<li><a href="#_funzioni">1.1.4. Funzioni</a></li>
+<li><a href="#_il_modello_di_sostituzione_per_lapplicazione_delle_funzioni">1.1.5. Il modello di sostituzione per l&#8217;applicazione delle funzioni</a></li>
+<li><a href="#_epressioni_condizionali_e_predicati">1.1.6. Epressioni condizionali e predicati</a></li>
+<li><a href="#_esempio_radici_quadrate_con_il_metodo_di_newton">1.1.7. Esempio: radici quadrate con il metodo di Newton</a></li>
+<li><a href="#_funzioni_come_astrazioni_nella_forma_di_una_scatola_nera">1.1.8. Funzioni come astrazioni nella forma di una scatola nera</a></li>
+<li><a href="#_esercizi_aggiuntivi">1.1.9. Esercizi aggiuntivi</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Questo testo è un adattamento in italiano, realizzato con l&#8217;auito di Google Translate, del testo <a href="https://sicp.comp.nus.edu.sg/">Structure and Interpretation of Computer Programs — JavaScript Adaptation</a>, il quale è, a sua volta, un adattamento della seconda edizione del noto libro di testo di Harold Abelson e Gerald Jay Sussman dal titolo: "Structure and Interpretation of Computer Programs".
+Siccome chi ha adattato il testo ritiene che per imparare l&#8217;arte della programmazione sia necessario leggere del buon codice, magari quello dei grandi classici come SICP, e di esercitarsi scrivendo altrettando codice, ha integrato il testo con ulteriori esercizi.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_costruire_astrazioni_con_le_funzioni">1. Costruire astrazioni con le funzioni</h2>
+<div class="sectionbody">
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>Gli atti con cui lo spirito esercita il suo potere sulle idee semplici
+sono principalmente questi tre:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><em>combinare</em> varie idee semplici per formarne una complessa; così sono formate tutte le <em>idee complesse</em></p>
+</li>
+<li>
+<p><em>mettere assieme</em> due idee, semplici o complesse, e giustapporle in modo
+da vederle insieme senza unirle; così lo spirito ottiene tutte le sue
+<em>idee di relazioni</em>;</p>
+</li>
+<li>
+<p><em>separar</em> le idee <em>da</em> tutte le altre che le
+accompagnano nella loro esistenza <em>reale</em>, e questo si chiama
+astrazione: in tal modo sono formate tutte le <em>idee generali</em>.</p>
+</li>
+</ol>
+</div>
+</blockquote>
+<div class="attribution">
+&#8212; John Locke<br>
+<cite>Saggio sull'intelletto umano - Libro II (Delle Idee) Capitolo XII (Delle idee complesse). 1690.</cite>
+</div>
+</div>
+<div class="paragraph">
+<p>Stiamo per studiare il concetto di <strong>processo di calcolo</strong>  o <em>processo
+computazionale</em>. I processi computazionali sono esseri astratti che
+vivono nei calcolatori, come <em>notebook</em>, <em>tablet</em>,
+<em>smartphone</em>, <em>navigatori GPS</em>, dispositivi dello <em>Internet of things</em> e altri dispositivi con microcontrollori. I processi, mentre evolvono, manipolano altri oggetti astratti chiamati <strong>dati</strong>.
+L&#8217;evoluzione di un processo è diretta da uno schema di regole chiamato
+<strong>programma</strong>. Gli uomini creano i programmi per dirigere i processi.
+Quando eseguiamo un programma, in effetti, evochiamo gli spiriti del
+computer con i nostri incantesimi.</p>
+</div>
+<div class="paragraph">
+<p>Un processo computazionale è molto simile all&#8217;idea che uno stregone ha
+di uno spirito. Il processo non può essere visto o toccato. Non è
+composto di materia. Tuttavia è reale. Può eseguire compiti
+intellettuali. Può rispondere a delle domande. Può gestire eventi del
+mondo reale erogando denaro in una banca o controllando un braccio
+robotico in una fabbrica. I programmi che usiamo per evocare i processi
+sono come gli incantesimi di uno stregone. Sono accuratamente composti
+da <strong>espressioni simboliche</strong> in <strong>linguaggi di programmazione</strong>  arcani ed
+esoterici che prescrivono i compiti che vogliamo far eseguire ai nostri
+processi.</p>
+</div>
+<div class="paragraph">
+<p>Un processo computazionale, in un computer che funziona correttamente,
+esegue i programmi in modo preciso e accurato. Quindi i programmatori
+alle prime armi, come l&#8217;apprendista stregone, devono imparare a capire e
+anticipare le conseguenze della loro evocazione. Anche piccoli errori
+nei programmi (di solito chiamati <strong>bug</strong> o <em>glitch</em>)  possono avere
+conseguenze complesse e impreviste.</p>
+</div>
+<div class="paragraph">
+<p>Fortunatamente, imparare a programmare è considerevolmente meno
+pericoloso dello studio della stregoneria, perché gli spiriti di cui ci
+occupiamo sono confinati nel calcolatore. La programmazione nel mondo
+reale, tuttavia, richiede cura, competenza e saggezza. Un piccolo bug in
+un programma di progettazione assistita da computer (Computer Aided
+Design, CAD), ad esempio, può portare al catastrofico schianto di un aereo
+o al crollo di una diga o all&#8217;autodistruzione di un robot industriale.</p>
+</div>
+<div class="paragraph">
+<p>Gli <strong>ingegneri del software</strong> hanno la capacità di organizzare i programmi
+in modo da essere ragionevolmente sicuri che i processi risultanti
+eseguiranno i compiti nel modo previsto. Possono anticipare il comportamento dei
+loro sistemi. Sanno come <strong>strutturare i programmi</strong> in modo tale che
+problemi imprevisti non portino a conseguenze catastrofiche e quando
+sorgono problemi, possono eseguire il <strong>debug</strong> dei loro programmi.
+Sistemi computazionali ben progettati, come automobili ben progettate o
+reattori nucleari, sono progettati in modo <strong>modulare</strong>, in modo che le
+parti possano essere costruite, sostituite e messe a punto
+separatamente.</p>
+</div>
+<h3 id="_programmazione_in_javascript" class="discrete">Programmazione in JavaScript</h3>
+<div class="paragraph">
+<p>Abbiamo bisogno di un linguaggio appropriato per descrivere i processi e
+useremo a questo scopo il <em>linguaggio di programmazione</em> <strong>JavaScript</strong>.
+Proprio come i nostri pensieri quotidiani sono generalmente espressi nel
+nostro linguaggio naturale (come l&#8217;italiano, l&#8217;inglese, il francese o
+il giapponese) e le descrizioni dei fenomeni quantitativi sono espresse con
+notazioni matematiche, il nostro linguaggio per descrivere i processi
+computazionali sarà il linguaggio JavaScript.</p>
+</div>
+<div class="paragraph">
+<p>JavaScript  è stato sviluppato all&#8217;inizio degli anni '90 come linguaggio
+di programmazione per il controllo del comportamento dei browser del
+World Wide Web tramite <em>script</em> (uno script, letteralmente, un copione,
+è una descrizione del comportamento da tenere) incorporati
+nelle pagine web. Il linguaggio è stata concepito da Brendan Eich,
+originariamente sotto il nome di <em>Moka</em>, poi rinominato <em>LiveScript</em> e
+infine <em>JavaScript</em>. Il nome <em>JavaScript</em> è un marchio di <em>Oracle
+Corporation</em>.</p>
+</div>
+<div class="paragraph">
+<p>Nonostante JavaScript sia nato come linguaggio per il controllo dei browser,
+esso è un linguaggio di programmazione generico. Un <strong>interprete</strong>
+JavaScript è una <strong>macchina che esegue i processi</strong> descritti nel linguaggio
+JavaScript. Il primo interprete JavaScript è stato implementato da Eich
+presso <em>Netscape Communications Corporation</em>, per il browser web
+<em>Netscape Navigator</em>. Le caratteristiche principali di JavaScript sono
+ereditate dai linguaggi <strong>Scheme</strong> e <strong>Self</strong>. <em>Scheme</em> è un dialetto del
+<strong>Lisp</strong> ed è stato usato come linguaggio di programmazione per la
+versione originale del libro che ispira questa rivisitazione.
+Da <em>Scheme</em>, JavaScript ha ereditato alcuni principi di progettazione
+fondamentali ed è pertanto possibile adattare il modo di ragionare sui problemi
+indotto dal Scheme in JavaScript.</p>
+</div>
+<div class="paragraph">
+<p>JavaScript ha anche una superficiale somiglianza con il linguaggio
+<strong>Java</strong>, nonostante l&#8217;assonanza del nome; sia Java che JavaScript utilizzano
+la struttura a blocchi del <strong>linguaggio C</strong>. Contrariamente a Java e C,
+che di solito vengono <em>compilati</em> in linguaggi di livello inferiore, i
+programmi JavaScript sono stati inizialmente interpretati dai browser
+web. Dopo <em>Netscape Navigator</em>, altri browser web hanno fornito
+interpreti per il linguaggio, incluso <em>Microsoft Internet Explorer</em>, la
+cui versione JavaScript è chiamata <em>JScript</em>. La popolarità di
+JavaScript per il controllo dei browser Web ha dato origine a uno sforzo
+di standardizzazione, culminato in <strong>ECMAScript</strong>. La prima edizione dello
+standard <strong>ECMAScript</strong> è stata guidata da Guy Lewis Steele Jr. e completata
+nel giugno 1997 (Ecma 1997). La sesta edizione, utilizzata in questo
+libro, è stata guidata da Allen Wirfs-Brock e adottata dall&#8217;Assemblea
+Generale dell&#8217;ECMA nel giugno 2015.</p>
+</div>
+<div class="paragraph">
+<p>La pratica di incorporare programmi JavaScript in pagine Web ha
+incoraggiato gli sviluppatori di browser Web a implementare interpreti
+JavaScript. Man mano che questi programmi diventavano più complessi, gli
+interpreti devono diventare più efficienti nell&#8217;eseguirli. Oggi essi
+usano tecniche sofisticate come la compilazione <em>Just-In-Time</em> (JIT). La
+maggior parte dei programmi JavaScript (a partire dal 2020) sono
+incorporati nelle pagine Web e interpretati dai browser, ma JavaScript
+viene anche utilizzato per risolvere problemi di carattere generale,
+spesso usando l&#8217;interprete <strong>Node.js</strong>.</p>
+</div>
+<div class="paragraph">
+<p>Tuttavia, è la capacità dei browser di eseguire programmi JavaScript che
+lo rende un linguaggio ideale per una versione online di un libro di
+testo di programmazione. L&#8217;esecuzione dei programmi facendo clic sugli
+elementi di una pagina Web è naturale in JavaScript, dopo tutto quello
+per cui è stato progettato JavaScript! Più fondamentalmente, JavaScript
+possiede funzionalità che lo rendono un mezzo eccellente per studiare
+importanti costrutti di programmazione e strutture di dati e per
+metterli in relazione con le caratteristiche linguistiche che li
+supportano. Le funzioni di prima classe con visibilità statica,
+caratteristica anche del JavaScript, forniscono accesso diretto e conciso ai meccanismi di
+astrazione. La tipizzazione dinamica elimina la necessità di dichiarare
+i tipi di dati manipolati dal programma. Oltre a queste considerazioni,
+la programmazione in JavaScript è molto divertente.</p>
+</div>
+<div class="paragraph">
+<p>Puoi provare gli esempi anche sfruttando anche alcune applicazioni web,
+che offrono limitati servizi gratuiti.</p>
+</div>
+<div class="ulist">
+<div class="title">Alcune applicazioni web con cui invocare i processi nel linguaggio JavaScript</div>
+<ul>
+<li>
+<p><a href="https://repljs.com/">REPL JS</a></p>
+</li>
+<li>
+<p><a href="https://repl.it/languages/javascript">repl.it</a></p>
+</li>
+<li>
+<p><a href="https://jsconsole.com/">jsconsole</a></p>
+</li>
+<li>
+<p><a href="https://www.jdoodle.com/execute-nodejs-online/">JDoodle Online NodeJS IDE</a></p>
+</li>
+<li>
+<p><a href="https://codesandbox.io/">CodeSandox</a></p>
+</li>
+<li>
+<p><a href="http://neilff.github.io/immutable-repl/">Immutable REPL</a></p>
+</li>
+<li>
+<p><a href="https://ramdajs.com/repl/">Ramda REPL</a></p>
+</li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="_gli_elementi_della_programmazione">1.1. Gli elementi della programmazione</h3>
+<div class="paragraph">
+<p>Un linguaggio di programmazione è più di un semplice strumento per
+istruire un computer a svolgere compiti. Il linguaggio funge anche da
+framework all&#8217;interno del quale organizziamo le nostre idee sui
+processi. Pertanto, quando descriviamo un linguaggio, dovremmo prestare
+particolare attenzione ai costrutti esso fornisce per combinare idee
+semplici e formare idee più complesse. Ogni linguaggio potente ha tre
+meccanismi per raggiungere questo obiettivo:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">espressioni primitive</dt>
+<dd>
+<p>che rappresentano le entità più semplici di
+cui il linguaggio si occupa,</p>
+</dd>
+<dt class="hdlist1">costrutti di combinazione</dt>
+<dd>
+<p>mediante i
+quali gli elementi più semplici si combinamo per formare gli elementi
+composti, e</p>
+</dd>
+<dt class="hdlist1">costrutti di astrazione</dt>
+<dd>
+<p>mediante i quali gli elementi
+composti possono essere denominati e manipolati come unità.</p>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>Nella programmazione ci occupiamo di due tipi di elementi: <strong>funzioni</strong> e
+<strong>dati</strong>. Più avanti scopriremo che in realtà non sono così distinti.
+Informalmente, i dati sono cose che vogliamo manipolare e le funzioni
+sono descrizioni delle regole per manipolare i dati. Pertanto, qualsiasi
+linguaggio di programmazione dovrebbe essere in grado di descrivere dati
+primitivi e funzioni primitive e dovrebbe avere metodi per combinare e
+astrarre funzioni e dati.</p>
+</div>
+<div class="paragraph">
+<p>In questo capitolo tratteremo solo semplici dati numerici in modo da
+poterci concentrare sulle regole per la costruzione di funzioni. Nei
+capitoli successivi vedremo che queste stesse regole ci consentono di
+creare funzioni per manipolare anche i dati composti.</p>
+</div>
+<div class="sect3">
+<h4 id="_espressioni">1.1.1. Espressioni</h4>
+<div class="paragraph">
+<p>Un modo semplice per iniziare a programmare in JavaScript è interagire
+con l&#8217;interprete JavaScript integrato nel browser che si sta utilizzando
+per visualizzare questa pagina.
+Per trovare l&#8217;interprete, in genere, basta digitare il tasto <kbd>F12</kbd> e selezionare la scheda "Console".</p>
+</div>
+<div class="paragraph">
+<p>Un <strong>programma</strong> JavaScript è una <strong>sequenza di istruzioni</strong>.</p>
+</div>
+<div class="paragraph">
+<p>Un tipo di istruzione è una <strong>istruzione espressione</strong>, che consiste in
+una <strong>espressione</strong><sup class="footnote">[<a id="_footnoteref_1" class="footnote" href="#_footnotedef_1" title="View footnote.">1</a>]</sup>, seguita da un punto e virgola. Un semplice tipo di
+espressione è un numero. (Più precisamente, l&#8217;espressione è detta <strong>numerale</strong> ed costituita dalle cifre che rappresentano il numero nella rappresentazione posizionale in base 10.)</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="mi">486</span><span class="p">;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Le espressioni che rappresentano numeri possono essere combinate con
+<strong>operatori</strong> (come <code>+</code> o <code>*</code>) per formare una <strong>espressione composta</strong> che
+rappresenta l&#8217;applicazione di una funzione primitiva corrispondente a
+tali numeri. Ad esempio:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="mi">137</span> <span class="o">+</span> <span class="mi">349</span><span class="p">;</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="mi">1000</span> <span class="o">-</span> <span class="mi">334</span><span class="p">;</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="mi">5</span> <span class="o">*</span> <span class="mi">99</span><span class="p">;</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="mi">10</span> <span class="o">/</span> <span class="mi">5</span><span class="p">;</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="mf">2.7</span> <span class="o">+</span> <span class="mi">10</span><span class="p">;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Espressioni come queste, che contengono altre espressioni come
+componenti, sono chiamate <strong>combinazioni</strong> o <em>espressioni composte</em>. Le combinazioni che sono formate da un simbolo di operatore scritto in mezzo alle espressioni degli operandi sono dette <strong>combinazioni mediante operatori</strong>. Il valore di una combinazione mediante operatori si ottiene applicando la funzione (una procedura) specificata dall&#8217;operatore agli argomenti, ossia ai valori degli operandi.</p>
+</div>
+<div class="paragraph">
+<p>La convenzione di posizionare l&#8217;operatore tra gli operandi è nota come
+notazione infissa. Segue la notazione matematica con cui il lettore ha
+certamente familiarità. Come in matematica, le combinazioni mediante
+operatori possono essere nidificate, ovvero possono prendere argomenti
+che sono esse stesse combinazioni di operatori:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="p">(</span><span class="mi">3</span> <span class="o">*</span> <span class="mi">5</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="mi">10</span> <span class="o">-</span> <span class="mi">6</span><span class="p">);</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Come al solito, le parentesi vengono utilizzate per raggruppare le
+combinazioni di operatori al fine di evitare ambiguità. JavaScript segue
+anche le consuete convenzioni quando vengono omesse le parentesi; la
+moltiplicazione e la divisione legano maggiormente di addizioni e
+sottrazioni. Per esempio,</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="mi">3</span> <span class="o">*</span> <span class="mi">5</span> <span class="o">+</span> <span class="mi">10</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>sta per</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="p">(</span><span class="mi">3</span> <span class="o">*</span> <span class="mi">5</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="mi">10</span> <span class="o">/</span> <span class="mi">2</span><span class="p">);</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Diciamo che <code>*</code> e <code>/</code> hanno una precedenza maggiore di <code>+</code> e <code>-</code>. Le
+sequenze di addizioni e sottrazioni vengono lette da sinistra a destra,
+così come le sequenze di moltiplicazioni e divisioni. Così,</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="mi">3</span> <span class="o">/</span> <span class="mi">5</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">-</span> <span class="mi">4</span> <span class="o">+</span> <span class="mi">3</span><span class="p">;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>sta per</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="p">(((</span><span class="mi">3</span> <span class="o">/</span> <span class="mi">5</span><span class="p">)</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="mi">4</span><span class="p">)</span> <span class="o">+</span> <span class="mi">3</span><span class="p">;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Si dice che gli operatori <code>+</code>, <code>-</code>, <code>*</code> e <code>/</code> sono <strong>associativi a
+sinistra</strong>.</p>
+</div>
+<div class="paragraph">
+<p>In linea di principio, non c&#8217;è limite alla profondità degli annidamenti
+o alla complessità delle espressioni che l&#8217;interprete JavaScript possa
+valutare. Noi essere umani, invece, possiamo restare confusi anche
+valutando con semplici espressioni come:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="mi">3</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="mi">4</span> <span class="o">+</span> <span class="p">(</span><span class="mi">3</span> <span class="o">-</span> <span class="mi">5</span><span class="p">))</span> <span class="o">+</span> <span class="mi">10</span> <span class="o">*</span> <span class="p">(</span><span class="mi">27</span> <span class="o">/</span> <span class="mi">6</span><span class="p">);</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>che l&#8217;interprete invece valuta rapidamente producendo il numero 57.
+Possiamo aiutarci scrivendo una tale espressione nella forma</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="mi">3</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="mi">4</span> <span class="o">+</span> <span class="p">(</span><span class="mi">3</span> <span class="o">-</span> <span class="mi">5</span><span class="p">))</span>
+<span class="o">+</span>
+<span class="mi">10</span> <span class="o">*</span> <span class="p">(</span><span class="mi">27</span><span class="o">/</span><span class="mi">6</span><span class="p">);</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>per separare visivamente i principali componenti dell&#8217;espressione.</p>
+</div>
+<div class="paragraph">
+<p>L&#8217;interprete opera sempre nello stesso ciclo di base: legge
+un&#8217;istruzione dal browser, valuta l&#8217;istruzione e stampa il risultato.
+Questa modalità operativa viene spesso espressa dicendo che l&#8217;interprete
+funziona in un <strong>ciclo di lettura-valutazione-stampa</strong>
+(read-eval-print-loop, <strong>REPL</strong>). Si noti in particolare che non è
+necessario istruire esplicitamente l&#8217;interprete a stampare il valore
+dell&#8217;istruzione.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_denominazione_e_ambiente">1.1.2. Denominazione e ambiente</h4>
+<div class="paragraph">
+<p>Un aspetto cruciale di un linguaggio di programmazione è la facoltà di
+usare dei <em>nomi</em> per fare riferimento agli <em>oggetti
+computazionali</em>.
+Un <strong>costrutto</strong> del linguaggio che consente di dare un nome agli oggetto è quello della <strong>dichiarazione di valori costanti</strong>.
+Diciamo che il nome identifica una costante il cui valore è l&#8217;oggetto.</p>
+</div>
+<div class="paragraph">
+<p>In JavaScript, la  <strong>dichiarazione di costante</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="kd">const</span> <span class="nx">dimensione</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>fa sì che l&#8217;interprete associ il valore 2 al nome <code>dimensione</code>. Il
+compito della dichiarazione di costante è creare questa associazione.
+Il valore che visualizza l&#8217;interprete JavaScript dopo aver definito la costante
+è <code>undefined</code>, un il valore speciale indefinito, perché la specifica del linguaggio richiede che questo sia il risultato della valutazione delle dichiarazioni di costante. Una volta che il nome <code>dimensione</code> è stato associato al numero 2, possiamo fare riferimento al valore 2 per nome, come in</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="nx">dimensione</span><span class="p">;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>oppure</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="mi">5</span> <span class="o">*</span> <span class="nx">dimensione</span><span class="p">;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Naturalmente, l&#8217;interprete JavaScript deve eseguire la <em>dichiarazione di
+costante</em> per <code>dimensione</code> prima che il nome <code>dimensione</code> possa essere
+utilizzato in un&#8217;espressione.</p>
+</div>
+<div class="paragraph">
+<p>Si nota qui che le istruzioni JavaScript possono essere inserite in una
+<strong>sequenza</strong>. L&#8217;interprete valuta i componenti della sequenza nell&#8217;ordine
+dato e considera il valore dell&#8217;ultimo componente come il valore della
+sequenza.</p>
+</div>
+<div class="paragraph">
+<p>Ecco altri esempi dell&#8217;uso di <code>const</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="kd">const</span> <span class="nx">pi_greco</span> <span class="o">=</span> <span class="mf">3.14159</span><span class="p">;</span>
+<span class="kd">const</span> <span class="nx">raggio</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+<span class="nx">pi_greco</span> <span class="o">*</span> <span class="nx">raggio</span> <span class="o">*</span> <span class="nx">raggio</span><span class="p">;</span>
+<span class="kd">const</span> <span class="nx">circonferenza</span> <span class="o">=</span>  <span class="mi">2</span> <span class="o">*</span> <span class="nx">pi_greco</span> <span class="o">*</span> <span class="nx">raggio</span><span class="p">;</span>
+<span class="nx">circonferenza</span><span class="p">;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>La <em>dichiarazione di costante</em> è il costrutto di <em>astrazione</em> più
+semplice del nostro linguaggio, poiché ci consente di usare dei nomi per
+fare riferimento ai risultati di operazioni composte, come la
+circonferenza sopra calcolata. In generale, gli oggetti computazionali
+possono avere strutture molto complesse e sarebbe estremamente scomodo
+dover ricordare e ripetere i loro dettagli ogni volta che vogliamo
+usarli. In effetti, programmi complessi sono costruiti generando, passo
+dopo passo, oggetti computazionali di crescente complessità. Il nostro
+interprete facilita questa costruzione passo-passo del programma perché
+le associazioni nome-oggetto possono essere create in modo incrementale
+nelle interazioni successive.</p>
+</div>
+<div class="paragraph">
+<p>Dovrebbe essere chiaro che la possibilità di associare valori a nomi e
+di recuperarli in seguito significa che l&#8217;interprete deve mantenere una
+sorta di memoria che tiene traccia delle coppie (nome, oggetto). Questa
+memoria è chiamata <strong>ambiente</strong> (più precisamente <strong>ambiente globale</strong>,
+poiché vedremo più avanti che un calcolo può coinvolgere un numero di
+ambienti diversi).</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_valutazione_delle_combinazioni_mediante_operatori">1.1.3. Valutazione delle combinazioni mediante operatori</h4>
+<div class="paragraph">
+<p>Uno degli obiettivi do questo capitolo è quello di isolare i problemi
+relativi alle descrizioni dei processi. Ad esempio, consideriamo che,
+nel valutare le combinazioni mediante operatori, l&#8217;interprete proceda
+come segue.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Per valutare una combinazione mediante operatori, procedi come segue:</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Valuta le espressioni operando della combinazione.</p>
+</li>
+<li>
+<p>Applicare la funzione indicata dall&#8217;operatore agli argomenti che
+sono i valori degli operandi.</p>
+</li>
+</ol>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Anche questa semplice regola illustra alcuni punti importanti sui
+processi in generale. Innanzitutto, osserva che il primo passo impone
+che per completare il processo di valutazione di una combinazione
+mediante operatori dobbiamo prima eseguire il processo di valutazione su
+ciascun operando della combinazione mediante operatore. Pertanto, la
+regola di valutazione è di natura ricorsiva; cioè include, come uno dei
+suoi passi, la necessità di invocare la regola stessa. Notate quanto in
+modo conciso l&#8217;idea della ricorsione possa essere utilizzata per
+esprimere ciò che, nel caso di una combinazione profondamente annidata,
+verrebbe altrimenti visto come un processo piuttosto complicato. Ad
+esempio, valutare</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="p">(</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">*</span> <span class="mi">6</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">3</span> <span class="o">+</span> <span class="mi">12</span><span class="p">);</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>richiede che la regola di valutazione sia applicata a quattro diverse
+combinazioni. Possiamo ottenere un&#8217;immagine di questo processo
+rappresentando la combinazione sotto forma di un <strong>albero</strong>, come mostrato
+nella <a href="#fig1_1">Figura 1</a>. Ogni combinazione è rappresentata da un nodo con
+diramazioni corrispondenti all&#8217;operatore e agli operandi della
+combinazione mediante operatori. I nodi terminali (ovvero nodi senza
+rami che ne derivano) rappresentano operatori o numeri. Osservando la
+valutazione in termini di struttura ad albero, possiamo immaginare che i
+valori degli operandi si muovano verso l&#8217;alto, partendo dai nodi
+terminali e poi combinandosi a livelli sempre più alti. In generale,
+vedremo che la ricorsione è una tecnica molto potente per trattare
+oggetti gerarchici come gli alberi. In effetti, il processo di
+produzione e consumo di valori salendo verso l&#8217;alto che si ottiene della
+regola di valutazione è un esempio di un tipo generale di processo noto
+come <em>tree accumulation</em>.</p>
+</div>
+<div id="fig1_1" class="imageblock">
+<div class="content">
+<img src="img/ca_fig1_1.svg" alt="ca fig1 1" width="1792" height="360">
+</div>
+<div class="title">Figura 1. Rappresentazione dell&#8217;albero, con illustrazione del valore di ogni sottoespressione</div>
+</div>
+<div class="paragraph">
+<p>Successivamente, osserva che l&#8217;applicazione ripetuta del primo passaggio
+ci porta al punto in cui dobbiamo valutare, non combinazioni mediante
+operatori, ma <strong>espressioni primitive</strong> come numeri o nomi.</p>
+</div>
+<div class="paragraph">
+<p>Ci occupiamo dei casi primitivi stabilendo che</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>valori dei numeri sono i numeri rappresentati nella notazione
+posizionale in base 10, con il punto per separatore decimale,</p>
+</li>
+<li>
+<p>i valori dei nomi sono gli oggetti associati a quei nomi nell&#8217;ambiente.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Notare il ruolo dell&#8217;ambiente nel determinare il significato dei nomi
+nelle espressioni. In JavaScript, non ha senso parlare del valore di
+un&#8217;espressione come <code>x + 1</code> senza specificare alcuna informazione
+sull&#8217;ambiente che fornirebbe un significato per il nome <code>x</code>.</p>
+</div>
+<div class="paragraph">
+<p>Si noti che la regola di valutazione sopra indicata non gestisce le
+dichiarazioni di costanti. Ad esempio, valutando <code>const x = 3;</code> non si
+applica l&#8217;operatore <code>=</code> a due argomenti, uno dei quali è il valore del
+nome <code>x</code> e l&#8217;altro è <code>3</code>, poiché lo scopo della dichiarazione costante è
+proprio quello di associare <code>x</code> a un valore. Cioè, la parte <code>x = 3</code>
+nella dichiarazione di costante</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="kd">const</span> <span class="nx">x</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>non è una combinazione di operatori.</p>
+</div>
+<div class="paragraph">
+<p>La stringa <code>const</code> nella dichiarazione costante è una <strong>parola chiave</strong> in JavaScript. Le parole chiave sono <strong>parole riservate</strong> che hanno un significato
+particolare e quindi non possono essere utilizzate come nomi di costante.
+Una parola chiave o una combinazione di parole chiave indica all&#8217;interprete
+JavaScript di trattare la rispettiva dichiarazione in modo speciale.
+Ciascuna di queste forme sintattiche ha una propria regola di
+valutazione. I vari tipi di dichiarazioni (ciascuna con la relativa
+regola di valutazione associata) costituiscono la <strong>sintassi</strong> del
+linguaggio di programmazione.</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">Forma della dichiarazione di una costante</div>
+<div class="paragraph">
+<p><strong>const</strong> <em>nome</em> = <em>espressione</em></p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_funzioni">1.1.4. Funzioni</h4>
+<div class="paragraph">
+<p>Abbiamo identificato in JavaScript alcuni degli elementi che devono
+apparire in qualsiasi linguaggio di programmazione:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>I numeri e le operazioni aritmetiche sono dati e funzioni primitivi.</p>
+</li>
+<li>
+<p>L&#8217;annidamento delle combinazioni fornisce un costrutto per combinare
+le operazioni.</p>
+</li>
+<li>
+<p>Le dichiarazioni di costante che associano i nomi ai
+valori forniscono un costutto di astrazione.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Ora conosceremo le <strong>dichiarazioni di funzione</strong>, una tecnica di
+astrazione molto più potente con la quale a un&#8217;operazione composta può
+essere assegnato un nome, così da considerarla come un&#8217;unità di calcolo.</p>
+</div>
+<div class="paragraph">
+<p>Iniziamo esaminando come esprimere l&#8217;idea di quadratura di un numero.
+Potremmo dire che, per quadrare un numero, occorre moliplicarlo per se
+stesso. Questo è espresso in</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="kd">function</span> <span class="nx">quadrato</span> <span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">x</span> <span class="o">*</span> <span class="nx">x</span><span class="p">;</span>
+<span class="p">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>possiamo aiutarci nel modo seguente:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="kd">function</span> <span class="nx">quadrato</span><span class="p">(</span>    <span class="nx">x</span>   <span class="p">)</span> <span class="p">{</span> <span class="k">return</span>      <span class="nx">x</span>        <span class="o">*</span>           <span class="nx">x</span><span class="p">;</span> <span class="p">}</span>
+<span class="c1">//  ^       ^         ^         ^         ^        ^           ^</span>
+<span class="c1">// Per    quadrare un numero,             lo moltiplichi per se stesso.</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Qui abbiamo una funzione composta, a cui è stato dato il nome
+<code>quadrato</code>. La funzione rappresenta l&#8217;operazione di moltiplicare
+qualcosa per se stesso. Alla cosa da moltiplicare viene assegnato un
+<strong>nome locale</strong>, <code>x</code>, che svolge lo stesso ruolo di un pronome nel
+linguaggio naturale. La valutazione della <em>dichiarazione di funzione</em>
+crea questa funzione composta e la associa al nome <code>quadrato</code>.</p>
+</div>
+<div class="paragraph">
+<p>La nostra forma più semplice di una dichiarazione di funzione è</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">Forma (ristretta) della dichiarazione di una funzione</div>
+<div class="paragraph">
+<p><strong>function</strong> <em>nome</em> <strong>(</strong> <em>parametri</em> <strong>)</strong> <strong>{ return</strong> <em>espressione</em> <strong>; }</strong></p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Il nome è un simbolo da associare alla funzione nell'<strong>ambiente</strong>. I
+parametri sono i nomi utilizzati nel corpo della funzione per fare
+riferimento agli argomenti corrispondenti della funzione. L&#8217;espressione
+dopo la parola chiave <strong>return</strong> è l&#8217;espressione da restituire che
+produrrà il valore dell'<strong>applicazione della funzione</strong> quando i parametri
+vengono sostituiti dagli argomenti a cui viene applicata la funzione. I
+parametri sono raggruppati tra parentesi e separati da virgole, proprio
+come sarebbero in una chiamata effettiva alla funzione dichiarata.</p>
+</div>
+<div class="paragraph">
+<p>Avendo dichiarato la funzione <code>quadrato</code>, ora possiamo usarla in
+un'<strong>espressione di applicazione di funzione</strong>, che trasformiamo in
+un&#8217;istruzione usando un punto e virgola:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="nx">quadrato</span> <span class="p">(</span><span class="mi">21</span><span class="p">);</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Il nome <code>quadrato</code> l'<strong>espressione della funzione</strong> dell&#8217;applicazione e 21
+è l'<strong>espressione dell&#8217;argomento</strong>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="nx">quadrato</span> <span class="p">(</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">5</span><span class="p">);</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Qui, l'<em>espressione argomento</em> è essa stessa un&#8217;espressione composta,
+l'<em>espressione mediante operatore</em> <code>2 + 5</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="nx">quadrato</span> <span class="p">(</span><span class="nx">quadrato</span> <span class="p">(</span><span class="mi">3</span><span class="p">));</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Naturalmente le <em>espressioni di applicazione</em> possono anche servire come
+espressioni di argomenti. Possiamo anche usare <code>quadrato</code> come un
+mattoncino con cui definire altre funzioni. Ad esempio,
+\(x^2 + y^2\) può essere espresso come</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="nx">quadrato</span> <span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="o">+</span> <span class="nx">quadrato</span> <span class="p">(</span><span class="nx">y</span><span class="p">);</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Possiamo facilmente dichiarare una funzione <code>somma_di_quadrati</code> che, dati due
+numeri qualsiasi come argomenti, produce la somma dei loro quadrati:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="kd">function</span> <span class="nx">somma_di_quadrati</span> <span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> <span class="p">{</span>
+<span class="err">    </span><span class="k">return</span> <span class="nx">quadrato</span> <span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="o">+</span> <span class="nx">quadrato</span> <span class="p">(</span><span class="nx">y</span><span class="p">);</span>
+<span class="p">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Ora possiamo usare <code>somma_di_quadrati</code> come mattoncino per la
+costruzione di ulteriori funzioni:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="kd">function</span> <span class="nx">f</span> <span class="p">(</span><span class="nx">a</span><span class="p">)</span> <span class="p">{</span>
+<span class="err">    </span><span class="k">return</span> <span class="nx">somma_di_quadrati</span> <span class="p">(</span><span class="nx">a</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">a</span> <span class="o">*</span> <span class="mi">2</span><span class="p">);</span>
+<span class="p">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>L&#8217;applicazione di funzioni come <code>somma_di_quadrati (3, 4)</code> è - dopo la
+combinazione mediante operatore - il secondo tipo di combinazione di
+espressioni in espressioni più grandi che incontriamo. Oltre alle
+funzioni composte, JavaScript fornisce una serie di funzioni primitive
+integrate nell&#8217;interprete. Un esempio è la funzione <code>Math.log</code> che
+calcola il logaritmo naturale del suo argomento. La valutazione
+dell&#8217;espressione dell&#8217;applicazione <code>Math.log (1)</code> produce il numero 0.
+Le funzioni primitive vengono utilizzate esattamente allo stesso modo
+delle funzioni composte. In effetti, non si può dire guardando la
+definizione di <code>somma_di_quadrati</code> sopra indicata se il quadrato sia una
+funzione primitiva dell&#8217;interprete, come <code>Math.log</code>, o se sia definito
+come una funzione composta.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_il_modello_di_sostituzione_per_lapplicazione_delle_funzioni">1.1.5. Il modello di sostituzione per l&#8217;applicazione delle funzioni</h4>
+<div class="paragraph">
+<p>Per valutare una combinazione mediante applicazione, l&#8217;interprete segue
+un processo simile a quello delle combinazioni mediante operatori,
+descritto sopra. Cioè, l&#8217;interprete valuta gli elementi della
+combinazione e applica la funzione (che è il valore dell&#8217;espressione
+della funzione) agli argomenti (che sono i valori delle espressioni
+degli argomenti della combinazione dell&#8217;applicazione).</p>
+</div>
+<div class="paragraph">
+<p>Più in dettaglio, l&#8217;interprete procede come segue quando valuta le
+combinazioni di applicazioni:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Per valutare una combinazione di applicazioni della forma <strong>funzione-espressione (</strong> <em>argomenti-espressioni</em> <strong>)</strong> fare quanto segue:</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Valuta l&#8217;espressione della funzione della combinazione
+dell&#8217;applicazione, risultante nella funzione da applicare.</p>
+</li>
+<li>
+<p>Valuta le espressioni argomento della combinazione.</p>
+</li>
+<li>
+<p>Applica la funzione agli argomenti:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Se la funzione è primitiva, applichiamo semplicemente la funzione
+matematica corrispondente agli argomenti.</p>
+</li>
+<li>
+<p>Se la funzione è composta, valutiamo l&#8217;espressione da restituire
+della funzione con ogni parametro sostituito dall&#8217;argomento corrispondente.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Per illustrare questo processo, valutiamo la combinazione
+dell&#8217;applicazione di funzione</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="nx">f</span> <span class="p">(</span><span class="mi">5</span><span class="p">);</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>La valutazione del nome <code>f</code> restituisce il corpo della funzione. La
+valutazione dell&#8217;espressione dell&#8217;argomento 5 produce il valore
+dell&#8217;argomento 5. Ora, recuperiamo l&#8217;espressione da restituire di <code>f</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="nx">somma_di_quadrati</span> <span class="p">(</span><span class="nx">a</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">a</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>in cui sostituiamo il parametro <code>a</code> con l&#8217;argomento 5:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="nx">somma_di_quadrati</span> <span class="p">(</span><span class="mi">5</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Pertanto, il problema si riduce alla valutazione di una combinazione di
+applicazioni con due argomenti e un&#8217;espressione di funzione
+<code>somma_di_quadrati</code>. La valutazione di questa combinazione comporta tre
+sottoproblemi. Dobbiamo valutare l&#8217;espressione della funzione per
+ottenere l&#8217;applicazione della funzione e dobbiamo valutare le
+espressioni degli argomenti per ottenere gli argomenti. Ora <code>5 + 1</code>
+produce 6 e <code>5 * 2</code> produce 10, quindi dobbiamo applicare la funzione
+<code>somma_di_quadrati</code> a 6 e 10. Questi valori vengono sostituiti con i
+parametri <code>x</code> e <code>y</code> nell&#8217;espressione restituita da <code>somma_di_quadrati</code>,
+riducendo l&#8217;espressione a</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="nx">quadrato</span> <span class="p">(</span><span class="mi">6</span><span class="p">)</span> <span class="o">+</span> <span class="nx">quadrato</span> <span class="p">(</span><span class="mi">10</span><span class="p">)</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Se usiamo la dichiarazione di <code>quadrato</code> una volta, questo si riduce a</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="p">(</span><span class="mi">6</span> <span class="o">*</span> <span class="mi">6</span><span class="p">)</span> <span class="o">+</span> <span class="nx">quadrato</span> <span class="p">(</span><span class="mi">10</span><span class="p">)</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>che effettuata la moltiplicazione si riduce a</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="mi">36</span> <span class="o">+</span> <span class="nx">quadrato</span> <span class="p">(</span><span class="mi">10</span><span class="p">)</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Una seconda applicazione di <code>quadrato</code> porta all&#8217;espressione composta
+per mezzo di operatori</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="mi">36</span> <span class="o">+</span> <span class="p">(</span><span class="mi">10</span> <span class="o">*</span> <span class="mi">10</span><span class="p">)</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>che si riduce con la moltiplicazione a</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="mi">36</span> <span class="o">+</span> <span class="mi">100</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>e infine viene valutato l&#8217;operatore primitivo di somma applicato agli
+argomenti primitivi ottenendo, finalmente</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="mi">136</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Il processo che abbiamo appena descritto si chiama <strong>modello di
+sostituzione per l&#8217;applicazione delle funzioni</strong>. Può essere usato come
+un modello per determinare il significato dell&#8217;applicazione delle
+funzioni, per quanto riguarda le funzioni di questo capitolo. Tuttavia,
+ci sono due punti che dovrebbero essere sottolineati:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Lo scopo della sostituzione è di aiutarci a pensare all&#8217;applicazione
+della funzione, non a fornire una descrizione di come funziona davvero
+l&#8217;interprete. Gli interpreti tipici non valutano le applicazioni delle
+funzioni manipolando il testo di una funzione per sostituire i valori
+con i parametri. In pratica, la sostituzione viene eseguita utilizzando
+un <em>ambiente locale</em> per i parametri.</p>
+</li>
+<li>
+<p>Ci sono modelli più elaborati di come funzionano gli interpreti.
+Il modello di sostituzione è solo il
+primo di questi modelli: un modo per iniziare a pensare formalmente al
+processo di valutazione. In generale, quando modelliamo i fenomeni
+scientifici e ingegneristici, iniziamo con modelli semplificati e
+incompleti. Man mano che esaminiamo le cose in modo più dettagliato,
+questi semplici modelli diventano inadeguati e devono essere sostituiti
+da modelli più raffinati. Il modello di sostituzione non fa eccezione.</p>
+</li>
+</ul>
+</div>
+<h4 id="_ordine_di_applicazione_e_ordine_normale" class="discrete">Ordine di applicazione e ordine normale</h4>
+<div class="paragraph">
+<p>Secondo la descrizione della valutazione di cui sopra, l&#8217;interprete
+valuta prima la funzione e le espressioni degli argomenti, quindi
+applica la funzione risultante agli argomenti risultanti. Questo non è
+l&#8217;unico modo per eseguire la valutazione. Un modello di valutazione
+alternativo non valuterebbe gli operandi fino a quando non fossero
+necessari i loro valori. Sostituirebbe invece le espressioni degli
+argomenti con i parametri fino a quando non ottenesse un&#8217;espressione che
+coinvolge solo operatori, per poi eseguire la valutazione. Se usassimo
+questo metodo, la valutazione di</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="nx">f</span> <span class="p">(</span><span class="mi">5</span><span class="p">)</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>procederebbe secondo la sequenza di espansioni</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="nx">somma_di_quadrati</span> <span class="p">(</span><span class="mi">5</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="nx">quadrato</span> <span class="p">(</span><span class="mi">5</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="nx">quadrato</span> <span class="p">(</span><span class="mi">5</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="p">(</span><span class="mi">5</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">5</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="nx">quadrato</span> <span class="p">(</span><span class="mi">5</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="p">(</span><span class="mi">5</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">5</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="mi">5</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">5</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>seguita dalle riduzioni</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="mi">6</span> <span class="o">*</span> <span class="p">(</span><span class="mi">5</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="mi">5</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">5</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="mi">6</span> <span class="o">*</span> <span class="mi">6</span> <span class="o">+</span> <span class="p">(</span><span class="mi">5</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">5</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="mi">36</span> <span class="o">+</span> <span class="p">(</span><span class="mi">5</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">5</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="mi">36</span> <span class="o">+</span> <span class="mi">10</span> <span class="o">*</span> <span class="p">(</span><span class="mi">5</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="mi">36</span> <span class="o">+</span> <span class="mi">10</span> <span class="o">*</span> <span class="mi">10</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="mi">36</span> <span class="o">+</span> <span class="mi">100</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="mi">136</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Ciò fornisce la stessa risposta del nostro modello di valutazione
+precedente, ma il processo è diverso. In particolare, le valutazioni di
+<code>5 + 1</code> e <code>5 * 2</code> vengono eseguite due volte ciascuna qui, corrispondente
+alla riduzione dell&#8217;espressione x * x con x sostituita rispettivamente
+da <code>5 + 1</code> e <code>5 * 2</code>. Questa alternativa si espande completamente e quindi
+riduce il metodo di valutazione è noto come valutazione dell&#8217;ordine
+normale, in contrasto con la valutazione degli argomenti e quindi
+applica il metodo che l&#8217;interprete effettivamente utilizza, che è
+chiamato valutazione dell&#8217;ordine applicativo. Si può dimostrare che, per
+le applicazioni di funzioni che possono essere modellate usando la
+sostituzione (comprese tutte le funzioni nei primi due capitoli di
+questo libro) e che producono valori legittimi, la valutazione
+dell&#8217;ordine normale e dell&#8217;ordine applicativo producono lo stesso
+valore.</p>
+</div>
+<div class="paragraph">
+<p>JavaScript utilizza la valutazione nell&#8217;ordine applicativo, in parte a
+causa dell&#8217;ulteriore efficienza ottenuta dall&#8217;evitare valutazioni
+multiple di espressioni come quelle illustrate sopra e, in modo più
+significativo, perché la valutazione dell&#8217;ordine normale diventa molto
+più complicata da affrontare quando lasciamo il regno delle procedure
+che può essere modellato per sostituzione. D&#8217;altra parte, la valutazione
+dell&#8217;ordine normale può essere uno strumento estremamente prezioso.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_epressioni_condizionali_e_predicati">1.1.6. Epressioni condizionali e predicati</h4>
+<div class="paragraph">
+<p>Il potere espressivo della classe di funzioni che possiamo dichiarare a
+questo punto è molto limitato, perché non abbiamo modo di fare test ed
+eseguire diverse operazioni a seconda del risultato di un test. Ad
+esempio, non possiamo dichiarare una funzione che calcola il valore
+assoluto di un numero verificando se il numero è negativo o meno e
+intraprendendo azioni diverse in ciascun caso in base alla regola</p>
+</div>
+<div class="paragraph">
+<p>\(
+|x| = \begin{cases}
+        \phantom{-}x  &amp; \text{se } x \geq 0\\
+                  -x  &amp; \text{altrimenti}
+\end{cases}
+\)</p>
+</div>
+<div class="paragraph">
+<p>Questo costrutto è un&#8217;analisi di casi e può essere espresso in
+JavaScript usando un&#8217;espressione condizionale come segue:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="kd">function</span> <span class="nx">valore_assoluto</span> <span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">x</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="p">?</span> <span class="nx">x</span> <span class="p">:</span> <span class="o">-</span><span class="nx">x</span><span class="p">;</span>
+<span class="p">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>La forma generale di un'<strong>espressione condizionale</strong> è</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">Forma di un&#8217;espressione condizionale</div>
+<div class="paragraph">
+<p><em>predicato</em> <strong>?</strong> <em>espressione-conseguente</em> <strong>:</strong> <em>espressione-alternativa</em></p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Le espressioni condizionali iniziano con un predicato, ovvero
+un&#8217;espressione il cui valore viene interpretato come vero o falso. Vero
+e falso sono dei valori che indichiamo come valori booleani, in onore di
+George Boole che ne ha studiato le proprietà con una teoria matematica.
+In JavaScript i valori vero e falso sono nominati, rispettivamente,
+<code>true</code> e <code>false</code>.</p>
+</div>
+<div class="paragraph">
+<p>Si noti che le espressioni booleane primitive <code>true</code> e <code>false</code> vengono
+valutate, rispettivamente, nei valori booleani <code>true</code> (vero) e <code>false</code> (falso).
+Il predicato è seguito da un punto interrogativo, l&#8217;espressione
+conseguente, i due punti e infine l&#8217;espressione alternativa. Per
+valutare un&#8217;espressione condizionale, l&#8217;interprete inizia valutando il
+predicato dell&#8217;espressione composta. Se il predicato restituisce <code>true</code>,
+l&#8217;interprete valuta l&#8217;espressione conseguente. Altrimenti valuta
+l&#8217;espressione alternativa.</p>
+</div>
+<div class="paragraph">
+<p>La parola <em>predicato</em> viene utilizzata per funzioni che restituiscono
+vero o falso, nonché per espressioni che sono valuate in vero o falso.
+La funzione del valore assoluto <code>valore_assoluto</code> utilizza il predicato
+primitivo <code>&gt;=</code>. Questo predicato accetta due numeri come argomenti e
+verifica se il primo numero è maggiore o uguale al secondo numero,
+restituendo vero o falso di conseguenza.</p>
+</div>
+<div class="paragraph">
+<p>JavaScript fornisce una serie di predicati primitivi che funzionano in
+modo simile a <code>&gt;=</code>, inclusi <code>&gt;</code>, <code>&lt;</code>, <code>&#8656;</code> e <code>===</code>. Oltre a questi
+predicati primitivi, esistono operazioni logiche di composizione che ci
+consentono di costruire predicati composti. I tre più utilizzati sono
+questi:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><em>espressione1</em> <code>&amp;&amp;</code> <em>espressione2</em> </dt>
+<dd>
+<p>L&#8217;interprete valuta espressione1. Se viene valutato falso, il valore
+dell&#8217;intera espressione è falso e expressione2 non viene valutata. Se
+expressione1 restituisce vero, il valore dell&#8217;intera espressione è il
+valore di expressione2.</p>
+</dd>
+<dt class="hdlist1"><em>espressione1</em> <code>||</code> <em>expressione2</em> </dt>
+<dd>
+<p>L&#8217;interprete valuta expressione1. Se restituisce vero, il valore
+dell&#8217;intera espressione è vero e expressione2 non viene valutata. Se
+expression1 restituisce falso, il valore dell&#8217;intera espressione è il
+valore di expressione2.</p>
+</dd>
+<dt class="hdlist1"><code>!</code> <em>espressione</em> </dt>
+<dd>
+<p>Il valore dell&#8217;espressione è vero quando espressione viene valutata falsa e falso in caso contrario.</p>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>Si noti che <code>&amp;&amp;</code> e <code>||</code> non vengono valutati come operatori aritmetici
+come <code>+</code>, perché la loro espressione di destra non viene sempre valutata.
+L&#8217;operatore <code>!</code>, D&#8217;altra parte, segue la regola di valutazione già nota.
+È un operatore unario, il che significa che accetta solo un argomento,
+mentre gli operatori aritmetici incontrati finora sono binari, prendendo
+due argomenti. L&#8217;operatore <code>!</code> precede il suo argomento; lo chiamiamo un
+<strong>operatore prefisso</strong>. Un altro operatore prefisso è l&#8217;operatore meno
+unario, un esempio del quale è l&#8217;espressione <code>-x</code> della funzione
+<code>valore_assoluto</code> all&#8217;inizio di questa sezione. Come esempio di come
+vengono utilizzati questi predicati, la condizione che un numero
+\(x\) sia compreso nell&#8217;intervallo \(5 &lt; x &lt; 10\)
+può essere espressa come</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="nx">x</span> <span class="o">&gt;</span> <span class="mi">5</span> <span class="o">&amp;&amp;</span> <span class="nx">x</span> <span class="o">&lt;</span> <span class="mi">10</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Si noti che l&#8217;operatore binario <code>&amp;&amp;</code> ha una precedenza inferiore
+rispetto agli operatori di confronto <code>&gt;</code> e <code>&lt;</code>.</p>
+</div>
+<div class="paragraph">
+<p>Come altro esempio, possiamo dichiarare un predicato per verificare se
+un numero diverso a un altro numero.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="kd">function</span> <span class="nx">diverso</span> <span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">x</span> <span class="o">&gt;</span> <span class="nx">y</span> <span class="o">||</span> <span class="nx">x</span> <span class="o">&lt;</span> <span class="nx">y</span><span class="p">;</span>
+<span class="p">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>oppure</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="kd">function</span> <span class="nx">diverso</span> <span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="o">!</span><span class="p">(</span><span class="nx">x</span> <span class="o">&lt;=</span> <span class="nx">y</span> <span class="o">&amp;&amp;</span> <span class="nx">x</span> <span class="o">&gt;=</span> <span class="nx">y</span><span class="p">);</span>
+<span class="p">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Nota che l&#8217;operatore <code>!==</code> quando applicato a due numeri, si comporta
+come <code>diverso</code>.</p>
+</div>
+<div class="exampleblock">
+<div class="title">Esercizio 1. Saper simulare il processo indotto dal programma</div>
+<div class="content">
+<div class="paragraph">
+<p>Prima di verificare con l&#8217;interprete JavaScript,
+determima con le regole di valutazione che hai appreso fin ora il valore
+delle seguenti espressioni in JavaScript:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="mi">10</span><span class="p">;</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="mi">5</span> <span class="o">+</span> <span class="mi">3</span> <span class="o">+</span> <span class="mi">4</span><span class="p">;</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="mi">9</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="mi">6</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="mi">2</span> <span class="o">*</span> <span class="mi">4</span> <span class="o">+</span> <span class="p">(</span><span class="mi">4</span> <span class="o">-</span> <span class="mi">6</span><span class="p">);</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="kd">const</span> <span class="nx">a</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="kd">const</span> <span class="nx">b</span> <span class="o">=</span> <span class="nx">a</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span> <span class="o">+</span> <span class="nx">a</span> <span class="o">*</span> <span class="nx">b</span><span class="p">;</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="nx">a</span> <span class="o">===</span> <span class="nx">b</span><span class="p">;</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="nx">b</span> <span class="o">&gt;</span> <span class="nx">a</span> <span class="o">&amp;&amp;</span> <span class="nx">b</span> <span class="o">&lt;</span> <span class="nx">a</span> <span class="o">*</span> <span class="nx">b</span>
+   <span class="p">?</span> <span class="nx">b</span> <span class="p">:</span> <span class="nx">a</span><span class="p">;</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="nx">a</span> <span class="o">===</span> <span class="mi">4</span> <span class="p">?</span> <span class="mi">6</span> <span class="p">:</span> <span class="nx">b</span> <span class="o">===</span> <span class="mi">4</span> <span class="p">?</span> <span class="mi">6</span> <span class="o">+</span> <span class="mi">7</span> <span class="o">+</span> <span class="nx">a</span> <span class="p">:</span> <span class="mi">25</span><span class="p">;</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="nx">b</span> <span class="o">&gt;</span> <span class="nx">a</span> <span class="p">?</span> <span class="nx">b</span> <span class="p">:</span> <span class="nx">a</span><span class="p">);</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="p">(</span><span class="nx">a</span> <span class="o">&gt;</span> <span class="nx">b</span>
+ <span class="p">?</span> <span class="nx">a</span>
+ <span class="p">:</span> <span class="nx">a</span> <span class="o">&lt;</span> <span class="nx">b</span>
+   <span class="p">?</span> <span class="nx">b</span>
+   <span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="o">*</span>
+<span class="p">(</span><span class="nx">a</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span></code></pre>
+</div>
+</div>
+</div>
+</div>
+<details>
+<summary class="title">Click per vedere le soluzioni dell&#8217;esercizio</summary>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="mi">10</span>
+
+<span class="mi">12</span>
+
+<span class="mi">8</span>
+
+<span class="mi">3</span>
+
+<span class="mi">6</span>
+
+<span class="kc">undefined</span>
+
+<span class="kc">undefined</span>
+
+<span class="mi">19</span>
+
+<span class="kc">false</span>
+
+<span class="mi">4</span>
+
+<span class="mi">16</span>
+
+<span class="mi">6</span>
+
+<span class="mi">16</span></code></pre>
+</div>
+</div>
+</div>
+</details>
+<div class="exampleblock">
+<div class="title">Esercizio 3. Saper scrivere espressioni composte (combinazioni mediante operatore)</div>
+<div class="content">
+<div class="paragraph">
+<p>Traduci la seguente espressione matematica
+nell&#8217;equivalente espressione JavaScript:</p>
+</div>
+<div class="paragraph">
+<p>\(\frac{5+4+\left(2-\left(3-(6+\frac{4}{5})\right)\right)}{3 (6-2) (2-7)}\)</p>
+</div>
+</div>
+</div>
+<details>
+<summary class="title">Click per vedere le soluzioni dell&#8217;esercizio</summary>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="c1">// Soluzione dell'esercizio 1.2</span>
+<span class="p">(</span><span class="mi">5</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">+</span> <span class="p">(</span><span class="mi">2</span> <span class="o">-</span> <span class="p">(</span><span class="mi">3</span> <span class="o">-</span> <span class="p">(</span><span class="mi">6</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">/</span> <span class="mi">5</span><span class="p">))))</span>
+<span class="o">/</span>
+<span class="p">(</span><span class="mi">3</span> <span class="o">*</span> <span class="p">(</span><span class="mi">6</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">7</span><span class="p">));</span></code></pre>
+</div>
+</div>
+</div>
+</details>
+<div class="exampleblock">
+<div class="title">Esercizio 5. Saper scrivere semplici funzioni composte</div>
+<div class="content">
+<div class="paragraph">
+<p>Definisci una funzione che accetta tre argomenti
+numerici e restituisce la somma dei quadrati dei due numeri più grandi.</p>
+</div>
+</div>
+</div>
+<details>
+<summary class="title">Click per vedere le soluzioni dell&#8217;esercizio</summary>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="c1">// Soluzione dell'esercizio 1.3</span>
+<span class="kd">function</span> <span class="nx">esercizio_1_3</span> <span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">,</span> <span class="nx">z</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">quadrato</span> <span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="o">+</span> <span class="nx">quadrato</span> <span class="p">(</span><span class="nx">y</span><span class="p">)</span> <span class="o">+</span> <span class="nx">quadrato</span> <span class="p">(</span><span class="nx">z</span><span class="p">)</span> <span class="o">-</span>
+     <span class="nx">quadrato</span> <span class="p">(</span> <span class="p">(</span><span class="nx">x</span> <span class="o">&lt;</span> <span class="nx">y</span> <span class="p">?</span> <span class="nx">x</span> <span class="p">:</span> <span class="nx">y</span><span class="p">)</span> <span class="o">&lt;</span> <span class="nx">z</span> <span class="p">?</span> <span class="p">(</span><span class="nx">x</span> <span class="o">&lt;</span> <span class="nx">y</span> <span class="p">?</span> <span class="nx">x</span> <span class="p">:</span> <span class="nx">y</span><span class="p">)</span> <span class="p">:</span> <span class="nx">z</span> <span class="p">);</span>
+<span class="p">}</span></code></pre>
+</div>
+</div>
+</div>
+</details>
+<div class="exampleblock">
+<div class="title">Esercizio 7. Riconoscere nel nome di funzione la valutazione dell&#8217;espressione</div>
+<div class="content">
+<div class="paragraph">
+<p>Si noti che il nostro modello di valutazione consente
+combinazioni mediante applicazioni le cui espressioni di funzioni sono
+espressioni composte. Utilizzare questa osservazione per descrivere il
+comportamento della seguente funzione:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="kd">function</span> <span class="nx">pi</span><span class="err">ù</span> <span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span><span class="p">;</span> <span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">meno</span> <span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">a</span> <span class="o">-</span> <span class="nx">b</span><span class="p">;</span> <span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">a_pi</span><span class="err">ù</span><span class="nx">_valore_assoluto_b</span> <span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">(</span><span class="nx">b</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="p">?</span> <span class="nx">pi</span><span class="err">ù</span> <span class="p">:</span> <span class="nx">meno</span><span class="p">)</span> <span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">);</span>
+<span class="p">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Si noti che nell&#8217;espressione condizionale, non possiamo usare
+direttamente gli operatori + e - invece dei nomi più e meno perché nella
+notazione infissa sono consentiti solo simboli di operatore nel mezzo, non
+espressioni composte.</p>
+</div>
+</div>
+</div>
+<details>
+<summary class="title">Click per vedere le soluzioni dell&#8217;esercizio</summary>
+<div class="content">
+<div class="paragraph">
+<p>mediante applicazione di funzione procede come segue:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Valuta l&#8217;espressione della funzione della combinazione
+dell&#8217;applicazione, che determina il nome nella funzione da applicare.</p>
+</li>
+<li>
+<p>Valuta le espressioni argomento della combinazione.</p>
+</li>
+<li>
+<p>Valuta l&#8217;espressione da restituire della funzione con ogni parametro
+sostituito dall&#8217;argomento corrispondente.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Pertanto la valutazione dell&#8217;espressione dell&#8217;applicazione
+<code>a_più_valore_assoluto_b  (5, -4)</code> valuta <code>a_più_valore_assoluto_b</code>
+(passo 1), ottenendo la funzione sopra indicata e (passo 2) gli
+argomenti sono già valori. Quindi dobbiamo valutare (passo 3)
+l&#8217;espressione del valore da restituire della funzione, con i parametri
+sostituiti dagli argomenti, quindi: <code>(-4 &gt;= 0 ? più : meno) (5, -4)</code>.
+Con le stesse regole, dobbiamo (passo 1) valutare l&#8217;espressione della
+funzione, che in questo caso è l&#8217;espressione condizionale
+<code>-4 &gt;= 0 ? più : meno</code>. Poiché il predicato restituisce <code>false</code>,
+l&#8217;espressione della funzione restituisce <code>meno</code>. Gli argomenti, di nuovo
+(passo 2) sono già valori. Quindi finiamo per valutare (passo 3) il
+corpo di <code>meno</code> con i parametri <code>a</code> e <code>b</code> sostituiti rispettivamente da
+5 e -4, risultando in 5 - (-4), che infine risulterà nel valore 9.</p>
+</div>
+</div>
+</details>
+<div class="exampleblock">
+<div class="title">Esercizio 9. Riflettere sulle conseguenze dell&#8217;ordine di valutazione</div>
+<div class="content">
+<div class="paragraph">
+<p>Ben Bitdiddle ha inventato un test per determinare se
+l&#8217;interprete con cui affrontiamo la programmazione sta usando la
+valutazione nell&#8217;ordine di applicazione o la valutazione nell&#8217;ordine
+normale. Dichiara le seguenti due funzioni:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="kd">function</span> <span class="nx">p</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">p</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">test</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">x</span> <span class="o">===</span> <span class="mi">0</span> <span class="p">?</span> <span class="mi">0</span> <span class="p">:</span> <span class="nx">y</span><span class="p">;</span>
+<span class="p">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Quindi scrive l&#8217;istruzione</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="nx">test</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nx">p</span> <span class="p">());</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Quale comportamento osserverà Ben con un interprete che utilizza la
+valutazione nell&#8217;ordine di applicazione? Quale comportamento osserverà
+con un interprete che utilizza la valutazione nell&#8217;ordine normale?
+Spiega la tua risposta. (Supponiamo che la regola di valutazione per le
+espressioni condizionali sia la stessa se l&#8217;interprete utilizza l&#8217;ordine
+normale o applicativo: l&#8217;espressione del predicato viene valutata per
+prima e il risultato determina se valutare l&#8217;espressione conseguente o
+alternativa.) Confronta il risultato con la valutazione della funzione
+con il tuo interprete.</p>
+</div>
+</div>
+</div>
+<details>
+<summary class="title">Click per vedere le soluzioni dell&#8217;esercizio</summary>
+<div class="content">
+<div class="paragraph">
+<p>Nella valutazione nell&#8217;ordine di applicazione per valutare l&#8217;espressione
+<code>test (0, p ())</code>, che è un espressione di applicazione di funzione,
+dobbiamo valutare le espressioni degli argomenti prima di poter valutare
+l&#8217;espressione restituita dalla funzione <code>test</code>. La valutazione
+dell&#8217;espressione argomento <code>p ()</code> non terminerà: continuerà a valutare
+le espressioni di applicazione della funzione <code>p ()</code> e quindi la
+valutazione di <code>test (0, p ())</code> non produrrà un valore legittimo.
+Normalmente l&#8217;interprete riconosce il caso e termina la valutazione
+notiicando un errore. Nella valutazione nell&#8217;ordine normale, invece
+parte, il test dell&#8217;applicazione di funzione (0, p ()) valuterà
+immediatamente l&#8217;espressione restituita da <code>test</code>: <code>x === 0 ? 0: y</code> dopo
+aver sostituito il parametro <code>x</code> con 0 e <code>y</code> con <code>p ()</code>. Il risultato
+della sostituzione sarebbe <code>0 === 0? 0: p ()</code>. La valutazione del
+predicato <code>0 === 0</code> risulta vera e quindi l&#8217;espressione condizionale
+restituisce 0, senza che sia necessario valutare <code>p ()</code>.</p>
+</div>
+</div>
+</details>
+</div>
+<div class="sect3">
+<h4 id="_esempio_radici_quadrate_con_il_metodo_di_newton">1.1.7. Esempio: radici quadrate con il metodo di Newton</h4>
+<div class="paragraph">
+<p>Le funzioni, come introdotto sopra, sono molto simili alle normali
+funzioni matematiche che si studiano nel quinto anno. Specificano un
+valore determinato da uno o più parametri. Ma c&#8217;è una differenza
+importante tra le funzioni matematiche e le funzioni del computer. Le
+funzioni del computer devono essere <em>efficaci</em>, devono cioè fornire un
+valore. Dovrebbero essere anche <em>efficienti</em>, cioè fornire un valore in un
+tempo ragionevole.</p>
+</div>
+<div class="paragraph">
+<p>Ad esempio, considera il problema del calcolo delle radici quadrate.
+Possiamo definire la funzione radice quadrata come</p>
+</div>
+<div class="paragraph">
+<p>\(\sqrt{x} = \text{ quel numero }y\text{ tale che } y \geq 0\text{ e }
+                y^2 = x\)</p>
+</div>
+<div class="paragraph">
+<p>Questo descrive una funzione matematica perfettamente legittima.
+Potremmo usare la definizione per riconoscere se un numero è la radice
+quadrata di un altro o per dedurre delle proposizioni vere sulle radici
+quadrate in generale. D&#8217;altra parte, la definizione non descrive una
+funzione del computer. In effetti, non ci dice quasi nulla su come
+trovare effettivamente la radice quadrata di un dato numero. Non aiuterà
+le cose a riformulare questa definizione in pseudo-JavaScript:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="kd">function</span> <span class="nx">sqrt</span> <span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
+<span class="err">    </span><span class="k">return</span> <span class="nx">y</span> <span class="nx">con</span> <span class="nx">y</span><span class="o">&gt;</span> <span class="o">=</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span>
+<span class="err">                      </span><span class="nx">quadrato</span> <span class="p">(</span><span class="nx">y</span><span class="p">)</span> <span class="o">===</span> <span class="nx">x</span><span class="p">;</span>
+<span class="p">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Il contrasto tra la funzione matematica e quella del computer riflette
+la distinzione generale tra la descrizione delle proprietà delle cose e
+la descrizione di come fare le cose, o, come viene talvolta indicato, la
+distinzione tra <strong>conoscenza dichiarativa</strong> e <strong>conoscenza imperativa</strong>. In
+matematica di solito ci occupiamo di descrizioni dichiarative (cos&#8217;è),
+mentre in informatica ci occupiamo di solito di descrizioni imperative
+(come).</p>
+</div>
+<div class="paragraph">
+<p>Come si calcolano le radici quadrate? Il modo più comune è usare il
+metodo di Newton per approssimazioni successive, che dice che ogni volta
+che abbiamo una supposizione \(y\) per il valore della radice
+quadrata di un numero \(x\), possiamo eseguire una semplice
+manipolazione per ottenere una stima migliore (più vicina alla radice
+quadrata) facendo la media di \(y\) con
+\(\frac x y\). Ad esempio, possiamo calcolare la radice
+quadrata di 2 come segue. Supponiamo che la nostra ipotesi iniziale sia
+1:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top">Stima</th>
+<th class="tableblock halign-center valign-top">Quoziente</th>
+<th class="tableblock halign-center valign-top">Valor medio</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">\(1\)</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">\(\frac 2 1\)</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">\(\frac{1 + 2}2=\frac 3 2=1.5\)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">\(1.5\)</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">\(\frac 4 3\)</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">\(\frac 1 2\left(\frac 3 2 + \frac 4 3\right)=\frac 17 12 \approx 1.4167\)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">\(1.4167\)</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">\(\frac{24}{17}\)</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">\(\frac 1 2\left(\frac{17}{12}+\frac{24}{17}\right)=\frac{577}{408}\approx 1.4142\)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">\(1.4142\)</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">\(\cdots\)</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">\(\cdots\)</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Continuando questo processo, otteniamo approssimazioni sempre migliori
+alla radice quadrata.</p>
+</div>
+<div class="paragraph">
+<p>Ora formalizziamo il processo in termini di funzioni. Iniziamo con un
+valore per il radicando (il numero di cui stiamo provando a calcolare la
+radice quadrata) e un valore per la stima iniziale. Se la stima iniziale
+è abbastanza buona per i nostri scopi, abbiamo finito; in caso
+contrario, dobbiamo ripetere il processo con una stima migliore.
+Scriviamo questa strategia di base come funzione:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="kd">function</span> <span class="nx">radice_quadrata_iter</span> <span class="p">(</span><span class="nx">stima</span><span class="p">,</span> <span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
+<span class="err">    </span><span class="k">return</span> <span class="nx">suff_accurata</span> <span class="p">(</span><span class="nx">stima</span><span class="p">,</span> <span class="nx">x</span><span class="p">)</span>
+<span class="err">           </span><span class="p">?</span> <span class="nx">stima</span>
+<span class="err">           </span><span class="p">:</span> <span class="nx">radice_quadrata_iter</span> <span class="p">(</span><span class="nx">migliora</span> <span class="p">(</span><span class="nx">stima</span><span class="p">,</span> <span class="nx">x</span><span class="p">),</span> <span class="nx">x</span><span class="p">);</span>
+<span class="p">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Una stima viene migliorata facendo una media tra il quoziente del
+radicando e la vecchia stima:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="kd">function</span> <span class="nx">migliora</span> <span class="p">(</span><span class="nx">stima</span><span class="p">,</span> <span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
+<span class="err">    </span><span class="k">return</span> <span class="nx">valor_medio</span> <span class="p">(</span><span class="nx">stima</span><span class="p">,</span> <span class="nx">x</span> <span class="o">/</span> <span class="nx">stima</span><span class="p">);</span>
+<span class="p">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>dove</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="kd">function</span> <span class="nx">valor_medio</span> <span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> <span class="p">{</span>
+<span class="err">    </span><span class="k">return</span> <span class="p">(</span><span class="nx">x</span> <span class="o">+</span> <span class="nx">y</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+<span class="p">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Dobbiamo anche dire cosa intendiamo con stima <em>sufficientemente
+accurata</em>, che codifichiamo con il predicato <code>suff_accurata</code>. Un&#8217;idea è
+quella di migliorare il risultato della nostra funzione fino a quando il
+suo quadrato differisca dal radicando per una tolleranza inferiore a una
+predeterminata soglia (qui 0,001):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="kd">function</span> <span class="nx">suff_accurata</span> <span class="p">(</span><span class="nx">stima</span><span class="p">,</span> <span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
+<span class="err">    </span><span class="k">return</span> <span class="nx">valore_assoluto</span> <span class="p">(</span><span class="nx">quadrato</span> <span class="p">(</span><span class="nx">stima</span><span class="p">)</span> <span class="o">-</span> <span class="nx">x</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">0.001</span><span class="p">;</span>
+<span class="p">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Infine, abbiamo bisogno di un modo per iniziare. Ad esempio, possiamo
+sempre supporre che la radice quadrata di qualsiasi numero sia 1:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="kd">function</span> <span class="nx">radice_quadrata</span> <span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
+<span class="err">    </span><span class="k">return</span> <span class="nx">radice_quadrata_iter</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nx">x</span><span class="p">);</span>
+<span class="p">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Se scriviamo queste dichiarazioni all&#8217;interprete, possiamo usare radice_quadrata
+così come possiamo usare qualsiasi funzione.</p>
+</div>
+<div id="radq1" class="listingblock">
+<div class="title">Programma per il calcolo della radice quadrata e funzioni da cui dipende</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="kd">function</span> <span class="nx">radice_quadrata_iter</span> <span class="p">(</span><span class="nx">stima</span><span class="p">,</span> <span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
+<span class="err">    </span><span class="k">return</span> <span class="nx">suff_accurata</span> <span class="p">(</span><span class="nx">stima</span><span class="p">,</span> <span class="nx">x</span><span class="p">)</span>
+<span class="err">           </span><span class="p">?</span> <span class="nx">stima</span>
+<span class="err">           </span><span class="p">:</span> <span class="nx">radice_quadrata_iter</span> <span class="p">(</span><span class="nx">migliora</span> <span class="p">(</span><span class="nx">stima</span><span class="p">,</span> <span class="nx">x</span><span class="p">),</span> <span class="nx">x</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">migliora</span> <span class="p">(</span><span class="nx">stima</span><span class="p">,</span> <span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
+<span class="err">    </span><span class="k">return</span> <span class="nx">valor_medio</span> <span class="p">(</span><span class="nx">stima</span><span class="p">,</span> <span class="nx">x</span> <span class="o">/</span> <span class="nx">stima</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">valor_medio</span> <span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> <span class="p">{</span>
+<span class="err">    </span><span class="k">return</span> <span class="p">(</span><span class="nx">x</span> <span class="o">+</span> <span class="nx">y</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">suff_accurata</span> <span class="p">(</span><span class="nx">stima</span><span class="p">,</span> <span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
+<span class="err">    </span><span class="k">return</span> <span class="nx">valore_assoluto</span> <span class="p">(</span><span class="nx">quadrato</span> <span class="p">(</span><span class="nx">stima</span><span class="p">)</span> <span class="o">-</span> <span class="nx">x</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">0.001</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">radice_quadrata</span> <span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
+<span class="err">    </span><span class="k">return</span> <span class="nx">radice_quadrata_iter</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nx">x</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">valore_assoluto</span> <span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">x</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="p">?</span> <span class="nx">x</span> <span class="p">:</span> <span class="o">-</span><span class="nx">x</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">quadrato</span> <span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">x</span> <span class="o">*</span> <span class="nx">x</span><span class="p">;</span>
+<span class="p">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Alcuni esempi di applicazione della nostra nuova funzione composta:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="nx">radice_quadrata</span> <span class="p">(</span><span class="mi">9</span><span class="p">);</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="nx">radice_quadrata</span> <span class="p">(</span><span class="mi">100</span> <span class="o">+</span> <span class="mi">37</span><span class="p">);</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="nx">radice_quadrata</span> <span class="p">(</span><span class="nx">radice_quadrata</span> <span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="nx">radice_quadrata</span> <span class="p">(</span><span class="mi">3</span><span class="p">));</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="nx">quadrato</span> <span class="p">(</span><span class="nx">radice_quadrata</span> <span class="p">(</span><span class="mi">1000</span><span class="p">));</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Il programma <code>radice_quadrata</code> fornisce l&#8217;idea che anche il semplice linguaggio
+funzionale che abbiamo introdotto finora sia sufficiente per scrivere
+qualsiasi programma puramente numerico come quelli che si potrebbero
+scrivere in altri linguaggi come il C o Pascal. Ciò potrebbe sembrare
+sorprendente, dal momento che non abbiamo ancora introdotto i costrutti
+iterativi (cicli o loop) che istruiscono il computer a fare qualcosa più
+e più volte. La funzione <code>radice_quadrata_iter</code>, d&#8217;altra parte, dimostra come
+l&#8217;iterazione può essere realizzata senza ricorrere a nessun costrutto
+speciale diverso dalla normale capacità di chiamare una funzione.</p>
+</div>
+<div class="exampleblock">
+<div class="title">Esercizio 11. Comprendere la necessità delle forme speciali</div>
+<div class="content">
+<div class="paragraph">
+<p><strong>Esercizio 1.6</strong> Alyssa P. Hacker non ama la sintassi delle espressioni
+condizionali, che coinvolgono i caratteri <strong>?</strong> e <strong>:</strong>. «Perché non posso
+semplicemente dichiarare una normale funzione condizionale la cui
+applicazione funziona esattamente come le espressioni condizionali?» lei
+chiede. La sua amica Eva Lu Ator afferma che questo può davvero essere
+fatto e dichiara una funzione condizionale come segue:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="kd">function</span> <span class="nx">condizionale</span> <span class="p">(</span><span class="nx">predicato</span><span class="p">,</span> <span class="nx">clausola_allora</span><span class="p">,</span> <span class="nx">clausola_altrimenti</span><span class="p">)</span> <span class="p">{</span>
+<span class="err">    </span><span class="k">return</span> <span class="nx">predicato</span> <span class="p">?</span> <span class="nx">clausola_allora</span><span class="p">:</span> <span class="nx">clausola_altrimenti</span><span class="p">;</span>
+<span class="p">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Eva dimostra ad Alyssa che il programma:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="nx">condizionale</span> <span class="p">(</span><span class="mi">2</span> <span class="o">===</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>viene valutato come previsto, a 5, e</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="nx">condizionale</span> <span class="p">(</span><span class="mi">1</span> <span class="o">===</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>viene valutato come previsto, a 0. Felicissima, Alyssa usa il
+condizionale per riscrivere il programma per il calcolo della radice
+quadrata:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="kd">function</span> <span class="nx">radice_quadrata_iter</span> <span class="p">(</span><span class="nx">stima</span><span class="p">,</span> <span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
+<span class="err">    </span><span class="k">return</span> <span class="nx">condizionale</span> <span class="p">(</span><span class="nx">suff_accurata</span> <span class="p">(</span><span class="nx">stima</span><span class="p">,</span> <span class="nx">x</span><span class="p">),</span>
+<span class="err">                       </span><span class="nx">stima</span><span class="p">,</span>
+<span class="err">                       </span><span class="nx">radice_quadrata_iter</span> <span class="p">(</span><span class="nx">migliora</span> <span class="p">(</span><span class="nx">stima</span><span class="p">,</span> <span class="nx">x</span><span class="p">),</span>
+<span class="err">                                 </span><span class="nx">x</span><span class="p">));</span>
+<span class="p">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Cosa succede quando Alyssa tenta di usarlo per calcolare le radici
+quadrate? Spiegarlo.</p>
+</div>
+</div>
+</div>
+<details>
+<summary class="title">Click per vedere le soluzioni dell&#8217;esercizio</summary>
+<div class="content">
+<div class="paragraph">
+<p>Qualsiasi chiamata di <code>radice_quadrata_iter</code> porta immediatamente a un ciclo
+infinito. La ragione di ciò è la valutazione nell&#8217;ordine applicativo. La
+valutazione dell&#8217;espressione da restituire di <code>radice_quadrata_iter</code> deve prima
+valutare i suoi argomenti, inclusa la chiamata ricorsiva di <code>radice_quadrata_iter</code>,
+indipendentemente dal fatto che il predicato sia valutato vero o falso.
+Lo stesso ovviamente accade con la chiamata ricorsiva, e quindi la
+funzione condizionale non viene mai effettivamente applicata.</p>
+</div>
+</div>
+</details>
+<div class="exampleblock">
+<div class="title">Esercizio 13. Comprensione del concetto di criterio di terminazione</div>
+<div class="content">
+<div class="paragraph">
+<p><strong>Esercizio 1.7</strong> Il controllo <code>suff_accurata</code> utilizzato nel calcolo
+delle radici quadrate non sarà molto efficace per trovare le radici
+quadrate di numeri molto piccoli. Inoltre, nei computer reali, le
+operazioni aritmetiche vengono quasi sempre eseguite con una precisione
+limitata. Questo rende il nostro controllo inadeguato per numeri molto
+grandi. Spiega queste affermazioni, con esempi che mostrano come il test
+fallisce per numeri piccoli e grandi. Una strategia alternativa per
+implementare <code>suff_accurata</code> è guardare come le stime cambiano da
+un&#8217;iterazione alla successiva e fermarsi quando il cambiamento è una
+frazione molto piccola della stima. Progettare una funzione per il
+calcolo della radice quadrata che utilizza questo tipo di controllo di
+terminazione. Funziona meglio?</p>
+</div>
+</div>
+</div>
+<details>
+<summary class="title">Click per vedere le soluzioni dell&#8217;esercizio</summary>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="c1">// Soluzione esercizio 1.7</span>
+
+<span class="cm">/*
+La tolleranza assoluta di 0,001 è troppo grande quando si calcola la radice quadrata di un valore piccolo.
+Ad esempio, radice_quadrata (0,0001) genera 0,03230844833048122 anziché il valore previsto 0,01 con
+un errore percentuale superiore al 200%.
+D'altra parte, per valori molto grandi, gli errori di arrotondamento potrebbero impedire la terminazione del processo.
+Il seguente programma allevia il problema considerando l'errore relativo in sostituzione di quello assoluto.
+Si verifichi se si creano soluzioni mal gestite se si prova a calcolare la radice quadrata di zero.
+*/</span>
+
+<span class="kd">const</span> <span class="nx">soglia_tolleranza</span> <span class="o">=</span> <span class="mf">0.01</span><span class="p">;</span>
+<span class="kd">function</span> <span class="nx">radice_quadrata_iter</span> <span class="p">(</span><span class="nx">stima</span><span class="p">,</span> <span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
+<span class="err">    </span><span class="k">return</span> <span class="nx">errore_relativo</span> <span class="p">(</span><span class="nx">stima</span><span class="p">,</span> <span class="nx">migliora</span> <span class="p">(</span><span class="nx">stima</span><span class="p">,</span> <span class="nx">x</span><span class="p">))</span> <span class="o">&lt;</span> <span class="nx">soglia_tolleranza</span>
+<span class="err">           </span><span class="p">?</span> <span class="nx">stima</span>
+<span class="err">           </span><span class="p">:</span> <span class="nx">radice_quadrata_iter</span> <span class="p">(</span><span class="nx">migliora</span> <span class="p">(</span><span class="nx">stima</span><span class="p">,</span> <span class="nx">x</span><span class="p">),</span> <span class="nx">x</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">migliora</span> <span class="p">(</span><span class="nx">stima</span><span class="p">,</span> <span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
+<span class="err">    </span><span class="k">return</span> <span class="nx">valor_medio</span> <span class="p">(</span><span class="nx">stima</span><span class="p">,</span> <span class="nx">x</span> <span class="o">/</span> <span class="nx">stima</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">valor_medio</span> <span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> <span class="p">{</span>
+<span class="err">    </span><span class="k">return</span> <span class="p">(</span><span class="nx">x</span> <span class="o">+</span> <span class="nx">y</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">suff_accurata</span> <span class="p">(</span><span class="nx">stima</span><span class="p">,</span> <span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
+<span class="err">    </span><span class="k">return</span> <span class="nx">errore_relativo</span> <span class="p">(</span><span class="nx">stima</span><span class="p">,</span> <span class="nx">migliora</span> <span class="p">(</span><span class="nx">stima</span><span class="p">,</span> <span class="nx">x</span><span class="p">))</span> <span class="o">&lt;</span> <span class="nx">soglia_tolleranza</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">errore_relativo</span> <span class="p">(</span><span class="nx">stima</span><span class="p">,</span> <span class="nx">riferimento</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">valore_assoluto</span> <span class="p">((</span><span class="nx">stima</span><span class="o">-</span> <span class="nx">riferimento</span><span class="p">)</span> <span class="o">/</span> <span class="nx">riferimento</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">radice_quadrata</span> <span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
+<span class="err">    </span><span class="k">return</span> <span class="nx">radice_quadrata_iter</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nx">x</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">valore_assoluto</span> <span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">x</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="p">?</span> <span class="nx">x</span> <span class="p">:</span> <span class="o">-</span><span class="nx">x</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">quadrato</span> <span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">x</span> <span class="o">*</span> <span class="nx">x</span><span class="p">;</span>
+<span class="p">}</span></code></pre>
+</div>
+</div>
+</div>
+</details>
+<div class="exampleblock">
+<div class="title">Esercizio 15. Riscrivere alcune funzioni, verso il concetto di scatola nera</div>
+<div class="content">
+<div class="paragraph">
+<p><strong>Esercizio 1.8</strong> Il metodo di Newton per le radici dei cubi si basa sul
+fatto che se \(y\) è un&#8217;approssimazione alla radice del cubo
+di \(x\), allora una migliore approssimazione è data dal
+valore</p>
+</div>
+<div class="paragraph">
+<p>\(\frac{x/y^{2}+2y} {3}\)</p>
+</div>
+<div class="paragraph">
+<p>Si utilizzi questa formula per implementare una funzione <code>radice_cubica</code> per il
+calcolo della radice cubica analoga alla funzione <code>radice_quadrata</code>.</p>
+</div>
+</div>
+</div>
+<details>
+<summary class="title">Click per vedere le soluzioni dell&#8217;esercizio</summary>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="c1">// Soluzione dell'esercizio 1.8</span>
+
+<span class="kd">function</span> <span class="nx">suff_accurata</span> <span class="p">(</span><span class="nx">stima</span><span class="p">,</span> <span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
+<span class="err">    </span><span class="k">return</span> <span class="nx">valore_assoluto</span> <span class="p">(</span><span class="nx">cubo</span> <span class="p">(</span><span class="nx">stima</span><span class="p">)</span> <span class="o">-</span> <span class="nx">x</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">0.001</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">migliora</span> <span class="p">(</span><span class="nx">stima</span><span class="p">,</span> <span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">(</span><span class="nx">x</span> <span class="o">/</span> <span class="nx">quadrato</span> <span class="p">(</span><span class="nx">stima</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="nx">stima</span><span class="p">)</span> <span class="o">/</span> <span class="mi">3</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">radc_iter</span> <span class="p">(</span><span class="nx">stima</span><span class="p">,</span> <span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">suff_accurata</span> <span class="p">(</span><span class="nx">stima</span><span class="p">,</span> <span class="nx">x</span><span class="p">)</span>
+               <span class="p">?</span> <span class="nx">stima</span>
+               <span class="p">:</span> <span class="nx">radice_cubica_iter</span> <span class="p">(</span><span class="nx">migliora</span> <span class="p">(</span><span class="nx">stima</span><span class="p">,</span> <span class="nx">x</span><span class="p">),</span> <span class="nx">x</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">radice_cubica</span> <span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">radice_cubica_iter</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nx">x</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">cubo</span> <span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">quadrato</span> <span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="o">*</span> <span class="nx">x</span><span class="p">;</span>
+<span class="p">}</span></code></pre>
+</div>
+</div>
+</div>
+</details>
+</div>
+<div class="sect3">
+<h4 id="_funzioni_come_astrazioni_nella_forma_di_una_scatola_nera">1.1.8. Funzioni come astrazioni nella forma di una scatola nera</h4>
+<div class="paragraph">
+<p>La funzione <code>radice_quadrata</code> è il nostro primo esempio di un processo definito da
+un insieme di funzioni che si definiscono l&#8217;una con l&#8217;altra. Si noti che
+la dichiarazione di <code>radice_quadrata_iter</code> è ricorsiva; la funzione è cioè definita
+in termini di se stessa. L&#8217;idea di poter definire una funzione in
+termini di se stessa può essere inquietante; potrebbe non essere chiaro
+come una definizione circolare del genere possa avere senso, tanto meno
+specificare un processo ben definito che deve essere eseguito da un
+computer.</p>
+</div>
+<div class="paragraph">
+<p>Osserva che il problema del calcolo delle radici quadrate si scompone
+naturalmente in una serie di sottoproblemi: come capire se una stima è
+abbastanza accurata, come migliorare una stima e così via. Ognuna di
+queste attività è svolta da una funzione separata. L&#8217;intero programma
+<code>radice_quadrata</code> può essere visualizzato come un raggruppamento di funzioni
+(mostrato nella Figura 1.2) che rispecchia la decomposizione del
+problema in sottoproblemi.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="img/ca_fig1_2.svg" alt="ca fig1 2" width="832" height="280">
+</div>
+<div class="title">Figura 2. Decomposizione funzionale del programma radice_quadrata</div>
+</div>
+<div class="paragraph">
+<p>L&#8217;importanza di questa strategia di decomposizione non è semplicemente
+quella di dividere il programma in parti. Dopotutto, potremmo prendere
+qualsiasi programma di grandi dimensioni e dividerlo in parti: le prime
+dieci righe, le successive dieci righe, le successive dieci righe e così
+via. Piuttosto, è cruciale che ogni funzione compia un compito
+identificabile che può essere usato come modulo nella definizione di
+altre funzioni. Ad esempio, quando definiamo la funzione <code>suff_accurata</code>
+in termini di <code>quadrato</code>, siamo in grado di considerare la funzione
+<code>quadrato</code> come una scatola nera. In quel momento non ci occupiamo di come
+la funzione calcola il suo risultato, ma solo del fatto che calcola il
+quadrato. I dettagli di come viene calcolato il quadrato possono essere
+soppressi, per essere considerati in un secondo momento. In effetti, per
+quanto riguarda la funzione <code>suff_accurata</code>, il <em>quadrato</em> non è proprio una
+funzione ma piuttosto un&#8217;astrazione di una funzione, una cosiddetta
+<strong>astrazione funzionale</strong>. A questo livello di astrazione, qualsiasi
+funzione che calcola il quadrato è ugualmente buona.</p>
+</div>
+<div class="paragraph">
+<p>Pertanto, considerando solo i valori che restituiscono, le seguenti due
+funzioni che quadrano un numero dovrebbero essere indistinguibili.
+Ognuno accetta un argomento numerico e produce il quadrato di quel
+numero come valore.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="kd">function</span> <span class="nx">quadrato</span> <span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
+<span class="err">    </span><span class="nx">ritorna</span> <span class="nx">x</span> <span class="o">*</span> <span class="nx">x</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">quadrato</span> <span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
+<span class="err">    </span><span class="k">return</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">exp</span> <span class="p">(</span><span class="nx">doppio</span> <span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">log</span> <span class="p">(</span><span class="nx">x</span><span class="p">)));</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">doppio</span> <span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
+<span class="err">    </span><span class="k">return</span> <span class="nx">x</span> <span class="o">+</span> <span class="nx">x</span><span class="p">;</span>
+<span class="p">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Quindi una funzione dovrebbe essere in grado di sopprimere i dettagli.
+Gli utenti della funzione potrebbero non aver scritto la funzione da
+soli, ma potrebbero averla ottenuta da un altro programmatore come una
+scatola nera. Un utente non dovrebbe avere bisogno di sapere come viene
+implementata la funzione per poterla utilizzare.</p>
+</div>
+<h5 id="_nomi_locali" class="discrete">Nomi locali</h5>
+<div class="paragraph">
+<p>Un dettaglio dell&#8217;implementazione di una funzione che non dovrebbe
+interessare all&#8217;utente della funzione è la scelta dei nomi da parte
+dell&#8217;implementatore per i parametri della funzione. Pertanto, le
+seguenti funzioni non dovrebbero essere distinguibili:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="kd">function</span> <span class="nx">quadrato</span> <span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
+<span class="err">    </span><span class="k">return</span> <span class="nx">x</span> <span class="o">*</span> <span class="nx">x</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">quadrato</span> <span class="p">(</span><span class="nx">y</span><span class="p">)</span> <span class="p">{</span>
+<span class="err">    </span><span class="k">return</span> <span class="nx">y</span> <span class="o">*</span> <span class="nx">y</span><span class="p">;</span>
+<span class="p">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Questo principio - che il significato di una funzione dovrebbe essere
+indipendente dai nomi dei parametri usati dal suo autore - sembra evidente
+ma ha conseguenze profonde.
+La conseguenza
+più semplice è che i nomi dei parametri di una funzione devono essere
+locali al corpo della funzione. Ad esempio, abbiamo usato
+<code>quadrato</code> nella dichiarazione di <code>suff_accurata</code> nella nostra funzione
+<code>radice_quadrata</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="kd">function</span> <span class="nx">suff_accurata</span><span class="p">(</span><span class="nx">stima</span><span class="p">,</span> <span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">valore_assoluto</span> <span class="p">(</span> <span class="nx">quadrato</span> <span class="p">(</span><span class="nx">stima</span><span class="p">)</span> <span class="o">-</span> <span class="nx">x</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">0.001</span><span class="p">;</span>
+<span class="p">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>L&#8217;intenzione dell&#8217;autore di <code>suff_accurata</code> è di determinare se il quadrato del
+primo argomento rientri in un determinato intorno del secondo
+argomento. Vediamo che l&#8217;autore di <code>suff_accurata</code> ha usato il nome
+<code>stima</code> per riferirsi al primo argomento e <code>x</code> per riferirsi al secondo
+argomento. L&#8217;argomento di quadrato è <code>stima</code>. Se l&#8217;autore di <code>quadrato</code>
+ha usato <code>x</code> per fare riferimento al secondo argomento, vediamo
+che la <code>x</code> in <code>suff_accurata</code> deve essere una <code>x</code> diversa da quella usata in
+<code>quadrato</code>. L&#8217;esecuzione della funzione <code>quadrato</code> non deve influire sul
+valore di <code>x</code> che viene utilizzato da <code>suff_accurata</code>, perché quel valore
+di <code>x</code> può essere necessario per <code>suff_accurata</code> dopo che il calcolo del <code>quadrato</code>
+è terminato.</p>
+</div>
+<div class="paragraph">
+<p>Se i parametri non fossero locali ai corpi delle loro rispettive
+funzioni, allora il parametro <code>x</code> in <code>quadrato</code> potrebbe essere confuso con il
+parametro <code>x</code> in <code>suff_accurata</code>, e il comportamento di <code>suff_accurata</code>
+dipenderebbe da quale versione di <code>quadrato</code> abbiamo usato. Pertanto,
+<code>quadrato</code> non sarebbe la scatola nera che desideravamo.</p>
+</div>
+<div class="paragraph">
+<p>Un parametro di una funzione ha un ruolo molto speciale nella
+dichiarazione di funzione, in quanto non ha importanza il nome del
+parametro. Tale nome è chiamato <strong>legame</strong> o <em>associazione</em>, <em>binding</em> in inglese,
+e diciamo che la dichiarazione
+di funzione associa i suoi parametri. Il significato di una dichiarazione
+di funzione rimane invariato se un nome associato viene costantemente
+rinominato in tutta la dichiarazione. Se un nome non è associato,
+diciamo che è libero. L&#8217;insieme di espressioni per cui un&#8217;associazione
+dichiara un nome è chiamato <strong>visibilità</strong>, <em>scope</em> in inglese, di quel nome. In una dichiarazione di
+funzione, i nomi associati dichiarati come parametri della funzione
+hanno il corpo della funzione come visibilità.</p>
+</div>
+<div class="paragraph">
+<p>Nella dichiarazione di <code>suff_accurata</code> sopra, <code>stima</code> e <code>x</code> sono nomi
+associati ma <code>valore_assoluto</code> e <code>quadrato</code> sono liberi. Il significato
+di <code>suff_accurata</code> dovrebbe essere indipendente dai nomi che scegliamo per <code>stima</code> e <code>x</code>
+fintanto che sono distinti e diversi da <code>valore_assoluto</code> e <code>quadrato</code>. (Se
+rinominassimo <code>stima</code> in <code>valore_assoluto</code> avremmo introdotto un bug catturando il
+nome <code>valore_assoluto</code>. Sarebbe cambiato da libero a legato.) Il significato di <code>suff_accurata</code>
+non è indipendente dalla scelta dei suoi nomi liberi. Dipende
+sicuramente dal fatto (esterno a questa dichiarazione) che il simbolo
+<code>valore_assoluto</code> denota una funzione per calcolare il valore assoluto di un numero.
+La funzione JavaScript <code>valore_assoluto</code> calcolerà una diversa funzione
+matematica se sostituiamo <code>Math.cos</code> (funzione coseno di
+JavaScript) con <code>valore_assoluto</code> nella sua dichiarazione.</p>
+</div>
+<h5 id="_dichiarazioni_interne_e_struttura_a_blocchi" class="discrete">Dichiarazioni interne e struttura a blocchi</h5>
+<div class="paragraph">
+<p>Finora abbiamo un tipo di isolamento del nome a nostra disposizione: i parametri di una funzione
+sono locali al corpo della funzione.
+Il programma per il calcolo della radice quadrata
+illustra un altro modo in cui vorremmo controllare l&#8217;uso dei nomi. Il
+programma <a href="#radq1">Programma per il calcolo della radice quadrata e funzioni da cui dipende</a> è costituito da funzioni separate.</p>
+</div>
+<div class="paragraph">
+<p>Il problema di questo programma è che l&#8217;unica funzione importante per gli utenti è
+<code>radice_quadrata</code>. Le altre funzioni (<code>radice_quatrata_iter</code>, <code>suff_accurata</code> e <code>migliora</code>)
+ingombrano solo le loro menti. Non possono dichiarare qualsiasi altra
+funzione chiamata <code>suff_accurata</code> come parte di un altro programma che opera
+insieme con il programma per la radice quadrata, perché la funzione <code>radice_quadrata</code> ne ha bisogno.
+Il problema è particolarmente grave nella costruzione di grandi sistemi
+da parte di molti programmatori separati. Ad esempio, nella costruzione
+di una libreria di funzioni numeriche, molte funzioni numeriche
+vengono calcolate come approssimazioni successive e quindi potrebbero
+avere funzioni gli stessi nomi come funzioni
+ausiliarie. Vorremmo localizzare le sottofunzioni, nascondendole
+all&#8217;interno di <code>radice_quadrata</code> in modo che <code>radice_quadrata</code> possa coesistere con altre
+funzioni basate sulle approssimazioni successive, ognuna con la propria funzione <code>suff_accurata</code>.
+Per renderlo possibile, consentiamo a una funzione di avere
+dichiarazioni interne locali a tale funzione. Ad esempio, nel problema
+della radice quadrata possiamo scrivere</p>
+</div>
+<div id="radq2" class="listingblock">
+<div class="title">Programma per il calcolo della radice quadrata con funzioni annidate</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="kd">function</span> <span class="nx">radice_quadrata</span> <span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">function</span> <span class="nx">radice_quadrata_iter</span> <span class="p">(</span><span class="nx">stima</span><span class="p">,</span> <span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
+    <span class="err">    </span><span class="k">return</span> <span class="nx">suff_accurata</span> <span class="p">(</span><span class="nx">stima</span><span class="p">,</span> <span class="nx">x</span><span class="p">)</span>
+    <span class="err">           </span><span class="p">?</span> <span class="nx">stima</span>
+    <span class="err">           </span><span class="p">:</span> <span class="nx">radice_quadrata_iter</span> <span class="p">(</span><span class="nx">migliora</span> <span class="p">(</span><span class="nx">stima</span><span class="p">,</span> <span class="nx">x</span><span class="p">),</span> <span class="nx">x</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="kd">function</span> <span class="nx">migliora</span> <span class="p">(</span><span class="nx">stima</span><span class="p">,</span> <span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
+    <span class="err">    </span><span class="k">return</span> <span class="nx">valor_medio</span> <span class="p">(</span><span class="nx">stima</span><span class="p">,</span> <span class="nx">x</span> <span class="o">/</span> <span class="nx">stima</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="kd">function</span> <span class="nx">valor_medio</span> <span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> <span class="p">{</span>
+    <span class="err">    </span><span class="k">return</span> <span class="p">(</span><span class="nx">x</span> <span class="o">+</span> <span class="nx">y</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">function</span> <span class="nx">suff_accurata</span> <span class="p">(</span><span class="nx">stima</span><span class="p">,</span> <span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
+    <span class="err">    </span><span class="k">return</span> <span class="nx">valore_assoluto</span> <span class="p">(</span><span class="nx">quadrato</span> <span class="p">(</span><span class="nx">stima</span><span class="p">)</span> <span class="o">-</span> <span class="nx">x</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">0.001</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">function</span> <span class="nx">valore_assoluto</span> <span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">x</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="p">?</span> <span class="nx">x</span> <span class="p">:</span> <span class="o">-</span><span class="nx">x</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">function</span> <span class="nx">quadrato</span> <span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">x</span> <span class="o">*</span> <span class="nx">x</span><span class="p">;</span>
+    <span class="p">}</span>
+
+<span class="err">    </span><span class="k">return</span> <span class="nx">radice_quadrata_iter</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nx">x</span><span class="p">);</span>
+<span class="p">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Il corpo di una funzione - un&#8217;istruzione racchiusa tra parentesi graffe - è chiamato
+<strong>blocco</strong>. Le dichiarazioni di funzione nidificate all&#8217;interno di un blocco
+sono locali per quel blocco. Questa struttura a blocchi è una soluzione al problema di
+avere esposti troppi nomi. Ma c&#8217;è un&#8217;idea migliore. Oltre
+a internalizzare le dichiarazioni delle funzioni ausiliarie, possiamo
+semplificarle. Poiché <code>x</code> è associato nella dichiarazione di <code>radice_quadrata</code>, le
+funzioni <code>suff_accurata</code>, <code>migliora</code> e <code>radice_quadrata_iter</code>, che sono definite
+internamente a <code>radice_quadrata</code>, rientrano nell&#8217;ambito di visibilità di <code>x</code>. Pertanto, non è
+necessario passare <code>x</code> in modo esplicito a ciascuna di queste funzioni.
+Invece, consentiamo a <code>x</code> di essere un nome libero nelle dichiarazioni
+interne, come mostrato di seguito. Quindi <code>x</code> ottiene il suo valore
+dall&#8217;argomento con cui viene chamata la funzione <code>radice_quadrata</code>
+che racchiude le funzioni interne.
+Questa disciplina si chiama visibilità lessicale, o visibilità statica (static scoping).</p>
+</div>
+<div id="radq3" class="listingblock">
+<div class="title">Programma per il calcolo della radice quadrata che sfrutta la visibilià statica</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="kd">function</span> <span class="nx">radice_quadrata</span> <span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">function</span> <span class="nx">radice_quadrata_iter</span> <span class="p">(</span><span class="nx">stima</span><span class="p">)</span> <span class="p">{</span>
+    <span class="err">    </span><span class="k">return</span> <span class="nx">suff_accurata</span> <span class="p">(</span><span class="nx">stima</span><span class="p">)</span>
+    <span class="err">           </span><span class="p">?</span> <span class="nx">stima</span>
+    <span class="err">           </span><span class="p">:</span> <span class="nx">radice_quadrata_iter</span> <span class="p">(</span><span class="nx">migliora</span> <span class="p">(</span><span class="nx">stima</span><span class="p">));</span>
+    <span class="p">}</span>
+
+    <span class="kd">function</span> <span class="nx">migliora</span> <span class="p">(</span><span class="nx">stima</span><span class="p">)</span> <span class="p">{</span>
+    <span class="err">    </span><span class="k">return</span> <span class="nx">valor_medio</span> <span class="p">(</span><span class="nx">stima</span><span class="p">,</span> <span class="nx">x</span> <span class="o">/</span> <span class="nx">stima</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="kd">function</span> <span class="nx">valor_medio</span> <span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> <span class="p">{</span>
+    <span class="err">    </span><span class="k">return</span> <span class="p">(</span><span class="nx">x</span> <span class="o">+</span> <span class="nx">y</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">function</span> <span class="nx">suff_accurata</span> <span class="p">(</span><span class="nx">stima</span><span class="p">)</span> <span class="p">{</span>
+    <span class="err">    </span><span class="k">return</span> <span class="nx">valore_assoluto</span> <span class="p">(</span><span class="nx">quadrato</span> <span class="p">(</span><span class="nx">stima</span><span class="p">)</span> <span class="o">-</span> <span class="nx">x</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">0.001</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">function</span> <span class="nx">valore_assoluto</span> <span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">x</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="p">?</span> <span class="nx">x</span> <span class="p">:</span> <span class="o">-</span><span class="nx">x</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">function</span> <span class="nx">quadrato</span> <span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">x</span> <span class="o">*</span> <span class="nx">x</span><span class="p">;</span>
+    <span class="p">}</span>
+
+<span class="err">   </span><span class="k">return</span> <span class="nx">radice_quadrata_iter</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nx">x</span><span class="p">);</span>
+<span class="p">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Useremo ampiamente la struttura a blocchi per aiutarci a suddividere
+grandi programmi in parti trattabili.
+L&#8217;idea della struttura a blocchi è nata con il
+linguaggio di programmazione Algol 60. Appare nella maggior parte dei
+linguaggi di programmazione avanzati ed è uno strumento importante per
+aiutare a organizzare la costruzione di programmi di grandi dimensioni.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_esercizi_aggiuntivi">1.1.9. Esercizi aggiuntivi</h4>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p>Si scriva una funzione <code>perimetro_triangolo</code> che calcola il perimetro di un triangolo
+e che ha tre argomenti che si riferiscono alle misure dei lati;</p>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p>Si scriva una funzione <code>perimetro_trapezio_rettangolo</code> che calcola il perimetro di un trapezio
+rettangolo dati tre argomenti che si riferiscono alle misure dei lati
+perpendicolari tra loro, nell&#8217;ordine <em>base minore</em>, <em>base maggiore</em> e
+altezza;</p>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p>Si considereri la generica equazione di secondo grado
+\(a x^2 + b x + c = 0\) di cui vuoi calcolare il valore
+\(x_1=\frac{-b-\sqrt{b^2-4 a c}}{2 a}\) supponendo
+che il discriminante sia un numero non negativo.</p>
+</div>
+<div class="paragraph">
+<p>Scrivi la funzione <code>risolvi_eq2</code> che ha come argomenti i
+coefficienti <code>a</code> e <code>b</code> e il termine noto <code>c</code>.</p>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p>Si vuole determinare il valore assunto dal polinomio
+\(a x^3 + b x^2 + c x + d\) quando assegnamo
+un valore ad \(x\).</p>
+</div>
+<div class="paragraph">
+<p>Si scriva la funzione <code>valuta_polinomio3</code> che ha per
+argomenti i numeri <code>a</code>, <code>b</code>, <code>c</code>, <code>d</code> e <code>x</code>, sfruttando
+l&#8217;idea che</p>
+</div>
+<div class="paragraph">
+<p>\(p(x) = a x^3 + b x^2 + c x + d = (((a x + b) x + c) x + d)\)</p>
+</div>
+<div class="paragraph">
+<p>e che tale riscrittura ha come sotto-problema comune il
+calcolo di \(a^\prime x + b^\prime\).</p>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p>Si scriva la funzione <code>minimo</code> che restituisce il minimo tra
+i valori dei due argomenti.</p>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p>Si scriva la funzione <code>massimo3</code> che restituisce il massimo tra
+i valori dei suoi 3 argomenti. Per calcolarlo usa la funzione
+<code>massimo</code> che calcola il massimo tra due argomenti.</p>
+</div>
+<div class="paragraph">
+<p>Considera che \(\max(a, b, c) = \max(\max(a, b), c)\).</p>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p>Si scriva una funzione <code>somma_fino_a</code> con un argomento <code>n</code>
+che somma tutti i numeri naturali compresi tra 1 e <code>n</code>.</p>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p>Si scriva una funzione che somma tutti i termini del tipo
+\(2^{-n}, n \in \mathbb{N}\) arrrestandosi quando il prossimo addendo
+è inferiore a \(10^{-16}\).</p>
+</div>
+<div class="paragraph">
+<p>Il valore da trovare approssima \(1 + \frac{1}{2} + \frac{1}{4} + \frac{1}{8} + \frac{1}{16} + \cdots\)</p>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p>Scrivere una funzione <code>pi</code> che calcola il quadruplo della
+sua funzione definita internamente <code>pi_quarti</code>.</p>
+</div>
+<div class="paragraph">
+<p><code>pi_quarti</code> calcola la somma a segni alterni dei reciproci
+dei numeri naturali dispari partendo da \(+1\),
+ossia</p>
+</div>
+<div class="paragraph">
+<p>\(1 - \frac{1}{3} + \frac{1}{5} - \frac{1}{7} + \frac{1}{9} - \cdots\)</p>
+</div>
+<div class="paragraph">
+<p>Come criterio di arresto considera che la distanza tra il
+valore già calcolato e il prossimo valore non deve essere
+maggiore di \(10^{-6}\).</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="footnotes">
+<hr>
+<div class="footnote" id="_footnotedef_1">
+<a href="#_footnoteref_1">1</a>. Un espressione è tutto ciò che produce un valore.
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Versione 0.1.1<br>
+</div>
+</div>
+<style>
+pre.rouge table td { padding: 5px; }
+pre.rouge table pre { margin: 0; }
+pre.rouge .cm {
+  color: #999988;
+  font-style: italic;
+}
+pre.rouge .cp {
+  color: #999999;
+  font-weight: bold;
+}
+pre.rouge .c1 {
+  color: #999988;
+  font-style: italic;
+}
+pre.rouge .cs {
+  color: #999999;
+  font-weight: bold;
+  font-style: italic;
+}
+pre.rouge .c, pre.rouge .ch, pre.rouge .cd, pre.rouge .cpf {
+  color: #999988;
+  font-style: italic;
+}
+pre.rouge .err {
+  color: #a61717;
+  background-color: #e3d2d2;
+}
+pre.rouge .gd {
+  color: #000000;
+  background-color: #ffdddd;
+}
+pre.rouge .ge {
+  color: #000000;
+  font-style: italic;
+}
+pre.rouge .gr {
+  color: #aa0000;
+}
+pre.rouge .gh {
+  color: #999999;
+}
+pre.rouge .gi {
+  color: #000000;
+  background-color: #ddffdd;
+}
+pre.rouge .go {
+  color: #888888;
+}
+pre.rouge .gp {
+  color: #555555;
+}
+pre.rouge .gs {
+  font-weight: bold;
+}
+pre.rouge .gu {
+  color: #aaaaaa;
+}
+pre.rouge .gt {
+  color: #aa0000;
+}
+pre.rouge .kc {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .kd {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .kn {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .kp {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .kr {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .kt {
+  color: #445588;
+  font-weight: bold;
+}
+pre.rouge .k, pre.rouge .kv {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .mf {
+  color: #009999;
+}
+pre.rouge .mh {
+  color: #009999;
+}
+pre.rouge .il {
+  color: #009999;
+}
+pre.rouge .mi {
+  color: #009999;
+}
+pre.rouge .mo {
+  color: #009999;
+}
+pre.rouge .m, pre.rouge .mb, pre.rouge .mx {
+  color: #009999;
+}
+pre.rouge .sb {
+  color: #d14;
+}
+pre.rouge .sc {
+  color: #d14;
+}
+pre.rouge .sd {
+  color: #d14;
+}
+pre.rouge .s2 {
+  color: #d14;
+}
+pre.rouge .se {
+  color: #d14;
+}
+pre.rouge .sh {
+  color: #d14;
+}
+pre.rouge .si {
+  color: #d14;
+}
+pre.rouge .sx {
+  color: #d14;
+}
+pre.rouge .sr {
+  color: #009926;
+}
+pre.rouge .s1 {
+  color: #d14;
+}
+pre.rouge .ss {
+  color: #990073;
+}
+pre.rouge .s, pre.rouge .sa, pre.rouge .dl {
+  color: #d14;
+}
+pre.rouge .na {
+  color: #008080;
+}
+pre.rouge .bp {
+  color: #999999;
+}
+pre.rouge .nb {
+  color: #0086B3;
+}
+pre.rouge .nc {
+  color: #445588;
+  font-weight: bold;
+}
+pre.rouge .no {
+  color: #008080;
+}
+pre.rouge .nd {
+  color: #3c5d5d;
+  font-weight: bold;
+}
+pre.rouge .ni {
+  color: #800080;
+}
+pre.rouge .ne {
+  color: #990000;
+  font-weight: bold;
+}
+pre.rouge .nf, pre.rouge .fm {
+  color: #990000;
+  font-weight: bold;
+}
+pre.rouge .nl {
+  color: #990000;
+  font-weight: bold;
+}
+pre.rouge .nn {
+  color: #555555;
+}
+pre.rouge .nt {
+  color: #000080;
+}
+pre.rouge .vc {
+  color: #008080;
+}
+pre.rouge .vg {
+  color: #008080;
+}
+pre.rouge .vi {
+  color: #008080;
+}
+pre.rouge .nv, pre.rouge .vm {
+  color: #008080;
+}
+pre.rouge .ow {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .o {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .w {
+  color: #bbbbbb;
+}
+pre.rouge {
+  background-color: #f8f8f8;
+}
+</style>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  messageStyle: "none",
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]],
+    ignoreClass: "nostem|nolatexmath"
+  },
+  asciimath2jax: {
+    delimiters: [["\\$", "\\$"]],
+    ignoreClass: "nostem|noasciimath"
+  },
+  TeX: { equationNumbers: { autoNumber: "none" } }
+})
+MathJax.Hub.Register.StartupHook("AsciiMath Jax Ready", function () {
+  MathJax.InputJax.AsciiMath.postfilterHooks.Add(function (data, node) {
+    if ((node = data.script.parentNode) && (node = node.parentNode) && node.classList.contains('stemblock')) {
+      data.math.root.display = "block"
+    }
+    return data
+  })
+})
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>
+</body>
+</html>

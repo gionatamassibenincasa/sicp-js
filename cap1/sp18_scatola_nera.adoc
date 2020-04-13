@@ -180,7 +180,7 @@ dichiarazioni interne locali a tale funzione. Ad esempio, nel problema
 della radice quadrata possiamo scrivere
 
 .Programma per il calcolo della radice quadrata con funzioni annidate
-[[radq1]]
+[[radq2]]
 [source, javascript]
 ----
 function radice_quadrata (x) {
@@ -230,7 +230,7 @@ che racchiude le funzioni interne.
 Questa disciplina si chiama visibilità lessicale, o visibilità statica (static scoping).
 
 .Programma per il calcolo della radice quadrata che sfrutta la visibilià statica
-[[radq1]]
+[[radq3]]
 [source, javascript]
 ----
 function radice_quadrata (x) {
