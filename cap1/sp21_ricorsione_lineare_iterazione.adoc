@@ -1,0 +1,32 @@
+==== Ricorsione lineare e iterazione
+
+Iniziamo considerando la funzione fattoriale, definita da
+
+latexmath:[n \cdot (n-1) \cdot (n-2) \cdots 3 \cdot 2 \cdot 1]
+
+Esistono molti modi per calcolare il fattoriale. Un modo è utilizzare l'osservazione che latexmath:[n!] è uguale a latexmath:[n \cdot (n-1)!] per qualsiasi numero intero positivo latexmath:[n]:
+
+[stem]
+++++
+n! = n\cdot \left[ (n-1) \cdot (n-2) \cdots 3 \cdot 2 \cdot 1 \right] = n \cdot (n-1)!
+++++
+
+Pertanto, possiamo calcolare latexmath:[n!] calcolando latexmath:[(n-1)!] e moltiplicando il risultato di latexmath:[n]. Se aggiungiamo la clausola che latexmath:[1!] è uguale a latexmath:[1], questa osservazione si traduce direttamente nella funzione:
+
+.Definizione della funzione fattoriale
+[source, javascript]
+----
+function fattoriale (n) {
+	return n === 1 
+			? 1
+			: n * fattoriale (n - 1);
+}
+----
+
+
+.Un processo ricorsivo lineare per calcolare 6!
+[[fig1_3]]
+....
+image::https://sicp.comp.nus.edu.sg/chapters/img_javascript/ch1-Z-G-7.svg[]
+....
+

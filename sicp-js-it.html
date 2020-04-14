@@ -468,6 +468,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_esercizi_aggiuntivi">1.1.9. Esercizi aggiuntivi</a></li>
 </ul>
 </li>
+<li><a href="#_le_funzioni_e_i_processi_da_esse_generati">1.2. Le funzioni e i processi da esse generati</a>
+<ul class="sectlevel3">
+<li><a href="#_ricorsione_lineare_e_iterazione">1.2.1. Ricorsione lineare e iterazione</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -648,6 +653,9 @@ che offrono limitati servizi gratuiti.</p>
 <div class="ulist">
 <div class="title">Alcune applicazioni web con cui invocare i processi nel linguaggio JavaScript</div>
 <ul>
+<li>
+<p><a href="https://sourceacademy.nus.edu.sg/playground">	Source Academy playground!</a></p>
+</li>
 <li>
 <p><a href="https://repljs.com/">REPL JS</a></p>
 </li>
@@ -1633,7 +1641,7 @@ un numero diverso a un altro numero.</p>
 come <code>diverso</code>.</p>
 </div>
 <div class="exampleblock">
-<div class="title">Esercizio 1. Saper simulare il processo indotto dal programma</div>
+<div class="title">Esercizio 1.1. Saper simulare il processo indotto dal programma</div>
 <div class="content">
 <div class="paragraph">
 <p>Prima di verificare con l&#8217;interprete JavaScript,
@@ -1749,7 +1757,7 @@ delle seguenti espressioni in JavaScript:</p>
 </div>
 </details>
 <div class="exampleblock">
-<div class="title">Esercizio 3. Saper scrivere espressioni composte (combinazioni mediante operatore)</div>
+<div class="title">Esercizio 1.2. Saper scrivere espressioni composte (combinazioni mediante operatore)</div>
 <div class="content">
 <div class="paragraph">
 <p>Traduci la seguente espressione matematica
@@ -1774,7 +1782,7 @@ nell&#8217;equivalente espressione JavaScript:</p>
 </div>
 </details>
 <div class="exampleblock">
-<div class="title">Esercizio 5. Saper scrivere semplici funzioni composte</div>
+<div class="title">Esercizio 1.3. Saper scrivere semplici funzioni composte</div>
 <div class="content">
 <div class="paragraph">
 <p>Definisci una funzione che accetta tre argomenti
@@ -1797,7 +1805,7 @@ numerici e restituisce la somma dei quadrati dei due numeri più grandi.</p>
 </div>
 </details>
 <div class="exampleblock">
-<div class="title">Esercizio 7. Riconoscere nel nome di funzione la valutazione dell&#8217;espressione</div>
+<div class="title">Esercizio 1.4. Riconoscere nel nome di funzione la valutazione dell&#8217;espressione</div>
 <div class="content">
 <div class="paragraph">
 <p>Si noti che il nostro modello di valutazione consente
@@ -1863,7 +1871,7 @@ corpo di <code>meno</code> con i parametri <code>a</code> e <code>b</code> sosti
 </div>
 </details>
 <div class="exampleblock">
-<div class="title">Esercizio 9. Riflettere sulle conseguenze dell&#8217;ordine di valutazione</div>
+<div class="title">Esercizio 1.5. Riflettere sulle conseguenze dell&#8217;ordine di valutazione</div>
 <div class="content">
 <div class="paragraph">
 <p>Ben Bitdiddle ha inventato un test per determinare se
@@ -1957,8 +1965,8 @@ le cose a riformulare questa definizione in pseudo-JavaScript:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="javascript"><span class="kd">function</span> <span class="nx">radice_quadrata</span> <span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
-<span class="err">    </span><span class="k">return</span> <span class="nx">y</span> <span class="nx">con</span> <span class="nx">y</span><span class="o">&gt;</span> <span class="o">=</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span>
-<span class="err">                      </span><span class="nx">quadrato</span> <span class="p">(</span><span class="nx">y</span><span class="p">)</span> <span class="o">===</span> <span class="nx">x</span><span class="p">;</span>
+	<span class="k">return</span> <span class="nx">y</span> <span class="nx">con</span> <span class="nx">y</span><span class="o">&gt;</span> <span class="o">=</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span>
+		<span class="nx">quadrato</span> <span class="p">(</span><span class="nx">y</span><span class="p">)</span> <span class="o">===</span> <span class="nx">x</span><span class="p">;</span>
 <span class="p">}</span></code></pre>
 </div>
 </div>
@@ -2158,10 +2166,10 @@ l&#8217;iterazione può essere realizzata senza ricorrere a nessun costrutto
 speciale diverso dalla normale capacità di chiamare una funzione.</p>
 </div>
 <div class="exampleblock">
-<div class="title">Esercizio 11. Comprendere la necessità delle forme speciali</div>
+<div class="title">Esercizio 1.6. Comprendere la necessità delle forme speciali</div>
 <div class="content">
 <div class="paragraph">
-<p><strong>Esercizio 1.6</strong> Alyssa P. Hacker non ama la sintassi delle espressioni
+<p>Alyssa P. Hacker non ama la sintassi delle espressioni
 condizionali, che coinvolgono i caratteri <strong>?</strong> e <strong>:</strong>. «Perché non posso
 semplicemente dichiarare una normale funzione condizionale la cui
 applicazione funziona esattamente come le espressioni condizionali?» lei
@@ -2227,10 +2235,10 @@ funzione condizionale non viene mai effettivamente applicata.</p>
 </div>
 </details>
 <div class="exampleblock">
-<div class="title">Esercizio 13. Comprensione del concetto di criterio di terminazione</div>
+<div class="title">Esercizio 1.7. Comprensione del concetto di criterio di terminazione</div>
 <div class="content">
 <div class="paragraph">
-<p><strong>Esercizio 1.7</strong> Il controllo <code>suff_accurata</code> utilizzato nel calcolo
+<p>Il controllo <code>suff_accurata</code> utilizzato nel calcolo
 delle radici quadrate non sarà molto efficace per trovare le radici
 quadrate di numeri molto piccoli. Inoltre, nei computer reali, le
 operazioni aritmetiche vengono quasi sempre eseguite con una precisione
@@ -2300,10 +2308,10 @@ Si verifichi se si creano soluzioni mal gestite se si prova a calcolare la radic
 </div>
 </details>
 <div class="exampleblock">
-<div class="title">Esercizio 15. Riscrivere alcune funzioni, verso il concetto di scatola nera</div>
+<div class="title">Esercizio 1.8. Riscrivere alcune funzioni, verso il concetto di scatola nera</div>
 <div class="content">
 <div class="paragraph">
-<p><strong>Esercizio 1.8</strong> Il metodo di Newton per le radici dei cubi si basa sul
+<p>Il metodo di Newton per le radici dei cubi si basa sul
 fatto che se \(y\) è un&#8217;approssimazione alla radice del cubo
 di \(x\), allora una migliore approssimazione è data dal
 valore</p>
@@ -2627,6 +2635,63 @@ aiutare a organizzare la costruzione di programmi di grandi dimensioni.</p>
 <div class="sect3">
 <h4 id="_esercizi_aggiuntivi">1.1.9. Esercizi aggiuntivi</h4>
 <div class="exampleblock">
+<div class="title">Esercizio A-1.1.1</div>
+<div class="content">
+<div class="paragraph">
+<p>Costruire un glossario dei termini in cui raccogliere le definizioni
+che si trovano in questo sotto-paragrafo.</p>
+</div>
+<div class="paragraph">
+<p>Il glossario ha la forma:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Termine</th>
+<th class="tableblock halign-left valign-top">Sinonimi</th>
+<th class="tableblock halign-left valign-top">Descrizione</th>
+<th class="tableblock halign-left valign-top">Termini collegati</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="exampleblock">
+<div class="title">Esercizio A-1.1.2</div>
+<div class="content">
+<div class="paragraph">
+<p>Costruire una mappa mentale che includa i termini definiti nell&#8217;esercizio
+precedente.</p>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="title">Esercizio A-1.1.3</div>
+<div class="content">
+<div class="paragraph">
+<p>Scrivere un esercizio di programmazione significativo che possa essere
+risolto con le conoscenze apprese in questo sotto-paragrafo.
+Esibire il codice che dimostra che l&#8217;esercizio può essere effettivamente
+risolto.</p>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="title">Esercizio A-1.1.4</div>
 <div class="content">
 <div class="paragraph">
 <p>Si scriva una funzione <code>perimetro_triangolo</code> che calcola il perimetro di un triangolo
@@ -2635,6 +2700,7 @@ e che ha tre argomenti che si riferiscono alle misure dei lati;</p>
 </div>
 </div>
 <div class="exampleblock">
+<div class="title">Esercizio A-1.1.5</div>
 <div class="content">
 <div class="paragraph">
 <p>Si scriva una funzione <code>perimetro_trapezio_rettangolo</code> che calcola il perimetro di un trapezio
@@ -2645,6 +2711,7 @@ altezza;</p>
 </div>
 </div>
 <div class="exampleblock">
+<div class="title">Esercizio A-1.1.6</div>
 <div class="content">
 <div class="paragraph">
 <p>Si considereri la generica equazione di secondo grado
@@ -2659,6 +2726,7 @@ coefficienti <code>a</code> e <code>b</code> e il termine noto <code>c</code>.</
 </div>
 </div>
 <div class="exampleblock">
+<div class="title">Esercizio A-1.1.7</div>
 <div class="content">
 <div class="paragraph">
 <p>Si vuole determinare il valore assunto dal polinomio
@@ -2680,6 +2748,7 @@ calcolo di \(a^\prime x + b^\prime\).</p>
 </div>
 </div>
 <div class="exampleblock">
+<div class="title">Esercizio A-1.1.8</div>
 <div class="content">
 <div class="paragraph">
 <p>Si scriva la funzione <code>minimo</code> che restituisce il minimo tra
@@ -2688,6 +2757,7 @@ i valori dei due argomenti.</p>
 </div>
 </div>
 <div class="exampleblock">
+<div class="title">Esercizio A-1.1.9</div>
 <div class="content">
 <div class="paragraph">
 <p>Si scriva la funzione <code>massimo3</code> che restituisce il massimo tra
@@ -2700,6 +2770,7 @@ i valori dei suoi 3 argomenti. Per calcolarlo usa la funzione
 </div>
 </div>
 <div class="exampleblock">
+<div class="title">Esercizio A-1.1.10</div>
 <div class="content">
 <div class="paragraph">
 <p>Si scriva una funzione <code>somma_fino_a</code> con un argomento <code>n</code>
@@ -2708,6 +2779,7 @@ che somma tutti i numeri naturali compresi tra 1 e <code>n</code>.</p>
 </div>
 </div>
 <div class="exampleblock">
+<div class="title">Esercizio A-1.1.11</div>
 <div class="content">
 <div class="paragraph">
 <p>Si scriva una funzione che somma tutti i termini del tipo
@@ -2720,6 +2792,7 @@ che somma tutti i numeri naturali compresi tra 1 e <code>n</code>.</p>
 </div>
 </div>
 <div class="exampleblock">
+<div class="title">Esercizio A-1.1.12</div>
 <div class="content">
 <div class="paragraph">
 <p>Scrivere una funzione <code>pi</code> che calcola il quadruplo della
@@ -2738,6 +2811,65 @@ ossia</p>
 valore già calcolato e il prossimo valore non deve essere
 maggiore di \(10^{-6}\).</p>
 </div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_le_funzioni_e_i_processi_da_esse_generati">1.2. Le funzioni e i processi da esse generati</h3>
+<div class="paragraph">
+<p>Nel primo paragrafo abbiamo considerato gli elementi della programmazione: abbiamo usato operazioni aritmetiche primitive, abbiamo combinato queste operazioni e abbiamo astratto queste operazioni composite dichiarandole come funzioni composte. Ma ciò non è abbastanza per permetterci di dire che sappiamo programmare. La nostra situazione è analoga a quella di colui il quale ha imparato le regole con si muovono i pezzi negli scacchi ma non sa nulla di aperture, tattiche o strategie tipiche. Come il giocatore di scacchi alle prime armi non è ancora a conoscenza degli schemi comuni e non di sa quali mosse valga la pena fare, così a noi manca la conoscenza di quali funzioni meritano di essere dichiarate. Ci manca l&#8217;esperienza per prevedere le conseguenze del fare una mossa (eseguire una funzione).</p>
+</div>
+<div class="paragraph">
+<p>La capacità di visualizzare le conseguenze delle azioni in esame è cruciale per diventare un programmatore esperto, così come lo è
+è in qualsiasi attività creativa e progettuale.
+Nella programmazione stiamo pianificando il corso delle azioni che un processo intraprende mediante un programma. Per diventare esperti, dobbiamo imparare a visualizzare i processi generati da vari tipi di funzioni.
+Solo dopo aver sviluppato una tale abilità possiamo imparare a costruire in modo affidabile programmi che presentano il comportamento desiderato.</p>
+</div>
+<div class="paragraph">
+<p>Una funzione è un modello per l&#8217;evoluzione locale di un processo computazionale.
+Specifica come ogni fase del processo è costruita sulla fase precedente.
+Vorremmo essere in grado di fare dichiarazioni sul comportamento complessivo o globale di un processo la cui evoluzione locale è stata specificata da una funzione.
+Questo è, in generale, molto difficile ma possiamo almeno provare a descrivere alcuni schemi tipici dell&#8217;evoluzione del processo.</p>
+</div>
+<div class="paragraph">
+<p>In questa sezione esamineremo alcune forme comuni di processi generati da semplici funzioni.
+Indagheremo anche le velocità con cui questi processi consumano le risorse computazionali di tempo e spazio.
+Le funzioni che considereremo sono molto semplici.</p>
+</div>
+<div class="sect3">
+<h4 id="_ricorsione_lineare_e_iterazione">1.2.1. Ricorsione lineare e iterazione</h4>
+<div class="paragraph">
+<p>Iniziamo considerando la funzione fattoriale, definita da</p>
+</div>
+<div class="paragraph">
+<p>\(n \cdot (n-1) \cdot (n-2) \cdots 3 \cdot 2 \cdot 1\)</p>
+</div>
+<div class="paragraph">
+<p>Esistono molti modi per calcolare il fattoriale. Un modo è utilizzare l&#8217;osservazione che \(n!\) è uguale a \(n \cdot (n-1)!\) per qualsiasi numero intero positivo \(n\):</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\$n! = n\cdot \left[ (n-1) \cdot (n-2) \cdots 3 \cdot 2 \cdot 1 \right] = n \cdot (n-1)!\$
+</div>
+</div>
+<div class="paragraph">
+<p>Pertanto, possiamo calcolare \(n!\) calcolando \((n-1)!\) e moltiplicando il risultato di \(n\). Se aggiungiamo la clausola che \(1!\) è uguale a \(1\), questa osservazione si traduce direttamente nella funzione:</p>
+</div>
+<div class="listingblock">
+<div class="title">Definizione della funzione fattoriale</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="kd">function</span> <span class="nx">fattoriale</span> <span class="p">(</span><span class="nx">n</span><span class="p">)</span> <span class="p">{</span>
+	<span class="k">return</span> <span class="nx">n</span> <span class="o">===</span> <span class="mi">1</span>
+			<span class="p">?</span> <span class="mi">1</span>
+			<span class="p">:</span> <span class="nx">n</span> <span class="o">*</span> <span class="nx">fattoriale</span> <span class="p">(</span><span class="nx">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span></code></pre>
+</div>
+</div>
+<div id="fig1_3" class="literalblock">
+<div class="title">Un processo ricorsivo lineare per calcolare 6!</div>
+<div class="content">
+<pre>image::https://sicp.comp.nus.edu.sg/chapters/img_javascript/ch1-Z-G-7.svg[]</pre>
 </div>
 </div>
 </div>

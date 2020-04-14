@@ -136,6 +136,7 @@ Puoi provare gli esempi anche sfruttando anche alcune applicazioni web,
 che offrono limitati servizi gratuiti.
 
 .Alcune applicazioni web con cui invocare i processi nel linguaggio JavaScript
+* https://sourceacademy.nus.edu.sg/playground[	Source Academy playground!]
 * https://repljs.com/[REPL JS]
 * https://repl.it/languages/javascript[repl.it]
 * https://jsconsole.com/[jsconsole]
@@ -145,3 +146,6 @@ che offrono limitati servizi gratuiti.
 * https://ramdajs.com/repl/[Ramda REPL]
 
 include::p1_elementi_programmazione.adoc[]
+
+include::p2_funzioni_e_processi.adoc[]
+

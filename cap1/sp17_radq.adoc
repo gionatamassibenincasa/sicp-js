@@ -25,8 +25,8 @@ le cose a riformulare questa definizione in pseudo-JavaScript:
 [source,javascript]
 ----
 function radice_quadrata (x) {
-    return y con y> = 0 &&
-                      quadrato (y) === x;
+	return y con y> = 0 &&
+		quadrato (y) === x;
 }
 ----
 
@@ -195,9 +195,9 @@ l'iterazione può essere realizzata senza ricorrere a nessun costrutto
 speciale diverso dalla normale capacità di chiamare una funzione.
 
 
-.Comprendere la necessità delle forme speciali
+.Esercizio 1.6. Comprendere la necessità delle forme speciali
 ====
-*Esercizio 1.6* Alyssa P. Hacker non ama la sintassi delle espressioni
+Alyssa P. Hacker non ama la sintassi delle espressioni
 condizionali, che coinvolgono i caratteri *?* e *:*. «Perché non posso
 semplicemente dichiarare una normale funzione condizionale la cui
 applicazione funziona esattamente come le espressioni condizionali?» lei
@@ -257,9 +257,9 @@ Lo stesso ovviamente accade con la chiamata ricorsiva, e quindi la
 funzione condizionale non viene mai effettivamente applicata.
 ====
 
-.Comprensione del concetto di criterio di terminazione
+.Esercizio 1.7. Comprensione del concetto di criterio di terminazione
 ====
-*Esercizio 1.7* Il controllo `suff_accurata` utilizzato nel calcolo
+Il controllo `suff_accurata` utilizzato nel calcolo
 delle radici quadrate non sarà molto efficace per trovare le radici
 quadrate di numeri molto piccoli. Inoltre, nei computer reali, le
 operazioni aritmetiche vengono quasi sempre eseguite con una precisione
@@ -326,9 +326,9 @@ function quadrato (x) {
 ----
 ====
 
-.Riscrivere alcune funzioni, verso il concetto di scatola nera
+.Esercizio 1.8. Riscrivere alcune funzioni, verso il concetto di scatola nera
 ==== 
-*Esercizio 1.8* Il metodo di Newton per le radici dei cubi si basa sul
+Il metodo di Newton per le radici dei cubi si basa sul
 fatto che se latexmath:[$y$] è un'approssimazione alla radice del cubo
 di latexmath:[$x$], allora una migliore approssimazione è data dal
 valore

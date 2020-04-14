@@ -1,0 +1,37 @@
+=== Le funzioni e i processi da esse generati
+
+Nel primo paragrafo abbiamo considerato gli elementi della programmazione: abbiamo usato operazioni aritmetiche primitive, abbiamo combinato queste operazioni e abbiamo astratto queste operazioni composite dichiarandole come funzioni composte. Ma ciò non è abbastanza per permetterci di dire che sappiamo programmare. La nostra situazione è analoga a quella di colui il quale ha imparato le regole con si muovono i pezzi negli scacchi ma non sa nulla di aperture, tattiche o strategie tipiche. Come il giocatore di scacchi alle prime armi non è ancora a conoscenza degli schemi comuni e non di sa quali mosse valga la pena fare, così a noi manca la conoscenza di quali funzioni meritano di essere dichiarate. Ci manca l'esperienza per prevedere le conseguenze del fare una mossa (eseguire una funzione).
+
+La capacità di visualizzare le conseguenze delle azioni in esame è cruciale per diventare un programmatore esperto, così come lo è
+è in qualsiasi attività creativa e progettuale.
+Nella programmazione stiamo pianificando il corso delle azioni che un processo intraprende mediante un programma. Per diventare esperti, dobbiamo imparare a visualizzare i processi generati da vari tipi di funzioni.
+Solo dopo aver sviluppato una tale abilità possiamo imparare a costruire in modo affidabile programmi che presentano il comportamento desiderato.
+
+Una funzione è un modello per l'evoluzione locale di un processo computazionale.
+Specifica come ogni fase del processo è costruita sulla fase precedente.
+Vorremmo essere in grado di fare dichiarazioni sul comportamento complessivo o globale di un processo la cui evoluzione locale è stata specificata da una funzione.
+Questo è, in generale, molto difficile ma possiamo almeno provare a descrivere alcuni schemi tipici dell'evoluzione del processo.
+
+In questa sezione esamineremo alcune forme comuni di processi generati da semplici funzioni.
+Indagheremo anche le velocità con cui questi processi consumano le risorse computazionali di tempo e spazio.
+Le funzioni che considereremo sono molto semplici.
+
+include::sp21_ricorsione_lineare_iterazione.adoc[]
+
+////
+include::sp12_ambiente.adoc[]
+
+include::sp13_valutazione_combinazioni_op.adoc[]
+
+include::sp14_funzioni_composte.adoc[]
+
+include::sp15_modello_sostituzione.adoc[]
+
+include::sp16_espressione_condizionale.adoc[]
+
+include::sp17_radq.adoc[]
+
+include::sp18_scatola_nera.adoc[]
+
+include::sp1esercizi_aggiunti.adoc[]
+////

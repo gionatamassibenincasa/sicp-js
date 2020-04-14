@@ -115,7 +115,7 @@ function diverso (x, y) {
 Nota che l'operatore `!==` quando applicato a due numeri, si comporta
 come `diverso`.
 
-.Saper simulare il processo indotto dal programma
+.Esercizio 1.1. Saper simulare il processo indotto dal programma
 ====
 Prima di verificare con l'interprete JavaScript,
 determima con le regole di valutazione che hai appreso fin ora il valore
@@ -227,7 +227,7 @@ false
 ----
 ====
 
-.Saper scrivere espressioni composte (combinazioni mediante operatore)
+.Esercizio 1.2. Saper scrivere espressioni composte (combinazioni mediante operatore)
 ====
 Traduci la seguente espressione matematica
 nell'equivalente espressione JavaScript:
@@ -247,7 +247,7 @@ latexmath:[\frac{5+4+\left(2-\left(3-(6+\frac{4}{5})\right)\right)}{3 (6-2) (2-7
 ----
 ====
 
-.Saper scrivere semplici funzioni composte
+.Esercizio 1.3. Saper scrivere semplici funzioni composte
 ====
 Definisci una funzione che accetta tre argomenti
 numerici e restituisce la somma dei quadrati dei due numeri più grandi.
@@ -266,7 +266,7 @@ function esercizio_1_3 (x, y, z) {
 ----
 ====
 
-.Riconoscere nel nome di funzione la valutazione dell'espressione
+.Esercizio 1.4. Riconoscere nel nome di funzione la valutazione dell'espressione
 ====
 Si noti che il nostro modello di valutazione consente
 combinazioni mediante applicazioni le cui espressioni di funzioni sono
@@ -317,7 +317,7 @@ corpo di `meno` con i parametri `a` e `b` sostituiti rispettivamente da
 5 e -4, risultando in 5 - (-4), che infine risulterà nel valore 9.
 ====
 
-.Riflettere sulle conseguenze dell'ordine di valutazione
+.Esercizio 1.5. Riflettere sulle conseguenze dell'ordine di valutazione
 ==== 
 Ben Bitdiddle ha inventato un test per determinare se
 l'interprete con cui affrontiamo la programmazione sta usando la

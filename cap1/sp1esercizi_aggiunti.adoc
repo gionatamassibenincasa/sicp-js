@@ -1,10 +1,41 @@
 ==== Esercizi aggiuntivi
 
+.Esercizio A-1.1.{counter:es_agg_1_1}
+====
+Costruire un glossario dei termini in cui raccogliere le definizioni
+che si trovano in questo sotto-paragrafo.
+
+Il glossario ha la forma:
+
+[options="header"]
+|====
+|Termine | Sinonimi | Descrizione | Termini collegati
+|        |          |             |
+|====
+
+====
+
+.Esercizio A-1.1.{counter:es_agg_1_1}
+====
+Costruire una mappa mentale che includa i termini definiti nell'esercizio
+precedente.
+====
+
+.Esercizio A-1.1.{counter:es_agg_1_1}
+====
+Scrivere un esercizio di programmazione significativo che possa essere
+risolto con le conoscenze apprese in questo sotto-paragrafo.
+Esibire il codice che dimostra che l'esercizio può essere effettivamente
+risolto.
+====
+
+.Esercizio A-1.1.{counter:es_agg_1_1}
 ==== 
 Si scriva una funzione `perimetro_triangolo` che calcola il perimetro di un triangolo
 e che ha tre argomenti che si riferiscono alle misure dei lati;
 ====
 
+.Esercizio A-1.1.{counter:es_agg_1_1}
 ==== 
 Si scriva una funzione `perimetro_trapezio_rettangolo` che calcola il perimetro di un trapezio
 rettangolo dati tre argomenti che si riferiscono alle misure dei lati
@@ -12,6 +43,7 @@ perpendicolari tra loro, nell'ordine __base minore__, __base maggiore__ e
 altezza;
 ====
 
+.Esercizio A-1.1.{counter:es_agg_1_1}
 ====
 Si considereri la generica equazione di secondo grado 
 latexmath:[a x^2 + b x + c = 0] di cui vuoi calcolare il valore
@@ -22,6 +54,7 @@ Scrivi la funzione `risolvi_eq2` che ha come argomenti i
 coefficienti `a` e `b` e il termine noto `c`.
 ====
 
+.Esercizio A-1.1.{counter:es_agg_1_1}
 ====
 Si vuole determinare il valore assunto dal polinomio 
 latexmath:[a x^3 + b x^2 + c x + d] quando assegnamo
@@ -37,11 +70,13 @@ e che tale riscrittura ha come sotto-problema comune il
 calcolo di latexmath:[a^\prime x + b^\prime].
 ====
 
+.Esercizio A-1.1.{counter:es_agg_1_1}
 ====
 Si scriva la funzione `minimo` che restituisce il minimo tra
 i valori dei due argomenti.
 ====
 
+.Esercizio A-1.1.{counter:es_agg_1_1}
 ====
 Si scriva la funzione `massimo3` che restituisce il massimo tra
 i valori dei suoi 3 argomenti. Per calcolarlo usa la funzione
@@ -50,11 +85,13 @@ i valori dei suoi 3 argomenti. Per calcolarlo usa la funzione
 Considera che latexmath:[\max(a, b, c) = \max(\max(a, b), c)].
 ====
 
+.Esercizio A-1.1.{counter:es_agg_1_1}
 ====
 Si scriva una funzione `somma_fino_a` con un argomento `n`
 che somma tutti i numeri naturali compresi tra 1 e `n`.
 ====
 
+.Esercizio A-1.1.{counter:es_agg_1_1}
 ====
 Si scriva una funzione che somma tutti i termini del tipo
 latexmath:[2^{-n}, n \in \mathbb{N}] arrrestandosi quando il prossimo addendo
@@ -63,6 +100,7 @@ latexmath:[2^{-n}, n \in \mathbb{N}] arrrestandosi quando il prossimo addendo
 Il valore da trovare approssima latexmath:[1 + \frac{1}{2} + \frac{1}{4} + \frac{1}{8} + \frac{1}{16} + \cdots]
 ====
 
+.Esercizio A-1.1.{counter:es_agg_1_1}
 ====
 Scrivere una funzione `pi` che calcola il quadruplo della
 sua funzione definita internamente `pi_quarti`.

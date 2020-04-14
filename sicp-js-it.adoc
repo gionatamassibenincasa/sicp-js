@@ -19,8 +19,9 @@ v0.1.1, 2020-04-10: Prima bozza con paragrafo 1.1
 :source-highlighter: rouge
 :lang: it
 include::attributes.adoc[]
+:example-caption!:
 
-// asciidoctor -r asciidoctor-diagram sicp-js-it.adoc
+// asciidoctor -r asciidoctor-diagram -a attribute-missing=warn --failure-level=WARN sicp-js-it.adoc
 // asciidoctor-pdf -r asciidoctor-diagram -r asciidoctor-mathematical -a allow-uri-read -a cache-uri sicp-js-it.adoc
 
 Questo testo è un adattamento in italiano, realizzato con l'auito di Google Translate, del testo https://sicp.comp.nus.edu.sg/[Structure and Interpretation of Computer Programs — JavaScript Adaptation], il quale è, a sua volta, un adattamento della seconda edizione del noto libro di testo di Harold Abelson e Gerald Jay Sussman dal titolo: "Structure and Interpretation of Computer Programs".
