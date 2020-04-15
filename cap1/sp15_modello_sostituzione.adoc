@@ -1,3 +1,4 @@
+[[sp_modello_sostituzione]]
 ==== Il modello di sostituzione per l'applicazione delle funzioni
 
 Per valutare una combinazione mediante applicazione, l'interprete segue

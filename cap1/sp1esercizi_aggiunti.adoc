@@ -10,7 +10,7 @@ Il glossario ha la forma:
 [options="header"]
 |====
 |Termine | Sinonimi | Descrizione | Termini collegati
-|        |          |             |
+|		|		  |			 |
 |====
 
 ====

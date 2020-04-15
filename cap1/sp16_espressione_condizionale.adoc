@@ -280,12 +280,12 @@ function piu (a, b) { return a + b; }
 function meno (a, b) { return a - b; }
 
 function a_piu_valore_assoluto_b (a, b) {
-	return (b >= 0 ? più : meno) (a, b);
+	return (b >= 0 ? piu : meno) (a, b);
 }
 ----
 
 Si noti che nell'espressione condizionale, non possiamo usare
-direttamente gli operatori + e - invece dei nomi più e meno perché nella
+direttamente gli operatori + e - invece dei nomi `piu` e `meno` perché nella
 notazione infissa sono consentiti solo simboli di operatore nel mezzo, non
 espressioni composte.
 ====
@@ -303,14 +303,14 @@ dell'applicazione, che determina il nome nella funzione da applicare.
 sostituito dall'argomento corrispondente.
 
 Pertanto la valutazione dell'espressione dell'applicazione
-`a_più_valore_assoluto_b  (5, -4)` valuta `a_più_valore_assoluto_b`
+`a_piu_valore_assoluto_b  (5, -4)` valuta `a_piu_valore_assoluto_b`
 (passo 1), ottenendo la funzione sopra indicata e (passo 2) gli
 argomenti sono già valori. Quindi dobbiamo valutare (passo 3)
 l'espressione del valore da restituire della funzione, con i parametri
-sostituiti dagli argomenti, quindi: `(-4 >= 0 ? più : meno) (5, -4)`.
+sostituiti dagli argomenti, quindi: `(-4 >= 0 ? piu : meno) (5, -4)`.
 Con le stesse regole, dobbiamo (passo 1) valutare l'espressione della
 funzione, che in questo caso è l'espressione condizionale
-`-4 >= 0 ? più : meno`. Poiché il predicato restituisce `false`,
+`-4 >= 0 ? piu : meno`. Poiché il predicato restituisce `false`,
 l'espressione della funzione restituisce `meno`. Gli argomenti, di nuovo
 (passo 2) sono già valori. Quindi finiamo per valutare (passo 3) il
 corpo di `meno` con i parametri `a` e `b` sostituiti rispettivamente da
