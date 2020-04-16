@@ -2911,11 +2911,13 @@ Possiamo descrivere il calcolo dicendo che il contatore e il prodotto cambiano s
 </div>
 </div>
 <div class="paragraph">
-<p>Come sopra, possiamo usare il modello di sostuzione per visualizzare il processo di calcolo di \(6!\) come mostrato in <a href="#fig1_4">Un processo iterativo lineare per calcolare \(6!\)</a>.</p>
+<p>Come sopra, possiamo usare il modello di sostuzione per visualizzare il processo di calcolo di \(6!\) come mostrato in <a href="#fig1_4">Figura 4</a>.</p>
 </div>
-<div id="fig1_4" class="paragraph">
-<div class="title">Un processo iterativo lineare per calcolare \(6!\)</div>
-<p>image::https://sicp.comp.nus.edu.sg/chapters/img_javascript/ch1-Z-G-10.svg</p>
+<div id="fig1_4" class="imageblock">
+<div class="content">
+<img src="https://sicp.comp.nus.edu.sg/chapters/img_javascript/ch1-Z-G-10.svg" alt="ch1 Z G 10">
+</div>
+<div class="title">Figura 4. Un processo iterativo lineare per calcolare \(6!\)</div>
 </div>
 <div class="paragraph">
 <p>Confronta i due processi. Da un punto di vista, non sembrano così diversi. Entrambi calcolano la stessa funzione matematica sullo stesso dominio e ciascuno richiede un numero di passaggi proporzionale a \(n\) per calcolare \(n!\). In effetti, entrambi i processi eseguono anche la stessa sequenza di moltiplicazioni, ottenendo la stessa sequenza di prodotti parziali. D&#8217;altra parte, quando consideriamo le forme dei due processi, scopriamo che si evolvono in modo abbastanza diverso.</p>
@@ -2938,6 +2940,173 @@ Possiamo descrivere il calcolo dicendo che il contatore e il prodotto cambiano s
 <div class="paragraph">
 <p>Se un interprete esegue un processo iterativo in uno spazio costante, anche se il processo iterativo è descritto da una funzione ricorsiva si dice che implementa la ricorsione in coda. Con un&#8217;implementazione ricorsiva in coda, l&#8217;iterazione può essere espressa usando il normale meccanismo di chiamata di funzione, in modo che speciali costrutti di iterazione siano utili solo come zucchero sintattico.</p>
 </div>
+<div class="exampleblock">
+<div class="title">Esercizio 1.9.Riconoscere i processi iterativi e ricorsivi</div>
+<div class="content">
+<div class="paragraph">
+<p>Le due funzioni seguenti definiscono entramber un metodo per sommare due
+numeri naturali nei temini della funzione <code>inc</code>, che incrementa il suo
+argomento di 1, e della funzione <code>dec</code>, che decrementa il suo argomento di 1.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function piu(a, b) {  <i class="conum" data-value="1"></i><b>(1)</b>
+    return a === 0 ? b : inc(piu(dec(a), b));
+}
+function piu(a, b) {  <i class="conum" data-value="2"></i><b>(2)</b>
+    return a === 0 ? b : piu(dec(a), inc(b));
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Usando il modello di sostituzione, illustra il processo generato dalle due funzioni  valutando <code>piu (4, 5);</code>. Questi processi sono iterativi o ricorsivi?</p>
+</div>
+</div>
+</div>
+<details>
+<summary class="title">Click per vedere le soluzioni dell&#8217;esercizio</summary>
+<div class="content">
+<div class="paragraph">
+<p>Il processo generato dalla prima funzione è recursivo.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">piu(4, 5)
+4 === 0 ? 5 : inc(piu(dec(4), 5))
+inc(piu(dec(4), 5))
+...
+inc(piu(3, 5))
+...
+inc(inc(piu(2, 5)))
+...
+inc(inc(inc(piu(1, 5))))
+...
+inc(inc(inc(inc(piu(0, 5)))))
+inc(inc(inc(inc( 0 === 0 ? 5 : inc(piu(dec(0), 5))))))
+inc(inc(inc(inc( 5 ))))
+inc(inc(inc( 6 )))
+inc(inc( 7 ))
+inc( 8 )
+9</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Il processo generato dalla seconda funzione è iterativo.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">piu(4, 5)
+4 === 0 ? 5 : piu(dec(4), inc(5))
+piu(dec(4), inc(5))
+...
+piu(3, 6)
+...
+piu(2, 7)
+...
+piu(1, 8)
+...
+piu(0, 9)
+0 === 0 ? 9 : piu(dec(0), inc(9))
+9</code></pre>
+</div>
+</div>
+</div>
+</details>
+<div class="exampleblock">
+<div class="title">Esercizio 1.10. La funzione (matematica) di Ackermann</div>
+<div class="content">
+<div class="paragraph">
+<p>La funzione seguente calcola una funzione matematica chiamata
+funzione di Ackermann.</p>
+</div>
+<div class="listingblock">
+<div class="title">Funzione di Ackermann</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function A(x,y) {
+    return y === 0
+           ? 0
+           : x === 0
+             ? 2 * y
+             : y === 1
+               ? 2
+               : A(x - 1, A(x, y - 1));
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Come vengono valutate le seguenti espressioni?</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">A(1, 10);
+A(2, 4);
+A(3, 3);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Considera le seguenti funzioni, in cui <code>A</code> è la funzione definita sopra:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function f(n) {
+    return A(0, n);
+}
+function g(n) {
+    return A(1, n);
+}
+function h(n) {
+    return A(2, n);
+}
+function k(n) {
+   return 5 * n * n;
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Fornisci una breve definizione matematica delle funzioni <code>f</code>, <code>g</code> e <code>h</code>
+calcolate su argomenti interi <strong>positivi</strong> \(n\).
+Ad esempio, \(k(n)\) calcola \(5n^2\).</p>
+</div>
+</div>
+</div>
+<details>
+<summary class="title">Click per vedere le soluzioni dell&#8217;esercizio</summary>
+<div class="content">
+<div class="paragraph">
+<p>\(
+A (x, y) = \begin{cases}
+    0  &amp; \text {se } y = 0 \\
+    2y &amp; \text {se } x = 0 \\
+    2  &amp; \text {se } y = 1 \\
+    A(x - 1, A(x, y - 1) &amp; \text{altrimenti}
+\end{cases}
+\)</p>
+</div>
+<div class="paragraph">
+<p>La funzione \(f(n)\) calcola \(2 \cdot n\),
+e deriva direttamente dalla valutazione della seconda regola.</p>
+</div>
+<div class="paragraph">
+<p>La funzione \(g(n)\) calcola \(2^n\), come si ricava
+considerando che \(g (1) = A (1, 1) = 2\) per la terza regola,
+e che \(g (n) = A (1, n) = A \left(0, A (1, n - 1)\right) = f ( g (n -1)) = 2 \cdot g(n-1) = 2 \cdot 2 \cdot g (n - 2) = \underbrace{2 \cdot 2 \cdots  \cdot g (1)}_{n \ \text{volte}}\).</p>
+</div>
+<div class="paragraph">
+<p>La funzione \(h(n)\) calcola \(2^{2^{\cdot^{\cdot^{\cdot^2}}}}\) dove il numero di 2 nella catena di elevamento a potenza è \(n\). Tale operazione algebrica si chiama tetrazione. Si ricava considerando che
+\(h (1) = A (2, 1) = 2\) e che</p>
+</div>
+<div class="paragraph">
+<p>\(
+h (n) = A (2, n) = A (1, A (2, n - 1)) = g ( h (n - 1)) = 2^{h(n -1)} = \underbrace{2^{2^{{\mathinner{
+  \kern1mu\raise1pt{.}
+  \kern2mu\raise4pt{.}
+  \kern2mu\raise7pt{\Rule{0pt}{7pt}{0pt}.}
+  \kern1mu
+}}^{h(1)}}}}_{n\ \text{volte}}
+\)</p>
+</div>
+</div>
+</details>
 </div>
 </div>
 </div>

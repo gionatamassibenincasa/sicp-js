@@ -80,3 +80,155 @@ Un motivo per cui la distinzione tra processo e funzione può essere fonte di co
 //L'implementazione di JavaScript che considereremo nel capitolo 5 non condivide questo difetto.
 
 Se un interprete esegue un processo iterativo in uno spazio costante, anche se il processo iterativo è descritto da una funzione ricorsiva si dice che implementa la ricorsione in coda. Con un'implementazione ricorsiva in coda, l'iterazione può essere espressa usando il normale meccanismo di chiamata di funzione, in modo che speciali costrutti di iterazione siano utili solo come zucchero sintattico.
+
+.Esercizio 1.9.Riconoscere i processi iterativi e ricorsivi
+==== 
+
+Le due funzioni seguenti definiscono entramber un metodo per sommare due
+numeri naturali nei temini della funzione `inc`, che incrementa il suo
+argomento di 1, e della funzione `dec`, che decrementa il suo argomento di 1.
+
+[source, javascript]
+----
+function piu(a, b) {  // <1>
+    return a === 0 ? b : inc(piu(dec(a), b)); 
+}
+function piu(a, b) {  // <2>
+    return a === 0 ? b : piu(dec(a), inc(b));
+}
+----
+
+Usando il modello di sostituzione, illustra il processo generato dalle due funzioni  valutando `piu (4, 5);`. Questi processi sono iterativi o ricorsivi?
+====
+
+.Click per vedere le soluzioni dell'esercizio
+[%collapsible]
+====
+
+Il processo generato dalla prima funzione è recursivo.
+
+[source, javascript]
+----
+piu(4, 5)
+4 === 0 ? 5 : inc(piu(dec(4), 5))
+inc(piu(dec(4), 5))
+...
+inc(piu(3, 5))
+...
+inc(inc(piu(2, 5)))
+...
+inc(inc(inc(piu(1, 5))))
+...
+inc(inc(inc(inc(piu(0, 5)))))
+inc(inc(inc(inc( 0 === 0 ? 5 : inc(piu(dec(0), 5))))))
+inc(inc(inc(inc( 5 ))))
+inc(inc(inc( 6 )))
+inc(inc( 7 ))
+inc( 8 )
+9
+----
+
+Il processo generato dalla seconda funzione è iterativo.
+
+[source, javascript]
+----
+piu(4, 5)
+4 === 0 ? 5 : piu(dec(4), inc(5))
+piu(dec(4), inc(5))
+...
+piu(3, 6)
+...
+piu(2, 7)
+...
+piu(1, 8)
+...
+piu(0, 9)
+0 === 0 ? 9 : piu(dec(0), inc(9))
+9
+----
+====
+
+.Esercizio 1.10. La funzione (matematica) di Ackermann
+
+==== 
+
+La funzione seguente calcola una funzione matematica chiamata
+funzione di Ackermann.
+
+.Funzione di Ackermann
+[source, javascript]
+----
+function A(x,y) {
+    return y === 0
+           ? 0
+           : x === 0
+             ? 2 * y
+             : y === 1
+               ? 2
+               : A(x - 1, A(x, y - 1));
+}
+----
+
+Come vengono valutate le seguenti espressioni?
+
+[source, javascript]
+----
+A(1, 10);
+A(2, 4);
+A(3, 3);
+----
+
+Considera le seguenti funzioni, in cui `A` è la funzione definita sopra:  
+
+[source, javascript]
+----
+function f(n) {
+    return A(0, n);
+}
+function g(n) {
+    return A(1, n);
+}
+function h(n) {
+    return A(2, n);
+}
+function k(n) {
+   return 5 * n * n;
+}
+----
+
+Fornisci una breve definizione matematica delle funzioni `f`, `g` e `h`
+calcolate su argomenti interi *positivi* latexmath:[n].
+Ad esempio, latexmath:[k(n)] calcola latexmath:[5n^2].
+====
+
+
+.Click per vedere le soluzioni dell'esercizio
+[%collapsible]
+====
+latexmath:[
+A (x, y) = \begin{cases}
+    0  & \text {se } y = 0 \\
+    2y & \text {se } x = 0 \\
+    2  & \text {se } y = 1 \\
+    A(x - 1, A(x, y - 1) & \text{altrimenti}
+\end{cases}
+]
+
+La funzione latexmath:[f(n)] calcola latexmath:[2 \cdot n],
+e deriva direttamente dalla valutazione della seconda regola.
+
+La funzione latexmath:[g(n)] calcola latexmath:[2^n], come si ricava
+considerando che latexmath:[g (1) = A (1, 1) = 2] per la terza regola,
+e che latexmath:[g (n) = A (1, n) = A \left(0, A (1, n - 1)\right) = f ( g (n -1)) = 2 \cdot g(n-1) = 2 \cdot 2 \cdot g (n - 2) = \underbrace{2 \cdot 2 \cdots  \cdot g (1)}_{n \ \text{volte}}].
+
+La funzione latexmath:[h(n)] calcola latexmath:[2^{2^{\cdot^{\cdot^{\cdot^2}}}}] dove il numero di 2 nella catena di elevamento a potenza è latexmath:[n]. Tale operazione algebrica si chiama tetrazione. Si ricava considerando che 
+latexmath:[h (1) = A (2, 1) = 2] e che
+latexmath:[
+h (n) = A (2, n) = A (1, A (2, n - 1)) = g ( h (n - 1)) = 2^{h(n -1)} = \underbrace{2^{2^{{\mathinner{
+  \kern1mu\raise1pt{.}
+  \kern2mu\raise4pt{.}
+  \kern2mu\raise7pt{\Rule{0pt}{7pt}{0pt}.}
+  \kern1mu
+}}^{h(1)}}}}_{n\ \text{volte}}
+].
+====
