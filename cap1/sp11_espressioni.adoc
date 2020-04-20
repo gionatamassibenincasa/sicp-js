@@ -1,6 +1,6 @@
 ==== Espressioni
 
-Un modo semplice per iniziare a programmare in JavaScript è interagire
+Un modo semplice per iniziare a programmare in JavaScript è attraverso uno degli interpreti indicati nell'<<elenco_interpreti>>, oppure  interagire
 con l'interprete JavaScript integrato nel browser che si sta utilizzando
 per visualizzare questa pagina.
 Per trovare l'interprete, in genere, basta digitare il tasto kbd:[F12] e selezionare la scheda "Console".
@@ -49,10 +49,10 @@ tali numeri. Ad esempio:
 ----
 
 Espressioni come queste, che contengono altre espressioni come
-componenti, sono chiamate *combinazioni* o _espressioni composte_. Le combinazioni che sono formate da un simbolo di operatore scritto in mezzo alle espressioni degli operandi sono dette **combinazioni mediante operatori**. Il valore di una combinazione mediante operatori si ottiene applicando la funzione (una procedura) specificata dall'operatore agli argomenti, ossia ai valori degli operandi.
+componenti, sono chiamate *combinazioni* o _espressioni composte_. Le combinazioni che sono formate da un simbolo di operatore scritto in mezzo alle espressioni degli operandi sono dette **combinazioni mediante operatori**. Il valore di una combinazione mediante operatori si ottiene applicando la funzione (una procedura) specificata dall'operatore agli argomenti, ossia ai valori degli **operandi**.
 
 La convenzione di posizionare l'operatore tra gli operandi è nota come
-notazione infissa. Segue la notazione matematica con cui il lettore ha
+**notazione infissa**. Segue la notazione matematica con cui il lettore ha
 certamente familiarità. Come in matematica, le combinazioni mediante
 operatori possono essere nidificate, ovvero possono prendere argomenti
 che sono esse stesse combinazioni di operatori:

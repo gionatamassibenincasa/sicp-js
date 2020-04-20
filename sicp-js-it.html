@@ -470,7 +470,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="#_le_funzioni_e_i_processi_da_esse_generati">1.2. Le funzioni e i processi da esse generati</a>
 <ul class="sectlevel3">
-<li><a href="#_ricorsione_lineare_e_iterazione">1.2.1. Ricorsione lineare e iterazione</a></li>
+<li><a href="#_ricorsione_e_iterazione_lineari">1.2.1. Ricorsione e iterazione lineari</a></li>
+<li><a href="#_ricorsione_ad_albero">1.2.2. Ricorsione ad albero</a></li>
 </ul>
 </li>
 </ul>
@@ -531,12 +532,12 @@ computer con i nostri incantesimi.</p>
 </div>
 <div class="paragraph">
 <p>Un processo computazionale è molto simile all&#8217;idea che uno stregone ha
-di uno spirito. Il processo non può essere visto o toccato. Non è
-composto di materia. Tuttavia è reale. Può eseguire compiti
-intellettuali. Può rispondere a delle domande. Può gestire eventi del
+di uno spirito. Il processo non può essere visto né toccato. Non è
+composto di materia. Tuttavia è reale. Può eseguire lavori
+intellettuali. Può rispondere ad alcune domande. Può gestire eventi del
 mondo reale erogando denaro in una banca o controllando un braccio
 robotico in una fabbrica. I programmi che usiamo per evocare i processi
-sono come gli incantesimi di uno stregone. Sono accuratamente composti
+sono come gli incantesimi di uno stregone. Sono meticolosamente composti
 da <strong>espressioni simboliche</strong> in <strong>linguaggi di programmazione</strong>  arcani ed
 esoterici che prescrivono i compiti che vogliamo far eseguire ai nostri
 processi.</p>
@@ -544,8 +545,8 @@ processi.</p>
 <div class="paragraph">
 <p>Un processo computazionale, in un computer che funziona correttamente,
 esegue i programmi in modo preciso e accurato. Quindi i programmatori
-alle prime armi, come l&#8217;apprendista stregone, devono imparare a capire e
-anticipare le conseguenze della loro evocazione. Anche piccoli errori
+alle prime armi, così come l&#8217;apprendista stregone, devono imparare a capire e
+anticipare le conseguenze delle loro parole magiche. Anche piccoli errori
 nei programmi (di solito chiamati <strong>bug</strong> o <em>glitch</em>)  possono avere
 conseguenze complesse e impreviste.</p>
 </div>
@@ -553,8 +554,8 @@ conseguenze complesse e impreviste.</p>
 <p>Fortunatamente, imparare a programmare è considerevolmente meno
 pericoloso dello studio della stregoneria, perché gli spiriti di cui ci
 occupiamo sono confinati nel calcolatore. La programmazione nel mondo
-reale, tuttavia, richiede cura, competenza e saggezza. Un piccolo bug in
-un programma di progettazione assistita da computer (Computer Aided
+reale, tuttavia, richiede cura, competenza e saggezza. Un piccolo <em>bug</em> in
+un programma di progettazione assistita dal computer (Computer Aided
 Design, CAD), ad esempio, può portare al catastrofico schianto di un aereo
 o al crollo di una diga o all&#8217;autodistruzione di un robot industriale.</p>
 </div>
@@ -650,7 +651,7 @@ la programmazione in JavaScript è molto divertente.</p>
 <p>Puoi provare gli esempi anche sfruttando anche alcune applicazioni web,
 che offrono limitati servizi gratuiti.</p>
 </div>
-<div class="ulist">
+<div id="elenco_interpreti" class="ulist">
 <div class="title">Alcune applicazioni web con cui invocare i processi nel linguaggio JavaScript</div>
 <ul>
 <li>
@@ -684,7 +685,7 @@ che offrono limitati servizi gratuiti.</p>
 <div class="paragraph">
 <p>Un linguaggio di programmazione è più di un semplice strumento per
 istruire un computer a svolgere compiti. Il linguaggio funge anche da
-framework all&#8217;interno del quale organizziamo le nostre idee sui
+impianto all&#8217;interno del quale organizziamo le nostre idee sui
 processi. Pertanto, quando descriviamo un linguaggio, dovremmo prestare
 particolare attenzione ai costrutti esso fornisce per combinare idee
 semplici e formare idee più complesse. Ogni linguaggio potente ha tre
@@ -728,7 +729,7 @@ creare funzioni per manipolare anche i dati composti.</p>
 <div class="sect3">
 <h4 id="_espressioni">1.1.1. Espressioni</h4>
 <div class="paragraph">
-<p>Un modo semplice per iniziare a programmare in JavaScript è interagire
+<p>Un modo semplice per iniziare a programmare in JavaScript è attraverso uno degli interpreti indicati nell'<a href="#elenco_interpreti">elenco delle webapp che realizzano interpreti JavaScript</a>, oppure  interagire
 con l&#8217;interprete JavaScript integrato nel browser che si sta utilizzando
 per visualizzare questa pagina.
 Per trovare l&#8217;interprete, in genere, basta digitare il tasto <kbd>F12</kbd> e selezionare la scheda "Console".</p>
@@ -779,11 +780,11 @@ tali numeri. Ad esempio:</p>
 </div>
 <div class="paragraph">
 <p>Espressioni come queste, che contengono altre espressioni come
-componenti, sono chiamate <strong>combinazioni</strong> o <em>espressioni composte</em>. Le combinazioni che sono formate da un simbolo di operatore scritto in mezzo alle espressioni degli operandi sono dette <strong>combinazioni mediante operatori</strong>. Il valore di una combinazione mediante operatori si ottiene applicando la funzione (una procedura) specificata dall&#8217;operatore agli argomenti, ossia ai valori degli operandi.</p>
+componenti, sono chiamate <strong>combinazioni</strong> o <em>espressioni composte</em>. Le combinazioni che sono formate da un simbolo di operatore scritto in mezzo alle espressioni degli operandi sono dette <strong>combinazioni mediante operatori</strong>. Il valore di una combinazione mediante operatori si ottiene applicando la funzione (una procedura) specificata dall&#8217;operatore agli argomenti, ossia ai valori degli <strong>operandi</strong>.</p>
 </div>
 <div class="paragraph">
 <p>La convenzione di posizionare l&#8217;operatore tra gli operandi è nota come
-notazione infissa. Segue la notazione matematica con cui il lettore ha
+<strong>notazione infissa</strong>. Segue la notazione matematica con cui il lettore ha
 certamente familiarità. Come in matematica, le combinazioni mediante
 operatori possono essere nidificate, ovvero possono prendere argomenti
 che sono esse stesse combinazioni di operatori:</p>
@@ -966,10 +967,10 @@ come segue.</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Valuta le espressioni operando della combinazione.</p>
+<p>Valuta le <strong>espressioni operando</strong> della combinazione.</p>
 </li>
 <li>
-<p>Applicare la funzione indicata dall&#8217;operatore agli argomenti che
+<p>Applica la funzione indicata dall&#8217;operatore agli argomenti che
 sono i valori degli operandi.</p>
 </li>
 </ol>
@@ -983,7 +984,7 @@ processi in generale. Innanzitutto, osserva che il primo passo impone
 che per completare il processo di valutazione di una combinazione
 mediante operatori dobbiamo prima eseguire il processo di valutazione su
 ciascun operando della combinazione mediante operatore. Pertanto, la
-regola di valutazione è di natura ricorsiva; cioè include, come uno dei
+regola di valutazione è di natura <em>ricorsiva</em>; cioè include, come uno dei
 suoi passi, la necessità di invocare la regola stessa. Notate quanto in
 modo conciso l&#8217;idea della ricorsione possa essere utilizzata per
 esprimere ciò che, nel caso di una combinazione profondamente annidata,
@@ -1010,7 +1011,7 @@ vedremo che la ricorsione è una tecnica molto potente per trattare
 oggetti gerarchici come gli alberi. In effetti, il processo di
 produzione e consumo di valori salendo verso l&#8217;alto che si ottiene della
 regola di valutazione è un esempio di un tipo generale di processo noto
-come <em>tree accumulation</em>.</p>
+come <em>costruzione dell&#8217;albero</em> (<em>tree accumulation</em>, in inglese).</p>
 </div>
 <div id="fig1_1" class="imageblock">
 <div class="content">
@@ -2827,9 +2828,9 @@ Nella programmazione stiamo pianificando il corso delle azioni che un processo i
 Solo dopo aver sviluppato una tale abilità possiamo imparare a costruire in modo affidabile programmi che presentano il comportamento desiderato.</p>
 </div>
 <div class="paragraph">
-<p>Una funzione è un modello per l&#8217;evoluzione locale di un processo computazionale.
+<p>Una funzione è un modello per l'<em>evoluzione locale</em> di un processo computazionale.
 Specifica come ogni fase del processo è costruita sulla fase precedente.
-Vorremmo essere in grado di fare dichiarazioni sul comportamento complessivo o globale di un processo la cui evoluzione locale è stata specificata da una funzione.
+Vorremmo essere in grado di fare dichiarazioni sul <em>comportamento complessivo</em> o globale di un processo la cui evoluzione locale è stata specificata da una funzione.
 Questo è, in generale, molto difficile ma possiamo almeno provare a descrivere alcuni schemi tipici dell&#8217;evoluzione del processo.</p>
 </div>
 <div class="paragraph">
@@ -2838,7 +2839,7 @@ Indagheremo anche le velocità con cui questi processi consumano le risorse comp
 Le funzioni che considereremo sono molto semplici.</p>
 </div>
 <div class="sect3">
-<h4 id="_ricorsione_lineare_e_iterazione">1.2.1. Ricorsione lineare e iterazione</h4>
+<h4 id="_ricorsione_e_iterazione_lineari">1.2.1. Ricorsione e iterazione lineari</h4>
 <div class="paragraph">
 <p>Iniziamo considerando la funzione fattoriale, definita da</p>
 </div>
@@ -2885,10 +2886,12 @@ che conta da 1 a \(n\).
 Possiamo descrivere il calcolo dicendo che il contatore e il prodotto cambiano simultaneamente da un passaggio all&#8217;altro in base alla regola</p>
 </div>
 <div class="paragraph">
-<p>\(\mathrm{prodotto} \leftarrow \mathrm{contatore} \cdot \mathrm{prodotto}\)</p>
-</div>
-<div class="paragraph">
-<p>\(\mathrm{contatore} \leftarrow \mathrm{contatore} + 1\)</p>
+<p>\(
+\begin{eqnarray*}
+  \mathrm{prodotto}  &amp; \leftarrow &amp; \mathrm{contatore} \cdot \mathrm{prodotto} \\
+  \mathrm{contatore} &amp; \leftarrow &amp; \mathrm{contatore} + 1
+\end{eqnarray*}
+\)</p>
 </div>
 <div class="paragraph">
 <p>e che \(n!\) è il valore del prodotto quando il contatore supera \(n\).</p>
@@ -3093,17 +3096,240 @@ e che \(g (n) = A (1, n) = A \left(0, A (1, n - 1)\right) = f ( g (n -1)) = 2 \c
 </div>
 <div class="paragraph">
 <p>La funzione \(h(n)\) calcola \(2^{2^{\cdot^{\cdot^{\cdot^2}}}}\) dove il numero di 2 nella catena di elevamento a potenza è \(n\). Tale operazione algebrica si chiama tetrazione. Si ricava considerando che
-\(h (1) = A (2, 1) = 2\) e che</p>
-</div>
-<div class="paragraph">
-<p>\(
+\(h (1) = A (2, 1) = 2\) e che
+\(
 h (n) = A (2, n) = A (1, A (2, n - 1)) = g ( h (n - 1)) = 2^{h(n -1)} = \underbrace{2^{2^{{\mathinner{
   \kern1mu\raise1pt{.}
   \kern2mu\raise4pt{.}
   \kern2mu\raise7pt{\Rule{0pt}{7pt}{0pt}.}
   \kern1mu
 }}^{h(1)}}}}_{n\ \text{volte}}
-\)</p>
+\).</p>
+</div>
+</div>
+</details>
+</div>
+<div class="sect3">
+<h4 id="_ricorsione_ad_albero">1.2.2. Ricorsione ad albero</h4>
+<div class="paragraph">
+<p>Un altro schema di calcolo comune è chiamato ricorsione ad albero. Ad esempio, considera di calcolare la sequenza dei numeri di Fibonacci, in cui ogni numero è la somma dei due precedenti:</p>
+</div>
+<div class="paragraph">
+<p>\(0, 1, 1, 2, 3, 5, 8, 13, 21, \ldots\)</p>
+</div>
+<div class="paragraph">
+<p>Un numero di Fibonacci, in generale, può essere definito dalla regola:</p>
+</div>
+<div class="paragraph">
+<p>\(\begin{eqnarray*}
+          \textrm{Fib}(n) &amp; = &amp; \left\{ \begin{array}{ll}
+          0   &amp;  \mbox{se } n=0\\
+          1   &amp; \mbox{se } n=1\\
+          \textrm{Fib}(n-1)+\textrm{Fib}(n-2) &amp; \mbox{altrimenti}
+          \end{array}
+          \right.
+\end{eqnarray*}\)</p>
+</div>
+<div class="paragraph">
+<p>Possiamo tradurre immediatamente questa definizione in una funzione ricorsiva per il calcolo dei numeri di Fibonacci:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function fib(n) {
+    return n === 0
+           ? 0
+           : n === 1
+             ? 1
+             : fib(n - 1) + fib(n - 2);
+}</code></pre>
+</div>
+</div>
+<div id="fig1_5" class="paragraph">
+<div class="title">Il processo ricorsivo ad albero generato nel calcolo di <code>fib (5)</code></div>
+<p><span class="image"><img src="https://sicp.comp.nus.edu.sg/chapters/img_javascript/ch1-Z-G-13.svg" alt="ch1 Z G 13"></span></p>
+</div>
+<div class="paragraph">
+<p>Considera lo schema di evoluzione di questo calcolo. Per calcolare <code>fib (5)</code>, calcoliamo <code>fib (4)</code> e <code>fib (3)</code>. Per calcolare <code>fib (4)</code>, calcoliamo <code>fib (3)</code> e <code>fib (2)</code>. In generale, il processo evoluto assomiglia ad un albero, come mostrato nella <a href="#fig1_5">Il processo ricorsivo ad albero generato nel calcolo di <code>fib (5)</code></a>. Si noti che i rami si dividono in due ad ogni livello (tranne che in basso); ciò riflette il fatto che la funzione <code>fib</code> si richiama due volte ogni volta che viene invocata.</p>
+</div>
+<div class="paragraph">
+<p>Questa definizione della funzione è il prototipo della ricorsione ad albero, e quindi è istruttiva, ma questo è un modo terribile di calcolare i numeri di Fibonacci in quanto esegue un calcolo in modo ridondante. Si noti nella <a href="#fig1_5">Il processo ricorsivo ad albero generato nel calcolo di <code>fib (5)</code></a> che l&#8217;intero calcolo di <code>fib (3)</code>, quasi metà del lavoro, è duplicato. In effetti, non è difficile dimostrare che il numero di volte in cui la funzione calcolerà <code>fib (1)</code> o <code>fib (0)</code> (il loro numero è il numero di foglie dell&#8217;albero illustrato in figura) è precisamente \(\textrm{Fib} (n + 1)\). Per avere un&#8217;idea di quanto questo sia oneroso, si può dimostrare che il valore di \(\textrm{Fib} (n)\) cresce esponenzialmente con \(n\). Più precisamente, \(\textrm{Fib} (n)\) è il numero intero più vicino a \(\phi^{n} /\sqrt{5}\), dove</p>
+</div>
+<div class="paragraph">
+<p>\(\phi=(1+\sqrt{5})/2\approx 1.6180\)</p>
+</div>
+<div class="paragraph">
+<p>è la <em>sezione aurea</em>, che soffisfa l&#8217;equazione</p>
+</div>
+<div class="paragraph">
+<p>\(\phi^{2} =\phi + 1\)</p>
+</div>
+<div class="paragraph">
+<p>Pertanto, il processo utilizza una serie di passaggi il cui numero cresce in modo esponenziale con il valore dell&#8217;argomento. D&#8217;altra parte, lo spazio richiesto cresce solo in modo lineare con l&#8217;argomento, perché dobbiamo tenere traccia solo di quali nodi sono più in alto nell&#8217;albero in qualsiasi punto del calcolo. In generale, il numero di passaggi richiesti da un processo ricorsivo ad albero sarà proporzionale al numero di nodi nella struttura, mentre lo spazio richiesto sarà proporzionale alla profondità massima della struttura.</p>
+</div>
+<div class="paragraph">
+<p>Possiamo anche formulare un processo iterativo per calcolare i numeri di Fibonacci. L&#8217;idea è di utilizzare una coppia di numeri interi \(a\) e \(b\), inizializzati su \(\textrm{Fib} (1) = 1\) e \(\textrm{Fib} (0) = 0\), e di applicare ripetutamente le trasformazioni simultanee</p>
+</div>
+<div class="paragraph">
+<p>\(\begin{eqnarray*}
+  a &amp; \leftarrow &amp; a+b \\
+  b &amp; \leftarrow &amp; a
+\end{eqnarray*}\)</p>
+</div>
+<div class="paragraph">
+<p>Non è difficile dimostrare che, dopo aver applicato questa trasformazione \(n\) volte, \(a\) e \(b\) saranno uguali, rispettivamente, a \(\textrm{Fib} (n + 1)\) e \(\textrm{Fib} (n)\). Quindi, possiamo calcolare i numeri di Fibonacci in modo iterativo usando la funzione</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function fib(n) {
+    return fib_iter(1, 0, n);
+}
+function fib_iter(a, b, count) {
+    return count === 0
+           ? b
+           : fib_iter(a + b, a, count - 1);
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Questo secondo metodo per calcolare \(\textrm{Fib} (n)\) è un&#8217;iterazione lineare. La differenza nel numero di passaggi richiesti dai due metodi - uno lineare in \(n\), uno in rapida crescita come \(\textrm{Fib} (n)\) stesso - è enorme, anche per argomenti relativamente piccoli.</p>
+</div>
+<div class="paragraph">
+<p>Non si deve concludere da ciò che i processi ricorsivi ad albero siano inutili. Quando consideriamo i processi che operano su dati strutturati gerarchicamente piuttosto che su numeri, scopriremo che la ricorsione dell&#8217;albero è uno strumento naturale e potente. Ma anche nelle operazioni numeriche, i processi ricorsivi ad albero possono essere utili per aiutarci a comprendere e progettare i programmi. Ad esempio, sebbene la prima funzione <code>fib</code> sia molto meno efficiente della seconda, è più semplice, essendo poco più di una traduzione in JavaScript della definizione della sequenza di Fibonacci. Per formulare l&#8217;algoritmo iterativo è necessario notare che il calcolo potrebbe essere trasformato in iterazione con tre variabili di stato.</p>
+</div>
+<div class="paragraph">
+<p>Esempio: Contare il numero di cambi</p>
+</div>
+<div class="paragraph">
+<p>Basta poco ingegno per elaborare l&#8217;algoritmo iterativo di Fibonacci. Al contrario, considera il seguente problema: in quanti modi diversi possiamo cambiare 1 euro con le monete da 50, 20, 10, 2 e un centesimo? Più in generale, possiamo scrivere una funzione per calcolare il numero di modi per cambiare una determinata quantità di denaro?</p>
+</div>
+<div class="paragraph">
+<p>Questo problema ha una soluzione semplice come funzione ricorsiva. Supponiamo di pensare ai tipi di monete disponibili disposti in un certo ordine. Vale la seguente relazione:</p>
+</div>
+<div class="paragraph">
+<p>Il numero di modi per cambiare l&#8217;ammontare \(a\) usando \(n\) tipi di monete è uguale</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>il numero di modi per cambiare l&#8217;ammontare \(a\) usando tutto tranne il primo tipo di moneta, più</p>
+</li>
+<li>
+<p>il numero di modi per cambiare ammontare \(a - d\)  usando tutti gli \(n\) tipi di monete, dove \(d\) è il valore del primo tipo di moneta.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Per capire perché questo è vero, osserva che i modi per realizzare il cambio possono essere divisi in due gruppi: quelli che non usano nessuna delle monete del primo tipo di moneta e quelli che lo fanno. Pertanto, il numero totale di modi per cambiare un determinato importo è uguale al numero di modi per cambiare l&#8217;importo senza utilizzare il primo tipo di moneta, più il numero di modi per fare il cambio supponendo che utilizziamo il primo tipo di moneta. Ma quest&#8217;ultimo numero è uguale al numero di modi per effettuare il cambio dell&#8217;importo che rimane dopo aver usato una moneta del primo tipo.</p>
+</div>
+<div class="paragraph">
+<p>Possiamo, pertanto, ricondurre in modo ricorsivo il problema di cambiare un determinato importo in problemi di cambio di importi minori o che usano meno tipi di monete. Considera attentamente questa regola di riduzione e convinciti che possiamo usarla per descrivere un algoritmo se specifichiamo i seguenti casi degeneri:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Se \(a\) è esattamente 0, dovremmo considerarlo come 1 modo per fare il cambio.</p>
+</li>
+<li>
+<p>Se \(a\) è minore di 0, dovremmo considerarlo come 0 modi per apportare modifiche.</p>
+</li>
+<li>
+<p>Se \(0\) è 0, dovremmo considerarlo come 0 modi per apportare modifiche.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Possiamo facilmente tradurre questa descrizione in una funzione ricorsiva:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function conta_cambi(importo) {
+    return cc(importo, 5);
+}
+function cc(importo, num_tagli) {
+    return importo === 0
+           ? 1
+           : importo &lt; 0 ||
+             num_tagli === 0
+             ? 0
+             : cc(importo, num_tagli - 1)
+               +
+               cc(importo - primo_valore_nominale(
+                               num_tagli),
+                  num_tagli);
+}
+function primo_valore_nominale (num_tagli) {
+    return num_tagli === 1 ? 1 :
+           num_tagli === 2 ? 5 :
+           num_tagli === 3 ? 10 :
+           num_tagli === 4 ? 25 :
+           num_tagli === 5 ? 50 : 0;
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>La funzione <code>primo_valore_nominale</code> prende come input il numero di tipi di monete disponibili e restituisce il valore del primo tipo. Qui stiamo pensando alle monete come disposte in ordine dal più grande al più piccolo, ma qualsiasi ordine funziona. Ora possiamo rispondere alla nostra domanda originale sul cambio di un dollaro:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">conta_cambi(100);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>La funzione <code>conta_cambi</code> genera un processo ricorsivo ad albero con ridondanze simili a quelle della nostra prima implementazione di <code>fib</code>. (Ci vorrà un po' di tempo per calcolare quel 292). D&#8217;altra parte, non è ovvio come progettare un algoritmo migliore per calcolare il risultato e lasciamo questo problema come una sfida.</p>
+</div>
+<div class="exampleblock">
+<div class="title">Esercizio 1.11. Saper scrivere funzioni che generano processi ricorsivi ad albero e iterativi</div>
+<div class="content">
+<div class="paragraph">
+<p>Una funzione \(f\) è definita dalle regole secondo le quali \(f(n) = n\) se \(n &lt; 3\) e
+\(f(n)= {f(n-1)} + 2 \cdot f(n-2) + 3 \cdot f(n-3)\) se \(n \ge 3\).</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Scrivi una funzione JavaScript che  calcola \(f\) per mezzo di un processo ricorsivo.</p>
+</li>
+<li>
+<p>Scrivi una funzione JavaScript che  calcola \(f\) per mezzo di un processo iterativo.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<details>
+<summary class="title">Click per vedere le soluzioni dell&#8217;esercizio</summary>
+<div class="content">
+<div class="paragraph">
+<p>La soluzione ricorsiva è una semplice traduzione dal formalismo matematico a quello del JavaScript.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function f (n) {
+    return n &lt; 3
+           ? n
+           : f (n - 1) +
+	     2 * f (n - 2) +
+	     3 * f (n - 3);
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>La versione iterativa richiede una funzione ausiliaria e qualche ragionamento.
+Per calcolare la funzione con argomento il numero 3, devono essere definite \(f (2)) = 2\), \(f (1) = 1\) e \(f (0) = 0\); più in generale, per calcolare il valore \(n\), avremo bisogno di \(f (n - 1), f (n - 2)\) e \(f (n - 3)\). Identificheremo nel codice JavaScript tali valori con i nomi <code>fn1</code>, <code>fn2</code> e <code>fn3</code>. Il numero di valutazioni dell&#8217;espressione composta per il calcolo del valore <code>fn1</code> è pari al valore dell&#8217;argomento meno 2, ad esempio se l&#8217;argomento è 3 si deve effettuare solo il calcolo di \(2 + 2\cdot 1 + 3\cdot 0 = 4\). Possiamo usare un contatore che ci indichi quante altre valutazioni mancano per la fine del calcolo.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function f (n) {
+    function f_iter (fn1, fn2, fn3, contatore) {
+        return contatore === 0
+            ? fn1
+            : f_iter (fn1 + 2 * fn2 + 3 * fn3, fn1, fn2, contatore - 1);
+    }
+    return n &lt; 3
+           ? n
+           : f_iter(2, 1, 0, n - 2);
+}</code></pre>
+</div>
 </div>
 </div>
 </details>

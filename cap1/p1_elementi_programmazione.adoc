@@ -2,7 +2,7 @@
 
 Un linguaggio di programmazione è più di un semplice strumento per
 istruire un computer a svolgere compiti. Il linguaggio funge anche da
-framework all'interno del quale organizziamo le nostre idee sui
+impianto all'interno del quale organizziamo le nostre idee sui
 processi. Pertanto, quando descriviamo un linguaggio, dovremmo prestare
 particolare attenzione ai costrutti esso fornisce per combinare idee
 semplici e formare idee più complesse. Ogni linguaggio potente ha tre

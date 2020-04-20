@@ -24,28 +24,28 @@ Quando eseguiamo un programma, in effetti, evochiamo gli spiriti del
 computer con i nostri incantesimi.
 
 Un processo computazionale è molto simile all'idea che uno stregone ha
-di uno spirito. Il processo non può essere visto o toccato. Non è
-composto di materia. Tuttavia è reale. Può eseguire compiti
-intellettuali. Può rispondere a delle domande. Può gestire eventi del
+di uno spirito. Il processo non può essere visto né toccato. Non è
+composto di materia. Tuttavia è reale. Può eseguire lavori
+intellettuali. Può rispondere ad alcune domande. Può gestire eventi del
 mondo reale erogando denaro in una banca o controllando un braccio
 robotico in una fabbrica. I programmi che usiamo per evocare i processi
-sono come gli incantesimi di uno stregone. Sono accuratamente composti
+sono come gli incantesimi di uno stregone. Sono meticolosamente composti
 da *espressioni simboliche* in *linguaggi di programmazione* (((linguaggio di programmazione))) arcani ed
 esoterici che prescrivono i compiti che vogliamo far eseguire ai nostri
 processi.
 
 Un processo computazionale, in un computer che funziona correttamente,
 esegue i programmi in modo preciso e accurato. Quindi i programmatori
-alle prime armi, come l'apprendista stregone, devono imparare a capire e
-anticipare le conseguenze della loro evocazione. Anche piccoli errori
+alle prime armi, così come l'apprendista stregone, devono imparare a capire e
+anticipare le conseguenze delle loro parole magiche. Anche piccoli errori
 nei programmi (di solito chiamati *bug* o _glitch_) (((bug, glitch))) possono avere
 conseguenze complesse e impreviste.
 
 Fortunatamente, imparare a programmare è considerevolmente meno
 pericoloso dello studio della stregoneria, perché gli spiriti di cui ci
 occupiamo sono confinati nel calcolatore. La programmazione nel mondo
-reale, tuttavia, richiede cura, competenza e saggezza. Un piccolo bug in
-un programma di progettazione assistita da computer (Computer Aided
+reale, tuttavia, richiede cura, competenza e saggezza. Un piccolo __bug__ in
+un programma di progettazione assistita dal computer (Computer Aided
 Design, CAD), ad esempio, può portare al catastrofico schianto di un aereo
 o al crollo di una diga o all'autodistruzione di un robot industriale.
 
@@ -135,6 +135,7 @@ la programmazione in JavaScript è molto divertente.
 Puoi provare gli esempi anche sfruttando anche alcune applicazioni web,
 che offrono limitati servizi gratuiti.
 
+[[elenco_interpreti,elenco delle webapp che realizzano interpreti JavaScript]]
 .Alcune applicazioni web con cui invocare i processi nel linguaggio JavaScript
 * https://sourceacademy.nus.edu.sg/playground[	Source Academy playground!]
 * https://repljs.com/[REPL JS]

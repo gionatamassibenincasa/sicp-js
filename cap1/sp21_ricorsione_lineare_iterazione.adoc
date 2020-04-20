@@ -1,4 +1,4 @@
-==== Ricorsione lineare e iterazione
+==== Ricorsione e iterazione lineari
 
 Iniziamo considerando la funzione fattoriale, definita da
 
@@ -37,9 +37,12 @@ Più formalmente, manteniamo un prodotto parziale, insieme a un __contatore__
 che conta da 1 a latexmath:[n].
 Possiamo descrivere il calcolo dicendo che il contatore e il prodotto cambiano simultaneamente da un passaggio all'altro in base alla regola
 
-latexmath:[\mathrm{prodotto} \leftarrow \mathrm{contatore} \cdot \mathrm{prodotto}]
-
-latexmath:[\mathrm{contatore} \leftarrow \mathrm{contatore} + 1]
+latexmath:[
+\begin{eqnarray*}
+  \mathrm{prodotto}  & \leftarrow & \mathrm{contatore} \cdot \mathrm{prodotto} \\
+  \mathrm{contatore} & \leftarrow & \mathrm{contatore} + 1
+\end{eqnarray*}
+]
 
 e che latexmath:[n!] è il valore del prodotto quando il contatore supera latexmath:[n].
 

@@ -1,0 +1,173 @@
+==== Ricorsione ad albero
+
+Un altro schema di calcolo comune è chiamato ricorsione ad albero. Ad esempio, considera di calcolare la sequenza dei numeri di Fibonacci, in cui ogni numero è la somma dei due precedenti:
+
+latexmath:[0, 1, 1, 2, 3, 5, 8, 13, 21, \ldots]
+
+Un numero di Fibonacci, in generale, può essere definito dalla regola:
+
+latexmath:[\begin{eqnarray*}
+          \textrm{Fib}(n) & = & \left\{ \begin{array}{ll}
+          0   &  \mbox{se } n=0\\
+          1   & \mbox{se } n=1\\
+          \textrm{Fib}(n-1)+\textrm{Fib}(n-2) & \mbox{altrimenti}
+          \end{array}
+          \right.
+\end{eqnarray*}]
+
+Possiamo tradurre immediatamente questa definizione in una funzione ricorsiva per il calcolo dei numeri di Fibonacci:
+
+[source, javascript]
+----
+function fib(n) {
+    return n === 0
+           ? 0
+           : n === 1
+             ? 1
+             : fib(n - 1) + fib(n - 2);
+}
+----
+
+[[fig1_5]]
+.Il processo ricorsivo ad albero generato nel calcolo di `fib (5)`
+image:https://sicp.comp.nus.edu.sg/chapters/img_javascript/ch1-Z-G-13.svg[]
+
+Considera lo schema di evoluzione di questo calcolo. Per calcolare `fib (5)`, calcoliamo `fib (4)` e `fib (3)`. Per calcolare `fib (4)`, calcoliamo `fib (3)` e `fib (2)`. In generale, il processo evoluto assomiglia ad un albero, come mostrato nella <<fig1_5>>. Si noti che i rami si dividono in due ad ogni livello (tranne che in basso); ciò riflette il fatto che la funzione `fib` si richiama due volte ogni volta che viene invocata.
+
+Questa definizione della funzione è il prototipo della ricorsione ad albero, e quindi è istruttiva, ma questo è un modo terribile di calcolare i numeri di Fibonacci in quanto esegue un calcolo in modo ridondante. Si noti nella <<fig1_5>> che l'intero calcolo di `fib (3)`, quasi metà del lavoro, è duplicato. In effetti, non è difficile dimostrare che il numero di volte in cui la funzione calcolerà `fib (1)` o `fib (0)` (il loro numero è il numero di foglie dell'albero illustrato in figura) è precisamente latexmath:[\textrm{Fib} (n + 1)]. Per avere un'idea di quanto questo sia oneroso, si può dimostrare che il valore di latexmath:[\textrm{Fib} (n)] cresce esponenzialmente con latexmath:[n]. Più precisamente, latexmath:[\textrm{Fib} (n)] è il numero intero più vicino a latexmath:[\phi^{n} /\sqrt{5}], dove
+
+latexmath:[\phi=(1+\sqrt{5})/2\approx 1.6180]
+
+è la __sezione aurea__, che soffisfa l'equazione
+
+latexmath:[\phi^{2} =\phi + 1]
+
+Pertanto, il processo utilizza una serie di passaggi il cui numero cresce in modo esponenziale con il valore dell'argomento. D'altra parte, lo spazio richiesto cresce solo in modo lineare con l'argomento, perché dobbiamo tenere traccia solo di quali nodi sono più in alto nell'albero in qualsiasi punto del calcolo. In generale, il numero di passaggi richiesti da un processo ricorsivo ad albero sarà proporzionale al numero di nodi nella struttura, mentre lo spazio richiesto sarà proporzionale alla profondità massima della struttura.
+
+Possiamo anche formulare un processo iterativo per calcolare i numeri di Fibonacci. L'idea è di utilizzare una coppia di numeri interi latexmath:[a] e latexmath:[b], inizializzati su latexmath:[\textrm{Fib} (1) = 1] e latexmath:[\textrm{Fib} (0) = 0], e di applicare ripetutamente le trasformazioni simultanee
+
+latexmath:[\begin{eqnarray*}
+  a & \leftarrow & a+b \\
+  b & \leftarrow & a
+\end{eqnarray*}]
+
+Non è difficile dimostrare che, dopo aver applicato questa trasformazione latexmath:[n] volte, latexmath:[a] e latexmath:[b] saranno uguali, rispettivamente, a latexmath:[\textrm{Fib} (n + 1)] e latexmath:[\textrm{Fib} (n)]. Quindi, possiamo calcolare i numeri di Fibonacci in modo iterativo usando la funzione
+
+[source,javascript]
+----
+function fib(n) {
+    return fib_iter(1, 0, n);
+}
+function fib_iter(a, b, count) {
+    return count === 0
+           ? b
+           : fib_iter(a + b, a, count - 1);
+}
+----
+
+Questo secondo metodo per calcolare latexmath:[\textrm{Fib} (n)] è un'iterazione lineare. La differenza nel numero di passaggi richiesti dai due metodi - uno lineare in latexmath:[n], uno in rapida crescita come latexmath:[\textrm{Fib} (n)] stesso - è enorme, anche per argomenti relativamente piccoli.
+
+Non si deve concludere da ciò che i processi ricorsivi ad albero siano inutili. Quando consideriamo i processi che operano su dati strutturati gerarchicamente piuttosto che su numeri, scopriremo che la ricorsione dell'albero è uno strumento naturale e potente. Ma anche nelle operazioni numeriche, i processi ricorsivi ad albero possono essere utili per aiutarci a comprendere e progettare i programmi. Ad esempio, sebbene la prima funzione `fib` sia molto meno efficiente della seconda, è più semplice, essendo poco più di una traduzione in JavaScript della definizione della sequenza di Fibonacci. Per formulare l'algoritmo iterativo è necessario notare che il calcolo potrebbe essere trasformato in iterazione con tre variabili di stato.
+
+[discrete]
+Esempio: Contare il numero di cambi
+
+Basta poco ingegno per elaborare l'algoritmo iterativo di Fibonacci. Al contrario, considera il seguente problema: in quanti modi diversi possiamo cambiare 1 euro con le monete da 50, 20, 10, 2 e un centesimo? Più in generale, possiamo scrivere una funzione per calcolare il numero di modi per cambiare una determinata quantità di denaro?
+
+Questo problema ha una soluzione semplice come funzione ricorsiva. Supponiamo di pensare ai tipi di monete disponibili disposti in un certo ordine. Vale la seguente relazione:
+
+Il numero di modi per cambiare l'ammontare latexmath:[a] usando latexmath:[n] tipi di monete è uguale
+
+* il numero di modi per cambiare l'ammontare latexmath:[a] usando tutto tranne il primo tipo di moneta, più
+* il numero di modi per cambiare ammontare latexmath:[a - d]  usando tutti gli latexmath:[n] tipi di monete, dove latexmath:[d] è il valore del primo tipo di moneta.
+
+Per capire perché questo è vero, osserva che i modi per realizzare il cambio possono essere divisi in due gruppi: quelli che non usano nessuna delle monete del primo tipo di moneta e quelli che lo fanno. Pertanto, il numero totale di modi per cambiare un determinato importo è uguale al numero di modi per cambiare l'importo senza utilizzare il primo tipo di moneta, più il numero di modi per fare il cambio supponendo che utilizziamo il primo tipo di moneta. Ma quest'ultimo numero è uguale al numero di modi per effettuare il cambio dell'importo che rimane dopo aver usato una moneta del primo tipo.
+
+Possiamo, pertanto, ricondurre in modo ricorsivo il problema di cambiare un determinato importo in problemi di cambio di importi minori o che usano meno tipi di monete. Considera attentamente questa regola di riduzione e convinciti che possiamo usarla per descrivere un algoritmo se specifichiamo i seguenti casi degeneri:
+
+* Se latexmath:[a] è esattamente 0, dovremmo considerarlo come 1 modo per fare il cambio.
+
+* Se latexmath:[a] è minore di 0, dovremmo considerarlo come 0 modi per apportare modifiche.
+
+* Se latexmath:[0] è 0, dovremmo considerarlo come 0 modi per apportare modifiche.
+
+Possiamo facilmente tradurre questa descrizione in una funzione ricorsiva:
+
+[source, javascript]
+----
+function conta_cambi(importo) {
+    return cc(importo, 5);
+}
+function cc(importo, num_tagli) {
+    return importo === 0
+           ? 1
+           : importo < 0 ||
+             num_tagli === 0
+             ? 0
+             : cc(importo, num_tagli - 1)
+               +
+               cc(importo - primo_valore_nominale(
+                               num_tagli),
+                  num_tagli);
+}
+function primo_valore_nominale (num_tagli) {
+    return num_tagli === 1 ? 1 :
+           num_tagli === 2 ? 5 :
+           num_tagli === 3 ? 10 :
+           num_tagli === 4 ? 25 :
+           num_tagli === 5 ? 50 : 0;
+}
+----
+
+La funzione `primo_valore_nominale` prende come input il numero di tipi di monete disponibili e restituisce il valore del primo tipo. Qui stiamo pensando alle monete come disposte in ordine dal più grande al più piccolo, ma qualsiasi ordine funziona. Ora possiamo rispondere alla nostra domanda originale sul cambio di un dollaro:
+
+[source, javascript]
+----
+conta_cambi(100);
+----
+
+La funzione `conta_cambi` genera un processo ricorsivo ad albero con ridondanze simili a quelle della nostra prima implementazione di `fib`. (Ci vorrà un po' di tempo per calcolare quel 292). D'altra parte, non è ovvio come progettare un algoritmo migliore per calcolare il risultato e lasciamo questo problema come una sfida.
+
+.Esercizio 1.11. Saper scrivere funzioni che generano processi ricorsivi ad albero e iterativi
+====
+Una funzione latexmath:[f] è definita dalle regole secondo le quali latexmath:[f(n) = n] se latexmath:[n < 3] e
+latexmath:[f(n)= {f(n-1)} + 2 \cdot f(n-2) + 3 \cdot f(n-3)] se latexmath:[n \ge 3].
+
+. Scrivi una funzione JavaScript che  calcola latexmath:[f] per mezzo di un processo ricorsivo.
+. Scrivi una funzione JavaScript che  calcola latexmath:[f] per mezzo di un processo iterativo.
+====
+
+.Click per vedere le soluzioni dell'esercizio
+[%collapsible]
+====
+La soluzione ricorsiva è una semplice traduzione dal formalismo matematico a quello del JavaScript.
+
+[source,javascript]
+----
+function f (n) {
+    return n < 3
+           ? n
+           : f (n - 1) +
+	     2 * f (n - 2) +
+	     3 * f (n - 3);
+}
+----
+
+La versione iterativa richiede una funzione ausiliaria e qualche ragionamento.
+Per calcolare la funzione con argomento il numero 3, devono essere definite latexmath:[f (2)) = 2], latexmath:[f (1) = 1] e latexmath:[f (0) = 0]; più in generale, per calcolare il valore latexmath:[n], avremo bisogno di latexmath:[f (n - 1), f (n - 2)] e latexmath:[f (n - 3)]. Identificheremo nel codice JavaScript tali valori con i nomi `fn1`, `fn2` e `fn3`. Il numero di valutazioni dell'espressione composta per il calcolo del valore `fn1` è pari al valore dell'argomento meno 2, ad esempio se l'argomento è 3 si deve effettuare solo il calcolo di latexmath:[2 + 2\cdot 1 + 3\cdot 0 = 4]. Possiamo usare un contatore che ci indichi quante altre valutazioni mancano per la fine del calcolo.
+
+[source,javascript]
+----
+function f (n) {
+    function f_iter (fn1, fn2, fn3, contatore) {
+        return contatore === 0
+            ? fn1
+            : f_iter (fn1 + 2 * fn2 + 3 * fn3, fn1, fn2, contatore - 1);
+    }
+    return n < 3
+           ? n
+           : f_iter(2, 1, 0, n - 2);
+}
+----
+====
+

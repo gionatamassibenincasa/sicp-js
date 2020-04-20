@@ -7,9 +7,9 @@ La capacità di visualizzare le conseguenze delle azioni in esame è cruciale pe
 Nella programmazione stiamo pianificando il corso delle azioni che un processo intraprende mediante un programma. Per diventare esperti, dobbiamo imparare a visualizzare i processi generati da vari tipi di funzioni.
 Solo dopo aver sviluppato una tale abilità possiamo imparare a costruire in modo affidabile programmi che presentano il comportamento desiderato.
 
-Una funzione è un modello per l'evoluzione locale di un processo computazionale.
+Una funzione è un modello per l'__evoluzione locale__ di un processo computazionale.
 Specifica come ogni fase del processo è costruita sulla fase precedente.
-Vorremmo essere in grado di fare dichiarazioni sul comportamento complessivo o globale di un processo la cui evoluzione locale è stata specificata da una funzione.
+Vorremmo essere in grado di fare dichiarazioni sul __comportamento complessivo__ o globale di un processo la cui evoluzione locale è stata specificata da una funzione.
 Questo è, in generale, molto difficile ma possiamo almeno provare a descrivere alcuni schemi tipici dell'evoluzione del processo.
 
 In questa sezione esamineremo alcune forme comuni di processi generati da semplici funzioni.
@@ -17,6 +17,8 @@ Indagheremo anche le velocità con cui questi processi consumano le risorse comp
 Le funzioni che considereremo sono molto semplici.
 
 include::sp21_ricorsione_lineare_iterazione.adoc[]
+
+include::sp22_ricorsione_ad_albero.adoc[]
 
 ////
 include::sp12_ambiente.adoc[]

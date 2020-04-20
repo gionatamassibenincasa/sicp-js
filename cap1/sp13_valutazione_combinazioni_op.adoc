@@ -6,8 +6,8 @@ nel valutare le combinazioni mediante operatori, l'interprete proceda
 come segue.
 
 * Per valutare una combinazione mediante operatori, procedi come segue:
-	.  Valuta le espressioni operando della combinazione.
-	.  Applicare la funzione indicata dall'operatore agli argomenti che
+	.  Valuta le **espressioni operando** della combinazione.
+	.  Applica la funzione indicata dall'operatore agli argomenti che
 sono i valori degli operandi.
 
 Anche questa semplice regola illustra alcuni punti importanti sui
@@ -15,7 +15,7 @@ processi in generale. Innanzitutto, osserva che il primo passo impone
 che per completare il processo di valutazione di una combinazione
 mediante operatori dobbiamo prima eseguire il processo di valutazione su
 ciascun operando della combinazione mediante operatore. Pertanto, la
-regola di valutazione è di natura ricorsiva; cioè include, come uno dei
+regola di valutazione è di natura __ricorsiva__; cioè include, come uno dei
 suoi passi, la necessità di invocare la regola stessa. Notate quanto in
 modo conciso l'idea della ricorsione possa essere utilizzata per
 esprimere ciò che, nel caso di una combinazione profondamente annidata,
@@ -41,7 +41,7 @@ vedremo che la ricorsione è una tecnica molto potente per trattare
 oggetti gerarchici come gli alberi. In effetti, il processo di
 produzione e consumo di valori salendo verso l'alto che si ottiene della
 regola di valutazione è un esempio di un tipo generale di processo noto
-come _tree accumulation_.
+come __costruzione dell'albero__ (__tree accumulation__, in inglese).
 
 .Rappresentazione dell'albero, con illustrazione del valore di ogni sottoespressione
 [[fig1_1]]
