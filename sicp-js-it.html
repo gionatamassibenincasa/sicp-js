@@ -3333,6 +3333,72 @@ Per calcolare la funzione con argomento il numero 3, devono essere definite \(f 
 </div>
 </div>
 </details>
+<div class="exampleblock">
+<div class="title">Esercizio 1.12. Ricavare una definizione induttiva</div>
+<div class="content">
+<div class="paragraph">
+<p>La seguente disposizione di numeri è chiamata triangolo di Tartaglia
+(triangolo di Pascal nella versione originale del testo).</p>
+</div>
+<div class="paragraph">
+<p>\(
+\begin{array}{rrrrrrrrr}
+    &amp;   &amp;   &amp;   &amp; 1 &amp;   &amp;   &amp;   &amp;     \\
+    &amp;   &amp;   &amp;1  &amp;   &amp;1  &amp;   &amp;   &amp;     \\
+    &amp;   &amp;1  &amp;   &amp; 2 &amp;   &amp;1  &amp;   &amp;     \\
+    &amp;1  &amp;   &amp;3  &amp;   &amp;3  &amp;   &amp;1  &amp;     \\
+ 1  &amp;   &amp; 4 &amp;   &amp; 6 &amp;   &amp; 4 &amp;   &amp; 1   \\
+    &amp;   &amp;   &amp;   &amp; \ldots &amp; &amp; &amp; &amp;
+\end{array}\)</p>
+</div>
+<div class="paragraph">
+<p>I numeri sui lati del triangolo sono tutti 1 e ogni numero
+dentro il triangolo è la somma dei due numeri che lo sovrastano.
+Gli elementi del triangolo di Tartaglia sono detti <em>coefficienti binomiali</em>
+in quanto la riga \(n\)-esima è formata dai coefficienti dei termini dell&#8217;espansione di \((x+y)^n\).</p>
+</div>
+<div class="paragraph">
+<p>Scrivi una funzione JavaScript che calcoli gli elementi del triangolo di Tartaglia per mezzo di un processo ricorsivo. Considera due argomenti, la riga e la posizione all&#8217;interno della riga.</p>
+</div>
+</div>
+</div>
+<details>
+<summary class="title">Click per vedere le soluzioni dell&#8217;esercizio</summary>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function triangolo_tartaglia(riga, indice) {
+    return indice &gt; riga
+           ? false
+           : indice === 1 || indice === riga
+             ? 1
+             : triangolo_tartaglia(riga - 1, indice - 1)
+	       +
+	       triangolo_tartaglia(riga - 1, indice);
+}</code></pre>
+</div>
+</div>
+</div>
+</details>
+<div class="exampleblock">
+<div class="title">Esercizio 1.13. Fornire una dimostrazione <strong>MOLTO DIFFICILE</strong></div>
+<div class="content">
+<div class="paragraph">
+<p>Dimostra che \(\textrm{Fib}(n)\) è l&#8217;intero più vicino a \(\phi^n/\sqrt{5}\), dove \(\phi= (1+\sqrt{5})/2\).</p>
+</div>
+<div class="paragraph">
+<p>Suggerimento: sia \(\psi= (1-\sqrt{5})/2\). Usa l&#8217;induzione e la definizione della successione dei numeri di Fibonacci per dimostrare che \(\textrm{Fib}(n)=(\phi^n -\psi^n)/\sqrt{5}\).</p>
+</div>
+</div>
+</div>
+<details>
+<summary class="title">Click per vedere le soluzioni dell&#8217;esercizio</summary>
+<div class="content">
+<div class="paragraph">
+<p>Si veda <a href="https://codology.net/post/sicp-solution-exercise-1-13/" class="bare">https://codology.net/post/sicp-solution-exercise-1-13/</a></p>
+</div>
+</div>
+</details>
 </div>
 </div>
 </div>

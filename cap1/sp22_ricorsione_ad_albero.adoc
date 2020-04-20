@@ -171,3 +171,55 @@ function f (n) {
 ----
 ====
 
+.Esercizio 1.12. Ricavare una definizione induttiva
+====
+La seguente disposizione di numeri è chiamata triangolo di Tartaglia
+(triangolo di Pascal nella versione originale del testo).
+
+latexmath:[
+\begin{array}{rrrrrrrrr}
+    &   &   &   & 1 &   &   &   &     \\
+    &   &   &1  &   &1  &   &   &     \\
+    &   &1  &   & 2 &   &1  &   &     \\
+    &1  &   &3  &   &3  &   &1  &     \\
+ 1  &   & 4 &   & 6 &   & 4 &   & 1   \\
+    &   &   &   & \ldots & & & & 
+\end{array}]
+
+I numeri sui lati del triangolo sono tutti 1 e ogni numero
+dentro il triangolo è la somma dei due numeri che lo sovrastano.
+Gli elementi del triangolo di Tartaglia sono detti __coefficienti binomiali__
+in quanto la riga latexmath:[n]-esima è formata dai coefficienti dei termini dell'espansione di latexmath:[(x+y)^n].
+
+Scrivi una funzione JavaScript che calcoli gli elementi del triangolo di Tartaglia per mezzo di un processo ricorsivo. Considera due argomenti, la riga e la posizione all'interno della riga.
+====
+
+.Click per vedere le soluzioni dell'esercizio
+[%collapsible]
+====
+[source,javascript]
+----
+function triangolo_tartaglia(riga, indice) {
+    return indice > riga
+           ? false
+           : indice === 1 || indice === riga
+             ? 1
+             : triangolo_tartaglia(riga - 1, indice - 1)
+	       +
+	       triangolo_tartaglia(riga - 1, indice);
+}
+----
+====
+
+.Esercizio 1.13. Fornire una dimostrazione **MOLTO DIFFICILE**
+====
+Dimostra che latexmath:[\textrm{Fib}(n)] è l'intero più vicino a latexmath:[\phi^n/\sqrt{5}], dove latexmath:[\phi= (1+\sqrt{5})/2].
+
+Suggerimento: sia latexmath:[\psi= (1-\sqrt{5})/2]. Usa l'induzione e la definizione della successione dei numeri di Fibonacci per dimostrare che latexmath:[\textrm{Fib}(n)=(\phi^n -\psi^n)/\sqrt{5}].
+====
+
+.Click per vedere le soluzioni dell'esercizio
+[%collapsible]
+====
+Si veda https://codology.net/post/sicp-solution-exercise-1-13/
+====
