@@ -1,3 +1,4 @@
+[[sec:recursion-and-iteration]]
 ==== Ricorsione e iterazione lineari
 
 Iniziamo considerando la funzione fattoriale, definita da

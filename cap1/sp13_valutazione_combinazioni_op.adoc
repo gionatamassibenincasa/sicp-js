@@ -1,12 +1,12 @@
 ==== Valutazione delle combinazioni mediante operatori
 
-Uno degli obiettivi do questo capitolo è quello di isolare i problemi
+Uno degli obiettivi di questo capitolo è quello di isolare i problemi
 relativi alle descrizioni dei processi. Ad esempio, consideriamo che,
 nel valutare le combinazioni mediante operatori, l'interprete proceda
 come segue.
 
 * Per valutare una combinazione mediante operatori, procedi come segue:
-	.  Valuta le **espressioni operando** della combinazione.
+	.  Valuta le espressioni degli operandi della combinazione.
 	.  Applica la funzione indicata dall'operatore agli argomenti che
 sono i valori degli operandi.
 
@@ -73,18 +73,18 @@ blockdiag {
 // image::https://sicp.comp.nus.edu.sg/chapters/img_javascript/ch1-Z-G-1.svg[pdfwidth=75%]
 
 Successivamente, osserva che l'applicazione ripetuta del primo passaggio
-ci porta al punto in cui dobbiamo valutare, non combinazioni mediante
-operatori, ma *espressioni primitive* come numeri o nomi.
+ci porta al punto in cui dobbiamo valutare *espressioni primitive*, come numeri o nomi, non più combinazioni mediante
+operatori.
 
 Ci occupiamo dei casi primitivi stabilendo che
 
-* valori dei numeri sono i numeri rappresentati nella notazione
+* i valori dei numeri sono i numeri rappresentati nella notazione
 posizionale in base 10, con il punto per separatore decimale, 
 * i valori dei nomi sono gli oggetti associati a quei nomi nell'ambiente.
 
-Notare il ruolo dell'ambiente nel determinare il significato dei nomi
 nelle espressioni. In JavaScript, non ha senso parlare del valore di
-un'espressione come `x + 1` senza specificare alcuna informazione
+È importante notare il ruolo dell'ambiente nel determinare il significato dei nomi.
+In un linguaggio interattivo come il JavaScript non ha senso parlare del valore di un'espressione come `x + 1` senza specificare informazione alcuna
 sull'ambiente che fornirebbe un significato per il nome `x`.
 
 Si noti che la regola di valutazione sopra indicata non gestisce le
@@ -101,7 +101,7 @@ const x = 3;
 
 non è una combinazione di operatori.
 
-La stringa `const` nella dichiarazione costante è una *parola chiave* in JavaScript. Le parole chiave sono *parole riservate* che hanno un significato
+La __stringa__:footnote[Una stringa indica una sequenza di caratteri] `const` nella dichiarazione costante è una **parola chiave** del JavaScript. Le parole chiave sono *parole riservate* che hanno un significato
 particolare e quindi non possono essere utilizzate come nomi di costante.
 Una parola chiave o una combinazione di parole chiave indica all'interprete
 JavaScript di trattare la rispettiva dichiarazione in modo speciale.

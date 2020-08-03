@@ -20,11 +20,10 @@ include::sp21_ricorsione_lineare_iterazione.adoc[]
 
 include::sp22_ricorsione_ad_albero.adoc[]
 
+
+include::sp23_tassi_di_crescita.adoc[]
+
 ////
-include::sp12_ambiente.adoc[]
-
-include::sp13_valutazione_combinazioni_op.adoc[]
-
 include::sp14_funzioni_composte.adoc[]
 
 include::sp15_modello_sostituzione.adoc[]

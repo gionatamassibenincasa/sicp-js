@@ -15,12 +15,12 @@ costrutti di combinazione:: mediante i
 quali gli elementi più semplici si combinamo per formare gli elementi
 composti, e
 
-costrutti di astrazione:: mediante i quali gli elementi
-composti possono essere denominati e manipolati come unità.
+costrutti di astrazione:: mediante i quali dare un nome agli elementi
+composti e manipolarli come unità.
 
-Nella programmazione ci occupiamo di due tipi di elementi: *funzioni* e
-*dati*. Più avanti scopriremo che in realtà non sono così distinti.
-Informalmente, i dati sono cose che vogliamo manipolare e le funzioni
+Nella programmazione ci occupiamo di due tipi di elementi: **funzioni** e
+**dati**. Più avanti scopriremo che in realtà non sono così distinti.
+Informalmente, i dati sono "cose" che vogliamo manipolare e le funzioni
 sono descrizioni delle regole per manipolare i dati. Pertanto, qualsiasi
 linguaggio di programmazione dovrebbe essere in grado di descrivere dati
 primitivi e funzioni primitive e dovrebbe avere metodi per combinare e

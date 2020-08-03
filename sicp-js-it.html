@@ -470,8 +470,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="#_le_funzioni_e_i_processi_da_esse_generati">1.2. Le funzioni e i processi da esse generati</a>
 <ul class="sectlevel3">
-<li><a href="#_ricorsione_e_iterazione_lineari">1.2.1. Ricorsione e iterazione lineari</a></li>
-<li><a href="#_ricorsione_ad_albero">1.2.2. Ricorsione ad albero</a></li>
+<li><a href="#sec:recursion-and-iteration">1.2.1. Ricorsione e iterazione lineari</a></li>
+<li><a href="#sec:tree-recursion">1.2.2. Ricorsione ad albero</a></li>
+<li><a href="#_tassi_di_crescita">Tassi di crescita</a></li>
 </ul>
 </li>
 </ul>
@@ -483,8 +484,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Questo testo è un adattamento in italiano, realizzato con l&#8217;auito di Google Translate, del testo <a href="https://sicp.comp.nus.edu.sg/">Structure and Interpretation of Computer Programs — JavaScript Adaptation</a>, il quale è, a sua volta, un adattamento della seconda edizione del noto libro di testo di Harold Abelson e Gerald Jay Sussman dal titolo: "Structure and Interpretation of Computer Programs".
-Siccome chi ha adattato il testo ritiene che per imparare l&#8217;arte della programmazione sia necessario leggere del buon codice, magari quello dei grandi classici come SICP, ed esercitarsi scrivendo altrettando codice, ha integrato il testo con ulteriori esercizi.</p>
+<p>Questo testo è un adattamento in italiano, realizzato con l&#8217;auito di Google Translate, del testo <a href="https://sicp.comp.nus.edu.sg/">Structure and Interpretation of Computer Programs — JavaScript Adaptation</a>, il quale, a sua volta, è un adattamento della seconda edizione del noto libro di testo di Harold Abelson e Gerald Jay Sussman dal titolo: "Structure and Interpretation of Computer Programs".
+Il testo ritiene è integrato con ulteriori esercizi in quanto per imparare l&#8217;arte della programmazione è necessario leggere del buon codice, ragionare su problemi, modelli e algoritmi, ed esercitarsi scrivendo programmi.</p>
 </div>
 </div>
 </div>
@@ -500,7 +501,7 @@ sono principalmente questi tre:</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p><em>combinare</em> varie idee semplici per formarne una complessa; così sono formate tutte le <em>idee complesse</em></p>
+<p><em>combinare</em> varie idee semplici per formarne una complessa; così sono formate tutte le <em>idee complesse</em>;</p>
 </li>
 <li>
 <p><em>mettere assieme</em> due idee, semplici o complesse, e giustapporle in modo
@@ -565,7 +566,8 @@ in modo da essere ragionevolmente sicuri che i processi risultanti
 eseguiranno i compiti nel modo previsto. Possono anticipare il comportamento dei
 loro sistemi. Sanno come <strong>strutturare i programmi</strong> in modo tale che
 problemi imprevisti non portino a conseguenze catastrofiche e quando
-sorgono problemi, possono eseguire il <strong>debug</strong> dei loro programmi.
+sorgono problemi, possono eseguire il <strong>debug</strong>, ossia la rimozione degli errori,
+ dei loro programmi.
 Sistemi computazionali ben progettati, come automobili ben progettate o
 reattori nucleari, sono progettati in modo <strong>modulare</strong>, in modo che le
 parti possano essere costruite, sostituite e messe a punto
@@ -588,7 +590,7 @@ World Wide Web tramite <em>script</em> (uno script, letteralmente, un copione,
 è una descrizione del comportamento da tenere) incorporati
 nelle pagine web. Il linguaggio è stata concepito da Brendan Eich,
 originariamente sotto il nome di <em>Moka</em>, poi rinominato <em>LiveScript</em> e
-infine <em>JavaScript</em>. Il nome <em>JavaScript</em> è un marchio di <em>Oracle
+infine <em>JavaScript</em>. Il nome <em>JavaScript</em> è un marchio registrato da <em>Oracle
 Corporation</em>.</p>
 </div>
 <div class="paragraph">
@@ -601,20 +603,20 @@ presso <em>Netscape Communications Corporation</em>, per il browser web
 ereditate dai linguaggi <strong>Scheme</strong> e <strong>Self</strong>. <em>Scheme</em> è un dialetto del
 <strong>Lisp</strong> ed è stato usato come linguaggio di programmazione per la
 versione originale del libro che ispira questa rivisitazione.
-Da <em>Scheme</em>, JavaScript ha ereditato alcuni principi di progettazione
+Da <em>Scheme</em>, <em>JavaScript</em> ha ereditato alcuni principi di progettazione
 fondamentali ed è pertanto possibile adattare il modo di ragionare sui problemi
-indotto dal Scheme in JavaScript.</p>
+indotto dal <em>Scheme</em> in <em>JavaScript</em>.</p>
 </div>
 <div class="paragraph">
-<p>JavaScript ha anche una superficiale somiglianza con il linguaggio
-<strong>Java</strong>, nonostante l&#8217;assonanza del nome; sia Java che JavaScript utilizzano
-la struttura a blocchi del <strong>linguaggio C</strong>. Contrariamente a Java e C,
+<p><em>JavaScript</em> ha anche una superficiale somiglianza con il linguaggio
+<strong>Java</strong>, nonostante l&#8217;assonanza del nome; sia <em>Java</em> che <em>JavaScript</em> utilizzano
+la struttura a blocchi del <strong>linguaggio C</strong>. Contrariamente a <em>Java</em> e <em>C</em>,
 che di solito vengono <em>compilati</em> in linguaggi di livello inferiore, i
-programmi JavaScript sono stati inizialmente interpretati dai browser
+programmi <em>JavaScript</em> sono stati inizialmente interpretati dai browser
 web. Dopo <em>Netscape Navigator</em>, altri browser web hanno fornito
 interpreti per il linguaggio, incluso <em>Microsoft Internet Explorer</em>, la
 cui versione JavaScript è chiamata <em>JScript</em>. La popolarità di
-JavaScript per il controllo dei browser Web ha dato origine a uno sforzo
+<em>JavaScript</em> per il controllo dei browser Web ha dato origine a uno sforzo
 di standardizzazione, culminato in <strong>ECMAScript</strong>. La prima edizione dello
 standard <strong>ECMAScript</strong> è stata guidata da Guy Lewis Steele Jr. e completata
 nel giugno 1997 (Ecma 1997). La sesta edizione, utilizzata in questo
@@ -624,20 +626,20 @@ Generale dell&#8217;ECMA nel giugno 2015.</p>
 <div class="paragraph">
 <p>La pratica di incorporare programmi JavaScript in pagine Web ha
 incoraggiato gli sviluppatori di browser Web a implementare interpreti
-JavaScript. Man mano che questi programmi diventavano più complessi, gli
+<em>JavaScript</em>. Man mano che questi programmi diventavano più complessi, gli
 interpreti devono diventare più efficienti nell&#8217;eseguirli. Oggi essi
 usano tecniche sofisticate come la compilazione <em>Just-In-Time</em> (JIT). La
 maggior parte dei programmi JavaScript (a partire dal 2020) sono
-incorporati nelle pagine Web e interpretati dai browser, ma JavaScript
+incorporati nelle pagine Web e interpretati dai browser, ma <em>JavaScript</em>
 viene anche utilizzato per risolvere problemi di carattere generale,
 spesso usando l&#8217;interprete <strong>Node.js</strong>.</p>
 </div>
 <div class="paragraph">
-<p>Tuttavia, è la capacità dei browser di eseguire programmi JavaScript che
+<p>Tuttavia, è la capacità dei browser di eseguire programmi <em>JavaScript</em> che
 lo rende un linguaggio ideale per una versione online di un libro di
 testo di programmazione. L&#8217;esecuzione dei programmi facendo clic sugli
-elementi di una pagina Web è naturale in JavaScript, dopo tutto quello
-per cui è stato progettato JavaScript! Più fondamentalmente, JavaScript
+elementi di una pagina Web è naturale in <em>JavaScript</em>, dopo tutto quello
+per cui è stato progettato <em>JavaScript</em>! <em>JavaScript</em>
 possiede funzionalità che lo rendono un mezzo eccellente per studiare
 importanti costrutti di programmazione e strutture di dati e per
 metterli in relazione con le caratteristiche linguistiche che li
@@ -645,7 +647,7 @@ supportano. Le funzioni di prima classe con visibilità statica,
 caratteristica anche del JavaScript, forniscono accesso diretto e conciso ai meccanismi di
 astrazione. La tipizzazione dinamica elimina la necessità di dichiarare
 i tipi di dati manipolati dal programma. Oltre a queste considerazioni,
-la programmazione in JavaScript è molto divertente.</p>
+la programmazione in <em>JavaScript</em> è molto divertente.</p>
 </div>
 <div class="paragraph">
 <p>Puoi provare gli esempi anche sfruttando anche alcune applicazioni web,
@@ -706,15 +708,15 @@ composti, e</p>
 </dd>
 <dt class="hdlist1">costrutti di astrazione</dt>
 <dd>
-<p>mediante i quali gli elementi
-composti possono essere denominati e manipolati come unità.</p>
+<p>mediante i quali dare un nome agli elementi
+composti e manipolarli come unità.</p>
 </dd>
 </dl>
 </div>
 <div class="paragraph">
 <p>Nella programmazione ci occupiamo di due tipi di elementi: <strong>funzioni</strong> e
 <strong>dati</strong>. Più avanti scopriremo che in realtà non sono così distinti.
-Informalmente, i dati sono cose che vogliamo manipolare e le funzioni
+Informalmente, i dati sono "cose" che vogliamo manipolare e le funzioni
 sono descrizioni delle regole per manipolare i dati. Pertanto, qualsiasi
 linguaggio di programmazione dovrebbe essere in grado di descrivere dati
 primitivi e funzioni primitive e dovrebbe avere metodi per combinare e
@@ -729,7 +731,7 @@ creare funzioni per manipolare anche i dati composti.</p>
 <div class="sect3">
 <h4 id="_espressioni">1.1.1. Espressioni</h4>
 <div class="paragraph">
-<p>Un modo semplice per iniziare a programmare in JavaScript è attraverso uno degli interpreti indicati nell'<a href="#elenco_interpreti">elenco delle webapp che realizzano interpreti JavaScript</a>, oppure  interagire
+<p>Un modo semplice per iniziare a programmare in <em>JavaScript</em> è attraverso uno degli interpreti indicati nell'<a href="#elenco_interpreti">elenco delle webapp che realizzano interpreti JavaScript</a>, oppure  interagire
 con l&#8217;interprete JavaScript integrato nel browser che si sta utilizzando
 per visualizzare questa pagina.
 Per trovare l&#8217;interprete, in genere, basta digitare il tasto <kbd>F12</kbd> e selezionare la scheda "Console".</p>
@@ -739,8 +741,7 @@ Per trovare l&#8217;interprete, in genere, basta digitare il tasto <kbd>F12</kbd
 </div>
 <div class="paragraph">
 <p>Un tipo di istruzione è una <strong>istruzione espressione</strong>, che consiste in
-una <strong>espressione</strong><sup class="footnote">[<a id="_footnoteref_1" class="footnote" href="#_footnotedef_1" title="View footnote.">1</a>]</sup>, seguita da un punto e virgola. Un semplice tipo di
-espressione è un numero. (Più precisamente, l&#8217;espressione è detta <strong>numerale</strong> ed costituita dalle cifre che rappresentano il numero nella rappresentazione posizionale in base 10.)</p>
+una <strong>espressione</strong><sup class="footnote">[<a id="_footnoteref_1" class="footnote" href="#_footnotedef_1" title="View footnote.">1</a>]</sup>, seguita da un punto e virgola. Un semplice tipo di espressione è un numero. (Più precisamente, l&#8217;espressione è detta <strong>numerale</strong> ed costituita dalle cifre che rappresentano il numero nella rappresentazione posizionale in base 10.)</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -748,8 +749,8 @@ espressione è un numero. (Più precisamente, l&#8217;espressione è detta <stro
 </div>
 </div>
 <div class="paragraph">
-<p>Le espressioni che rappresentano numeri possono essere combinate con
-<strong>operatori</strong> (come <code>+</code> o <code>*</code>) per formare una <strong>espressione composta</strong> che
+<p>Le espressioni che rappresentano numeri (un tipo di espressioni semplici) possono essere combinate con
+<strong>operatori</strong> (come <code>+</code> o <code>*</code>) per formare una <strong>espressione composta mediante operatori</strong> che
 rappresenta l&#8217;applicazione di una funzione primitiva corrispondente a
 tali numeri. Ad esempio:</p>
 </div>
@@ -779,14 +780,14 @@ tali numeri. Ad esempio:</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Espressioni come queste, che contengono altre espressioni come
-componenti, sono chiamate <strong>combinazioni</strong> o <em>espressioni composte</em>. Le combinazioni che sono formate da un simbolo di operatore scritto in mezzo alle espressioni degli operandi sono dette <strong>combinazioni mediante operatori</strong>. Il valore di una combinazione mediante operatori si ottiene applicando la funzione (una procedura) specificata dall&#8217;operatore agli argomenti, ossia ai valori degli <strong>operandi</strong>.</p>
+<p>Le espressioni come queste, che contengono altre espressioni come
+componenti, sono chiamate <strong>combinazioni</strong> o <em>espressioni composte</em>. Le combinazioni che sono formate da un simbolo di operatore scritto in mezzo alle espressioni degli operandi sono dette <strong>combinazioni mediante operatori</strong>. Il valore di una combinazione mediante operatori si ottiene applicando la funzione (una procedura) specificata dall&#8217;operatore agli <strong>argomenti</strong>, ossia ai valori degli <strong>operandi</strong>.</p>
 </div>
 <div class="paragraph">
 <p>La convenzione di posizionare l&#8217;operatore tra gli operandi è nota come
 <strong>notazione infissa</strong>. Segue la notazione matematica con cui il lettore ha
 certamente familiarità. Come in matematica, le combinazioni mediante
-operatori possono essere nidificate, ovvero possono prendere argomenti
+operatori possono essere <strong>nidificate</strong>, ovvero possono prendere argomenti
 che sono esse stesse combinazioni di operatori:</p>
 </div>
 <div class="listingblock">
@@ -796,7 +797,7 @@ che sono esse stesse combinazioni di operatori:</p>
 </div>
 <div class="paragraph">
 <p>Come al solito, le parentesi vengono utilizzate per raggruppare le
-combinazioni di operatori al fine di evitare ambiguità. JavaScript segue
+combinazioni di operatori al fine di evitare ambiguità. <em>JavaScript</em> segue
 anche le consuete convenzioni quando vengono omesse le parentesi; la
 moltiplicazione e la divisione legano maggiormente di addizioni e
 sottrazioni. Per esempio,</p>
@@ -815,7 +816,7 @@ sottrazioni. Per esempio,</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Diciamo che <code>*</code> e <code>/</code> hanno una precedenza maggiore di <code>+</code> e <code>-</code>. Le
+<p>Diciamo che <code>*</code> e <code>/</code> hanno una <strong>precedenza maggiore</strong> di <code>+</code> e <code>-</code>. Le
 sequenze di addizioni e sottrazioni vengono lette da sinistra a destra,
 così come le sequenze di moltiplicazioni e divisioni. Così,</p>
 </div>
@@ -838,7 +839,7 @@ sinistra</strong>.</p>
 </div>
 <div class="paragraph">
 <p>In linea di principio, non c&#8217;è limite alla profondità degli annidamenti
-o alla complessità delle espressioni che l&#8217;interprete JavaScript possa
+o alla complessità delle espressioni che l&#8217;interprete <em>JavaScript</em> possa
 valutare. Noi essere umani, invece, possiamo restare confusi anche
 valutando con semplici espressioni come:</p>
 </div>
@@ -848,14 +849,14 @@ valutando con semplici espressioni come:</p>
 </div>
 </div>
 <div class="paragraph">
-<p>che l&#8217;interprete invece valuta rapidamente producendo il numero 57.
+<p>che l&#8217;interprete, invece, valuta rapidamente producendo il numero 57.
 Possiamo aiutarci scrivendo una tale espressione nella forma</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">3 * 2 * (4 + (3 - 5))
 +
-10 * (27/6);</code></pre>
+10 * (27 / 6);</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -866,9 +867,9 @@ Possiamo aiutarci scrivendo una tale espressione nella forma</p>
 un&#8217;istruzione dal browser, valuta l&#8217;istruzione e stampa il risultato.
 Questa modalità operativa viene spesso espressa dicendo che l&#8217;interprete
 funziona in un <strong>ciclo di lettura-valutazione-stampa</strong>
-(read-eval-print-loop, <strong>REPL</strong>). Si noti in particolare che non è
+(<em>read-eval-print-loop</em>, <strong>REPL</strong>). Si noti in particolare che non è
 necessario istruire esplicitamente l&#8217;interprete a stampare il valore
-dell&#8217;istruzione.</p>
+dell&#8217;istruzione (<em>print</em>, stampa).</p>
 </div>
 </div>
 <div class="sect3">
@@ -877,11 +878,11 @@ dell&#8217;istruzione.</p>
 <p>Un aspetto cruciale di un linguaggio di programmazione è la facoltà di
 usare dei <em>nomi</em> per fare riferimento agli <em>oggetti
 computazionali</em>.
-Un <strong>costrutto</strong> del linguaggio che consente di dare un nome agli oggetto è quello della <strong>dichiarazione di valori costanti</strong>.
+Un <strong>costrutto</strong> del linguaggio che consente di <em>dare un nome</em> agli oggetti è quello della <strong>dichiarazione di valori costanti</strong>.
 Diciamo che il nome identifica una costante il cui valore è l&#8217;oggetto.</p>
 </div>
 <div class="paragraph">
-<p>In JavaScript, la  <strong>dichiarazione di costante</strong></p>
+<p>In JavaScript, diamo un nome con la <strong>dichiarazione di costante</strong>. Ad esempio, scrivere</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -891,8 +892,8 @@ Diciamo che il nome identifica una costante il cui valore è l&#8217;oggetto.</p
 <div class="paragraph">
 <p>fa sì che l&#8217;interprete associ il valore 2 al nome <code>dimensione</code>. Il
 compito della dichiarazione di costante è creare questa associazione.
-Il valore che visualizza l&#8217;interprete JavaScript dopo aver definito la costante
-è <code>undefined</code>, un il valore speciale indefinito, perché la specifica del linguaggio richiede che questo sia il risultato della valutazione delle dichiarazioni di costante. Una volta che il nome <code>dimensione</code> è stato associato al numero 2, possiamo fare riferimento al valore 2 per nome, come in</p>
+Il valore che l&#8217;interprete JavaScript stampa dopo aver definito la costante
+è <code>undefined</code>, un valore speciale <code>`indefinito'', perché la specifica del linguaggio richiede che questo sia il risultato della valutazione delle dichiarazioni di costante. Una volta che il nome `dimensione</code> è stato associato al numero 2, possiamo fare riferimento al valore 2 per nome, come in</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -931,7 +932,7 @@ circonferenza;</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>La <em>dichiarazione di costante</em> è il costrutto di <em>astrazione</em> più
+<p>La <em>dichiarazione di costante</em> è il costrutto di <em>astrazione</em><sup class="footnote">[<a id="_footnoteref_2" class="footnote" href="#_footnotedef_2" title="View footnote.">2</a>]</sup> più
 semplice del nostro linguaggio, poiché ci consente di usare dei nomi per
 fare riferimento ai risultati di operazioni composte, come la
 circonferenza sopra calcolata. In generale, gli oggetti computazionali
@@ -941,21 +942,21 @@ usarli. In effetti, programmi complessi sono costruiti generando, passo
 dopo passo, oggetti computazionali di crescente complessità. Il nostro
 interprete facilita questa costruzione passo-passo del programma perché
 le associazioni nome-oggetto possono essere create in modo incrementale
-nelle interazioni successive.</p>
+nelle interazioni successive. Questa caratteristica favorisce lo sviluppo e il collaudo incrementale dei programmi ed è in buona parte responsabile del fatto che, di solito, i programmi JavaScript sono realizzati con un numero elevato di <em>funzioni</em> relativamente semplici.</p>
 </div>
 <div class="paragraph">
 <p>Dovrebbe essere chiaro che la possibilità di associare valori a nomi e
 di recuperarli in seguito significa che l&#8217;interprete deve mantenere una
 sorta di memoria che tiene traccia delle coppie (nome, oggetto). Questa
-memoria è chiamata <strong>ambiente</strong> (più precisamente <strong>ambiente globale</strong>,
+memoria è chiamata <strong>ambiente</strong> (più precisamente <strong>ambiente globale</strong> o <strong>ambiente del programma</strong>,
 poiché vedremo più avanti che un calcolo può coinvolgere un numero di
-ambienti diversi).</p>
+ambienti diversi).<sup class="footnote">[<a id="_footnoteref_3" class="footnote" href="#_footnotedef_3" title="View footnote.">3</a>]</sup></p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="_valutazione_delle_combinazioni_mediante_operatori">1.1.3. Valutazione delle combinazioni mediante operatori</h4>
 <div class="paragraph">
-<p>Uno degli obiettivi do questo capitolo è quello di isolare i problemi
+<p>Uno degli obiettivi di questo capitolo è quello di isolare i problemi
 relativi alle descrizioni dei processi. Ad esempio, consideriamo che,
 nel valutare le combinazioni mediante operatori, l&#8217;interprete proceda
 come segue.</p>
@@ -967,7 +968,7 @@ come segue.</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Valuta le <strong>espressioni operando</strong> della combinazione.</p>
+<p>Valuta le espressioni degli operandi della combinazione.</p>
 </li>
 <li>
 <p>Applica la funzione indicata dall&#8217;operatore agli argomenti che
@@ -1021,8 +1022,8 @@ come <em>costruzione dell&#8217;albero</em> (<em>tree accumulation</em>, in ingl
 </div>
 <div class="paragraph">
 <p>Successivamente, osserva che l&#8217;applicazione ripetuta del primo passaggio
-ci porta al punto in cui dobbiamo valutare, non combinazioni mediante
-operatori, ma <strong>espressioni primitive</strong> come numeri o nomi.</p>
+ci porta al punto in cui dobbiamo valutare <strong>espressioni primitive</strong>, come numeri o nomi, non più combinazioni mediante
+operatori.</p>
 </div>
 <div class="paragraph">
 <p>Ci occupiamo dei casi primitivi stabilendo che</p>
@@ -1030,7 +1031,7 @@ operatori, ma <strong>espressioni primitive</strong> come numeri o nomi.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>valori dei numeri sono i numeri rappresentati nella notazione
+<p>i valori dei numeri sono i numeri rappresentati nella notazione
 posizionale in base 10, con il punto per separatore decimale,</p>
 </li>
 <li>
@@ -1039,9 +1040,9 @@ posizionale in base 10, con il punto per separatore decimale,</p>
 </ul>
 </div>
 <div class="paragraph">
-<p>Notare il ruolo dell&#8217;ambiente nel determinare il significato dei nomi
-nelle espressioni. In JavaScript, non ha senso parlare del valore di
-un&#8217;espressione come <code>x + 1</code> senza specificare alcuna informazione
+<p>nelle espressioni. In JavaScript, non ha senso parlare del valore di
+È importante notare il ruolo dell&#8217;ambiente nel determinare il significato dei nomi.
+In un linguaggio interattivo come il JavaScript non ha senso parlare del valore di un&#8217;espressione come <code>x + 1</code> senza specificare informazione alcuna
 sull&#8217;ambiente che fornirebbe un significato per il nome <code>x</code>.</p>
 </div>
 <div class="paragraph">
@@ -1061,7 +1062,7 @@ nella dichiarazione di costante</p>
 <p>non è una combinazione di operatori.</p>
 </div>
 <div class="paragraph">
-<p>La stringa <code>const</code> nella dichiarazione costante è una <strong>parola chiave</strong> in JavaScript. Le parole chiave sono <strong>parole riservate</strong> che hanno un significato
+<p>La <em>stringa</em>:footnote[Una stringa indica una sequenza di caratteri] <code>const</code> nella dichiarazione costante è una <strong>parola chiave</strong> del JavaScript. Le parole chiave sono <strong>parole riservate</strong> che hanno un significato
 particolare e quindi non possono essere utilizzate come nomi di costante.
 Una parola chiave o una combinazione di parole chiave indica all&#8217;interprete
 JavaScript di trattare la rispettiva dichiarazione in modo speciale.
@@ -1108,7 +1109,7 @@ essere assegnato un nome, così da considerarla come un&#8217;unità di calcolo.
 <div class="paragraph">
 <p>Iniziamo esaminando come esprimere l&#8217;idea di quadratura di un numero.
 Potremmo dire che, per quadrare un numero, occorre moliplicarlo per se
-stesso. Questo è espresso in</p>
+stesso. Questo è espresso in JavaScript come</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1128,37 +1129,34 @@ stesso. Questo è espresso in</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Qui abbiamo una funzione composta, a cui è stato dato il nome
+<p>Qui abbiamo una <strong>funzione composta</strong>, a cui è stato dato il nome
 <code>quadrato</code>. La funzione rappresenta l&#8217;operazione di moltiplicare
 qualcosa per se stesso. Alla cosa da moltiplicare viene assegnato un
-<strong>nome locale</strong>, <code>x</code>, che svolge lo stesso ruolo di un pronome nel
-linguaggio naturale. La valutazione della <em>dichiarazione di funzione</em>
-crea questa funzione composta e la associa al nome <code>quadrato</code>.</p>
+nome locale, <code>x</code>, che svolge lo stesso ruolo di un pronome nel
+linguaggio naturale. La valutazione della <em>dichiarazione di funzione</em></p>
 </div>
 <div class="paragraph">
-<p>La nostra forma più semplice di una dichiarazione di funzione è</p>
+<p>crea questa funzione composta e la associa al nome <code>quadrato</code>.:footnote[Si osservi che ci sono due operazioni distinte: si crea la funzione e quindi le si dà un nome. È, infatti, molto utile separare i due concetti sia per creare funzioni senza doverle nominare sia per dare nomi a funzioni che sono state create.]
+La nostra forma più semplice di una dichiarazione di funzione è</p>
 </div>
 <div class="sidebarblock">
 <div class="content">
 <div class="title">Forma (ristretta) della dichiarazione di una funzione</div>
 <div class="paragraph">
-<p><strong>function</strong> <em>nome</em> <strong>(</strong> <em>parametri</em> <strong>)</strong> <strong>{ return</strong> <em>espressione</em> <strong>; }</strong></p>
+<p><strong>function</strong> <em>nome</em> <strong>(</strong> <em>parametri</em> <strong>) { return</strong> <em>espressione</em> <strong>; }</strong></p>
 </div>
 </div>
 </div>
 <div class="paragraph">
-<p>Il nome è un simbolo da associare alla funzione nell'<strong>ambiente</strong>. I
-parametri sono i nomi utilizzati nel corpo della funzione per fare
-riferimento agli argomenti corrispondenti della funzione. L&#8217;espressione
-dopo la parola chiave <strong>return</strong> è l&#8217;espressione da restituire che
-produrrà il valore dell'<strong>applicazione della funzione</strong> quando i parametri
-vengono sostituiti dagli argomenti a cui viene applicata la funzione. I
-parametri sono raggruppati tra parentesi e separati da virgole, proprio
-come sarebbero in una chiamata effettiva alla funzione dichiarata.</p>
+<p>Il <em>nome</em> è un simbolo da associare alla funzione nell'<strong>ambiente</strong>. I
+<em>parametri</em> sono i nomi utilizzati nel corpo della funzione per fare
+riferimento agli argomenti corrispondenti della funzione. Essi sono raggruppati dentro le parentesi tonde, come si indicano nell&#8217;applicazione della funzione che si sta dichiarando. Nella forma più semplice, il <strong>corpo</strong> della dichiarazione di funzione è una singola <strong>istruzione di restituzione del controllo</strong> che consiste nella parola chiave <strong>return</strong> seguita dall&#8217;espressione che
+produrrà il valore dell'<strong>applicazione della funzione</strong> quando i parametri formali
+vengono sostituiti dagli argomenti a cui viene applicata la funzione.<sup class="footnote">[<a id="_footnoteref_4" class="footnote" href="#_footnotedef_4" title="View footnote.">4</a>]</sup></p>
 </div>
 <div class="paragraph">
 <p>Avendo dichiarato la funzione <code>quadrato</code>, ora possiamo usarla in
-un'<strong>espressione di applicazione di funzione</strong>, che trasformiamo in
+un'<strong>espressione di applicazione di una funzione</strong>, che trasformiamo in
 un&#8217;istruzione usando un punto e virgola:</p>
 </div>
 <div class="listingblock">
@@ -1169,6 +1167,57 @@ un&#8217;istruzione usando un punto e virgola:</p>
 <div class="paragraph">
 <p>Il nome <code>quadrato</code> l'<strong>espressione della funzione</strong> dell&#8217;applicazione e 21
 è l'<strong>espressione dell&#8217;argomento</strong>.</p>
+</div>
+<div class="paragraph">
+<p>Le applicazioni di funzioni sono, dopo le combinazioni mediante operatori, un altro tipo di combinazione di espressioni all&#8217;interno di espressioni più grandi.</p>
+</div>
+<div class="paragraph">
+<p>La forma generale di un&#8217;applicazione di una funzione è:</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">Forma generale di applicazione di una funzione</div>
+<div class="paragraph">
+<p><em>espressione della funzione</em> <strong>(</strong> <em>espressioni degli argomenti</em> <strong>)</strong></p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>dove l'<em>espressione della funzione</em> dell&#8217;applicazione specifica quale funzione deve essere applicata alla sequenza di <em>espressioni degli argomenti</em>, che sono separati da virgole.</p>
+</div>
+<div class="paragraph">
+<p>Per valutare l&#8217;appplicazione di una funzione, l&#8217;interprete esegue una procedura abbastanza simile a quella per le combinazioni mediante operatore. // described in section 1.1.3.</p>
+</div>
+<div class="paragraph">
+<p>Evaluate the subexpressions of the application, namely the function expression and the argument expressions.
+Apply the function that is the value of the function expression to the values of the argument expressions.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Per valutare un&#8217;applicazione di una funzione, procedi come segue:</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Valuta le espressioni dell&#8217;applicazione di una funzione.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Valuta l'<em>espressione della funzione</em></p>
+</li>
+<li>
+<p>Valuta le <em>espressioni degli argomenti</em></p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Applica la funzione indicata dal valore dell&#8217;espressione della funzione ai valori delle espressioni degli argomenti.</p>
+</li>
+</ol>
+</div>
+</li>
+</ul>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2695,13 +2744,96 @@ risolto.</p>
 <div class="title">Esercizio A-1.1.4</div>
 <div class="content">
 <div class="paragraph">
+<p>Scrivere tre espressioni semplici e tre espressioni composte mediante operatori che usano gli stessi numerali.</p>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="title">Esercizio A-1.1.5</div>
+<div class="content">
+<div class="paragraph">
+<p>Aggiungere le parentesi alle espressioni sottostanti per indicare l&#8217;ordine di valutazione usato dall&#8217;interprete <em>JavaScript</em>.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>1 + 2 - 3 * 4 / 5</p>
+</li>
+<li>
+<p>1 * 2 + 3 * 4 - 5</p>
+</li>
+<li>
+<p>1 / 2 + 3 * 4 - 5</p>
+</li>
+<li>
+<p>1 + 2 * 3 * 4 - 5</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="title">Esercizio A-1.1.6</div>
+<div class="content">
+<div class="paragraph">
+<p>Aggiungere le parentesi alle espressioni sottostanti per indicare l&#8217;ordine di valutazione usato dall&#8217;interprete <em>JavaScript</em>.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>100000 * 200000 * 400000 / 3 * 10</p>
+</li>
+<li>
+<p>100000 / 3 * 200000 * 400000 * 10</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Il valore restituito dall&#8217;interprete <em>JavaScript</em> è quello denotato dall&#8217;espressione matematica (\(frac{8}{3} \cdot 10^{16} = 2,\bar{6}\cdot 10^{16}\))? È lo stesso per entrambe le espressioni? Se no, sai spiegarti il perché?</p>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="title">Esercizio A-1.1.7</div>
+<div class="content">
+<div class="paragraph">
+<p>Aggiungere le parentesi alle espressioni sottostanti per indicare l&#8217;ordine di valutazione usato dall&#8217;interprete <em>JavaScript</em>.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>100000 * 200000 * 400000 / 3 * 10 + 1</p>
+</li>
+<li>
+<p>100000 * 200000 * 400000 / 3 * 10 + 1 + 1</p>
+</li>
+<li>
+<p>100000 * 200000 * 400000 / 3 * 10 + 1 + 1 + 1</p>
+</li>
+<li>
+<p>100000 * 200000 * 400000 / 3 * 10 + 1 + 1 + 1 + 1</p>
+</li>
+<li>
+<p>100000 * 200000 * 400000 / 3 * 10 + 1 + 1 + 1 + 1 + 1</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Il valore restituito dall&#8217;interprete <em>JavaScript</em> è quello denotato dall&#8217;espressione matematica? Se no, sai spiegarti il perché?</p>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="title">Esercizio A-1.1.8</div>
+<div class="content">
+<div class="paragraph">
 <p>Si scriva una funzione <code>perimetro_triangolo</code> che calcola il perimetro di un triangolo
 e che ha tre argomenti che si riferiscono alle misure dei lati;</p>
 </div>
 </div>
 </div>
 <div class="exampleblock">
-<div class="title">Esercizio A-1.1.5</div>
+<div class="title">Esercizio A-1.1.9</div>
 <div class="content">
 <div class="paragraph">
 <p>Si scriva una funzione <code>perimetro_trapezio_rettangolo</code> che calcola il perimetro di un trapezio
@@ -2712,7 +2844,7 @@ altezza;</p>
 </div>
 </div>
 <div class="exampleblock">
-<div class="title">Esercizio A-1.1.6</div>
+<div class="title">Esercizio A-1.1.10</div>
 <div class="content">
 <div class="paragraph">
 <p>Si considereri la generica equazione di secondo grado
@@ -2727,7 +2859,7 @@ coefficienti <code>a</code> e <code>b</code> e il termine noto <code>c</code>.</
 </div>
 </div>
 <div class="exampleblock">
-<div class="title">Esercizio A-1.1.7</div>
+<div class="title">Esercizio A-1.1.11</div>
 <div class="content">
 <div class="paragraph">
 <p>Si vuole determinare il valore assunto dal polinomio
@@ -2749,7 +2881,7 @@ calcolo di \(a^\prime x + b^\prime\).</p>
 </div>
 </div>
 <div class="exampleblock">
-<div class="title">Esercizio A-1.1.8</div>
+<div class="title">Esercizio A-1.1.12</div>
 <div class="content">
 <div class="paragraph">
 <p>Si scriva la funzione <code>minimo</code> che restituisce il minimo tra
@@ -2758,7 +2890,7 @@ i valori dei due argomenti.</p>
 </div>
 </div>
 <div class="exampleblock">
-<div class="title">Esercizio A-1.1.9</div>
+<div class="title">Esercizio A-1.1.13</div>
 <div class="content">
 <div class="paragraph">
 <p>Si scriva la funzione <code>massimo3</code> che restituisce il massimo tra
@@ -2771,7 +2903,7 @@ i valori dei suoi 3 argomenti. Per calcolarlo usa la funzione
 </div>
 </div>
 <div class="exampleblock">
-<div class="title">Esercizio A-1.1.10</div>
+<div class="title">Esercizio A-1.1.14</div>
 <div class="content">
 <div class="paragraph">
 <p>Si scriva una funzione <code>somma_fino_a</code> con un argomento <code>n</code>
@@ -2780,7 +2912,7 @@ che somma tutti i numeri naturali compresi tra 1 e <code>n</code>.</p>
 </div>
 </div>
 <div class="exampleblock">
-<div class="title">Esercizio A-1.1.11</div>
+<div class="title">Esercizio A-1.1.15</div>
 <div class="content">
 <div class="paragraph">
 <p>Si scriva una funzione che somma tutti i termini del tipo
@@ -2793,7 +2925,7 @@ che somma tutti i numeri naturali compresi tra 1 e <code>n</code>.</p>
 </div>
 </div>
 <div class="exampleblock">
-<div class="title">Esercizio A-1.1.12</div>
+<div class="title">Esercizio A-1.1.16</div>
 <div class="content">
 <div class="paragraph">
 <p>Scrivere una funzione <code>pi</code> che calcola il quadruplo della
@@ -2839,7 +2971,7 @@ Indagheremo anche le velocità con cui questi processi consumano le risorse comp
 Le funzioni che considereremo sono molto semplici.</p>
 </div>
 <div class="sect3">
-<h4 id="_ricorsione_e_iterazione_lineari">1.2.1. Ricorsione e iterazione lineari</h4>
+<h4 id="sec:recursion-and-iteration">1.2.1. Ricorsione e iterazione lineari</h4>
 <div class="paragraph">
 <p>Iniziamo considerando la funzione fattoriale, definita da</p>
 </div>
@@ -3110,7 +3242,7 @@ h (n) = A (2, n) = A (1, A (2, n - 1)) = g ( h (n - 1)) = 2^{h(n -1)} = \underbr
 </details>
 </div>
 <div class="sect3">
-<h4 id="_ricorsione_ad_albero">1.2.2. Ricorsione ad albero</h4>
+<h4 id="sec:tree-recursion">1.2.2. Ricorsione ad albero</h4>
 <div class="paragraph">
 <p>Un altro schema di calcolo comune è chiamato ricorsione ad albero. Ad esempio, considera di calcolare la sequenza dei numeri di Fibonacci, in cui ogni numero è la somma dei due precedenti:</p>
 </div>
@@ -3196,9 +3328,7 @@ function fib_iter(a, b, count) {
 <div class="paragraph">
 <p>Non si deve concludere da ciò che i processi ricorsivi ad albero siano inutili. Quando consideriamo i processi che operano su dati strutturati gerarchicamente piuttosto che su numeri, scopriremo che la ricorsione dell&#8217;albero è uno strumento naturale e potente. Ma anche nelle operazioni numeriche, i processi ricorsivi ad albero possono essere utili per aiutarci a comprendere e progettare i programmi. Ad esempio, sebbene la prima funzione <code>fib</code> sia molto meno efficiente della seconda, è più semplice, essendo poco più di una traduzione in JavaScript della definizione della sequenza di Fibonacci. Per formulare l&#8217;algoritmo iterativo è necessario notare che il calcolo potrebbe essere trasformato in iterazione con tre variabili di stato.</p>
 </div>
-<div class="paragraph">
-<p>Esempio: Contare il numero di cambi</p>
-</div>
+<h4 id="_esempio_contare_il_numero_di_cambi" class="discrete">Esempio: Contare il numero di cambi</h4>
 <div class="paragraph">
 <p>Basta poco ingegno per elaborare l&#8217;algoritmo iterativo di Fibonacci. Al contrario, considera il seguente problema: in quanti modi diversi possiamo cambiare 1 euro con le monete da 50, 20, 10, 2 e un centesimo? Più in generale, possiamo scrivere una funzione per calcolare il numero di modi per cambiare una determinata quantità di denaro?</p>
 </div>
@@ -3400,6 +3530,49 @@ in quanto la riga \(n\)-esima è formata dai coefficienti dei termini dell&#8217
 </div>
 </details>
 </div>
+<div class="sect3">
+<h4 id="_tassi_di_crescita">Tassi di crescita</h4>
+<div class="paragraph">
+<p>Gli esempi precedenti mostrano che i processi possono differire notevolmente nelle velocità con cui consumano risorse computazionali.
+Un modo per descrivere questa differenza è usare la nozione di <strong>tasso di crescita</strong> per ottenere una misura grossolana delle risorse richieste da un processo man mano che gli input diventano più grandi.</p>
+</div>
+<div class="paragraph">
+<p>Sia \(n\) sia un parametro che misura la <em>dimensione</em> del problema, e sia \(R( n)\) la quantità di risorse che il processo richiede per un problema di dimensione \(n\).
+Nei nostri esempi precedenti abbiamo preso \(n\) uguale al numero per il quale una determinata funzione deve essere calcolata, ma ci sono altre possibilità.
+Ad esempio, se il nostro obiettivo è calcolare un&#8217;approssimazione alla radice quadrata di un numero, potremmo scegliere che \(n\) è il numero di cifre richieste per l&#8217;accuratezza.
+In generale ci sono una serie di proprietà del problema rispetto alle quali sarà desiderabile analizzare un determinato processo.</p>
+</div>
+<div class="paragraph">
+<p>Allo stesso modo, \(R ( n)\) potrebbe misurare il numero di registri di memoria utilizzati, il numero di operazioni elementari della macchina eseguite e così via.
+Nei computer che eseguono solo un numero fisso di operazioni alla volta, il tempo richiesto sarà proporzionale al numero di operazioni elementari della macchina eseguite.</p>
+</div>
+<div class="paragraph">
+<p>Diciamo che \(R(n)\) ha un tasso di crescita \(\Theta(f(n))\), che scriviamo con la notazione \(R(n)=\Theta(f(n))\) (si legge <em>teta di \(f(n)\)</em>, se ci sono due costanti positive \(k_1\) e \(k_2\) che non dipendono da \(n\) tali che
+\(k_1f(n) \leq R(n) \leq k_2f(n)\)</p>
+</div>
+<div class="paragraph">
+<p>per ogni valore di \(n\) sufficientemente grande.  (In altri termini, per \(n\) grande, il valore \(R(n)\) è compreso tra \(k_1f(n)\) e \(k_2f(n)\).)</p>
+</div>
+<div class="paragraph">
+<p>Ad esempio, il numero di passaggi del processo ricorsivo lineare per il calcolo fattoriale
+descritto nel <a href="#sec:recursion-and-iteration">paragrafo 1.2.1</a>
+aumenta proporzionalmente all&#8217;input \(n\). Pertanto, i passaggi richiesti per questo processo crescono come \(\Theta (n)\). Abbiamo anche visto che lo spazio richiesto cresce come \(\Theta (n)\).
+Nel processo iterativo per il calcolo del fattoriale, il numero di passaggi è ancora \(\Theta (n)\) ma lo spazio è \(\Theta (1)\)&#8201;&#8212;&#8201;cioè costante. <sup class="footnote">[<a id="_footnoteref_5" class="footnote" href="#_footnotedef_5" title="View footnote.">5</a>]</sup>
+Il calcolo dei numeri di Fibonacci mediante il processo ricorsivo ad albero richiede \(\Theta (\phi^n)\) passi e spazio
+\(\Theta (n)\), dove \(\phi\) è il rapporto aureo descritto nel <a href="#sec:tree-recursion">paragrafo 1.2.2</a>.</p>
+</div>
+<div class="paragraph">
+<p>Orders of growth provide only a crude description of the behavior of a
+process.
+For example, a process requiring &lt;LATEXINLINE&gt;$n^2$&lt;/LATEXINLINE&gt; steps and a process requiring &lt;LATEXINLINE&gt;$1000n^2$&lt;/LATEXINLINE&gt; steps and a process requiring &lt;LATEXINLINE&gt;$3n^2+10n+17$&lt;/LATEXINLINE&gt; steps
+all have &lt;LATEXINLINE&gt;$\Theta(n^2)$&lt;/LATEXINLINE&gt; order of growth.
+On the other hand, order of growth provides a useful indication of how we may expect the behavior of the process to change as we change the size of the problem.  For a  &lt;LATEXINLINE&gt;$\Theta(n)$&lt;/LATEXINLINE&gt; (linear) process, doubling the size will roughly double the amount
+of resources used.  For an exponential process, each increment in
+problem size will multiply the resource utilization by a constant
+factor.  In the remainder of section <a href="#sec:procedures-and-processes">[sec:procedures-and-processes]</a>
+we will examine two algorithms whose order of growth is logarithmic, so that doubling the problem size increases the resource requirement by a constant amount.</p>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -3408,6 +3581,18 @@ in quanto la riga \(n\)-esima è formata dai coefficienti dei termini dell&#8217
 <hr>
 <div class="footnote" id="_footnotedef_1">
 <a href="#_footnoteref_1">1</a>. Un espressione è tutto ciò che produce un valore.
+</div>
+<div class="footnote" id="_footnotedef_2">
+<a href="#_footnoteref_2">2</a>. Il costrutto di astrazione permette di dare un nome agli oggetti computazionali e permette di manipolarli come fossero oggetti primitivi. Ci permette, anche, di dimenticarci dei dettagli, come sarà evidente nel prosieguo.
+</div>
+<div class="footnote" id="_footnotedef_3">
+<a href="#_footnoteref_3">3</a>. Il concetto di ambiente è fondamentale sia per compredere come funziona un interprete, sia per realizzarne uno.
+</div>
+<div class="footnote" id="_footnotedef_4">
+<a href="#_footnoteref_4">4</a>. In generale, il corpo di una funzione può contenere una sequenza di istruzioni. Nel caso, l&#8217;interprete valuta un&#8217;istruzione per volota della sequenza finché un&#8217;istruzione di restituzione del controllo non determina il valore dell&#8217;applicazione della funzione agli argomenti.
+</div>
+<div class="footnote" id="_footnotedef_5">
+<a href="#_footnoteref_5">5</a>. Queste affermazioni mascherano una grande semplificazione eccessiva. Ad esempio, se contiamo i passi del processo come operazioni della macchina, assumiamo che il numero di operazioni della macchina necessarie per eseguire, diciamo, una moltiplicazione sia indipendente dalla dimensione dei numeri da moltiplicare, il che è falso se i numeri sono sufficientemente grande. Osservazioni simili valgono per le stime dello spazio. Come la progettazione e la descrizione di un processo, l&#8217;analisi di un processo può essere effettuata a vari livelli di astrazione.
 </div>
 </div>
 <div id="footer">

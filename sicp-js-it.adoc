@@ -25,7 +25,7 @@ include::attributes.adoc[]
 // asciidoctor -r asciidoctor-diagram -a attribute-missing=warn --failure-level=WARN sicp-js-it.adoc
 // asciidoctor-pdf -r asciidoctor-diagram -r asciidoctor-mathematical -a allow-uri-read -a cache-uri sicp-js-it.adoc
 
-Questo testo è un adattamento in italiano, realizzato con l'auito di Google Translate, del testo https://sicp.comp.nus.edu.sg/[Structure and Interpretation of Computer Programs — JavaScript Adaptation], il quale è, a sua volta, un adattamento della seconda edizione del noto libro di testo di Harold Abelson e Gerald Jay Sussman dal titolo: "Structure and Interpretation of Computer Programs".
-Siccome chi ha adattato il testo ritiene che per imparare l'arte della programmazione sia necessario leggere del buon codice, magari quello dei grandi classici come SICP, ed esercitarsi scrivendo altrettando codice, ha integrato il testo con ulteriori esercizi.
+Questo testo è un adattamento in italiano, realizzato con l'auito di Google Translate, del testo https://sicp.comp.nus.edu.sg/[Structure and Interpretation of Computer Programs — JavaScript Adaptation], il quale, a sua volta, è un adattamento della seconda edizione del noto libro di testo di Harold Abelson e Gerald Jay Sussman dal titolo: "Structure and Interpretation of Computer Programs".
+Il testo ritiene è integrato con ulteriori esercizi in quanto per imparare l'arte della programmazione è necessario leggere del buon codice, ragionare su problemi, modelli e algoritmi, ed esercitarsi scrivendo programmi.
 
 include::cap1/cap1_funzioni.adoc[]

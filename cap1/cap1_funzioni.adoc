@@ -5,21 +5,21 @@ ____
 Gli atti con cui lo spirito esercita il suo potere sulle idee semplici
 sono principalmente questi tre:
 
-. _combinare_ varie idee semplici per formarne una complessa; così sono formate tutte le _idee complesse_
+. _combinare_ varie idee semplici per formarne una complessa; così sono formate tutte le __idee complesse__;
 .  _mettere assieme_ due idee, semplici o complesse, e giustapporle in modo
 da vederle insieme senza unirle; così lo spirito ottiene tutte le sue
-_idee di relazioni_;
-. _separar_ le idee _da_ tutte le altre che le
-accompagnano nella loro esistenza _reale_, e questo si chiama
-astrazione: in tal modo sono formate tutte le _idee generali_.
+__idee di relazioni__;
+. __separar__ le idee __da__ tutte le altre che le
+accompagnano nella loro esistenza __reale__, e questo si chiama
+astrazione: in tal modo sono formate tutte le __idee generali__.
 ____
 
-Stiamo per studiare il concetto di **processo di calcolo** (((processo, processo di calcolo, processo computazionale))) o _processo
-computazionale_. I processi computazionali sono esseri astratti che
+Stiamo per studiare il concetto di **processo di calcolo** (((processo, processo di calcolo, processo computazionale))) o __processo
+computazionale__. I processi computazionali sono esseri astratti che
 vivono nei calcolatori, come _notebook_, _tablet_,
-_smartphone_, _navigatori GPS_, dispositivi dello _Internet of things_ e altri dispositivi con microcontrollori. I processi, mentre evolvono, manipolano altri oggetti astratti chiamati *dati*.
+_smartphone_, _navigatori GPS_, dispositivi dello _Internet of things_ e altri dispositivi con microcontrollori. I processi, mentre evolvono, manipolano altri oggetti astratti chiamati **dati**.
 L'evoluzione di un processo è diretta da uno schema di regole chiamato
-*programma*. Gli uomini creano i programmi per dirigere i processi.
+**programma**. Gli uomini creano i programmi per dirigere i processi.
 Quando eseguiamo un programma, in effetti, evochiamo gli spiriti del
 computer con i nostri incantesimi.
 
@@ -30,7 +30,7 @@ intellettuali. Può rispondere ad alcune domande. Può gestire eventi del
 mondo reale erogando denaro in una banca o controllando un braccio
 robotico in una fabbrica. I programmi che usiamo per evocare i processi
 sono come gli incantesimi di uno stregone. Sono meticolosamente composti
-da *espressioni simboliche* in *linguaggi di programmazione* (((linguaggio di programmazione))) arcani ed
+da **espressioni simboliche** in **linguaggi di programmazione** (((linguaggio di programmazione))) arcani ed
 esoterici che prescrivono i compiti che vogliamo far eseguire ai nostri
 processi.
 
@@ -38,7 +38,7 @@ Un processo computazionale, in un computer che funziona correttamente,
 esegue i programmi in modo preciso e accurato. Quindi i programmatori
 alle prime armi, così come l'apprendista stregone, devono imparare a capire e
 anticipare le conseguenze delle loro parole magiche. Anche piccoli errori
-nei programmi (di solito chiamati *bug* o _glitch_) (((bug, glitch))) possono avere
+nei programmi (di solito chiamati **bug** o _glitch_) (((bug, glitch))) possono avere
 conseguenze complesse e impreviste.
 
 Fortunatamente, imparare a programmare è considerevolmente meno
@@ -49,14 +49,15 @@ un programma di progettazione assistita dal computer (Computer Aided
 Design, CAD), ad esempio, può portare al catastrofico schianto di un aereo
 o al crollo di una diga o all'autodistruzione di un robot industriale.
 
-Gli *ingegneri del software* hanno la capacità di organizzare i programmi
+Gli **ingegneri del software** hanno la capacità di organizzare i programmi
 in modo da essere ragionevolmente sicuri che i processi risultanti
 eseguiranno i compiti nel modo previsto. Possono anticipare il comportamento dei
-loro sistemi. Sanno come *strutturare i programmi* in modo tale che
+loro sistemi. Sanno come **strutturare i programmi** in modo tale che
 problemi imprevisti non portino a conseguenze catastrofiche e quando
-sorgono problemi, possono eseguire il *debug* dei loro programmi.
+sorgono problemi, possono eseguire il **debug**, ossia la rimozione degli errori,
+ dei loro programmi.
 Sistemi computazionali ben progettati, come automobili ben progettate o
-reattori nucleari, sono progettati in modo *modulare*, in modo che le
+reattori nucleari, sono progettati in modo **modulare**, in modo che le
 parti possano essere costruite, sostituite e messe a punto
 separatamente.
 
@@ -73,56 +74,56 @@ computazionali sarà il linguaggio JavaScript.
 
 JavaScript (((JavaScript, storia del))) è stato sviluppato all'inizio degli anni '90 come linguaggio
 di programmazione per il controllo del comportamento dei browser del
-World Wide Web tramite _script_ (uno script, letteralmente, un copione,
+World Wide Web tramite __script__ (uno script, letteralmente, un copione,
 è una descrizione del comportamento da tenere) incorporati
 nelle pagine web. Il linguaggio è stata concepito da Brendan Eich(((Eich, Brendan))),
-originariamente sotto il nome di _((Mok))a_, poi rinominato _((LiveScript))_ e
-infine ((_JavaScript_)). Il nome _JavaScript_ è un marchio di _Oracle
+originariamente sotto il nome di _((Moka))_, poi rinominato _((LiveScript))_ e
+infine ((_JavaScript_)). Il nome _JavaScript_ è un marchio registrato da _Oracle
 Corporation_.
 
 Nonostante JavaScript sia nato come linguaggio per il controllo dei browser,
-esso è un linguaggio di programmazione generico. Un *interprete*
-JavaScript è una *macchina che esegue i processi* descritti nel linguaggio
+esso è un linguaggio di programmazione generico. Un **interprete**
+JavaScript è una **macchina che esegue i processi** descritti nel linguaggio
 JavaScript. Il primo interprete JavaScript è stato implementato da Eich
-presso _Netscape Communications Corporation_, per il browser web
-_Netscape Navigator_. Le caratteristiche principali di JavaScript sono
-ereditate dai linguaggi *Scheme* e *Self*. _Scheme_ è un dialetto del
+presso __Netscape Communications Corporation__, per il browser web
+__Netscape Navigator__. Le caratteristiche principali di JavaScript sono
+ereditate dai linguaggi **Scheme** e **Self**. _Scheme_ è un dialetto del
 *Lisp* ed è stato usato come linguaggio di programmazione per la
 versione originale del libro che ispira questa rivisitazione.
-Da _Scheme_, JavaScript ha ereditato alcuni principi di progettazione
+Da _Scheme_, _JavaScript_ ha ereditato alcuni principi di progettazione
 fondamentali ed è pertanto possibile adattare il modo di ragionare sui problemi
-indotto dal Scheme in JavaScript.
+indotto dal _Scheme_ in _JavaScript_.
 
-JavaScript ha anche una superficiale somiglianza con il linguaggio
-*Java*, nonostante l'assonanza del nome; sia Java che JavaScript utilizzano
-la struttura a blocchi del *linguaggio C*. Contrariamente a Java e C,
+_JavaScript_ ha anche una superficiale somiglianza con il linguaggio
+**Java**, nonostante l'assonanza del nome; sia _Java_ che _JavaScript_ utilizzano
+la struttura a blocchi del *linguaggio C*. Contrariamente a _Java_ e _C_,
 che di solito vengono _compilati_ in linguaggi di livello inferiore, i
-programmi JavaScript sono stati inizialmente interpretati dai browser
-web. Dopo _Netscape Navigator_, altri browser web hanno fornito
-interpreti per il linguaggio, incluso _Microsoft Internet Explorer_, la
-cui versione JavaScript è chiamata _JScript_. La popolarità di
-JavaScript per il controllo dei browser Web ha dato origine a uno sforzo
-di standardizzazione, culminato in *ECMAScript*. La prima edizione dello
-standard *ECMAScript* è stata guidata da Guy Lewis Steele Jr. e completata
+programmi _JavaScript_ sono stati inizialmente interpretati dai browser
+web. Dopo __Netscape Navigator__, altri browser web hanno fornito
+interpreti per il linguaggio, incluso __Microsoft Internet Explorer__, la
+cui versione JavaScript è chiamata __JScript__. La popolarità di
+_JavaScript_ per il controllo dei browser Web ha dato origine a uno sforzo
+di standardizzazione, culminato in **ECMAScript**. La prima edizione dello
+standard **ECMAScript** è stata guidata da Guy Lewis Steele Jr. e completata
 nel giugno 1997 (Ecma 1997). La sesta edizione, utilizzata in questo
 libro, è stata guidata da Allen Wirfs-Brock e adottata dall'Assemblea
 Generale dell'ECMA nel giugno 2015.
 
 La pratica di incorporare programmi JavaScript in pagine Web ha
 incoraggiato gli sviluppatori di browser Web a implementare interpreti
-JavaScript. Man mano che questi programmi diventavano più complessi, gli
+_JavaScript_. Man mano che questi programmi diventavano più complessi, gli
 interpreti devono diventare più efficienti nell'eseguirli. Oggi essi
 usano tecniche sofisticate come la compilazione __Just-In-Time__ (JIT). La
 maggior parte dei programmi JavaScript (a partire dal 2020) sono
-incorporati nelle pagine Web e interpretati dai browser, ma JavaScript
+incorporati nelle pagine Web e interpretati dai browser, ma _JavaScript_
 viene anche utilizzato per risolvere problemi di carattere generale,
 spesso usando l'interprete **Node.js**.
 
-Tuttavia, è la capacità dei browser di eseguire programmi JavaScript che
+Tuttavia, è la capacità dei browser di eseguire programmi _JavaScript_ che
 lo rende un linguaggio ideale per una versione online di un libro di
 testo di programmazione. L'esecuzione dei programmi facendo clic sugli
-elementi di una pagina Web è naturale in JavaScript, dopo tutto quello
-per cui è stato progettato JavaScript! Più fondamentalmente, JavaScript
+elementi di una pagina Web è naturale in _JavaScript_, dopo tutto quello
+per cui è stato progettato _JavaScript_! _JavaScript_
 possiede funzionalità che lo rendono un mezzo eccellente per studiare
 importanti costrutti di programmazione e strutture di dati e per
 metterli in relazione con le caratteristiche linguistiche che li
@@ -130,7 +131,7 @@ supportano. Le funzioni di prima classe con visibilità statica,
 caratteristica anche del JavaScript, forniscono accesso diretto e conciso ai meccanismi di
 astrazione. La tipizzazione dinamica elimina la necessità di dichiarare
 i tipi di dati manipolati dal programma. Oltre a queste considerazioni,
-la programmazione in JavaScript è molto divertente.
+la programmazione in _JavaScript_ è molto divertente.
 
 Puoi provare gli esempi anche sfruttando anche alcune applicazioni web,
 che offrono limitati servizi gratuiti.

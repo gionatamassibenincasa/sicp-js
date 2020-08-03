@@ -9,13 +9,13 @@ le operazioni.
 * Le dichiarazioni di costante che associano i nomi ai
 valori forniscono un costutto di astrazione.
 
-Ora conosceremo le *dichiarazioni di funzione*, una tecnica di
+Ora conosceremo le **dichiarazioni di funzione**, una tecnica di
 astrazione molto più potente con la quale a un'operazione composta può
 essere assegnato un nome, così da considerarla come un'unità di calcolo.
 
 Iniziamo esaminando come esprimere l'idea di quadratura di un numero.
 Potremmo dire che, per quadrare un numero, occorre moliplicarlo per se
-stesso. Questo è espresso in
+stesso. Questo è espresso in JavaScript come
 
 [source,javascript]
 ----
@@ -33,31 +33,30 @@ function quadrato(	x   ) { return	  x		*		   x; }
 // Per	quadrare un numero,			 lo moltiplichi per se stesso.
 ----
 
-Qui abbiamo una funzione composta, a cui è stato dato il nome
+Qui abbiamo una **funzione composta**, a cui è stato dato il nome
 `quadrato`. La funzione rappresenta l'operazione di moltiplicare
 qualcosa per se stesso. Alla cosa da moltiplicare viene assegnato un
-*nome locale*, `x`, che svolge lo stesso ruolo di un pronome nel
+nome locale, `x`, che svolge lo stesso ruolo di un pronome nel
 linguaggio naturale. La valutazione della _dichiarazione di funzione_
-crea questa funzione composta e la associa al nome `quadrato`.
 
+crea questa funzione composta e la associa al nome `quadrato`.:footnote[Si osservi che ci sono due operazioni distinte: si crea la funzione e quindi le si dà un nome. È, infatti, molto utile separare i due concetti sia per creare funzioni senza doverle nominare sia per dare nomi a funzioni che sono state create.]
 La nostra forma più semplice di una dichiarazione di funzione è
 
 .Forma (ristretta) della dichiarazione di una funzione
 ****
-*function* _nome_ *(* _parametri_ *)* *{ return* _espressione_ *; }*
+**function** _nome_ **(** _parametri_ **) { return** _espressione_ **; }**
 ****
 
-Il nome è un simbolo da associare alla funzione nell'*ambiente*. I
-parametri sono i nomi utilizzati nel corpo della funzione per fare
-riferimento agli argomenti corrispondenti della funzione. L'espressione
-dopo la parola chiave *return* è l'espressione da restituire che
-produrrà il valore dell'*applicazione della funzione* quando i parametri
-vengono sostituiti dagli argomenti a cui viene applicata la funzione. I
-parametri sono raggruppati tra parentesi e separati da virgole, proprio
-come sarebbero in una chiamata effettiva alla funzione dichiarata.
+Il _nome_ è un simbolo da associare alla funzione nell'**ambiente**. I
+_parametri_ sono i nomi utilizzati nel corpo della funzione per fare
+riferimento agli argomenti corrispondenti della funzione. Essi sono raggruppati dentro le parentesi tonde, come si indicano nell'applicazione della funzione che si sta dichiarando. Nella forma più semplice, il **corpo** della dichiarazione di funzione è una singola **istruzione di restituzione del controllo** che consiste nella parola chiave *return* seguita dall'espressione che
+produrrà il valore dell'*applicazione della funzione* quando i parametri formali
+vengono sostituiti dagli argomenti a cui viene applicata la funzione.footnote:[In generale, il corpo di una funzione può contenere una sequenza di istruzioni. Nel caso, l'interprete valuta un'istruzione per volota della sequenza finché un'istruzione di restituzione del controllo non determina il valore dell'applicazione della funzione agli argomenti.]
+
+// I parametri sono raggruppati tra parentesi e separati da virgole, proprio come sarebbero in una chiamata effettiva alla funzione dichiarata.
 
 Avendo dichiarato la funzione `quadrato`, ora possiamo usarla in
-un'*espressione di applicazione di funzione*, che trasformiamo in
+un'**espressione di applicazione di una funzione**, che trasformiamo in
 un'istruzione usando un punto e virgola:
 
 [source,javascript]
@@ -67,6 +66,29 @@ quadrato (21);
 
 Il nome `quadrato` l'*espressione della funzione* dell'applicazione e 21
 è l'*espressione dell'argomento*.
+
+Le applicazioni di funzioni sono, dopo le combinazioni mediante operatori, un altro tipo di combinazione di espressioni all'interno di espressioni più grandi.
+
+La forma generale di un'applicazione di una funzione è:
+
+.Forma generale di applicazione di una funzione
+****
+__espressione della funzione__ **(** __espressioni degli argomenti__ **)**
+****
+
+
+dove l'__espressione della funzione__ dell'applicazione specifica quale funzione deve essere applicata alla sequenza di __espressioni degli argomenti__, che sono separati da virgole.
+
+Per valutare l'appplicazione di una funzione, l'interprete esegue una procedura abbastanza simile a quella per le combinazioni mediante operatore. // described in section 1.1.3.
+
+Evaluate the subexpressions of the application, namely the function expression and the argument expressions.
+Apply the function that is the value of the function expression to the values of the argument expressions.
+
+* Per valutare un'applicazione di una funzione, procedi come segue:
+	.  Valuta le espressioni dell'applicazione di una funzione.
+	.. Valuta l'__espressione della funzione__
+	.. Valuta le __espressioni degli argomenti__
+	.  Applica la funzione indicata dal valore dell'espressione della funzione ai valori delle espressioni degli argomenti.
 
 [source,javascript]
 ----
@@ -111,10 +133,8 @@ function f (a) {
 }
 ----
 
-L'applicazione di funzioni come `somma_di_quadrati (3, 4)` è - dopo la
-combinazione mediante operatore - il secondo tipo di combinazione di
-espressioni in espressioni più grandi che incontriamo. Oltre alle
-funzioni composte, JavaScript fornisce una serie di funzioni primitive
+// L'applicazione di funzioni come `somma_di_quadrati (3, 4)` è - dopo la combinazione mediante operatore - il secondo tipo di combinazione di espressioni in espressioni più grandi che incontriamo.
+Oltre alle funzioni composte, JavaScript fornisce una serie di **funzioni primitive**
 integrate nell'interprete. Un esempio è la funzione `Math.log` che
 calcola il logaritmo naturale del suo argomento. La valutazione
 dell'espressione dell'applicazione `Math.log (1)` produce il numero 0.
