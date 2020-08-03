@@ -1,4 +1,4 @@
-[[sec:recursion-and-iteration]]
+[[sp_ricorsione_iterazione]]
 ==== Ricorsione e iterazione lineari
 
 Iniziamo considerando la funzione fattoriale, definita da
@@ -153,7 +153,6 @@ piu(0, 9)
 ====
 
 .Esercizio 1.10. La funzione (matematica) di Ackermann
-
 ==== 
 
 La funzione seguente calcola una funzione matematica chiamata
@@ -236,3 +235,5 @@ h (n) = A (2, n) = A (1, A (2, n - 1)) = g ( h (n - 1)) = 2^{h(n -1)} = \underbr
 }}^{h(1)}}}}_{n\ \text{volte}}
 ].
 ====
+
+//

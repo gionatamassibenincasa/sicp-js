@@ -1,4 +1,5 @@
-==== Funzioni
+[[sp_funzioni_composte]]
+==== Funzioni composte
 
 Abbiamo identificato in JavaScript alcuni degli elementi che devono
 apparire in qualsiasi linguaggio di programmazione:
@@ -39,7 +40,7 @@ qualcosa per se stesso. Alla cosa da moltiplicare viene assegnato un
 nome locale, `x`, che svolge lo stesso ruolo di un pronome nel
 linguaggio naturale. La valutazione della _dichiarazione di funzione_
 
-crea questa funzione composta e la associa al nome `quadrato`.:footnote[Si osservi che ci sono due operazioni distinte: si crea la funzione e quindi le si dà un nome. È, infatti, molto utile separare i due concetti sia per creare funzioni senza doverle nominare sia per dare nomi a funzioni che sono state create.]
+crea questa funzione composta e la associa al nome `quadrato`.footnote:[Si osservi che ci sono due operazioni distinte: si crea la funzione e quindi le si dà un nome. È, infatti, molto utile separare i due concetti sia per creare funzioni senza doverle nominare sia per dare nomi a funzioni che sono state create.]
 La nostra forma più semplice di una dichiarazione di funzione è
 
 .Forma (ristretta) della dichiarazione di una funzione
@@ -64,7 +65,7 @@ un'istruzione usando un punto e virgola:
 quadrato (21);
 ----
 
-Il nome `quadrato` l'*espressione della funzione* dell'applicazione e 21
+Il nome `quadrato` è l'*espressione della funzione* dell'applicazione e numerale 21
 è l'*espressione dell'argomento*.
 
 Le applicazioni di funzioni sono, dopo le combinazioni mediante operatori, un altro tipo di combinazione di espressioni all'interno di espressioni più grandi.
@@ -73,16 +74,15 @@ La forma generale di un'applicazione di una funzione è:
 
 .Forma generale di applicazione di una funzione
 ****
-__espressione della funzione__ **(** __espressioni degli argomenti__ **)**
+__espressione-della-funzione__ **(** __espressioni-degli-argomenti__ **)**
 ****
 
 
-dove l'__espressione della funzione__ dell'applicazione specifica quale funzione deve essere applicata alla sequenza di __espressioni degli argomenti__, che sono separati da virgole.
+dove l'__espressione-della-funzione__ dell'applicazione specifica quale funzione deve essere applicata alla sequenza di __espressioni-degli-argomenti__, che sono separati da virgole.
 
-Per valutare l'appplicazione di una funzione, l'interprete esegue una procedura abbastanza simile a quella per le combinazioni mediante operatore. // described in section 1.1.3.
+Per valutare l'appplicazione di una funzione, l'interprete esegue una procedura abbastanza simile a quella per le combinazioni mediante operatore.
 
-Evaluate the subexpressions of the application, namely the function expression and the argument expressions.
-Apply the function that is the value of the function expression to the values of the argument expressions.
+// described in section 1.1.3.
 
 * Per valutare un'applicazione di una funzione, procedi come segue:
 	.  Valuta le espressioni dell'applicazione di una funzione.

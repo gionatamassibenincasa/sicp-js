@@ -459,8 +459,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <ul class="sectlevel3">
 <li><a href="#_espressioni">1.1.1. Espressioni</a></li>
 <li><a href="#_denominazione_e_ambiente">1.1.2. Denominazione e ambiente</a></li>
-<li><a href="#_valutazione_delle_combinazioni_mediante_operatori">1.1.3. Valutazione delle combinazioni mediante operatori</a></li>
-<li><a href="#_funzioni">1.1.4. Funzioni</a></li>
+<li><a href="#sp_combinazione_operatori">1.1.3. Valutazione delle combinazioni mediante operatori</a></li>
+<li><a href="#sp_funzioni_composte">1.1.4. Funzioni composte</a></li>
 <li><a href="#sp_modello_sostituzione">1.1.5. Il modello di sostituzione per l&#8217;applicazione delle funzioni</a></li>
 <li><a href="#_epressioni_condizionali_e_predicati">1.1.6. Epressioni condizionali e predicati</a></li>
 <li><a href="#_esempio_radici_quadrate_con_il_metodo_di_newton">1.1.7. Esempio: radici quadrate con il metodo di Newton</a></li>
@@ -470,7 +470,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="#_le_funzioni_e_i_processi_da_esse_generati">1.2. Le funzioni e i processi da esse generati</a>
 <ul class="sectlevel3">
-<li><a href="#sec:recursion-and-iteration">1.2.1. Ricorsione e iterazione lineari</a></li>
+<li><a href="#sp_ricorsione_iterazione">1.2.1. Ricorsione e iterazione lineari</a></li>
 <li><a href="#sec:tree-recursion">1.2.2. Ricorsione ad albero</a></li>
 <li><a href="#_tassi_di_crescita">Tassi di crescita</a></li>
 </ul>
@@ -954,7 +954,7 @@ ambienti diversi).<sup class="footnote">[<a id="_footnoteref_3" class="footnote"
 </div>
 </div>
 <div class="sect3">
-<h4 id="_valutazione_delle_combinazioni_mediante_operatori">1.1.3. Valutazione delle combinazioni mediante operatori</h4>
+<h4 id="sp_combinazione_operatori">1.1.3. Valutazione delle combinazioni mediante operatori</h4>
 <div class="paragraph">
 <p>Uno degli obiettivi di questo capitolo è quello di isolare i problemi
 relativi alle descrizioni dei processi. Ad esempio, consideriamo che,
@@ -1047,7 +1047,7 @@ sull&#8217;ambiente che fornirebbe un significato per il nome <code>x</code>.</p
 </div>
 <div class="paragraph">
 <p>Si noti che la regola di valutazione sopra indicata non gestisce le
-dichiarazioni di costanti. Ad esempio, valutando <code>const x = 3;</code> non si
+dichiarazioni di costanti. Ad esempio, valutando <code>const&#160;x&#160;=&#160;3;</code> non si
 applica l&#8217;operatore <code>=</code> a due argomenti, uno dei quali è il valore del
 nome <code>x</code> e l&#8217;altro è <code>3</code>, poiché lo scopo della dichiarazione costante è
 proprio quello di associare <code>x</code> a un valore. Cioè, la parte <code>x = 3</code>
@@ -1062,7 +1062,7 @@ nella dichiarazione di costante</p>
 <p>non è una combinazione di operatori.</p>
 </div>
 <div class="paragraph">
-<p>La <em>stringa</em>:footnote[Una stringa indica una sequenza di caratteri] <code>const</code> nella dichiarazione costante è una <strong>parola chiave</strong> del JavaScript. Le parole chiave sono <strong>parole riservate</strong> che hanno un significato
+<p>La <em>stringa</em><sup class="footnote">[<a id="_footnoteref_4" class="footnote" href="#_footnotedef_4" title="View footnote.">4</a>]</sup> <code>const</code> nella dichiarazione costante è una <strong>parola chiave</strong> del JavaScript. Le parole chiave sono <strong>parole riservate</strong> che hanno un significato
 particolare e quindi non possono essere utilizzate come nomi di costante.
 Una parola chiave o una combinazione di parole chiave indica all&#8217;interprete
 JavaScript di trattare la rispettiva dichiarazione in modo speciale.
@@ -1081,7 +1081,7 @@ linguaggio di programmazione.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_funzioni">1.1.4. Funzioni</h4>
+<h4 id="sp_funzioni_composte">1.1.4. Funzioni composte</h4>
 <div class="paragraph">
 <p>Abbiamo identificato in JavaScript alcuni degli elementi che devono
 apparire in qualsiasi linguaggio di programmazione:</p>
@@ -1136,7 +1136,7 @@ nome locale, <code>x</code>, che svolge lo stesso ruolo di un pronome nel
 linguaggio naturale. La valutazione della <em>dichiarazione di funzione</em></p>
 </div>
 <div class="paragraph">
-<p>crea questa funzione composta e la associa al nome <code>quadrato</code>.:footnote[Si osservi che ci sono due operazioni distinte: si crea la funzione e quindi le si dà un nome. È, infatti, molto utile separare i due concetti sia per creare funzioni senza doverle nominare sia per dare nomi a funzioni che sono state create.]
+<p>crea questa funzione composta e la associa al nome <code>quadrato</code>.<sup class="footnote">[<a id="_footnoteref_5" class="footnote" href="#_footnotedef_5" title="View footnote.">5</a>]</sup>
 La nostra forma più semplice di una dichiarazione di funzione è</p>
 </div>
 <div class="sidebarblock">
@@ -1152,7 +1152,7 @@ La nostra forma più semplice di una dichiarazione di funzione è</p>
 <em>parametri</em> sono i nomi utilizzati nel corpo della funzione per fare
 riferimento agli argomenti corrispondenti della funzione. Essi sono raggruppati dentro le parentesi tonde, come si indicano nell&#8217;applicazione della funzione che si sta dichiarando. Nella forma più semplice, il <strong>corpo</strong> della dichiarazione di funzione è una singola <strong>istruzione di restituzione del controllo</strong> che consiste nella parola chiave <strong>return</strong> seguita dall&#8217;espressione che
 produrrà il valore dell'<strong>applicazione della funzione</strong> quando i parametri formali
-vengono sostituiti dagli argomenti a cui viene applicata la funzione.<sup class="footnote">[<a id="_footnoteref_4" class="footnote" href="#_footnotedef_4" title="View footnote.">4</a>]</sup></p>
+vengono sostituiti dagli argomenti a cui viene applicata la funzione.<sup class="footnote">[<a id="_footnoteref_6" class="footnote" href="#_footnotedef_6" title="View footnote.">6</a>]</sup></p>
 </div>
 <div class="paragraph">
 <p>Avendo dichiarato la funzione <code>quadrato</code>, ora possiamo usarla in
@@ -1165,7 +1165,7 @@ un&#8217;istruzione usando un punto e virgola:</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Il nome <code>quadrato</code> l'<strong>espressione della funzione</strong> dell&#8217;applicazione e 21
+<p>Il nome <code>quadrato</code> è l'<strong>espressione della funzione</strong> dell&#8217;applicazione e numerale 21
 è l'<strong>espressione dell&#8217;argomento</strong>.</p>
 </div>
 <div class="paragraph">
@@ -1178,19 +1178,15 @@ un&#8217;istruzione usando un punto e virgola:</p>
 <div class="content">
 <div class="title">Forma generale di applicazione di una funzione</div>
 <div class="paragraph">
-<p><em>espressione della funzione</em> <strong>(</strong> <em>espressioni degli argomenti</em> <strong>)</strong></p>
+<p><em>espressione-della-funzione</em> <strong>(</strong> <em>espressioni-degli-argomenti</em> <strong>)</strong></p>
 </div>
 </div>
 </div>
 <div class="paragraph">
-<p>dove l'<em>espressione della funzione</em> dell&#8217;applicazione specifica quale funzione deve essere applicata alla sequenza di <em>espressioni degli argomenti</em>, che sono separati da virgole.</p>
+<p>dove l'<em>espressione-della-funzione</em> dell&#8217;applicazione specifica quale funzione deve essere applicata alla sequenza di <em>espressioni-degli-argomenti</em>, che sono separati da virgole.</p>
 </div>
 <div class="paragraph">
-<p>Per valutare l&#8217;appplicazione di una funzione, l&#8217;interprete esegue una procedura abbastanza simile a quella per le combinazioni mediante operatore. // described in section 1.1.3.</p>
-</div>
-<div class="paragraph">
-<p>Evaluate the subexpressions of the application, namely the function expression and the argument expressions.
-Apply the function that is the value of the function expression to the values of the argument expressions.</p>
+<p>Per valutare l&#8217;appplicazione di una funzione, l&#8217;interprete esegue una procedura abbastanza simile a quella per le combinazioni mediante operatore.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -1267,10 +1263,7 @@ costruzione di ulteriori funzioni:</p>
 </div>
 </div>
 <div class="paragraph">
-<p>L&#8217;applicazione di funzioni come <code>somma_di_quadrati (3, 4)</code> è - dopo la
-combinazione mediante operatore - il secondo tipo di combinazione di
-espressioni in espressioni più grandi che incontriamo. Oltre alle
-funzioni composte, JavaScript fornisce una serie di funzioni primitive
+<p>Oltre alle funzioni composte, JavaScript fornisce una serie di <strong>funzioni primitive</strong>
 integrate nell&#8217;interprete. Un esempio è la funzione <code>Math.log</code> che
 calcola il logaritmo naturale del suo argomento. La valutazione
 dell&#8217;espressione dell&#8217;applicazione <code>Math.log (1)</code> produce il numero 0.
@@ -1298,7 +1291,7 @@ combinazioni di applicazioni:</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Per valutare una combinazione di applicazioni della forma <strong>funzione-espressione (</strong> <em>argomenti-espressioni</em> <strong>)</strong> fare quanto segue:</p>
+<p>Per valutare una combinazione di applicazioni della forma <em>espressione-della-funzione</em> <strong>(</strong> <em>espressioni-degli-argomenti</em> <strong>)</strong> fare quanto segue:</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -1306,7 +1299,7 @@ combinazioni di applicazioni:</p>
 dell&#8217;applicazione, risultante nella funzione da applicare.</p>
 </li>
 <li>
-<p>Valuta le espressioni argomento della combinazione.</p>
+<p>Valuta le espressioni degli argomenti della combinazione.</p>
 </li>
 <li>
 <p>Applica la funzione agli argomenti:</p>
@@ -1330,7 +1323,7 @@ della funzione con ogni parametro sostituito dall&#8217;argomento corrispondente
 </div>
 <div class="paragraph">
 <p>Per illustrare questo processo, valutiamo la combinazione
-dell&#8217;applicazione di funzione</p>
+dell&#8217;applicazione di una funzione</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1338,7 +1331,8 @@ dell&#8217;applicazione di funzione</p>
 </div>
 </div>
 <div class="paragraph">
-<p>La valutazione del nome <code>f</code> restituisce il corpo della funzione. La
+<p>dove <code>f</code> è la funzione definita in <a href="#sp_funzioni_composte">paragrafo 1.1.4</a>.
+La valutazione del nome <code>f</code> restituisce il corpo della funzione. La
 valutazione dell&#8217;espressione dell&#8217;argomento 5 produce il valore
 dell&#8217;argomento 5. Ora, recuperiamo l&#8217;espressione da restituire di <code>f</code>:</p>
 </div>
@@ -1543,7 +1537,7 @@ causa dell&#8217;ulteriore efficienza ottenuta dall&#8217;evitare valutazioni
 multiple di espressioni come quelle illustrate sopra e, in modo più
 significativo, perché la valutazione dell&#8217;ordine normale diventa molto
 più complicata da affrontare quando lasciamo il regno delle procedure
-che può essere modellato per sostituzione. D&#8217;altra parte, la valutazione
+che può essere modellizzato per sostituzione. D&#8217;altra parte, la valutazione
 dell&#8217;ordine normale può essere uno strumento estremamente prezioso.</p>
 </div>
 </div>
@@ -2789,7 +2783,7 @@ risolto.</p>
 </ol>
 </div>
 <div class="paragraph">
-<p>Il valore restituito dall&#8217;interprete <em>JavaScript</em> è quello denotato dall&#8217;espressione matematica (\(frac{8}{3} \cdot 10^{16} = 2,\bar{6}\cdot 10^{16}\))? È lo stesso per entrambe le espressioni? Se no, sai spiegarti il perché?</p>
+<p>Il valore restituito dall&#8217;interprete <em>JavaScript</em> è quello denotato dall&#8217;espressione matematica (\(\frac{8}{3} \cdot 10^{16} = 2,\bar{6}\cdot 10^{16}\))? È lo stesso per entrambe le espressioni? Se no, sai spiegarti il perché?</p>
 </div>
 </div>
 </div>
@@ -2827,8 +2821,42 @@ risolto.</p>
 <div class="title">Esercizio A-1.1.8</div>
 <div class="content">
 <div class="paragraph">
-<p>Si scriva una funzione <code>perimetro_triangolo</code> che calcola il perimetro di un triangolo
-e che ha tre argomenti che si riferiscono alle misure dei lati;</p>
+<p>Dichiarare i valori costanti della tabella seguente:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Nome</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Valore</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">raggio</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">pi_greco</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3.141592653589793</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">diametro</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">\(2 \cdot \text{raggio}\)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">perimetro</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">\(\text{pi\_greco} \cdot \text{diametro}\)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">area</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">\(\text{pi\_greco} \cdot \text{raggio}^2\)</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Verificare che abbiano il valore atteso.</p>
 </div>
 </div>
 </div>
@@ -2836,15 +2864,67 @@ e che ha tre argomenti che si riferiscono alle misure dei lati;</p>
 <div class="title">Esercizio A-1.1.9</div>
 <div class="content">
 <div class="paragraph">
-<p>Si scriva una funzione <code>perimetro_trapezio_rettangolo</code> che calcola il perimetro di un trapezio
-rettangolo dati tre argomenti che si riferiscono alle misure dei lati
-perpendicolari tra loro, nell&#8217;ordine <em>base minore</em>, <em>base maggiore</em> e
-altezza;</p>
+<p>Dichiara una costante <code>E</code> di valore 2.718281828459045.
+Quale valore viene restituito dalla dichiarazione? Quale valore è prodotto dalla valutazione di <code>E</code>?</p>
 </div>
 </div>
 </div>
 <div class="exampleblock">
 <div class="title">Esercizio A-1.1.10</div>
+<div class="content">
+<div class="paragraph">
+<p>Quale valore viene restituito dalla seguente sequenza di istruzioni?</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">1 + 2;
+3;
+4 * 5;</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="title">Esercizio A-1.1.11</div>
+<div class="content">
+<div class="paragraph">
+<p>Disegna l&#8217;albero di valutazione per la seguente espressione?</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">2 * 10 - 19.62 * 7;</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="title">Esercizio A-1.1.12</div>
+<div class="content">
+<div class="paragraph">
+<p>Si scriva una funzione <code>perimetro_triangolo</code> che calcola il perimetro di un triangolo
+e che ha tre argomenti che si riferiscono alle misure dei lati;</p>
+</div>
+<div class="paragraph">
+<p>La si applichi per conoscere il perimetri di un triangolo di lati 3, 4 e 5 m.</p>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="title">Esercizio A-1.1.13</div>
+<div class="content">
+<div class="paragraph">
+<p>Si scriva una funzione <code>perimetro_trapezio_rettangolo</code> che calcola il perimetro di un trapezio
+rettangolo dati tre argomenti che si riferiscono alle misure dei lati
+perpendicolari tra loro, nell&#8217;ordine <em>base minore</em>, <em>base maggiore</em> e
+altezza.</p>
+</div>
+<div class="paragraph">
+<p>Si applici la procedura su almeno tre trapezi per evitare che la funzione sia palesemente errata.</p>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="title">Esercizio A-1.1.14</div>
 <div class="content">
 <div class="paragraph">
 <p>Si considereri la generica equazione di secondo grado
@@ -2859,7 +2939,7 @@ coefficienti <code>a</code> e <code>b</code> e il termine noto <code>c</code>.</
 </div>
 </div>
 <div class="exampleblock">
-<div class="title">Esercizio A-1.1.11</div>
+<div class="title">Esercizio A-1.1.15</div>
 <div class="content">
 <div class="paragraph">
 <p>Si vuole determinare il valore assunto dal polinomio
@@ -2881,7 +2961,7 @@ calcolo di \(a^\prime x + b^\prime\).</p>
 </div>
 </div>
 <div class="exampleblock">
-<div class="title">Esercizio A-1.1.12</div>
+<div class="title">Esercizio A-1.1.16</div>
 <div class="content">
 <div class="paragraph">
 <p>Si scriva la funzione <code>minimo</code> che restituisce il minimo tra
@@ -2890,7 +2970,7 @@ i valori dei due argomenti.</p>
 </div>
 </div>
 <div class="exampleblock">
-<div class="title">Esercizio A-1.1.13</div>
+<div class="title">Esercizio A-1.1.17</div>
 <div class="content">
 <div class="paragraph">
 <p>Si scriva la funzione <code>massimo3</code> che restituisce il massimo tra
@@ -2903,7 +2983,7 @@ i valori dei suoi 3 argomenti. Per calcolarlo usa la funzione
 </div>
 </div>
 <div class="exampleblock">
-<div class="title">Esercizio A-1.1.14</div>
+<div class="title">Esercizio A-1.1.18</div>
 <div class="content">
 <div class="paragraph">
 <p>Si scriva una funzione <code>somma_fino_a</code> con un argomento <code>n</code>
@@ -2912,7 +2992,7 @@ che somma tutti i numeri naturali compresi tra 1 e <code>n</code>.</p>
 </div>
 </div>
 <div class="exampleblock">
-<div class="title">Esercizio A-1.1.15</div>
+<div class="title">Esercizio A-1.1.19</div>
 <div class="content">
 <div class="paragraph">
 <p>Si scriva una funzione che somma tutti i termini del tipo
@@ -2925,7 +3005,7 @@ che somma tutti i numeri naturali compresi tra 1 e <code>n</code>.</p>
 </div>
 </div>
 <div class="exampleblock">
-<div class="title">Esercizio A-1.1.16</div>
+<div class="title">Esercizio A-1.1.20</div>
 <div class="content">
 <div class="paragraph">
 <p>Scrivere una funzione <code>pi</code> che calcola il quadruplo della
@@ -2954,8 +3034,7 @@ maggiore di \(10^{-6}\).</p>
 <p>Nel primo paragrafo abbiamo considerato gli elementi della programmazione: abbiamo usato operazioni aritmetiche primitive, abbiamo combinato queste operazioni e abbiamo astratto queste operazioni composite dichiarandole come funzioni composte. Ma ciò non è abbastanza per permetterci di dire che sappiamo programmare. La nostra situazione è analoga a quella di colui il quale ha imparato le regole con si muovono i pezzi negli scacchi ma non sa nulla di aperture, tattiche o strategie tipiche. Come il giocatore di scacchi alle prime armi non è ancora a conoscenza degli schemi comuni e non di sa quali mosse valga la pena fare, così a noi manca la conoscenza di quali funzioni meritano di essere dichiarate. Ci manca l&#8217;esperienza per prevedere le conseguenze del fare una mossa (eseguire una funzione).</p>
 </div>
 <div class="paragraph">
-<p>La capacità di visualizzare le conseguenze delle azioni in esame è cruciale per diventare un programmatore esperto, così come lo è
-è in qualsiasi attività creativa e progettuale.
+<p>La capacità di visualizzare le conseguenze delle azioni in esame è cruciale per diventare un programmatore esperto, così come lo è in qualsiasi attività creativa e progettuale.
 Nella programmazione stiamo pianificando il corso delle azioni che un processo intraprende mediante un programma. Per diventare esperti, dobbiamo imparare a visualizzare i processi generati da vari tipi di funzioni.
 Solo dopo aver sviluppato una tale abilità possiamo imparare a costruire in modo affidabile programmi che presentano il comportamento desiderato.</p>
 </div>
@@ -2971,7 +3050,7 @@ Indagheremo anche le velocità con cui questi processi consumano le risorse comp
 Le funzioni che considereremo sono molto semplici.</p>
 </div>
 <div class="sect3">
-<h4 id="sec:recursion-and-iteration">1.2.1. Ricorsione e iterazione lineari</h4>
+<h4 id="sp_ricorsione_iterazione">1.2.1. Ricorsione e iterazione lineari</h4>
 <div class="paragraph">
 <p>Iniziamo considerando la funzione fattoriale, definita da</p>
 </div>
@@ -3555,9 +3634,9 @@ Nei computer che eseguono solo un numero fisso di operazioni alla volta, il temp
 </div>
 <div class="paragraph">
 <p>Ad esempio, il numero di passaggi del processo ricorsivo lineare per il calcolo fattoriale
-descritto nel <a href="#sec:recursion-and-iteration">paragrafo 1.2.1</a>
+descritto nel <a href="#sec:recursion-and-iteration">[sec:recursion-and-iteration]</a>
 aumenta proporzionalmente all&#8217;input \(n\). Pertanto, i passaggi richiesti per questo processo crescono come \(\Theta (n)\). Abbiamo anche visto che lo spazio richiesto cresce come \(\Theta (n)\).
-Nel processo iterativo per il calcolo del fattoriale, il numero di passaggi è ancora \(\Theta (n)\) ma lo spazio è \(\Theta (1)\)&#8201;&#8212;&#8201;cioè costante. <sup class="footnote">[<a id="_footnoteref_5" class="footnote" href="#_footnotedef_5" title="View footnote.">5</a>]</sup>
+Nel processo iterativo per il calcolo del fattoriale, il numero di passaggi è ancora \(\Theta (n)\) ma lo spazio è \(\Theta (1)\)&#8201;&#8212;&#8201;cioè costante. <sup class="footnote">[<a id="_footnoteref_7" class="footnote" href="#_footnotedef_7" title="View footnote.">7</a>]</sup>
 Il calcolo dei numeri di Fibonacci mediante il processo ricorsivo ad albero richiede \(\Theta (\phi^n)\) passi e spazio
 \(\Theta (n)\), dove \(\phi\) è il rapporto aureo descritto nel <a href="#sec:tree-recursion">paragrafo 1.2.2</a>.</p>
 </div>
@@ -3589,10 +3668,16 @@ we will examine two algorithms whose order of growth is logarithmic, so that dou
 <a href="#_footnoteref_3">3</a>. Il concetto di ambiente è fondamentale sia per compredere come funziona un interprete, sia per realizzarne uno.
 </div>
 <div class="footnote" id="_footnotedef_4">
-<a href="#_footnoteref_4">4</a>. In generale, il corpo di una funzione può contenere una sequenza di istruzioni. Nel caso, l&#8217;interprete valuta un&#8217;istruzione per volota della sequenza finché un&#8217;istruzione di restituzione del controllo non determina il valore dell&#8217;applicazione della funzione agli argomenti.
+<a href="#_footnoteref_4">4</a>. Una stringa indica una sequenza di caratteri
 </div>
 <div class="footnote" id="_footnotedef_5">
-<a href="#_footnoteref_5">5</a>. Queste affermazioni mascherano una grande semplificazione eccessiva. Ad esempio, se contiamo i passi del processo come operazioni della macchina, assumiamo che il numero di operazioni della macchina necessarie per eseguire, diciamo, una moltiplicazione sia indipendente dalla dimensione dei numeri da moltiplicare, il che è falso se i numeri sono sufficientemente grande. Osservazioni simili valgono per le stime dello spazio. Come la progettazione e la descrizione di un processo, l&#8217;analisi di un processo può essere effettuata a vari livelli di astrazione.
+<a href="#_footnoteref_5">5</a>. Si osservi che ci sono due operazioni distinte: si crea la funzione e quindi le si dà un nome. È, infatti, molto utile separare i due concetti sia per creare funzioni senza doverle nominare sia per dare nomi a funzioni che sono state create.
+</div>
+<div class="footnote" id="_footnotedef_6">
+<a href="#_footnoteref_6">6</a>. In generale, il corpo di una funzione può contenere una sequenza di istruzioni. Nel caso, l&#8217;interprete valuta un&#8217;istruzione per volota della sequenza finché un&#8217;istruzione di restituzione del controllo non determina il valore dell&#8217;applicazione della funzione agli argomenti.
+</div>
+<div class="footnote" id="_footnotedef_7">
+<a href="#_footnoteref_7">7</a>. Queste affermazioni mascherano una grande semplificazione eccessiva. Ad esempio, se contiamo i passi del processo come operazioni della macchina, assumiamo che il numero di operazioni della macchina necessarie per eseguire, diciamo, una moltiplicazione sia indipendente dalla dimensione dei numeri da moltiplicare, il che è falso se i numeri sono sufficientemente grande. Osservazioni simili valgono per le stime dello spazio. Come la progettazione e la descrizione di un processo, l&#8217;analisi di un processo può essere effettuata a vari livelli di astrazione.
 </div>
 </div>
 <div id="footer">

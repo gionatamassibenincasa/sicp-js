@@ -12,7 +12,6 @@ Il glossario ha la forma:
 |Termine | Sinonimi | Descrizione | Termini collegati
 |		|		  |			 |
 |====
-
 ====
 
 .Esercizio A-1.1.{counter:es_agg_1_1}
@@ -51,7 +50,7 @@ Aggiungere le parentesi alle espressioni sottostanti per indicare l'ordine di va
 . 100000 * 200000 * 400000 / 3 * 10
 . 100000 / 3 * 200000 * 400000 * 10
 
-Il valore restituito dall'interprete _JavaScript_ è quello denotato dall'espressione matematica (latexmath:[frac{8}{3} \cdot 10^{16} = 2,\bar{6}\cdot 10^{16}])? È lo stesso per entrambe le espressioni? Se no, sai spiegarti il perché?
+Il valore restituito dall'interprete _JavaScript_ è quello denotato dall'espressione matematica (latexmath:[\frac{8}{3} \cdot 10^{16} = 2,\bar{6}\cdot 10^{16}])? È lo stesso per entrambe le espressioni? Se no, sai spiegarti il perché?
 ====
 
 .Esercizio A-1.1.{counter:es_agg_1_1}
@@ -68,16 +67,52 @@ Il valore restituito dall'interprete _JavaScript_ è quello denotato dall'espres
 ====
 
 // Dichiarare alcune costanti con espressioni semplici
+.Esercizio A-1.1.{counter:es_agg_1_1}
+==== 
+Dichiarare i valori costanti della tabella seguente:
 
-// Dichiarare alcune costanti con espressioni composte mediante operatori
+|====
+|Nome        | Valore
+|raggio      | 1
+|pi_greco    | 3.141592653589793
+|diametro    | latexmath:[2 \cdot \text{raggio}]
+|perimetro   | latexmath:[\text{pi\_greco} \cdot \text{diametro}]
+|area        | latexmath:[\text{pi\_greco} \cdot \text{raggio}^2]
+|====
+
+Verificare che abbiano il valore atteso.
+====
 
 // Valore undefined come valore restituito dalla dichiarazione di costante
+.Esercizio A-1.1.{counter:es_agg_1_1}
+==== 
+Dichiara una costante `E` di valore 2.718281828459045.
+Quale valore viene restituito dalla dichiarazione? Quale valore è prodotto dalla valutazione di `E`?
+====
 
-// Valore restituito da una sequenza di istruzioni
+// Valore undefined come valore restituito dalla sequenza di istruzioni
+.Esercizio A-1.1.{counter:es_agg_1_1}
+==== 
+Quale valore viene restituito dalla seguente sequenza di istruzioni?
+
+[source, javascript]
+----
+1 + 2;
+3;
+4 * 5;
+----
+====
 
 // Disegnare l'albero di valutazione di un'espressione non triviale
+.Esercizio A-1.1.{counter:es_agg_1_1}
+==== 
+Disegna l'albero di valutazione per la seguente espressione?
 
-
+[source, javascript]
+----
+2 * 10 - 19.62 * 7;
+----
+====
 
 .Esercizio A-1.1.{counter:es_agg_1_1}
 ==== 

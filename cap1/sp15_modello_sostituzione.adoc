@@ -11,11 +11,11 @@ degli argomenti della combinazione dell'applicazione).
 Più in dettaglio, l'interprete procede come segue quando valuta le
 combinazioni di applicazioni:
 
-* Per valutare una combinazione di applicazioni della forma *funzione-espressione (* _argomenti-espressioni_ *)* fare quanto segue:
+* Per valutare una combinazione di applicazioni della forma __espressione-della-funzione__ **(** __espressioni-degli-argomenti__ **)** fare quanto segue:
 
 . Valuta l'espressione della funzione della combinazione
 dell'applicazione, risultante nella funzione da applicare.
-. Valuta le espressioni argomento della combinazione.
+. Valuta le espressioni degli argomenti della combinazione.
 . Applica la funzione agli argomenti:
 .. Se la funzione è primitiva, applichiamo semplicemente la funzione
 matematica corrispondente agli argomenti.
@@ -23,13 +23,14 @@ matematica corrispondente agli argomenti.
 della funzione con ogni parametro sostituito dall'argomento corrispondente.
 
 Per illustrare questo processo, valutiamo la combinazione
-dell'applicazione di funzione
+dell'applicazione di una funzione
 
 [source,javascript]
 ----
 f (5);
 ----
 
+dove `f` è la funzione definita in <<sp_funzioni_composte>>.
 La valutazione del nome `f` restituisce il corpo della funzione. La
 valutazione dell'espressione dell'argomento 5 produce il valore
 dell'argomento 5. Ora, recuperiamo l'espressione da restituire di `f`:
@@ -218,5 +219,5 @@ causa dell'ulteriore efficienza ottenuta dall'evitare valutazioni
 multiple di espressioni come quelle illustrate sopra e, in modo più
 significativo, perché la valutazione dell'ordine normale diventa molto
 più complicata da affrontare quando lasciamo il regno delle procedure
-che può essere modellato per sostituzione. D'altra parte, la valutazione
+che può essere modellizzato per sostituzione. D'altra parte, la valutazione
 dell'ordine normale può essere uno strumento estremamente prezioso.

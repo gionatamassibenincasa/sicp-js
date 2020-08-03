@@ -1,3 +1,4 @@
+[[sp_combinazione_operatori]]
 ==== Valutazione delle combinazioni mediante operatori
 
 Uno degli obiettivi di questo capitolo è quello di isolare i problemi
@@ -88,7 +89,7 @@ In un linguaggio interattivo come il JavaScript non ha senso parlare del valore 
 sull'ambiente che fornirebbe un significato per il nome `x`.
 
 Si noti che la regola di valutazione sopra indicata non gestisce le
-dichiarazioni di costanti. Ad esempio, valutando `const x = 3;` non si
+dichiarazioni di costanti. Ad esempio, valutando `const{nbsp}x{nbsp}={nbsp}3;` non si
 applica l'operatore `=` a due argomenti, uno dei quali è il valore del
 nome `x` e l'altro è `3`, poiché lo scopo della dichiarazione costante è
 proprio quello di associare `x` a un valore. Cioè, la parte `x = 3`
@@ -101,7 +102,7 @@ const x = 3;
 
 non è una combinazione di operatori.
 
-La __stringa__:footnote[Una stringa indica una sequenza di caratteri] `const` nella dichiarazione costante è una **parola chiave** del JavaScript. Le parole chiave sono *parole riservate* che hanno un significato
+La __stringa__footnote:[Una stringa indica una sequenza di caratteri] `const` nella dichiarazione costante è una **parola chiave** del JavaScript. Le parole chiave sono *parole riservate* che hanno un significato
 particolare e quindi non possono essere utilizzate come nomi di costante.
 Una parola chiave o una combinazione di parole chiave indica all'interprete
 JavaScript di trattare la rispettiva dichiarazione in modo speciale.
