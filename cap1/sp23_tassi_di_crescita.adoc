@@ -1,0 +1,67 @@
+[sp_tassi_di_crescita]
+==== Tassi di crescita
+
+Gli esempi precedenti mostrano che i processi possono differire notevolmente nelle velocità con cui consumano risorse computazionali.
+Un modo per descrivere questa differenza è usare la nozione di **tasso di crescita** per ottenere una misura grossolana delle risorse richieste da un processo man mano che gli input diventano più grandi.
+
+Sia latexmath:[n] sia un parametro che misura la __dimensione__ del problema, e sia latexmath:[R( n)] la quantità di risorse che il processo richiede per un problema di dimensione latexmath:[n].
+Nei nostri esempi precedenti abbiamo preso latexmath:[n] uguale al numero per il quale una determinata funzione deve essere calcolata, ma ci sono altre possibilità.
+Ad esempio, se il nostro obiettivo è calcolare un'approssimazione alla radice quadrata di un numero, potremmo scegliere che latexmath:[n] è il numero di cifre richieste per l'accuratezza.
+//Per la moltiplicazione delle matrici potremmo prendere latexmath: [n] per essere il numero di righe nelle matrici.
+In generale ci sono una serie di proprietà del problema rispetto alle quali sarà desiderabile analizzare un determinato processo.
+Allo stesso modo, latexmath:[R ( n)] potrebbe misurare il numero di registri di memoria utilizzati, il numero di operazioni elementari della macchina eseguite e così via.
+Nei computer che eseguono solo un numero fisso di operazioni alla volta, il tempo richiesto sarà proporzionale al numero di operazioni elementari della macchina eseguite.
+
+Diciamo che latexmath:[R(n)] ha un tasso di crescita latexmath:[\Theta(f(n))], che scriviamo con la notazione latexmath:[R(n)=\Theta(f(n))] (si legge __teta di latexmath:[f(n)]__, se ci sono due costanti positive latexmath:[k_1] e latexmath:[k_2] che non dipendono da latexmath:[n] tali che
+latexmath:[k_1f(n) \leq R(n) \leq k_2f(n)]
+per ogni valore di latexmath:[n] sufficientemente grande.  (In altri termini, per latexmath:[n] grande, il valore latexmath:[R(n)] è compreso tra latexmath:[k_1f(n)] e latexmath:[k_2f(n)].)
+
+Ad esempio, il numero di passaggi del processo ricorsivo lineare per il calcolo fattoriale descritto nel <<sp_ricorsione_iterazione>> aumenta proporzionalmente all'input latexmath:[n].
+Pertanto, i passaggi richiesti per questo processo crescono come latexmath:[\Theta (n)].
+Abbiamo anche visto che lo spazio richiesto cresce come latexmath:[\Theta (n)].
+Nel processo iterativo per il calcolo del fattoriale, il numero di passaggi è ancora latexmath:[\Theta (n)] ma lo spazio è latexmath:[\Theta (1)] -- cioè costante.footnote:[Queste affermazioni mascherano una grande semplificazione eccessiva. Ad esempio, se contiamo i passi del processo come operazioni della macchina, assumiamo che il numero di operazioni della macchina necessarie per eseguire, diciamo, una moltiplicazione sia indipendente dalla dimensione dei numeri da moltiplicare, il che è falso se i numeri sono sufficientemente grande.
+Osservazioni simili valgono per le stime dello spazio.
+Come la progettazione e la descrizione di un processo, l'analisi di un processo può essere effettuata a vari livelli di astrazione.]
+Il calcolo dei numeri di Fibonacci mediante il processo ricorsivo ad albero richiede latexmath:[\Theta (\phi^n)] passi e spazio
+latexmath:[\Theta (n)], dove latexmath:[\phi] è il rapporto aureo descritto nel <<sp_ricorsione_ad_albero>>.
+
+Il tasso di crescita fornisce soltanto una rozza descrizione del comportamento di un processo.
+Ad esempio, un processo che richiede latexmath:[n^2] passi, un altro uno che ne richiede latexmath:[1000n^2] e un terzo che ne richiede latexmath:[3n^2+10n+17] hanno tutti il tasso di crescit latexmath:[\Theta(n^2)].
+D'altra parte, il tasso di crescita fornisce un'indicazione utile sul cosa attendere dal comportamento del processo al variare della dimensione del problema.
+Per un processo lineare, latexmath:[\Theta(n)], al raddippiare della dimensione dell'istanza avremo approssimativamente raddoppiato la quantità di risorse utilizzate.
+Per un processo esponenziale, ogni incremento unitario della dimensione moltiplicherà l'utilizzo delle risorse per un fattore costante.
+Nel prosieguo del paragrafo <<s_funzioni_e_processi>>
+esamineremo due algoritmi il cui tasso di crescita è logaritmico, ossia tale che al raddoppio della dimensione del problema la richiesta delle risorse aumenta di una quantità costante.
+
+.Esercizio 1.14. Calcolare il tasso di crescita
+====
+Disegna l'albero che illustra il processo generato dalla funzione ``conta_cambi`` dell'esempio nel paragrafo <<sp_ricorsione_ad_albero>> per cambiare 11 centesimi di dollaro.
+Quali sono i tassi di crescita dello spazio (memoria) e del numero di passi (tempo) usati da questo processo al variare dell'importo da cambiare?
+====
+
+.Esercizio 1.14. Calcolare il tasso di crescita
+====
+Il seno di un angolo (specificato in radianti) può essere calcolato tramite l'approssimazione latexmath:[\mathrm{sen} x\approx x] se latexmath:[x] è sufficientemente piccolo, e l'identità trigonometrica latexmath:[\mathrm{sen} x=3\mathrm{sen} {\frac{x}{3}}-4\mathrm{sen}^3{\frac{x}{3}}] per ridurre il valore dell'argomento di latexmath:[\mathrm{sen}].
+(Per gli scopi di questo esercizio un angolo è considerato __sufficientemente piccolo__ quando il suo valore assoluto non è maggiore di 0,1 radianti.)
+Queste idee sono racchiuse nelle funzioni seguenti:
+
+[source, javascript]
+----
+function cubo(x) {
+    return x * x * x;
+}
+function p(x) {
+    return 3 * x - 4 * cubo(x);
+}
+function seno(angolo) {
+    return !(valore_assoluto(angolo) > 0.1)
+           ? angolo
+           : p(seno(angolo / 3.0));
+}
+----
+
+. Nella valutazione di `seno (12.15)` quante volte si applica la funzione `p`?
+. Quali sono i tassi di crescita dello spazio e del numero di passi (in funzione di latexmath:[a]) impiegati dal processo generato dalla funzione `seno` quando si valuta  `seno (a)`?
+====
+
+//

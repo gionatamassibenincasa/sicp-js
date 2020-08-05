@@ -1,4 +1,4 @@
-[[sec:tree-recursion]]
+[[sp_ricorsione_ad_albero]]
 ==== Ricorsione ad albero
 
 Un altro schema di calcolo comune è chiamato ricorsione ad albero. Ad esempio, considera di calcolare la sequenza dei numeri di Fibonacci, in cui ogni numero è la somma dei due precedenti:

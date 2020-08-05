@@ -468,10 +468,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_esercizi_aggiuntivi">1.1.9. Esercizi aggiuntivi</a></li>
 </ul>
 </li>
-<li><a href="#_le_funzioni_e_i_processi_da_esse_generati">1.2. Le funzioni e i processi da esse generati</a>
+<li><a href="#s_funzioni_e_processi">1.2. Le funzioni e i processi da esse generati</a>
 <ul class="sectlevel3">
 <li><a href="#sp_ricorsione_iterazione">1.2.1. Ricorsione e iterazione lineari</a></li>
-<li><a href="#sec:tree-recursion">1.2.2. Ricorsione ad albero</a></li>
+<li><a href="#sp_ricorsione_ad_albero">1.2.2. Ricorsione ad albero</a></li>
 <li><a href="#_tassi_di_crescita">Tassi di crescita</a></li>
 </ul>
 </li>
@@ -3058,7 +3058,7 @@ maggiore di \(10^{-6}\).</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_le_funzioni_e_i_processi_da_esse_generati">1.2. Le funzioni e i processi da esse generati</h3>
+<h3 id="s_funzioni_e_processi">1.2. Le funzioni e i processi da esse generati</h3>
 <div class="paragraph">
 <p>Nel primo paragrafo abbiamo considerato gli elementi della programmazione: abbiamo usato operazioni aritmetiche primitive, abbiamo combinato queste operazioni e abbiamo astratto queste operazioni composite dichiarandole come funzioni composte. Ma ciò non è abbastanza per permetterci di dire che sappiamo programmare. La nostra situazione è analoga a quella di colui il quale ha imparato le regole con si muovono i pezzi negli scacchi ma non sa nulla di aperture, tattiche o strategie tipiche. Come il giocatore di scacchi alle prime armi non è ancora a conoscenza degli schemi comuni e non di sa quali mosse valga la pena fare, così a noi manca la conoscenza di quali funzioni meritano di essere dichiarate. Ci manca l&#8217;esperienza per prevedere le conseguenze del fare una mossa (eseguire una funzione).</p>
 </div>
@@ -3352,7 +3352,7 @@ e che \(g (n) = A (1, n) = A \left(0, A (1, n - 1)\right) = f ( g (n -1)) = 2 \c
 </details>
 </div>
 <div class="sect3">
-<h4 id="sec:tree-recursion">1.2.2. Ricorsione ad albero</h4>
+<h4 id="sp_ricorsione_ad_albero">1.2.2. Ricorsione ad albero</h4>
 <div class="paragraph">
 <p>Un altro schema di calcolo comune è chiamato ricorsione ad albero. Ad esempio, considera di calcolare la sequenza dei numeri di Fibonacci, in cui ogni numero è la somma dei due precedenti:</p>
 </div>
@@ -3655,37 +3655,75 @@ Un modo per descrivere questa differenza è usare la nozione di <strong>tasso di
 <p>Sia \(n\) sia un parametro che misura la <em>dimensione</em> del problema, e sia \(R( n)\) la quantità di risorse che il processo richiede per un problema di dimensione \(n\).
 Nei nostri esempi precedenti abbiamo preso \(n\) uguale al numero per il quale una determinata funzione deve essere calcolata, ma ci sono altre possibilità.
 Ad esempio, se il nostro obiettivo è calcolare un&#8217;approssimazione alla radice quadrata di un numero, potremmo scegliere che \(n\) è il numero di cifre richieste per l&#8217;accuratezza.
-In generale ci sono una serie di proprietà del problema rispetto alle quali sarà desiderabile analizzare un determinato processo.</p>
-</div>
-<div class="paragraph">
-<p>Allo stesso modo, \(R ( n)\) potrebbe misurare il numero di registri di memoria utilizzati, il numero di operazioni elementari della macchina eseguite e così via.
+In generale ci sono una serie di proprietà del problema rispetto alle quali sarà desiderabile analizzare un determinato processo.
+Allo stesso modo, \(R ( n)\) potrebbe misurare il numero di registri di memoria utilizzati, il numero di operazioni elementari della macchina eseguite e così via.
 Nei computer che eseguono solo un numero fisso di operazioni alla volta, il tempo richiesto sarà proporzionale al numero di operazioni elementari della macchina eseguite.</p>
 </div>
 <div class="paragraph">
 <p>Diciamo che \(R(n)\) ha un tasso di crescita \(\Theta(f(n))\), che scriviamo con la notazione \(R(n)=\Theta(f(n))\) (si legge <em>teta di \(f(n)\)</em>, se ci sono due costanti positive \(k_1\) e \(k_2\) che non dipendono da \(n\) tali che
-\(k_1f(n) \leq R(n) \leq k_2f(n)\)</p>
+\(k_1f(n) \leq R(n) \leq k_2f(n)\)
+per ogni valore di \(n\) sufficientemente grande.  (In altri termini, per \(n\) grande, il valore \(R(n)\) è compreso tra \(k_1f(n)\) e \(k_2f(n)\).)</p>
 </div>
 <div class="paragraph">
-<p>per ogni valore di \(n\) sufficientemente grande.  (In altri termini, per \(n\) grande, il valore \(R(n)\) è compreso tra \(k_1f(n)\) e \(k_2f(n)\).)</p>
-</div>
-<div class="paragraph">
-<p>Ad esempio, il numero di passaggi del processo ricorsivo lineare per il calcolo fattoriale
-descritto nel <a href="#sec:recursion-and-iteration">[sec:recursion-and-iteration]</a>
-aumenta proporzionalmente all&#8217;input \(n\). Pertanto, i passaggi richiesti per questo processo crescono come \(\Theta (n)\). Abbiamo anche visto che lo spazio richiesto cresce come \(\Theta (n)\).
-Nel processo iterativo per il calcolo del fattoriale, il numero di passaggi è ancora \(\Theta (n)\) ma lo spazio è \(\Theta (1)\)&#8201;&#8212;&#8201;cioè costante. <sup class="footnote">[<a id="_footnoteref_7" class="footnote" href="#_footnotedef_7" title="View footnote.">7</a>]</sup>
+<p>Ad esempio, il numero di passaggi del processo ricorsivo lineare per il calcolo fattoriale descritto nel <a href="#sp_ricorsione_iterazione">paragrafo 1.2.1</a> aumenta proporzionalmente all&#8217;input \(n\).
+Pertanto, i passaggi richiesti per questo processo crescono come \(\Theta (n)\).
+Abbiamo anche visto che lo spazio richiesto cresce come \(\Theta (n)\).
+Nel processo iterativo per il calcolo del fattoriale, il numero di passaggi è ancora \(\Theta (n)\) ma lo spazio è \(\Theta (1)\)&#8201;&#8212;&#8201;cioè costante.<sup class="footnote">[<a id="_footnoteref_7" class="footnote" href="#_footnotedef_7" title="View footnote.">7</a>]</sup>
 Il calcolo dei numeri di Fibonacci mediante il processo ricorsivo ad albero richiede \(\Theta (\phi^n)\) passi e spazio
-\(\Theta (n)\), dove \(\phi\) è il rapporto aureo descritto nel <a href="#sec:tree-recursion">paragrafo 1.2.2</a>.</p>
+\(\Theta (n)\), dove \(\phi\) è il rapporto aureo descritto nel <a href="#sp_ricorsione_ad_albero">paragrafo 1.2.2</a>.</p>
 </div>
 <div class="paragraph">
-<p>Orders of growth provide only a crude description of the behavior of a
-process.
-For example, a process requiring &lt;LATEXINLINE&gt;$n^2$&lt;/LATEXINLINE&gt; steps and a process requiring &lt;LATEXINLINE&gt;$1000n^2$&lt;/LATEXINLINE&gt; steps and a process requiring &lt;LATEXINLINE&gt;$3n^2+10n+17$&lt;/LATEXINLINE&gt; steps
-all have &lt;LATEXINLINE&gt;$\Theta(n^2)$&lt;/LATEXINLINE&gt; order of growth.
-On the other hand, order of growth provides a useful indication of how we may expect the behavior of the process to change as we change the size of the problem.  For a  &lt;LATEXINLINE&gt;$\Theta(n)$&lt;/LATEXINLINE&gt; (linear) process, doubling the size will roughly double the amount
-of resources used.  For an exponential process, each increment in
-problem size will multiply the resource utilization by a constant
-factor.  In the remainder of section <a href="#sec:procedures-and-processes">[sec:procedures-and-processes]</a>
-we will examine two algorithms whose order of growth is logarithmic, so that doubling the problem size increases the resource requirement by a constant amount.</p>
+<p>Il tasso di crescita fornisce soltanto una rozza descrizione del comportamento di un processo.
+Ad esempio, un processo che richiede \(n^2\) passi, un altro uno che ne richiede \(1000n^2\) e un terzo che ne richiede \(3n^2+10n+17\) hanno tutti il tasso di crescit \(\Theta(n^2)\).
+D&#8217;altra parte, il tasso di crescita fornisce un&#8217;indicazione utile sul cosa attendere dal comportamento del processo al variare della dimensione del problema.
+Per un processo lineare, \(\Theta(n)\), al raddippiare della dimensione dell&#8217;istanza avremo approssimativamente raddoppiato la quantità di risorse utilizzate.
+Per un processo esponenziale, ogni incremento unitario della dimensione moltiplicherà l&#8217;utilizzo delle risorse per un fattore costante.
+Nel prosieguo del paragrafo <a href="#s_funzioni_e_processi">paragrafo 1.2</a>
+esamineremo due algoritmi il cui tasso di crescita è logaritmico, ossia tale che al raddoppio della dimensione del problema la richiesta delle risorse aumenta di una quantità costante.</p>
+</div>
+<div class="exampleblock">
+<div class="title">Esercizio 1.14. Calcolare il tasso di crescita</div>
+<div class="content">
+<div class="paragraph">
+<p>Disegna l&#8217;albero che illustra il processo generato dalla funzione <code>conta_cambi</code> dell&#8217;esempio nel paragrafo <a href="#sp_ricorsione_ad_albero">paragrafo 1.2.2</a> per cambiare 11 centesimi di dollaro.
+Quali sono i tassi di crescita dello spazio (memoria) e del numero di passi (tempo) usati da questo processo al variare dell&#8217;importo da cambiare?</p>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="title">Esercizio 1.14. Calcolare il tasso di crescita</div>
+<div class="content">
+<div class="paragraph">
+<p>Il seno di un angolo (specificato in radianti) può essere calcolato tramite l&#8217;approssimazione \(\mathrm{sen} x\approx x\) se \(x\) è sufficientemente piccolo, e l&#8217;identità trigonometrica \(\mathrm{sen} x=3\mathrm{sen} {\frac{x}{3}}-4\mathrm{sen}^3{\frac{x}{3}}\) per ridurre il valore dell&#8217;argomento di \(\mathrm{sen}\).
+(Per gli scopi di questo esercizio un angolo è considerato <em>sufficientemente piccolo</em> quando il suo valore assoluto non è maggiore di 0,1 radianti.)
+Queste idee sono racchiuse nelle funzioni seguenti:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function cubo(x) {
+    return x * x * x;
+}
+function p(x) {
+    return 3 * x - 4 * cubo(x);
+}
+function seno(angolo) {
+    return !(valore_assoluto(angolo) &gt; 0.1)
+           ? angolo
+           : p(seno(angolo / 3.0));
+}</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Nella valutazione di <code>seno (12.15)</code> quante volte si applica la funzione <code>p</code>?</p>
+</li>
+<li>
+<p>Quali sono i tassi di crescita dello spazio e del numero di passi (in funzione di \(a\)) impiegati dal processo generato dalla funzione <code>seno</code> quando si valuta  <code>seno (a)</code>?</p>
+</li>
+</ol>
+</div>
+</div>
 </div>
 </div>
 </div>
