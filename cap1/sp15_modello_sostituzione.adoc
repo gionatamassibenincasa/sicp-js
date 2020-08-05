@@ -11,7 +11,7 @@ degli argomenti della combinazione dell'applicazione).
 Più in dettaglio, l'interprete procede come segue quando valuta le
 combinazioni di applicazioni:
 
-* Per valutare una combinazione di applicazioni della forma __espressione-della-funzione__ **(** __espressioni-degli-argomenti__ **)** fare quanto segue:
+* Per valutare una combinazione di applicazioni della forma __espressione-della-funzione__ **(**{nbsp}__espressioni-degli-argomenti__{nbsp}**)** fare quanto segue:
 
 . Valuta l'espressione della funzione della combinazione
 dell'applicazione, risultante nella funzione da applicare.

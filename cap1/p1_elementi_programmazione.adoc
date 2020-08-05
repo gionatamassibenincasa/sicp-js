@@ -41,6 +41,7 @@ include::sp14_funzioni_composte.adoc[]
 
 include::sp15_modello_sostituzione.adoc[]
 
+// asciidoctor: WARNING: Could not locate the character `⁣' in the following fonts: Noto Serif, M+ 1p Fallback
 include::sp16_espressione_condizionale.adoc[]
 
 include::sp17_radq.adoc[]

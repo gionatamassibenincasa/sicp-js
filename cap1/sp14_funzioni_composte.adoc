@@ -119,7 +119,7 @@ numeri qualsiasi come argomenti, produce la somma dei loro quadrati:
 [source,javascript]
 ----
 function somma_di_quadrati (x, y) {
-    return quadrato (x) + quadrato (y);
+	return quadrato (x) + quadrato (y);
 }
 ----
 
@@ -129,7 +129,7 @@ costruzione di ulteriori funzioni:
 [source,javascript]
 ----
 function f (a) {
-    return somma_di_quadrati (a + 1, a * 2);
+	return somma_di_quadrati (a + 1, a * 2);
 }
 ----
 

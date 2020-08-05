@@ -7,14 +7,17 @@ latexmath:[0, 1, 1, 2, 3, 5, 8, 13, 21, \ldots]
 
 Un numero di Fibonacci, in generale, può essere definito dalla regola:
 
-latexmath:[\begin{eqnarray*}
+[stem]
+++++
+\begin{eqnarray*}
           \textrm{Fib}(n) & = & \left\{ \begin{array}{ll}
           0   &  \mbox{se } n=0\\
           1   & \mbox{se } n=1\\
           \textrm{Fib}(n-1)+\textrm{Fib}(n-2) & \mbox{altrimenti}
           \end{array}
           \right.
-\end{eqnarray*}]
+\end{eqnarray*}
+++++
 
 Possiamo tradurre immediatamente questa definizione in una funzione ricorsiva per il calcolo dei numeri di Fibonacci:
 
@@ -47,10 +50,13 @@ Pertanto, il processo utilizza una serie di passaggi il cui numero cresce in mod
 
 Possiamo anche formulare un processo iterativo per calcolare i numeri di Fibonacci. L'idea è di utilizzare una coppia di numeri interi latexmath:[a] e latexmath:[b], inizializzati su latexmath:[\textrm{Fib} (1) = 1] e latexmath:[\textrm{Fib} (0) = 0], e di applicare ripetutamente le trasformazioni simultanee
 
-latexmath:[\begin{eqnarray*}
-  a & \leftarrow & a+b \\
-  b & \leftarrow & a
-\end{eqnarray*}]
+[stem]
+++++
+\begin{eqnarray*}
+  a & \leftarrow & a+b \\ \nonumber
+  b & \leftarrow & a \nonumber
+\end{eqnarray*}
+++++
 
 Non è difficile dimostrare che, dopo aver applicato questa trasformazione latexmath:[n] volte, latexmath:[a] e latexmath:[b] saranno uguali, rispettivamente, a latexmath:[\textrm{Fib} (n + 1)] e latexmath:[\textrm{Fib} (n)]. Quindi, possiamo calcolare i numeri di Fibonacci in modo iterativo usando la funzione
 
@@ -138,6 +144,7 @@ latexmath:[f(n)= {f(n-1)} + 2 \cdot f(n-2) + 3 \cdot f(n-3)] se latexmath:[n \ge
 . Scrivi una funzione JavaScript che  calcola latexmath:[f] per mezzo di un processo iterativo.
 ====
 
+ifndef::backend-pdf[]
 .Click per vedere le soluzioni dell'esercizio
 [%collapsible]
 ====
@@ -171,13 +178,15 @@ function f (n) {
 }
 ----
 ====
+endif::backend-pdf[]
 
 .Esercizio 1.12. Ricavare una definizione induttiva
 ====
 La seguente disposizione di numeri è chiamata triangolo di Tartaglia
 (triangolo di Pascal nella versione originale del testo).
 
-latexmath:[
+[stem]
+++++
 \begin{array}{rrrrrrrrr}
     &   &   &   & 1 &   &   &   &     \\
     &   &   &1  &   &1  &   &   &     \\
@@ -185,7 +194,8 @@ latexmath:[
     &1  &   &3  &   &3  &   &1  &     \\
  1  &   & 4 &   & 6 &   & 4 &   & 1   \\
     &   &   &   & \ldots & & & & 
-\end{array}]
+\end{array}
+++++
 
 I numeri sui lati del triangolo sono tutti 1 e ogni numero
 dentro il triangolo è la somma dei due numeri che lo sovrastano.
@@ -195,6 +205,7 @@ in quanto la riga latexmath:[n]-esima è formata dai coefficienti dei termini de
 Scrivi una funzione JavaScript che calcoli gli elementi del triangolo di Tartaglia per mezzo di un processo ricorsivo. Considera due argomenti, la riga e la posizione all'interno della riga.
 ====
 
+ifndef::backend-pdf[]
 .Click per vedere le soluzioni dell'esercizio
 [%collapsible]
 ====
@@ -211,16 +222,21 @@ function triangolo_tartaglia(riga, indice) {
 }
 ----
 ====
+endif::backend-pdf[]
 
-.Esercizio 1.13. Fornire una dimostrazione **MOLTO DIFFICILE**
+.Esercizio 1.13. Fornire una dimostrazione **(DIFFICILE)**
 ====
 Dimostra che latexmath:[\textrm{Fib}(n)] è l'intero più vicino a latexmath:[\phi^n/\sqrt{5}], dove latexmath:[\phi= (1+\sqrt{5})/2].
 
 Suggerimento: sia latexmath:[\psi= (1-\sqrt{5})/2]. Usa l'induzione e la definizione della successione dei numeri di Fibonacci per dimostrare che latexmath:[\textrm{Fib}(n)=(\phi^n -\psi^n)/\sqrt{5}].
 ====
 
+ifndef::backend-pdf[]
 .Click per vedere le soluzioni dell'esercizio
 [%collapsible]
 ====
 Si veda https://codology.net/post/sicp-solution-exercise-1-13/
 ====
+endif::backend-pdf[]
+
+//

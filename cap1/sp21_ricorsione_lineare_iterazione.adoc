@@ -38,12 +38,13 @@ Più formalmente, manteniamo un prodotto parziale, insieme a un __contatore__
 che conta da 1 a latexmath:[n].
 Possiamo descrivere il calcolo dicendo che il contatore e il prodotto cambiano simultaneamente da un passaggio all'altro in base alla regola
 
-latexmath:[
+[stem]
+++++
 \begin{eqnarray*}
   \mathrm{prodotto}  & \leftarrow & \mathrm{contatore} \cdot \mathrm{prodotto} \\
   \mathrm{contatore} & \leftarrow & \mathrm{contatore} + 1
 \end{eqnarray*}
-]
+++++
 
 e che latexmath:[n!] è il valore del prodotto quando il contatore supera latexmath:[n].
 
@@ -66,7 +67,7 @@ function fattoriale (n) {
 Come sopra, possiamo usare il modello di sostuzione per visualizzare il processo di calcolo di latexmath:[6!] come mostrato in <<fig1_4>>.
 
 [[fig1_4]]
-.Un processo iterativo lineare per calcolare latexmath:[6!]
+.Un processo iterativo lineare per calcolare il fattoriale di 6
 image::https://sicp.comp.nus.edu.sg/chapters/img_javascript/ch1-Z-G-10.svg[]
 
 Confronta i due processi. Da un punto di vista, non sembrano così diversi. Entrambi calcolano la stessa funzione matematica sullo stesso dominio e ciascuno richiede un numero di passaggi proporzionale a latexmath:[n] per calcolare latexmath:[n!]. In effetti, entrambi i processi eseguono anche la stessa sequenza di moltiplicazioni, ottenendo la stessa sequenza di prodotti parziali. D'altra parte, quando consideriamo le forme dei due processi, scopriamo che si evolvono in modo abbastanza diverso.
@@ -105,6 +106,7 @@ function piu(a, b) {  // <2>
 Usando il modello di sostituzione, illustra il processo generato dalle due funzioni  valutando `piu (4, 5);`. Questi processi sono iterativi o ricorsivi?
 ====
 
+ifndef::backend-pdf[]
 .Click per vedere le soluzioni dell'esercizio
 [%collapsible]
 ====
@@ -151,6 +153,7 @@ piu(0, 9)
 9
 ----
 ====
+endif::backend-pdf[]
 
 .Esercizio 1.10. La funzione (matematica) di Ackermann
 ==== 
@@ -204,18 +207,19 @@ calcolate su argomenti interi *positivi* latexmath:[n].
 Ad esempio, latexmath:[k(n)] calcola latexmath:[5n^2].
 ====
 
-
+ifndef::backend-pdf[]
 .Click per vedere le soluzioni dell'esercizio
 [%collapsible]
 ====
-latexmath:[
+[stem]
+++++
 A (x, y) = \begin{cases}
     0  & \text {se } y = 0 \\
     2y & \text {se } x = 0 \\
     2  & \text {se } y = 1 \\
     A(x - 1, A(x, y - 1) & \text{altrimenti}
 \end{cases}
-]
+++++
 
 La funzione latexmath:[f(n)] calcola latexmath:[2 \cdot n],
 e deriva direttamente dalla valutazione della seconda regola.
@@ -226,14 +230,17 @@ e che latexmath:[g (n) = A (1, n) = A \left(0, A (1, n - 1)\right) = f ( g (n -1
 
 La funzione latexmath:[h(n)] calcola latexmath:[2^{2^{\cdot^{\cdot^{\cdot^2}}}}] dove il numero di 2 nella catena di elevamento a potenza è latexmath:[n]. Tale operazione algebrica si chiama tetrazione. Si ricava considerando che 
 latexmath:[h (1) = A (2, 1) = 2] e che
-latexmath:[
+
+[stem]
+++++
 h (n) = A (2, n) = A (1, A (2, n - 1)) = g ( h (n - 1)) = 2^{h(n -1)} = \underbrace{2^{2^{{\mathinner{
   \kern1mu\raise1pt{.}
   \kern2mu\raise4pt{.}
   \kern2mu\raise7pt{\Rule{0pt}{7pt}{0pt}.}
   \kern1mu
 }}^{h(1)}}}}_{n\ \text{volte}}
-].
+++++
 ====
+endif::backend-pdf[]
 
 //

@@ -1247,7 +1247,7 @@ numeri qualsiasi come argomenti, produce la somma dei loro quadrati:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function somma_di_quadrati (x, y) {
-    return quadrato (x) + quadrato (y);
+	return quadrato (x) + quadrato (y);
 }</code></pre>
 </div>
 </div>
@@ -1258,7 +1258,7 @@ costruzione di ulteriori funzioni:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function f (a) {
-    return somma_di_quadrati (a + 1, a * 2);
+	return somma_di_quadrati (a + 1, a * 2);
 }</code></pre>
 </div>
 </div>
@@ -1291,7 +1291,7 @@ combinazioni di applicazioni:</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Per valutare una combinazione di applicazioni della forma <em>espressione-della-funzione</em> <strong>(</strong> <em>espressioni-degli-argomenti</em> <strong>)</strong> fare quanto segue:</p>
+<p>Per valutare una combinazione di applicazioni della forma <em>espressione-della-funzione</em> <strong>(</strong>&#160;<em>espressioni-degli-argomenti</em>&#160;<strong>)</strong> fare quanto segue:</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -1552,12 +1552,7 @@ assoluto di un numero verificando se il numero è negativo o meno e
 intraprendendo azioni diverse in ciascun caso in base alla regola</p>
 </div>
 <div class="paragraph">
-<p>\(
-|x| = \begin{cases}
-		\phantom{-}x  &amp; \text{se } x \geq 0\\
-				  -x  &amp; \text{altrimenti}
-\end{cases}
-\)</p>
+<p>\(|x| = \begin{cases} \phantom{-}x &amp; \text{se } x \geq 0\\ -x &amp; \text{altrimenti}\end{cases}\)</p>
 </div>
 <div class="paragraph">
 <p>Questo costrutto è un&#8217;analisi di casi e può essere espresso in
@@ -1619,16 +1614,16 @@ questi:</p>
 <dt class="hdlist1"><em>espressione1</em> <code>&amp;&amp;</code> <em>espressione2</em> </dt>
 <dd>
 <p>L&#8217;interprete valuta espressione1. Se viene valutato falso, il valore
-dell&#8217;intera espressione è falso e expressione2 non viene valutata. Se
-expressione1 restituisce vero, il valore dell&#8217;intera espressione è il
-valore di expressione2.</p>
+dell&#8217;intera espressione è falso e espressione2 non viene valutata. Se
+espressione1 restituisce vero, il valore dell&#8217;intera espressione è il
+valore di espressione2.</p>
 </dd>
-<dt class="hdlist1"><em>espressione1</em> <code>||</code> <em>expressione2</em> </dt>
+<dt class="hdlist1"><em>espressione1</em> <code>||</code> <em>espressione2</em> </dt>
 <dd>
-<p>L&#8217;interprete valuta expressione1. Se restituisce vero, il valore
+<p>L&#8217;interprete valuta espressione1. Se restituisce vero, il valore
 dell&#8217;intera espressione è vero e expressione2 non viene valutata. Se
-expression1 restituisce falso, il valore dell&#8217;intera espressione è il
-valore di expressione2.</p>
+espressione1 restituisce falso, il valore dell&#8217;intera espressione è il
+valore di espressione2.</p>
 </dd>
 <dt class="hdlist1"><code>!</code> <em>espressione</em> </dt>
 <dd>
@@ -1639,7 +1634,7 @@ valore di expressione2.</p>
 <div class="paragraph">
 <p>Si noti che <code>&amp;&amp;</code> e <code>||</code> non vengono valutati come operatori aritmetici
 come <code>+</code>, perché la loro espressione di destra non viene sempre valutata.
-L&#8217;operatore <code>!</code>, D&#8217;altra parte, segue la regola di valutazione già nota.
+L&#8217;operatore <code>!</code>, d&#8217;altra parte, segue la regola di valutazione già nota.
 È un operatore unario, il che significa che accetta solo un argomento,
 mentre gli operatori aritmetici incontrati finora sono binari, prendendo
 due argomenti. L&#8217;operatore <code>!</code> precede il suo argomento; lo chiamiamo un
@@ -2049,24 +2044,48 @@ quadrata di 2 come segue. Supponiamo che la nostra ipotesi iniziale sia
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock">\(1\)</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">\(\frac 2 1\)</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">\(\frac{1 + 2}2=\frac 3 2=1.5\)</p></td>
+<td class="tableblock halign-center valign-top"><div class="content"><div class="paragraph">
+<p>\(1\)</p>
+</div></div></td>
+<td class="tableblock halign-center valign-top"><div class="content"><div class="paragraph">
+<p>\(\frac 2 1\)</p>
+</div></div></td>
+<td class="tableblock halign-center valign-top"><div class="content"><div class="paragraph">
+<p>\(\frac{1 + 2}2=\frac 3 2=1.5\)</p>
+</div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock">\(1.5\)</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">\(\frac 4 3\)</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">\(\frac 1 2\left(\frac 3 2 + \frac 4 3\right)=\frac 17 12 \approx 1.4167\)</p></td>
+<td class="tableblock halign-center valign-top"><div class="content"><div class="paragraph">
+<p>\(1.5\)</p>
+</div></div></td>
+<td class="tableblock halign-center valign-top"><div class="content"><div class="paragraph">
+<p>\(\frac 4 3\)</p>
+</div></div></td>
+<td class="tableblock halign-center valign-top"><div class="content"><div class="paragraph">
+<p>\(\frac 1 2\left(\frac 3 2 + \frac 4 3\right)=\frac 17 12 \approx 1.4167\)</p>
+</div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock">\(1.4167\)</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">\(\frac{24}{17}\)</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">\(\frac 1 2\left(\frac{17}{12}+\frac{24}{17}\right)=\frac{577}{408}\approx 1.4142\)</p></td>
+<td class="tableblock halign-center valign-top"><div class="content"><div class="paragraph">
+<p>\(1.4167\)</p>
+</div></div></td>
+<td class="tableblock halign-center valign-top"><div class="content"><div class="paragraph">
+<p>\(\frac{24}{17}\)</p>
+</div></div></td>
+<td class="tableblock halign-center valign-top"><div class="content"><div class="paragraph">
+<p>\(\frac 1 2\left(\frac{17}{12}+\frac{24}{17}\right)=\frac{577}{408}\approx 1.4142\)</p>
+</div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock">\(1.4142\)</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">\(\cdots\)</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">\(\cdots\)</p></td>
+<td class="tableblock halign-center valign-top"><div class="content"><div class="paragraph">
+<p>\(1.4142\)</p>
+</div></div></td>
+<td class="tableblock halign-center valign-top"><div class="content"><div class="paragraph">
+<p>\(\cdots\)</p>
+</div></div></td>
+<td class="tableblock halign-center valign-top"><div class="content"><div class="paragraph">
+<p>\(\cdots\)</p>
+</div></div></td>
 </tr>
 </tbody>
 </table>
@@ -2085,9 +2104,9 @@ Scriviamo questa strategia di base come funzione:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function radice_quadrata_iter (stima, x) {
-    return suff_accurata (stima, x)
-           ? stima
-           : radice_quadrata_iter (migliora (stima, x), x);
+	return suff_accurata (stima, x)
+		? stima
+		: radice_quadrata_iter (migliora (stima, x), x);
 }</code></pre>
 </div>
 </div>
@@ -2098,7 +2117,7 @@ radicando e la vecchia stima:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function migliora (stima, x) {
-    return valor_medio (stima, x / stima);
+	return valor_medio (stima, x / stima);
 }</code></pre>
 </div>
 </div>
@@ -2107,8 +2126,8 @@ radicando e la vecchia stima:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function valor_medio (x, y) {
-    return (x + y) / 2;
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function valor_medio (x, y)
+	return (x + y) / 2;
 }</code></pre>
 </div>
 </div>
@@ -2122,7 +2141,7 @@ predeterminata soglia (qui 0,001):</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function suff_accurata (stima, x) {
-    return valore_assoluto (quadrato (stima) - x) &lt; 0.001;
+	return valore_assoluto (quadrato (stima) - x) &lt; 0.001;
 }</code></pre>
 </div>
 </div>
@@ -2133,7 +2152,7 @@ sempre supporre che la radice quadrata di qualsiasi numero sia 1:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function radice_quadrata (x) {
-    return radice_quadrata_iter (1, x);
+	return radice_quadrata_iter (1, x);
 }</code></pre>
 </div>
 </div>
@@ -2145,25 +2164,25 @@ così come possiamo usare qualsiasi funzione.</p>
 <div class="title">Programma per il calcolo della radice quadrata e funzioni da cui dipende</div>
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function radice_quadrata_iter (stima, x) {
-    return suff_accurata (stima, x)
-           ? stima
-           : radice_quadrata_iter (migliora (stima, x), x);
+	return suff_accurata (stima, x)
+		? stima
+		: radice_quadrata_iter (migliora (stima, x), x);
 }
 
 function migliora (stima, x) {
-    return valor_medio (stima, x / stima);
+	return valor_medio (stima, x / stima);
 }
 
 function valor_medio (x, y) {
-    return (x + y) / 2;
+	return (x + y) / 2;
 }
 
 function suff_accurata (stima, x) {
-    return valore_assoluto (quadrato (stima) - x) &lt; 0.001;
+	return valore_assoluto (quadrato (stima) - x) &lt; 0.001;
 }
 
 function radice_quadrata (x) {
-    return radice_quadrata_iter (1, x);
+	return radice_quadrata_iter (1, x);
 }
 
 function valore_assoluto (x) {
@@ -2223,7 +2242,7 @@ fatto e dichiara una funzione condizionale come segue:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function condizionale (predicato, clausola_allora, clausola_altrimenti) {
-    return predicato ? clausola_allora: clausola_altrimenti;
+	return predicato ? clausola_allora: clausola_altrimenti;
 }</code></pre>
 </div>
 </div>
@@ -2251,10 +2270,10 @@ quadrata:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function radice_quadrata_iter (stima, x) {
-    return condizionale (suff_accurata (stima, x),
-                       stima,
-                       radice_quadrata_iter (migliora (stima, x),
-                                 x));
+	return condizionale (suff_accurata (stima, x),
+		stima,
+		radice_quadrata_iter (migliora (stima, x),
+		x));
 }</code></pre>
 </div>
 </div>
@@ -2315,21 +2334,21 @@ Si verifichi se si creano soluzioni mal gestite se si prova a calcolare la radic
 
 const soglia_tolleranza = 0.01;
 function radice_quadrata_iter (stima, x) {
-    return errore_relativo (stima, migliora (stima, x)) &lt; soglia_tolleranza
-           ? stima
-           : radice_quadrata_iter (migliora (stima, x), x);
+	return errore_relativo (stima, migliora (stima, x)) &lt; soglia_tolleranza
+		? stima
+		: radice_quadrata_iter (migliora (stima, x), x);
 }
 
 function migliora (stima, x) {
-    return valor_medio (stima, x / stima);
+	return valor_medio (stima, x / stima);
 }
 
 function valor_medio (x, y) {
-    return (x + y) / 2;
+	return (x + y) / 2;
 }
 
 function suff_accurata (stima, x) {
-    return errore_relativo (stima, migliora (stima, x)) &lt; soglia_tolleranza;
+	return errore_relativo (stima, migliora (stima, x)) &lt; soglia_tolleranza;
 }
 
 function errore_relativo (stima, riferimento) {
@@ -2337,7 +2356,7 @@ function errore_relativo (stima, riferimento) {
 }
 
 function radice_quadrata (x) {
-    return radice_quadrata_iter (1, x);
+	return radice_quadrata_iter (1, x);
 }
 
 function valore_assoluto (x) {
@@ -2377,7 +2396,7 @@ calcolo della radice cubica analoga alla funzione <code>radice_quadrata</code>.<
 <pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">// Soluzione dell'esercizio 1.8
 
 function suff_accurata (stima, x) {
-    return valore_assoluto (cubo (stima) - x) &lt; 0.001;
+	return valore_assoluto (cubo (stima) - x) &lt; 0.001;
 }
 
 function migliora (stima, x) {
@@ -2386,8 +2405,8 @@ function migliora (stima, x) {
 
 function radc_iter (stima, x) {
 	return suff_accurata (stima, x)
-			   ? stima
-			   : radice_cubica_iter (migliora (stima, x), x);
+		? stima
+		: radice_cubica_iter (migliora (stima, x), x);
 }
 
 function radice_cubica (x) {
@@ -2456,15 +2475,15 @@ numero come valore.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function quadrato (x) {
-    ritorna x * x;
+	return x * x;
 }
 
 function quadrato (x) {
-    return Math.exp (doppio (Math.log (x)));
+	return Math.exp (doppio (Math.log (x)));
 }
 
 function doppio (x) {
-    return x + x;
+	return x + x;
 }</code></pre>
 </div>
 </div>
@@ -2485,11 +2504,11 @@ seguenti funzioni non dovrebbero essere distinguibili:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function quadrato (x) {
-    return x * x;
+	return x * x;
 }
 
 function quadrato (y) {
-    return y * y;
+   	return y * y;
 }</code></pre>
 </div>
 </div>
@@ -2588,21 +2607,21 @@ della radice quadrata possiamo scrivere</p>
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function radice_quadrata (x) {
 	function radice_quadrata_iter (stima, x) {
-	    return suff_accurata (stima, x)
-	           ? stima
-	           : radice_quadrata_iter (migliora (stima, x), x);
+		return suff_accurata (stima, x)
+			? stima
+			: radice_quadrata_iter (migliora (stima, x), x);
 	}
 
 	function migliora (stima, x) {
-	    return valor_medio (stima, x / stima);
+		return valor_medio (stima, x / stima);
 	}
 
 	function valor_medio (x, y) {
-	    return (x + y) / 2;
+		return (x + y) / 2;
 	}
 
 	function suff_accurata (stima, x) {
-	    return valore_assoluto (quadrato (stima) - x) &lt; 0.001;
+		return valore_assoluto (quadrato (stima) - x) &lt; 0.001;
 	}
 
 	function valore_assoluto (x) {
@@ -2613,7 +2632,7 @@ della radice quadrata possiamo scrivere</p>
 		return x * x;
 	}
 
-    return radice_quadrata_iter (1, x);
+	return radice_quadrata_iter (1, x);
 }</code></pre>
 </div>
 </div>
@@ -2638,21 +2657,21 @@ Questa disciplina si chiama visibilità lessicale, o visibilità statica (static
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function radice_quadrata (x) {
 	function radice_quadrata_iter (stima) {
-	    return suff_accurata (stima)
-	           ? stima
-	           : radice_quadrata_iter (migliora (stima));
+		return suff_accurata (stima)
+			? stima
+			: radice_quadrata_iter (migliora (stima));
 	}
 
 	function migliora (stima) {
-	    return valor_medio (stima, x / stima);
+		return valor_medio (stima, x / stima);
 	}
 
 	function valor_medio (x, y) {
-	    return (x + y) / 2;
+		return (x + y) / 2;
 	}
 
 	function suff_accurata (stima) {
-	    return valore_assoluto (quadrato (stima) - x) &lt; 0.001;
+		return valore_assoluto (quadrato (stima) - x) &lt; 0.001;
 	}
 
 	function valore_assoluto (x) {
@@ -2835,23 +2854,33 @@ risolto.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">raggio</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>1</p>
+</div></div></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">pi_greco</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">3.141592653589793</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>3.141592653589793</p>
+</div></div></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">diametro</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">\(2 \cdot \text{raggio}\)</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>\(2 \cdot \text{raggio}\)</p>
+</div></div></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">perimetro</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">\(\text{pi\_greco} \cdot \text{diametro}\)</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>\(\text{pi\_greco} \cdot \text{diametro}\)</p>
+</div></div></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">area</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">\(\text{pi\_greco} \cdot \text{raggio}^2\)</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>\(\text{pi\_greco} \cdot \text{raggio}^2\)</p>
+</div></div></td>
 </tr>
 </tbody>
 </table>
@@ -3062,7 +3091,7 @@ Le funzioni che considereremo sono molto semplici.</p>
 </div>
 <div class="stemblock">
 <div class="content">
-\$n! = n\cdot \left[ (n-1) \cdot (n-2) \cdots 3 \cdot 2 \cdot 1 \right] = n \cdot (n-1)!\$
+\[n! = n\cdot \left[ (n-1) \cdot (n-2) \cdots 3 \cdot 2 \cdot 1 \right] = n \cdot (n-1)!\]
 </div>
 </div>
 <div class="paragraph">
@@ -3096,13 +3125,13 @@ Più formalmente, manteniamo un prodotto parziale, insieme a un <em>contatore</e
 che conta da 1 a \(n\).
 Possiamo descrivere il calcolo dicendo che il contatore e il prodotto cambiano simultaneamente da un passaggio all&#8217;altro in base alla regola</p>
 </div>
-<div class="paragraph">
-<p>\(
-\begin{eqnarray*}
+<div class="stemblock">
+<div class="content">
+\[\begin{eqnarray*}
   \mathrm{prodotto}  &amp; \leftarrow &amp; \mathrm{contatore} \cdot \mathrm{prodotto} \\
   \mathrm{contatore} &amp; \leftarrow &amp; \mathrm{contatore} + 1
-\end{eqnarray*}
-\)</p>
+\end{eqnarray*}\]
+</div>
 </div>
 <div class="paragraph">
 <p>e che \(n!\) è il valore del prodotto quando il contatore supera \(n\).</p>
@@ -3131,7 +3160,7 @@ Possiamo descrivere il calcolo dicendo che il contatore e il prodotto cambiano s
 <div class="content">
 <img src="https://sicp.comp.nus.edu.sg/chapters/img_javascript/ch1-Z-G-10.svg" alt="ch1 Z G 10">
 </div>
-<div class="title">Figura 4. Un processo iterativo lineare per calcolare \(6!\)</div>
+<div class="title">Figura 4. Un processo iterativo lineare per calcolare il fattoriale di 6</div>
 </div>
 <div class="paragraph">
 <p>Confronta i due processi. Da un punto di vista, non sembrano così diversi. Entrambi calcolano la stessa funzione matematica sullo stesso dominio e ciascuno richiede un numero di passaggi proporzionale a \(n\) per calcolare \(n!\). In effetti, entrambi i processi eseguono anche la stessa sequenza di moltiplicazioni, ottenendo la stessa sequenza di prodotti parziali. D&#8217;altra parte, quando consideriamo le forme dei due processi, scopriamo che si evolvono in modo abbastanza diverso.</p>
@@ -3286,15 +3315,15 @@ Ad esempio, \(k(n)\) calcola \(5n^2\).</p>
 <details>
 <summary class="title">Click per vedere le soluzioni dell&#8217;esercizio</summary>
 <div class="content">
-<div class="paragraph">
-<p>\(
-A (x, y) = \begin{cases}
+<div class="stemblock">
+<div class="content">
+\[A (x, y) = \begin{cases}
     0  &amp; \text {se } y = 0 \\
     2y &amp; \text {se } x = 0 \\
     2  &amp; \text {se } y = 1 \\
     A(x - 1, A(x, y - 1) &amp; \text{altrimenti}
-\end{cases}
-\)</p>
+\end{cases}\]
+</div>
 </div>
 <div class="paragraph">
 <p>La funzione \(f(n)\) calcola \(2 \cdot n\),
@@ -3307,15 +3336,17 @@ e che \(g (n) = A (1, n) = A \left(0, A (1, n - 1)\right) = f ( g (n -1)) = 2 \c
 </div>
 <div class="paragraph">
 <p>La funzione \(h(n)\) calcola \(2^{2^{\cdot^{\cdot^{\cdot^2}}}}\) dove il numero di 2 nella catena di elevamento a potenza è \(n\). Tale operazione algebrica si chiama tetrazione. Si ricava considerando che
-\(h (1) = A (2, 1) = 2\) e che
-\(
-h (n) = A (2, n) = A (1, A (2, n - 1)) = g ( h (n - 1)) = 2^{h(n -1)} = \underbrace{2^{2^{{\mathinner{
+\(h (1) = A (2, 1) = 2\) e che</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[h (n) = A (2, n) = A (1, A (2, n - 1)) = g ( h (n - 1)) = 2^{h(n -1)} = \underbrace{2^{2^{{\mathinner{
   \kern1mu\raise1pt{.}
   \kern2mu\raise4pt{.}
   \kern2mu\raise7pt{\Rule{0pt}{7pt}{0pt}.}
   \kern1mu
-}}^{h(1)}}}}_{n\ \text{volte}}
-\).</p>
+}}^{h(1)}}}}_{n\ \text{volte}}\]
+</div>
 </div>
 </div>
 </details>
@@ -3331,15 +3362,17 @@ h (n) = A (2, n) = A (1, A (2, n - 1)) = g ( h (n - 1)) = 2^{h(n -1)} = \underbr
 <div class="paragraph">
 <p>Un numero di Fibonacci, in generale, può essere definito dalla regola:</p>
 </div>
-<div class="paragraph">
-<p>\(\begin{eqnarray*}
+<div class="stemblock">
+<div class="content">
+\[\begin{eqnarray*}
           \textrm{Fib}(n) &amp; = &amp; \left\{ \begin{array}{ll}
           0   &amp;  \mbox{se } n=0\\
           1   &amp; \mbox{se } n=1\\
           \textrm{Fib}(n-1)+\textrm{Fib}(n-2) &amp; \mbox{altrimenti}
           \end{array}
           \right.
-\end{eqnarray*}\)</p>
+\end{eqnarray*}\]
+</div>
 </div>
 <div class="paragraph">
 <p>Possiamo tradurre immediatamente questa definizione in una funzione ricorsiva per il calcolo dei numeri di Fibonacci:</p>
@@ -3380,11 +3413,13 @@ h (n) = A (2, n) = A (1, A (2, n - 1)) = g ( h (n - 1)) = 2^{h(n -1)} = \underbr
 <div class="paragraph">
 <p>Possiamo anche formulare un processo iterativo per calcolare i numeri di Fibonacci. L&#8217;idea è di utilizzare una coppia di numeri interi \(a\) e \(b\), inizializzati su \(\textrm{Fib} (1) = 1\) e \(\textrm{Fib} (0) = 0\), e di applicare ripetutamente le trasformazioni simultanee</p>
 </div>
-<div class="paragraph">
-<p>\(\begin{eqnarray*}
-  a &amp; \leftarrow &amp; a+b \\
-  b &amp; \leftarrow &amp; a
-\end{eqnarray*}\)</p>
+<div class="stemblock">
+<div class="content">
+\[\begin{eqnarray*}
+  a &amp; \leftarrow &amp; a+b \\ \nonumber
+  b &amp; \leftarrow &amp; a \nonumber
+\end{eqnarray*}\]
+</div>
 </div>
 <div class="paragraph">
 <p>Non è difficile dimostrare che, dopo aver applicato questa trasformazione \(n\) volte, \(a\) e \(b\) saranno uguali, rispettivamente, a \(\textrm{Fib} (n + 1)\) e \(\textrm{Fib} (n)\). Quindi, possiamo calcolare i numeri di Fibonacci in modo iterativo usando la funzione</p>
@@ -3549,16 +3584,17 @@ Per calcolare la funzione con argomento il numero 3, devono essere definite \(f 
 <p>La seguente disposizione di numeri è chiamata triangolo di Tartaglia
 (triangolo di Pascal nella versione originale del testo).</p>
 </div>
-<div class="paragraph">
-<p>\(
-\begin{array}{rrrrrrrrr}
+<div class="stemblock">
+<div class="content">
+\[\begin{array}{rrrrrrrrr}
     &amp;   &amp;   &amp;   &amp; 1 &amp;   &amp;   &amp;   &amp;     \\
     &amp;   &amp;   &amp;1  &amp;   &amp;1  &amp;   &amp;   &amp;     \\
     &amp;   &amp;1  &amp;   &amp; 2 &amp;   &amp;1  &amp;   &amp;     \\
     &amp;1  &amp;   &amp;3  &amp;   &amp;3  &amp;   &amp;1  &amp;     \\
  1  &amp;   &amp; 4 &amp;   &amp; 6 &amp;   &amp; 4 &amp;   &amp; 1   \\
     &amp;   &amp;   &amp;   &amp; \ldots &amp; &amp; &amp; &amp;
-\end{array}\)</p>
+\end{array}\]
+</div>
 </div>
 <div class="paragraph">
 <p>I numeri sui lati del triangolo sono tutti 1 e ogni numero
@@ -3590,7 +3626,7 @@ in quanto la riga \(n\)-esima è formata dai coefficienti dei termini dell&#8217
 </div>
 </details>
 <div class="exampleblock">
-<div class="title">Esercizio 1.13. Fornire una dimostrazione <strong>MOLTO DIFFICILE</strong></div>
+<div class="title">Esercizio 1.13. Fornire una dimostrazione <strong>(DIFFICILE)</strong></div>
 <div class="content">
 <div class="paragraph">
 <p>Dimostra che \(\textrm{Fib}(n)\) è l&#8217;intero più vicino a \(\phi^n/\sqrt{5}\), dove \(\phi= (1+\sqrt{5})/2\).</p>

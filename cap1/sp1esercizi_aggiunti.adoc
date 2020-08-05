@@ -73,11 +73,11 @@ Dichiarare i valori costanti della tabella seguente:
 
 |====
 |Nome        | Valore
-|raggio      | 1
-|pi_greco    | 3.141592653589793
-|diametro    | latexmath:[2 \cdot \text{raggio}]
-|perimetro   | latexmath:[\text{pi\_greco} \cdot \text{diametro}]
-|area        | latexmath:[\text{pi\_greco} \cdot \text{raggio}^2]
+|raggio      a| 1
+|pi_greco    a| 3.141592653589793
+|diametro    a| latexmath:[2 \cdot \text{raggio}]
+|perimetro   a| latexmath:[\text{pi\_greco} \cdot \text{diametro}]
+|area        a| latexmath:[\text{pi\_greco} \cdot \text{raggio}^2]
 |====
 
 Verificare che abbiano il valore atteso.

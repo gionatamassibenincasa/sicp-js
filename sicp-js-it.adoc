@@ -1,24 +1,6 @@
 = Struttura e interpretazione dei programmi del calcolatore - adattato al JavaScript
 Gionata Massi <gionata.massi@savoiabenincasa.it>
 v0.1.1, 2020-04-10: Prima bozza con paragrafo 1.1
-:description: Struttura e interpretazione dei programmi del calcolatore adattato al JavaScript
-:keywords: SICP, JS, JavaScript
-:doctype: book
-:sectnums:
-:icons: font
-:autofit-option:
-:experimental:
-:reproducible:
-:toc:
-:toclevels: 4
-:xrefstyle: short
-:imagesdir: img
-:stem:
-:allow-uri-read:
-:cache-uri:
-//:source-highlighter: rouge
-:source-highlighter: highlightjs
-:lang: it
 include::attributes.adoc[]
 :example-caption!:
 

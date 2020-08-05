@@ -7,12 +7,7 @@ esempio, non possiamo dichiarare una funzione che calcola il valore
 assoluto di un numero verificando se il numero è negativo o meno e
 intraprendendo azioni diverse in ciascun caso in base alla regola
 
-latexmath:[
-|x| = \begin{cases}
-		\phantom{-}x  & \text{se } x \geq 0\\
-				  -x  & \text{altrimenti}
-\end{cases}
-]
+latexmath:[|x| = \begin{cases} \phantom{-}x & \text{se } x \geq 0\\ -x & \text{altrimenti}\end{cases}]
 
 Questo costrutto è un'analisi di casi e può essere espresso in
 JavaScript usando un'espressione condizionale come segue:
@@ -24,7 +19,7 @@ function valore_assoluto (x) {
 }
 ----
 
-La forma generale di un'*espressione condizionale* è
+La forma generale di un'**espressione condizionale** è
 
 .Forma di un'espressione condizionale
 ****
@@ -49,38 +44,38 @@ l'espressione alternativa.
 
 La parola _predicato_ viene utilizzata per funzioni che restituiscono
 vero o falso, nonché per espressioni che sono valuate in vero o falso.
-La funzione del valore assoluto `valore_assoluto` utilizza il predicato
-primitivo `>=`. Questo predicato accetta due numeri come argomenti e
+La funzione del valore assoluto ``valore_assoluto`` utilizza il predicato
+primitivo ``>=``. Questo predicato accetta due numeri come argomenti e
 verifica se il primo numero è maggiore o uguale al secondo numero,
 restituendo vero o falso di conseguenza.
 
 JavaScript fornisce una serie di predicati primitivi che funzionano in
-modo simile a `>=`, inclusi `>`, `<`, `<=` e `===`. Oltre a questi
+modo simile a ``>=``, inclusi ``>``, ``<``, ``<=`` e ``===``. Oltre a questi
 predicati primitivi, esistono operazioni logiche di composizione che ci
 consentono di costruire predicati composti. I tre più utilizzati sono
 questi:
 
 __espressione1__ ``&&`` __espressione2__ :: L'interprete valuta espressione1. Se viene valutato falso, il valore
-dell'intera espressione è falso e expressione2 non viene valutata. Se
-expressione1 restituisce vero, il valore dell'intera espressione è il
-valore di expressione2.
+dell'intera espressione è falso e espressione2 non viene valutata. Se
+espressione1 restituisce vero, il valore dell'intera espressione è il
+valore di espressione2.
 
-__espressione1__ ``||`` __expressione2__ :: L'interprete valuta expressione1. Se restituisce vero, il valore
+__espressione1__ ``||`` __espressione2__ :: L'interprete valuta espressione1. Se restituisce vero, il valore
 dell'intera espressione è vero e expressione2 non viene valutata. Se
-expression1 restituisce falso, il valore dell'intera espressione è il
-valore di expressione2.
+espressione1 restituisce falso, il valore dell'intera espressione è il
+valore di espressione2.
 
 ``!`` __espressione__ :: Il valore dell'espressione è vero quando espressione viene valutata falsa e falso in caso contrario.
 
-Si noti che `&&` e `||` non vengono valutati come operatori aritmetici
-come `+`, perché la loro espressione di destra non viene sempre valutata.
-L'operatore `!`, D'altra parte, segue la regola di valutazione già nota.
+Si noti che ``&&`` e ``||`` non vengono valutati come operatori aritmetici
+come ``+``, perché la loro espressione di destra non viene sempre valutata.
+L'operatore ``!``, d'altra parte, segue la regola di valutazione già nota.
 È un operatore unario, il che significa che accetta solo un argomento,
 mentre gli operatori aritmetici incontrati finora sono binari, prendendo
-due argomenti. L'operatore `!` precede il suo argomento; lo chiamiamo un
+due argomenti. L'operatore ``!`` precede il suo argomento; lo chiamiamo un
 **operatore prefisso**. Un altro operatore prefisso è l'operatore meno
-unario, un esempio del quale è l'espressione `-x` della funzione
-`valore_assoluto` all'inizio di questa sezione. Come esempio di come
+unario, un esempio del quale è l'espressione ``-x`` della funzione
+``valore_assoluto`` all'inizio di questa sezione. Come esempio di come
 vengono utilizzati questi predicati, la condizione che un numero
 latexmath:[$x$] sia compreso nell'intervallo latexmath:[$5 < x < 10$]
 può essere espressa come
@@ -90,8 +85,8 @@ può essere espressa come
 x > 5 && x < 10
 ----
 
-Si noti che l'operatore binario `&&` ha una precedenza inferiore
-rispetto agli operatori di confronto `>` e `<`.
+Si noti che l'operatore binario ``&&`` ha una precedenza inferiore
+rispetto agli operatori di confronto ``>`` e ``<``.
 
 Come altro esempio, possiamo dichiarare un predicato per verificare se
 un numero diverso a un altro numero.
@@ -112,8 +107,8 @@ function diverso (x, y) {
 }
 ----
 
-Nota che l'operatore `!==` quando applicato a due numeri, si comporta
-come `diverso`.
+Nota che l'operatore ``!==`` quando applicato a due numeri, si comporta
+come ``diverso``.
 
 .Esercizio 1.1. Saper simulare il processo indotto dal programma
 ====
@@ -194,6 +189,7 @@ a === 4 ? 6 : b === 4 ? 6 + 7 + a : 25;
 ----
 ====
 
+ifndef::backend-pdf[]
 .Click per vedere le soluzioni dell'esercizio
 [%collapsible]
 ==== 
@@ -226,6 +222,7 @@ false
 16
 ----
 ====
+endif::backend-pdf[]
 
 .Esercizio 1.2. Saper scrivere espressioni composte (combinazioni mediante operatore)
 ====
@@ -235,6 +232,7 @@ nell'equivalente espressione JavaScript:
 latexmath:[\frac{5+4+\left(2-\left(3-(6+\frac{4}{5})\right)\right)}{3 (6-2) (2-7)}]
 ====
 
+ifndef::backend-pdf[]
 .Click per vedere le soluzioni dell'esercizio
 [%collapsible]
 ==== 
@@ -246,6 +244,7 @@ latexmath:[\frac{5+4+\left(2-\left(3-(6+\frac{4}{5})\right)\right)}{3 (6-2) (2-7
 (3 * (6 - 2) * (2 - 7));
 ----
 ====
+endif::backend-pdf[]
 
 .Esercizio 1.3. Saper scrivere semplici funzioni composte
 ====
@@ -253,6 +252,7 @@ Definisci una funzione che accetta tre argomenti
 numerici e restituisce la somma dei quadrati dei due numeri più grandi.
 ====
 
+ifndef::backend-pdf[]
 .Click per vedere le soluzioni dell'esercizio
 [%collapsible]
 ==== 
@@ -265,6 +265,7 @@ function esercizio_1_3 (x, y, z) {
 }
 ----
 ====
+endif::backend-pdf[]
 
 .Esercizio 1.4. Riconoscere nel nome di funzione la valutazione dell'espressione
 ====
@@ -285,37 +286,39 @@ function a_piu_valore_assoluto_b (a, b) {
 ----
 
 Si noti che nell'espressione condizionale, non possiamo usare
-direttamente gli operatori + e - invece dei nomi `piu` e `meno` perché nella
+direttamente gli operatori + e - invece dei nomi ``piu`` e ``meno`` perché nella
 notazione infissa sono consentiti solo simboli di operatore nel mezzo, non
 espressioni composte.
 ====
 
+ifndef::backend-pdf[]
 .Click per vedere le soluzioni dell'esercizio
 [%collapsible]
 ==== 
 // Soluzione dell'esercizio 1.4 La valutazione di un'espressione
 mediante applicazione di funzione procede come segue:
 
-.  Valuta l'espressione della funzione della combinazione
+. Valuta l'espressione della funzione della combinazione
 dell'applicazione, che determina il nome nella funzione da applicare.
-.  Valuta le espressioni argomento della combinazione.
-.  Valuta l'espressione da restituire della funzione con ogni parametro
+. Valuta le espressioni argomento della combinazione.
+. Valuta l'espressione da restituire della funzione con ogni parametro
 sostituito dall'argomento corrispondente.
 
 Pertanto la valutazione dell'espressione dell'applicazione
-`a_piu_valore_assoluto_b  (5, -4)` valuta `a_piu_valore_assoluto_b`
+``a_piu_valore_assoluto_b  (5, -4)`` valuta ``a_piu_valore_assoluto_b``
 (passo 1), ottenendo la funzione sopra indicata e (passo 2) gli
 argomenti sono già valori. Quindi dobbiamo valutare (passo 3)
 l'espressione del valore da restituire della funzione, con i parametri
-sostituiti dagli argomenti, quindi: `(-4 >= 0 ? piu : meno) (5, -4)`.
+sostituiti dagli argomenti, quindi: ``(-4 >= 0 ? piu : meno) (5, -4)``.
 Con le stesse regole, dobbiamo (passo 1) valutare l'espressione della
 funzione, che in questo caso è l'espressione condizionale
-`-4 >= 0 ? piu : meno`. Poiché il predicato restituisce `false`,
-l'espressione della funzione restituisce `meno`. Gli argomenti, di nuovo
+``-4 >= 0 ? piu : meno``. Poiché il predicato restituisce ``false``,
+l'espressione della funzione restituisce ``meno``. Gli argomenti, di nuovo
 (passo 2) sono già valori. Quindi finiamo per valutare (passo 3) il
-corpo di `meno` con i parametri `a` e `b` sostituiti rispettivamente da
+corpo di ``meno`` con i parametri ``a`` e ``b`` sostituiti rispettivamente da
 5 e -4, risultando in 5 - (-4), che infine risulterà nel valore 9.
 ====
+endif::backend-pdf[]
 
 .Esercizio 1.5. Riflettere sulle conseguenze dell'ordine di valutazione
 ==== 
@@ -353,24 +356,28 @@ alternativa.) Confronta il risultato con la valutazione della funzione
 con il tuo interprete.
 ====
 
+ifndef::backend-pdf[]
 .Click per vedere le soluzioni dell'esercizio
 [%collapsible]
 ==== 
 // Soluzione dell'esercizio 1.5
 
 Nella valutazione nell'ordine di applicazione per valutare l'espressione
-`test (0, p ())`, che è un espressione di applicazione di funzione,
+``test (0, p ())``, che è un espressione di applicazione di funzione,
 dobbiamo valutare le espressioni degli argomenti prima di poter valutare
-l'espressione restituita dalla funzione `test`. La valutazione
-dell'espressione argomento `p ()` non terminerà: continuerà a valutare
-le espressioni di applicazione della funzione `p ()` e quindi la
-valutazione di `test (0, p ())` non produrrà un valore legittimo.
+l'espressione restituita dalla funzione ``test``. La valutazione
+dell'espressione argomento ``p ()`` non terminerà: continuerà a valutare
+le espressioni di applicazione della funzione ``p ()`` e quindi la
+valutazione di ``test (0, p ())`` non produrrà un valore legittimo.
 Normalmente l'interprete riconosce il caso e termina la valutazione
 notiicando un errore. Nella valutazione nell'ordine normale, invece
 parte, il test dell'applicazione di funzione (0, p ()) valuterà
-immediatamente l'espressione restituita da `test`: `x === 0 ? 0: y` dopo
-aver sostituito il parametro `x` con 0 e `y` con `p ()`. Il risultato
-della sostituzione sarebbe `0 === 0? 0: p ()`. La valutazione del
-predicato `0 === 0` risulta vera e quindi l'espressione condizionale
-restituisce 0, senza che sia necessario valutare `p ()`.
+immediatamente l'espressione restituita da ``test``: ``x === 0 ? 0: y`` dopo
+aver sostituito il parametro ``x`` con 0 e ``y`` con ``p ()``. Il risultato
+della sostituzione sarebbe ``0 === 0? 0: p ()``. La valutazione del
+predicato ``0 === 0`` risulta vera e quindi l'espressione condizionale
+restituisce 0, senza che sia necessario valutare ``p ()``.
 ====
+endif::backend-pdf[]
+
+//

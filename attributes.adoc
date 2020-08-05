@@ -8,4 +8,23 @@
 //
 // NOTE: Please wrap the listing-caption and preface-title entries in a preprocessor conditional directive.
 // These attributes should only be updated if set explicitly by the user.
+:description: Struttura e interpretazione dei programmi del calcolatore adattato al JavaScript
+:keywords: SICP, JS, JavaScript
+:doctype: book
+:sectnums:
+:icons: font
+:autofit-option:
+:experimental:
+:reproducible:
+:toc:
+:toclevels: 4
+:xrefstyle: short
+:imagesdir: img
+:stem: latexmath
+:allow-uri-read:
+:cache-uri:
+:source-highlighter: highlightjs
+ifdef::backend-pdf[:source-highlighter: rouge]
+//:source-highlighter: rouge
+:lang: it
 ifdef::lang[include::attributes-{lang}.adoc[]]

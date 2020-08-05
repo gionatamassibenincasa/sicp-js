@@ -51,16 +51,16 @@ quadrata di 2 come segue. Supponiamo che la nostra ipotesi iniziale sia
 [width="100%",cols="^,^,^",options="header",]
 |=======================================================================
 |Stima |Quoziente |Valor medio
-|latexmath:[$1$] |latexmath:[$\frac 2 1$]
-|latexmath:[$\frac{1 + 2}2=\frac 3 2=1.5$]
+a|latexmath:[$1$] a|latexmath:[$\frac 2 1$]
+a|latexmath:[$\frac{1 + 2}2=\frac 3 2=1.5$]
 
-|latexmath:[$1.5$] |latexmath:[$\frac 4 3$]
-|latexmath:[$\frac 1 2\left(\frac 3 2 + \frac 4 3\right)=\frac 17 12 \approx 1.4167$]
+a|latexmath:[$1.5$] a|latexmath:[$\frac 4 3$]
+a|latexmath:[$\frac 1 2\left(\frac 3 2 + \frac 4 3\right)=\frac 17 12 \approx 1.4167$]
 
-|latexmath:[$1.4167$] |latexmath:[$\frac{24}{17}$]
-|latexmath:[$\frac 1 2\left(\frac{17}{12}+\frac{24}{17}\right)=\frac{577}{408}\approx 1.4142$]
+a|latexmath:[$1.4167$] a|latexmath:[$\frac{24}{17}$]
+a|latexmath:[$\frac 1 2\left(\frac{17}{12}+\frac{24}{17}\right)=\frac{577}{408}\approx 1.4142$]
 
-|latexmath:[$1.4142$] |latexmath:[$\cdots$] |latexmath:[$\cdots$]
+a|latexmath:[$1.4142$] a|latexmath:[$\cdots$] a|latexmath:[$\cdots$]
 |=======================================================================
 
 Continuando questo processo, otteniamo approssimazioni sempre migliori
@@ -76,9 +76,9 @@ Scriviamo questa strategia di base come funzione:
 [source,javascript]
 ----
 function radice_quadrata_iter (stima, x) {
-    return suff_accurata (stima, x)
-           ? stima
-           : radice_quadrata_iter (migliora (stima, x), x);
+	return suff_accurata (stima, x)
+		? stima
+		: radice_quadrata_iter (migliora (stima, x), x);
 }
 ----
 
@@ -88,7 +88,7 @@ radicando e la vecchia stima:
 [source,javascript]
 ----
 function migliora (stima, x) {
-    return valor_medio (stima, x / stima);
+	return valor_medio (stima, x / stima);
 }
 ----
 
@@ -96,8 +96,8 @@ dove
 
 [source,javascript]
 ----
-function valor_medio (x, y) {
-    return (x + y) / 2;
+function valor_medio (x, y)
+	return (x + y) / 2;
 }
 ----
 
@@ -110,7 +110,7 @@ predeterminata soglia (qui 0,001):
 [source,javascript]
 ----
 function suff_accurata (stima, x) {
-    return valore_assoluto (quadrato (stima) - x) < 0.001;
+	return valore_assoluto (quadrato (stima) - x) < 0.001;
 }
 ----
 
@@ -120,7 +120,7 @@ sempre supporre che la radice quadrata di qualsiasi numero sia 1:
 [source,javascript]
 ----
 function radice_quadrata (x) {
-    return radice_quadrata_iter (1, x);
+	return radice_quadrata_iter (1, x);
 }
 ----
 
@@ -132,25 +132,25 @@ così come possiamo usare qualsiasi funzione.
 [source, javascript]
 ----
 function radice_quadrata_iter (stima, x) {
-    return suff_accurata (stima, x)
-           ? stima
-           : radice_quadrata_iter (migliora (stima, x), x);
+	return suff_accurata (stima, x)
+		? stima
+		: radice_quadrata_iter (migliora (stima, x), x);
 }
 
 function migliora (stima, x) {
-    return valor_medio (stima, x / stima);
+	return valor_medio (stima, x / stima);
 }
 
 function valor_medio (x, y) {
-    return (x + y) / 2;
+	return (x + y) / 2;
 }
 
 function suff_accurata (stima, x) {
-    return valore_assoluto (quadrato (stima) - x) < 0.001;
+	return valore_assoluto (quadrato (stima) - x) < 0.001;
 }
 
 function radice_quadrata (x) {
-    return radice_quadrata_iter (1, x);
+	return radice_quadrata_iter (1, x);
 }
 
 function valore_assoluto (x) {
@@ -207,7 +207,7 @@ fatto e dichiara una funzione condizionale come segue:
 [source,javascript]
 ----
 function condizionale (predicato, clausola_allora, clausola_altrimenti) {
-    return predicato ? clausola_allora: clausola_altrimenti;
+	return predicato ? clausola_allora: clausola_altrimenti;
 }
 ----
 
@@ -232,10 +232,10 @@ quadrata:
 [source,javascript]
 ----
 function radice_quadrata_iter (stima, x) {
-    return condizionale (suff_accurata (stima, x),
-                       stima,
-                       radice_quadrata_iter (migliora (stima, x),
-                                 x));
+	return condizionale (suff_accurata (stima, x),
+		stima,
+		radice_quadrata_iter (migliora (stima, x),
+		x));
 }
 ----
 
@@ -243,6 +243,7 @@ Cosa succede quando Alyssa tenta di usarlo per calcolare le radici
 quadrate? Spiegarlo.
 ====
 
+ifndef::backend-pdf[]
 .Click per vedere le soluzioni dell'esercizio
 [%collapsible]
 ==== 
@@ -256,6 +257,7 @@ indipendentemente dal fatto che il predicato sia valutato vero o falso.
 Lo stesso ovviamente accade con la chiamata ricorsiva, e quindi la
 funzione condizionale non viene mai effettivamente applicata.
 ====
+endif::backend-pdf[]
 
 .Esercizio 1.7. Comprensione del concetto di criterio di terminazione
 ====
@@ -273,6 +275,7 @@ calcolo della radice quadrata che utilizza questo tipo di controllo di
 terminazione. Funziona meglio?
 ====
 
+ifndef::backend-pdf[]
 .Click per vedere le soluzioni dell'esercizio
 [%collapsible]
 ==== 
@@ -291,21 +294,21 @@ Si verifichi se si creano soluzioni mal gestite se si prova a calcolare la radic
 
 const soglia_tolleranza = 0.01;
 function radice_quadrata_iter (stima, x) {
-    return errore_relativo (stima, migliora (stima, x)) < soglia_tolleranza
-           ? stima
-           : radice_quadrata_iter (migliora (stima, x), x);
+	return errore_relativo (stima, migliora (stima, x)) < soglia_tolleranza
+		? stima
+		: radice_quadrata_iter (migliora (stima, x), x);
 }
 
 function migliora (stima, x) {
-    return valor_medio (stima, x / stima);
+	return valor_medio (stima, x / stima);
 }
 
 function valor_medio (x, y) {
-    return (x + y) / 2;
+	return (x + y) / 2;
 }
 
 function suff_accurata (stima, x) {
-    return errore_relativo (stima, migliora (stima, x)) < soglia_tolleranza;
+	return errore_relativo (stima, migliora (stima, x)) < soglia_tolleranza;
 }
 
 function errore_relativo (stima, riferimento) {
@@ -313,7 +316,7 @@ function errore_relativo (stima, riferimento) {
 }
 
 function radice_quadrata (x) {
-    return radice_quadrata_iter (1, x);
+	return radice_quadrata_iter (1, x);
 }
 
 function valore_assoluto (x) {
@@ -325,6 +328,7 @@ function quadrato (x) {
 }
 ----
 ====
+endif::backend-pdf[]
 
 .Esercizio 1.8. Riscrivere alcune funzioni, verso il concetto di scatola nera
 ==== 
@@ -340,6 +344,7 @@ calcolo della radice cubica analoga alla funzione `radice_quadrata`.
 ====
 
 
+ifndef::backend-pdf[]
 .Click per vedere le soluzioni dell'esercizio
 [%collapsible]
 ====
@@ -348,7 +353,7 @@ calcolo della radice cubica analoga alla funzione `radice_quadrata`.
 // Soluzione dell'esercizio 1.8
 
 function suff_accurata (stima, x) {
-    return valore_assoluto (cubo (stima) - x) < 0.001;
+	return valore_assoluto (cubo (stima) - x) < 0.001;
 }
 
 function migliora (stima, x) {
@@ -357,8 +362,8 @@ function migliora (stima, x) {
 
 function radc_iter (stima, x) {
 	return suff_accurata (stima, x)
-			   ? stima
-			   : radice_cubica_iter (migliora (stima, x), x);
+		? stima
+		: radice_cubica_iter (migliora (stima, x), x);
 }
 
 function radice_cubica (x) {
@@ -370,3 +375,6 @@ function cubo (x) {
 }
 ----
 ====
+endif::backend-pdf[]
+
+//

@@ -57,15 +57,15 @@ numero come valore.
 [source,javascript]
 ----
 function quadrato (x) {
-    ritorna x * x;
+	return x * x;
 }
 
 function quadrato (x) {
-    return Math.exp (doppio (Math.log (x)));
+	return Math.exp (doppio (Math.log (x)));
 }
 
 function doppio (x) {
-    return x + x;
+	return x + x;
 }
 ----
 
@@ -86,11 +86,11 @@ seguenti funzioni non dovrebbero essere distinguibili:
 [source,javascript]
 ----
 function quadrato (x) {
-    return x * x;
+	return x * x;
 }
 
 function quadrato (y) {
-    return y * y;
+   	return y * y;
 }
 ----
 
@@ -185,21 +185,21 @@ della radice quadrata possiamo scrivere
 ----
 function radice_quadrata (x) {
 	function radice_quadrata_iter (stima, x) {
-	    return suff_accurata (stima, x)
-	           ? stima
-	           : radice_quadrata_iter (migliora (stima, x), x);
+		return suff_accurata (stima, x)
+			? stima
+			: radice_quadrata_iter (migliora (stima, x), x);
 	}
 
 	function migliora (stima, x) {
-	    return valor_medio (stima, x / stima);
+		return valor_medio (stima, x / stima);
 	}
 
 	function valor_medio (x, y) {
-	    return (x + y) / 2;
+		return (x + y) / 2;
 	}
 
 	function suff_accurata (stima, x) {
-	    return valore_assoluto (quadrato (stima) - x) < 0.001;
+		return valore_assoluto (quadrato (stima) - x) < 0.001;
 	}
 
 	function valore_assoluto (x) {
@@ -210,7 +210,7 @@ function radice_quadrata (x) {
 		return x * x;
 	}
 
-    return radice_quadrata_iter (1, x);
+	return radice_quadrata_iter (1, x);
 }
 ----
 
@@ -235,21 +235,21 @@ Questa disciplina si chiama visibilità lessicale, o visibilità statica (static
 ----
 function radice_quadrata (x) {
 	function radice_quadrata_iter (stima) {
-	    return suff_accurata (stima)
-	           ? stima
-	           : radice_quadrata_iter (migliora (stima));
+		return suff_accurata (stima)
+			? stima
+			: radice_quadrata_iter (migliora (stima));
 	}
 
 	function migliora (stima) {
-	    return valor_medio (stima, x / stima);
+		return valor_medio (stima, x / stima);
 	}
 
 	function valor_medio (x, y) {
-	    return (x + y) / 2;
+		return (x + y) / 2;
 	}
 
 	function suff_accurata (stima) {
-	    return valore_assoluto (quadrato (stima) - x) < 0.001;
+		return valore_assoluto (quadrato (stima) - x) < 0.001;
 	}
 
 	function valore_assoluto (x) {
@@ -270,3 +270,5 @@ L'idea della struttura a blocchi è nata con il
 linguaggio di programmazione Algol 60. Appare nella maggior parte dei
 linguaggi di programmazione avanzati ed è uno strumento importante per
 aiutare a organizzare la costruzione di programmi di grandi dimensioni.
+
+//
