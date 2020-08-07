@@ -1,4 +1,4 @@
-[sp_tassi_di_crescita]
+[[sp_tassi_di_crescita]]
 ==== Tassi di crescita
 
 Gli esempi precedenti mostrano che i processi possono differire notevolmente nelle velocità con cui consumano risorse computazionali.

@@ -472,7 +472,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <ul class="sectlevel3">
 <li><a href="#sp_ricorsione_iterazione">1.2.1. Ricorsione e iterazione lineari</a></li>
 <li><a href="#sp_ricorsione_ad_albero">1.2.2. Ricorsione ad albero</a></li>
-<li><a href="#_tassi_di_crescita">Tassi di crescita</a></li>
+<li><a href="#sp_tassi_di_crescita">1.2.3. Tassi di crescita</a></li>
+<li><a href="#sp_elevamento_a_potenza">1.2.4. Elevamento a potenza</a></li>
 </ul>
 </li>
 </ul>
@@ -3646,7 +3647,7 @@ in quanto la riga \(n\)-esima è formata dai coefficienti dei termini dell&#8217
 </details>
 </div>
 <div class="sect3">
-<h4 id="_tassi_di_crescita">Tassi di crescita</h4>
+<h4 id="sp_tassi_di_crescita">1.2.3. Tassi di crescita</h4>
 <div class="paragraph">
 <p>Gli esempi precedenti mostrano che i processi possono differire notevolmente nelle velocità con cui consumano risorse computazionali.
 Un modo per descrivere questa differenza è usare la nozione di <strong>tasso di crescita</strong> per ottenere una misura grossolana delle risorse richieste da un processo man mano che gli input diventano più grandi.</p>
@@ -3726,6 +3727,178 @@ function seno(angolo) {
 </div>
 </div>
 </div>
+<div class="sect3">
+<h4 id="sp_elevamento_a_potenza">1.2.4. Elevamento a potenza</h4>
+<div class="paragraph">
+<p>Considera il problema di calcolare una potenza di un dato numero.
+Vorremmo una funzione che presi come argomenti una base \(b\) e un esponente intero positivo \(n\) calcoli \(b^n\).
+Un modo per farlo è tramite la definizione ricorsiva</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[\begin{aligned}
+      b^{n} &amp;=&amp; b\cdot b^{n-1}\\
+      b^{0} &amp;=&amp;1
+\end{aligned}\]
+</div>
+</div>
+<div class="paragraph">
+<p>che si traduce facilmente nella funzione</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function potenza (b, n) {
+    return n === 0 ? 1 : b * potenza (b, n - 1);
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Questo è un processo ricorsivo lineare, che richiede \(\Theta (n)\) passi e \(\Theta (n)\) spazio.
+Proprio come per il fattoriale, possiamo facilmente riformularlo per generare un processo iterativo lineare equivalente:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function potenza (b,n) {
+    return potenza_iter (b, n, 1);
+ }
+
+function potenza_iter (b, contatore, prodotto) {
+    return contatore === 0 ?
+        prodotto :
+        potenza_iter(b, contatore - 1, b * prodotto);
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Questa versione richiede \(\Theta(n)\) passi e
+\(\Theta(1)\) spazio.</p>
+</div>
+<div class="paragraph">
+<p>We can compute exponentials in fewer steps by using successive squaring.
+Siamo in grado di calcolare le potenze in meno passaggi utilizzando degli elevamenti al quadrato uno dopo l&#8217;altro, in successione.
+Per esempio, invece di calcolare \(b^8\) come
+\(b\cdot(b\cdot(b\cdot(b\cdot(b\cdot(b\cdot(b\cdot b))))))\)
+possiamo calcolarlo usando tre moltiplicazioni:</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[\begin{aligned}
+      b^{2} &amp;=&amp; b\cdot b\\
+      b^{4} &amp;=&amp; b^{2}\cdot b^{2}\\
+      b^{8} &amp;=&amp; b^{4}\cdot b^{4}
+\end{aligned}\]
+</div>
+</div>
+<div class="paragraph">
+<p>Questo metodo funziona bene per gli esponenti che sono potenze del 2.
+Possiamo sfruttare i ripetuti elevamenti al quadrato anche nel calcolo degli elevamenti a qualsia potenza se utilizziamo la regola</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[\begin{array}{ll}
+    b^{n} =(b^{n/2})^{2}  &amp; \mbox{if  `e pari}\\
+    b^{n} =b\cdot b^{n-1} &amp; \mbox{if  `e dispari}\\
+\end{array}\]
+</div>
+</div>
+<div class="paragraph">
+<p>Si può esprimere questo metodo con la funzione:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function potenza_veloce(b, n) {
+    return n === 0
+           ? 1
+           : pari(n)
+             ? quadrato(potenza_veloce(b, n / 2))
+             : b * potenza_veloce(b, n - 1);
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>dove il predicato per verificare se un numero intero è pari è definito in termini dell&#8217;operatore <code>%</code>, che calcola il resto della divisione tra numeri interi:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function pari(n) {
+    return n % 2 === 0;
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Il processo che si origina da <code>potenza_veloce</code> cresce logaritmicamente rispetto a \(n\) sia nello spazio che nel numero di passi.
+Per vederlo, osserva come calcolare \(b^{2n}\) usando <code>potenza_veloce</code> richiede una sola moltiplicazione in più rispetto al calcolare \(b^n\).
+Il valore dell&#8217;esponente che possiamo calcolare (la dimensione del problema) pertanto approssimativamente raddoppia con ogni nuova moltiplicazione.
+Il numero di moltiplicazioni necessarie per un esponente \(n\) cresce tanto velocemente quanto il logaritmo in base 2 di \(n\).
+Il processo ha un tasso di crescita \(\Theta(\log n)\).<sup class="footnote">[<a id="_footnoteref_8" class="footnote" href="#_footnotedef_8" title="View footnote.">8</a>]</sup></p>
+</div>
+<div class="paragraph">
+<p>La differenza tra i tassi di crescita \(\Theta(\log n)\) e \(\Theta(n)\) diventa sconvolgente al crescere di \(n\).
+Per esempio, <code>potenza_veloce</code> nel caso di \(n=1000\) richiede soltanto 15 moltiplicazioni.<sup class="footnote">[<a id="_footnoteref_9" class="footnote" href="#_footnotedef_9" title="View footnote.">9</a>]</sup></a>.]
+È anche possibile usare l&#8217;idea delle quadrature successive per escogitare un algoritmo iterativo che calcola le potenze con un numero logaritmico di passi (vedi esercizio [es: iter-expon-pro]), sebbene, come spesso accade con gli algoritmi iterativi, questo non è scritto in modo così diretto come l&#8217;algoritmo ricorsivo.<sup class="footnote">[<a id="_footnoteref_10" class="footnote" href="#_footnotedef_10" title="View footnote.">10</a>]</sup></p>
+</div>
+<div id="es_iter_expon_pro" class="exampleblock">
+<div class="title">Esercizio 1.16. Elevamento a potenza, processo iterativo in tempo logaritmico.</div>
+<div class="content">
+<div class="paragraph">
+<p>Progettare una funzione per l&#8217;elevamento a potenza utilizzando le quadrature successive che sviluppa un processo iterativo con un numero di passi logaritmici rispetto all&#8217;esponente, come <code>potenza_veloce</code>.
+(Suggerimento: usando il fatto che \((b^{n/2})^2 =(b^2)^{n/2}\), mantieni, insieme all&#8217;esponente \(n\) e alla base \(b\), una variabile di stato aggiuntiva \(a\), e definisci la trasformazione di stato di modo che il prodotto \(a \cdot b^n\) resti invariato tra uno stato e l&#8217;altro.
+All&#8217;inizio del processo \(a\) vale 1, e il valore dell&#8217;applicazione della funzione è dato dal valore di \(a\) alla fine del processo.
+In generale, la tecnica di definire una quantità invariante che resta la stessa da uno stato all&#8217;altro è un modo potente di pensare al progetto degli algoritmi iterativi.)</p>
+</div>
+</div>
+</div>
+<div id="es_add_expon" class="exampleblock">
+<div class="title">Esercizio 1.17. Svolgere la ricorsione</div>
+<div class="content">
+<div class="paragraph">
+<p>Gli algoritmi di elevamento a potenza in questo paragrafo si basano sull&#8217;elevamento mediante moltiplicazioni ripetute.
+In modo simile, è possibile eseguire la moltiplicazione dei numeri interi mediante addizioni ripetute.
+La seguente funzione di moltiplicazione (in cui si presume che il nostro linguaggio possa solo addizionare, non moltiplicare) è analoga alla funzione <code>potenza</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function per (a, b) {
+    return b === 0
+           ? 0
+           : a + per (a, b - 1);
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Questo algoritmo richiede una serie di passaggi lineari in <code>b</code>.
+Supponiamo ora di includere, insieme all&#8217;addizione, le operazioni <code>raddoppia</code>, che raddoppia un intero, e <code>dimezza</code>, che divide un intero (pari) per 2.
+Usando questi, progetta una funzione di moltiplicazione analoga a <code>potenza_veloce</code> che utilizza un numero logaritmico di passi.</p>
+</div>
+</div>
+</div>
+<div id="ex:it-pro-mult-int" class="exampleblock">
+<div class="title">Esercizio 1.18. Metodo del contadino russo</div>
+<div class="content">
+<div class="paragraph">
+<p>Utilizzando i risultati degli esercizi <a href="#es_iter_expon_pro">Esercizio 1.16. Elevamento a potenza, processo iterativo in tempo logaritmico.</a> e <a href="#es_add_expon">Esercizio 1.17. Svolgere la ricorsione</a>, progetta una funzione che generi un processo iterativo per la moltiplicazione di due numeri interi in termini di addizione, raddoppio e dimezzamento che utilizza un numero logaritmico di passaggi.
+<sup class="footnote">[<a id="_footnoteref_11" class="footnote" href="#_footnotedef_11" title="View footnote.">11</a>]</sup></p>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="title">Esercizio 1.19.</div>
+<div class="content">
+<div class="paragraph">
+<p>Esiste un algoritmo intelligente per calcolare i numeri di Fibonacci in un numero logaritmico di passaggi.
+Ricorda la trasformazione delle variabili di stato \(a\) e \(b\) nel processo <code>fib_iter</code> del paragrafo <a href="#sp_ricorsione_ad_albero">paragrafo 1.2.2</a>:
+\(a \leftarrow a + b\) e \(b \leftarrow a\).
+Chiama questa trasformazione \(T\), e osserva che applicando \(T\) per \(n\) volte, iniziando con 1 e 0, produce la coppia \(\textrm{Fib} (n + 1)\) e \(\textrm{Fib} (n)\).
+In altre parole, i numeri di Fibonacci sono prodotti applicando \(T^n\), la \(n\)-esima potenza della trasformazione \(T\), a partire dalla coppia \((1, 0)\).
+Ora considera \(T\) come il caso speciale di \(p = 0\) e \(q = 1\) in una famiglia di trasformazioni \(T_{pq}\), dove \(T_{pq}\) trasforma la coppia \((a, b)\) secondo \(a\leftarrow bq+aq+ap\) e \(b\leftarrow bp+aq\).
+Mostra che se applichiamo una tale trasformazione \(T_{pq}\) due volte, l&#8217;effetto è lo stesso dell&#8217;uso di una singola trasformazione
+\(T_{p'q'}\) della stessa forma e calcola \(p'\) e \(q'\) in termini di \(p\) e \(q\).
+Questo ci dà un modo esplicito per quadrare queste trasformazioni, e quindi possiamo calcolare latexmath: [T^n] usando le quadratura successive, come nella funzione <code>potenza_veloce</code>.
+Metti tutto insieme per completare la seguente funzione, che viene eseguita in un numero logaritmico di passaggi.<sup class="footnote">[<a id="_footnoteref_12" class="footnote" href="#_footnotedef_12" title="View footnote.">12</a>]</sup></p>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -3752,6 +3925,21 @@ function seno(angolo) {
 </div>
 <div class="footnote" id="_footnotedef_7">
 <a href="#_footnoteref_7">7</a>. Queste affermazioni mascherano una grande semplificazione eccessiva. Ad esempio, se contiamo i passi del processo come operazioni della macchina, assumiamo che il numero di operazioni della macchina necessarie per eseguire, diciamo, una moltiplicazione sia indipendente dalla dimensione dei numeri da moltiplicare, il che è falso se i numeri sono sufficientemente grande. Osservazioni simili valgono per le stime dello spazio. Come la progettazione e la descrizione di un processo, l&#8217;analisi di un processo può essere effettuata a vari livelli di astrazione.
+</div>
+<div class="footnote" id="_footnotedef_8">
+<a href="#_footnoteref_8">8</a>. Più precisamente, il numero di moltiplicazioni richieste è 1 in meno rispetto al logaritmo in base 2 di \(n\) (numero di dimezzamenti dell&#8217;esponente, ndr), più il numero di uni nella rappresentazione binaria di \(n\) (numero di decrementi unitari dell&#8217;esponente, ndr). Questo totale è sempre minore del doppio del logaritmo in base 2 di \(n\). Le costanti arbitrarie \(k_1\) e \(k_2\) nella definizione di notazione del tasso di crescita implicano che, per un processo logaritmico, la base a cui sono presi i logaritmi non è rilevante, quindi tutti questi processi sono descritti come \(\Theta (\log n)\).
+</div>
+<div class="footnote" id="_footnotedef_9">
+<a href="#_footnoteref_9">9</a>. Sembra sorprendente che qualcuno possa preoccuparsi di elevare un numero alla millesima potenza. Si veda <a href="#sp_test_di_primalita">[sp_test_di_primalita
+</div>
+<div class="footnote" id="_footnotedef_10">
+<a href="#_footnoteref_10">10</a>. Questo algoritmo iterativo è antico. Appare nel <em>Chandah-sutra</em> di Áchárya, scritto prima del 200 a.C. Vedere Knuth 1981, sezione 4.6.3, per una discussione e un&#8217;analisi completa di questo e altri metodi di elevamento a potenza.
+</div>
+<div class="footnote" id="_footnotedef_11">
+<a href="#_footnoteref_11">11</a>. Questo algoritmo, che a volte è noto come il ``metodo del contadino russo'' per la moltiplicazione, è antico. Esempi del suo utilizzo si trovano nel papiro Rhind, uno dei due più antichi documenti matematici esistenti, scritto intorno al 1700 a.C. (e copiato da un documento ancora più antico) da uno scriba egiziano di nome A&#8217;h-mose.
+</div>
+<div class="footnote" id="_footnotedef_12">
+<a href="#_footnoteref_12">12</a>. Questo esercizio ci è stato suggerito da Joe Stoy, sulla base di un esempio in Kaldewaij 1990.
 </div>
 </div>
 <div id="footer">

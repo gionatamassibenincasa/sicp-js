@@ -21,14 +21,11 @@ include::sp22_ricorsione_ad_albero.adoc[]
 
 include::sp23_tassi_di_crescita.adoc[]
 
-// include::sp14_funzioni_composte.adoc[]
+include::sp24_elevamento_a_potenza.adoc[]
 
-// include::sp15_modello_sostituzione.adoc[]
+// include::sp25_massimo_comun_divisore.adoc[]
 
-// include::sp16_espressione_condizionale.adoc[]
+[[sp_test_di_primalita]]
+// include::sp26_test_di_primalita.adoc[]
 
-// include::sp17_radq.adoc[]
-
-// include::sp18_scatola_nera.adoc[]
-
-// include::sp1esercizi_aggiunti.adoc[]
+// include::sp2esercizi_aggiunti.adoc[]

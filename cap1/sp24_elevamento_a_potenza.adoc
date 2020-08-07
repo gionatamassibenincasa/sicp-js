@@ -1,0 +1,196 @@
+[[sp_elevamento_a_potenza]]
+==== Elevamento a potenza
+
+Considera il problema di calcolare una potenza di un dato numero.
+Vorremmo una funzione che presi come argomenti una base latexmath:[b] e un esponente intero positivo latexmath:[n] calcoli latexmath:[b^n].
+Un modo per farlo è tramite la definizione ricorsiva
+
+[stem]
+++++
+\begin{aligned}
+      b^{n} &=& b\cdot b^{n-1}\\
+      b^{0} &=&1
+\end{aligned}
+++++
+
+che si traduce facilmente nella funzione
+
+[source, javascript]
+----
+function potenza (b, n) {
+    return n === 0 ? 1 : b * potenza (b, n - 1);
+}
+----
+
+Questo è un processo ricorsivo lineare, che richiede latexmath:[\Theta (n)] passi e latexmath:[\Theta (n)] spazio.
+Proprio come per il fattoriale, possiamo facilmente riformularlo per generare un processo iterativo lineare equivalente:
+
+[source, javascript]
+----
+function potenza (b,n) {
+    return potenza_iter (b, n, 1);
+ }
+
+function potenza_iter (b, contatore, prodotto) {
+    return contatore === 0 ?
+        prodotto :
+        potenza_iter(b, contatore - 1, b * prodotto);
+}
+----
+
+Questa versione richiede latexmath:[\Theta(n)] passi e
+latexmath:[$\Theta(1)$] spazio.
+
+We can compute exponentials in fewer steps by using successive squaring.
+Siamo in grado di calcolare le potenze in meno passaggi utilizzando degli elevamenti al quadrato uno dopo l'altro, in successione.
+Per esempio, invece di calcolare latexmath:[b^8] come
+latexmath:[b\cdot(b\cdot(b\cdot(b\cdot(b\cdot(b\cdot(b\cdot b))))))]
+possiamo calcolarlo usando tre moltiplicazioni:
+
+[stem]
+++++
+\begin{aligned}
+      b^{2} &=& b\cdot b\\
+      b^{4} &=& b^{2}\cdot b^{2}\\
+      b^{8} &=& b^{4}\cdot b^{4}
+\end{aligned}
+++++
+
+Questo metodo funziona bene per gli esponenti che sono potenze del 2.
+Possiamo sfruttare i ripetuti elevamenti al quadrato anche nel calcolo degli elevamenti a qualsia potenza se utilizziamo la regola 
+ 
+[stem]
+++++
+\begin{array}{ll}
+    b^{n} =(b^{n/2})^{2}  & \mbox{if  `e pari}\\
+    b^{n} =b\cdot b^{n-1} & \mbox{if  `e dispari}\\
+\end{array}
+++++
+ 
+Si può esprimere questo metodo con la funzione:
+
+[source, javascript]
+----
+function potenza_veloce(b, n) {
+    return n === 0
+           ? 1
+           : pari(n)
+             ? quadrato(potenza_veloce(b, n / 2))
+             : b * potenza_veloce(b, n - 1);
+}
+----
+
+dove il predicato per verificare se un numero intero è pari è definito in termini dell'operatore `%`, che calcola il resto della divisione tra numeri interi:
+
+[source, javascript]
+----
+function pari(n) {
+    return n % 2 === 0;
+}
+----
+
+Il processo che si origina da `potenza_veloce` cresce logaritmicamente rispetto a latexmath:[$n$] sia nello spazio che nel numero di passi.
+Per vederlo, osserva come calcolare latexmath:[b^{2n}] usando `potenza_veloce` richiede una sola moltiplicazione in più rispetto al calcolare latexmath:[b^n].
+Il valore dell'esponente che possiamo calcolare (la dimensione del problema) pertanto approssimativamente raddoppia con ogni nuova moltiplicazione.
+Il numero di moltiplicazioni necessarie per un esponente latexmath:[n] cresce tanto velocemente quanto il logaritmo in base 2 di latexmath:[n].
+Il processo ha un tasso di crescita latexmath:[$\Theta(\log n)$].footnote:[Più precisamente, il numero di moltiplicazioni richieste è 1 in meno rispetto al logaritmo in base 2 di latexmath:[n] (numero di dimezzamenti dell'esponente, ndr), più il numero di uni nella rappresentazione binaria di latexmath:[n] (numero di decrementi unitari dell'esponente, ndr). Questo totale è sempre minore del doppio del logaritmo in base 2 di latexmath:[n]. Le costanti arbitrarie latexmath:[k_1] e latexmath:[k_2] nella definizione di notazione del tasso di crescita implicano che, per un processo logaritmico, la base a cui sono presi i logaritmi non è rilevante, quindi tutti questi processi sono descritti come latexmath:[\Theta (\log n)].]
+
+La differenza tra i tassi di crescita latexmath:[$\Theta(\log n)$] e latexmath:[$\Theta(n)$] diventa sconvolgente al crescere di latexmath:[$n$].
+Per esempio, `potenza_veloce` nel caso di latexmath:[$n=1000$] richiede soltanto 15 moltiplicazioni.footnote:[Sembra sorprendente che qualcuno possa preoccuparsi di elevare un numero alla millesima potenza. Si veda <<sp_test_di_primalita>>.]
+È anche possibile usare l'idea delle quadrature successive per escogitare un algoritmo iterativo che calcola le potenze con un numero logaritmico di passi (vedi esercizio [es: iter-expon-pro]), sebbene, come spesso accade con gli algoritmi iterativi, questo non è scritto in modo così diretto come l'algoritmo ricorsivo.footnote:[Questo algoritmo iterativo è antico.
+Appare nel __Chandah-sutra__ di Áchárya, scritto prima del 200 a.C.
+Vedere Knuth 1981, sezione 4.6.3, per una discussione e un'analisi completa di questo e altri metodi di elevamento a potenza.]
+
+[[es_iter_expon_pro]]
+.Esercizio 1.16. Elevamento a potenza, processo iterativo in tempo logaritmico.
+====
+Progettare una funzione per l'elevamento a potenza utilizzando le quadrature successive che sviluppa un processo iterativo con un numero di passi logaritmici rispetto all'esponente, come `potenza_veloce`.
+(Suggerimento: usando il fatto che latexmath:[(b^{n/2})^2 =(b^2)^{n/2}], mantieni, insieme all'esponente latexmath:[n] e alla base latexmath:[b], una variabile di stato aggiuntiva latexmath:[a], e definisci la trasformazione di stato di modo che il prodotto latexmath:[a \cdot b^n] resti invariato tra uno stato e l'altro.
+All'inizio del processo latexmath:[a] vale 1, e il valore dell'applicazione della funzione è dato dal valore di latexmath:[a] alla fine del processo.
+In generale, la tecnica di definire una quantità invariante che resta la stessa da uno stato all'altro è un modo potente di pensare al progetto degli algoritmi iterativi.) 
+====
+
+////
+function potenza_veloce_iter(a, b, n) return n === 0 ? a : is_even(n) ?
+potenza_veloce_iter(a, b * b, n / 2) : potenza_veloce_iter(a * b, b, n - 1);
+function potenza_veloce(b, n) return potenza_veloce_iter(1, b, n);
+////
+
+[[es_add_expon]]
+.Esercizio 1.17. Svolgere la ricorsione
+====
+Gli algoritmi di elevamento a potenza in questo paragrafo si basano sull'elevamento mediante moltiplicazioni ripetute.
+In modo simile, è possibile eseguire la moltiplicazione dei numeri interi mediante addizioni ripetute.
+La seguente funzione di moltiplicazione (in cui si presume che il nostro linguaggio possa solo addizionare, non moltiplicare) è analoga alla funzione `potenza`:
+
+[source,javascript]
+----
+function per (a, b) {
+    return b === 0
+           ? 0
+           : a + per (a, b - 1);
+}
+----
+
+Questo algoritmo richiede una serie di passaggi lineari in `b`.
+Supponiamo ora di includere, insieme all'addizione, le operazioni `raddoppia`, che raddoppia un intero, e `dimezza`, che divide un intero (pari) per 2.
+Usando questi, progetta una funzione di moltiplicazione analoga a `potenza_veloce` che utilizza un numero logaritmico di passi.
+====
+
+////
+function double(x) return x + x;
+
+function halve(x) return x / 2;
+
+function fast_times(a, b) return b === 1 ? a : a === 0 || b === 0 ? 0 :
+is_even(b) ? double(fast_times(a, halve(b))) : a + fast_times(a, b - 1);
+////
+
+
+[[ex:it-pro-mult-int]]
+.Esercizio 1.18. Metodo del contadino russo
+====
+Utilizzando i risultati degli esercizi <<es_iter_expon_pro>> e <<es_add_expon>>, progetta una funzione che generi un processo iterativo per la moltiplicazione di due numeri interi in termini di addizione, raddoppio e dimezzamento che utilizza un numero logaritmico di passaggi.
+footnote:[Questo algoritmo, che a volte è noto come il ``metodo del contadino russo'' per la moltiplicazione, è antico.
+Esempi del suo utilizzo si trovano nel papiro Rhind, uno dei due più antichi documenti matematici esistenti, scritto intorno al 1700 a.C. (e copiato da un documento ancora più antico) da uno scriba egiziano di nome A'h-mose.]
+====
+
+////
+/*!!*/function double(x) return x + x;
+
+function half(x) return x / 2;
+
+function fast_times_iter(total, a, b) return b === 1 ? total + a : a ===
+0 || b===0 ? 0 : is_even(b) ? fast_times_iter(total, double(a), half(b))
+: fast_times_iter(total + a, a, b - 1);
+
+function times(a, b) return fast_times_iter(0, a, b);
+////
+
+.Esercizio 1.19.
+====
+Esiste un algoritmo intelligente per calcolare i numeri di Fibonacci in un numero logaritmico di passaggi.
+Ricorda la trasformazione delle variabili di stato latexmath:[a] e latexmath:[b] nel processo `fib_iter` del paragrafo <<sp_ricorsione_ad_albero>>:
+latexmath:[a \leftarrow a + b] e latexmath:[b \leftarrow a].
+Chiama questa trasformazione latexmath:[T], e osserva che applicando latexmath:[T] per latexmath:[n] volte, iniziando con 1 e 0, produce la coppia latexmath:[\textrm{Fib} (n + 1)] e latexmath:[\textrm{Fib} (n)].
+In altre parole, i numeri di Fibonacci sono prodotti applicando latexmath:[T^n], la latexmath:[n]-esima potenza della trasformazione latexmath:[T], a partire dalla coppia latexmath:[(1, 0)].
+Ora considera latexmath:[T] come il caso speciale di latexmath:[p = 0] e latexmath:[q = 1] in una famiglia di trasformazioni latexmath:[T_{pq}], dove latexmath:[T_{pq}] trasforma la coppia latexmath:[(a, b)] secondo latexmath:[a\leftarrow bq+aq+ap] e latexmath:[b\leftarrow bp+aq].
+Mostra che se applichiamo una tale trasformazione latexmath:[T_{pq}] due volte, l'effetto è lo stesso dell'uso di una singola trasformazione
+latexmath:[T_{p'q'}] della stessa forma e calcola latexmath:[p'] e latexmath:[q'] in termini di latexmath:[p] e latexmath:[q].
+Questo ci dà un modo esplicito per quadrare queste trasformazioni, e quindi possiamo calcolare latexmath: [T^n] usando le quadratura successive, come nella funzione `potenza_veloce`.
+Metti tutto insieme per completare la seguente funzione, che viene eseguita in un numero logaritmico di passaggi.footnote:[Questo esercizio ci è stato suggerito da Joe Stoy, sulla base di un esempio in Kaldewaij 1990.]
+====
+
+////
+function fib(n) return fib_iter(1, 0, 0, 1, n); function fib_iter(a, b,
+p, q, count) return count === 0 ? b : is_even(count) ? fib_iter(a, b,
+latexmath:[$\langle ??\rangle$], // compute p’
+latexmath:[$\langle ??\rangle$], // compute q’ count / 2) : fib_iter(b *
+q + a * q + a * p, b * p + a * q, p, q, count - 1);
+
+/*!!*/function fib(n) return fib_iter(1, 0, 0, 1, n);
+
+function fib_iter(a, b, p, q, count) return count === 0 ? b :
+is_even(count) ? fib_iter(a, b, p * p + q * q, 2 * p * q + q * q, count
+/ 2) : fib_iter(b * q + a * q + a * p, b * p + a * q, p, q, count - 1);
+////
