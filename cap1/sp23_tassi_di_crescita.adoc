@@ -33,13 +33,13 @@ Per un processo esponenziale, ogni incremento unitario della dimensione moltipli
 Nel prosieguo del paragrafo <<s_funzioni_e_processi>>
 esamineremo due algoritmi il cui tasso di crescita è logaritmico, ossia tale che al raddoppio della dimensione del problema la richiesta delle risorse aumenta di una quantità costante.
 
-.Esercizio 1.14. Calcolare il tasso di crescita
+.Esercizio 1.14. Calcolare il tasso di crescita della funzione ``conta_cambi``
 ====
-Disegna l'albero che illustra il processo generato dalla funzione ``conta_cambi`` dell'esempio nel paragrafo <<sp_ricorsione_ad_albero>> per cambiare 11 centesimi di dollaro.
+Disegna l'albero che illustra il processo generato dalla funzione ``conta_cambi`` dell'esempio nel  <<sp_ricorsione_ad_albero>> per cambiare 11 centesimi di dollaro.
 Quali sono i tassi di crescita dello spazio (memoria) e del numero di passi (tempo) usati da questo processo al variare dell'importo da cambiare?
 ====
 
-.Esercizio 1.14. Calcolare il tasso di crescita
+.Esercizio 1.15. Calcolare il tasso di crescita di una funzione per il calcolo del seno
 ====
 Il seno di un angolo (specificato in radianti) può essere calcolato tramite l'approssimazione latexmath:[\mathrm{sen} x\approx x] se latexmath:[x] è sufficientemente piccolo, e l'identità trigonometrica latexmath:[\mathrm{sen} x=3\mathrm{sen} {\frac{x}{3}}-4\mathrm{sen}^3{\frac{x}{3}}] per ridurre il valore dell'argomento di latexmath:[\mathrm{sen}].
 (Per gli scopi di questo esercizio un angolo è considerato __sufficientemente piccolo__ quando il suo valore assoluto non è maggiore di 0,1 radianti.)

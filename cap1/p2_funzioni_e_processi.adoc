@@ -23,7 +23,7 @@ include::sp23_tassi_di_crescita.adoc[]
 
 include::sp24_elevamento_a_potenza.adoc[]
 
-// include::sp25_massimo_comun_divisore.adoc[]
+include::sp25_massimo_comun_divisore.adoc[]
 
 [[sp_test_di_primalita]]
 // include::sp26_test_di_primalita.adoc[]

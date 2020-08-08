@@ -1,0 +1,132 @@
+[[sec:gcd]]
+==== Massimo Comun Divisore
+
+Il massimo comune divisore (MCD) di due interi latexmath:[a] e latexmath:[b] è definito come il numero intero più grande che divide sia latexmath:[a] che latexmath:[b] senza resto.
+Ad esempio, il MCD di 16 e 28 è 4. Nel capitolo 2, quando indaghiamo su come implementare l'aritmetica dei numeri razionali, dovremo essere in grado di calcolare i MCD per ridurre i numeri razionali ai minimi termini.
+(Per ridurre un numero razionale ai minimi termini, dobbiamo dividere sia il numeratore che il denominatore per il loro MCD.
+Ad esempio, 16/28 si riduce a 4/7.)
+Un modo per trovare il MCD di due numeri interi consiste nel fattorizzarli e nel ricercare i fattori comuni, ma esiste un famoso algoritmo che è molto più efficiente.
+
+L'idea dell'algoritmo si basa sull'osservazione che, se latexmath:[r] è il resto della divisione di latexmath:[a] per latexmath:[b], allora i divisori comuni di latexmath:[a] e latexmath:[b] sono esattamente gli stessi dei divisori comuni di latexmath:[b] e latexmath:[r]. Quindi, possiamo usare l'equazione latexmath:[\textrm {MCD} (a, b) = \textrm {MCD} (b, r)] per ridurre successivamente il problema del calcolo di un MCD al problema del calcolo del MCD di coppie di numeri interi sempre più piccoli.
+
+Per esempio,
+
+[stem]
+++++
+\begin{aligned}
+      \textrm{MCD}(206,40) & = & \textrm{MCD}(40,6) \\
+      & = & \textrm{MCD}(6,4) \\
+      & = & \textrm{MCD}(4,2) \\
+      & = & \textrm{MCD}(2,0) \\
+      & = & 2
+      \end{aligned}
+++++
+      
+riduce latexmath:[\textrm{MCD}(206, 40)] a latexmath:[\textrm{MCD}(2, 0)], che è 2.
+È possibile mostrare che iniziare con due numeri interi positivi ed eseguire riduzioni ripetute alla fine produrrà sempre una coppia in cui il secondo numero è 0.
+In tale caso il MCD è l'altro numero nella coppia.
+Questo metodo per calcolare il MCD è noto come _Algoritmo di Euclide_.footnote:[L'_Algoritmo di Euclide_ è così chiamato perché appare negli _Elementi_ di Euclide (Libro 7, circa 300 a.C. Secondo Knuth (1973), può essere considerato il più antico algoritmo non banale conosciuto.
+L'antico metodo egiziano di moltiplicazione (esercizio ??) è sicuramente più antico, ma, come spiega Knuth, l'algoritmo di Euclide è il più antico noto per essere stato presentato come un algoritmo generale, piuttosto che come un serie di esempi illustrativi.]
+
+È facile esprimere l'algoritmo di Euclide come una funzione:
+
+....
+function mcd(a, b) {
+    return b === 0 ? a : mcd(b, a % b);
+}
+....
+
+Questo genera un processo iterativo, il cui numero di passi cresce come il logaritmo dei numeri coinvolti.
+
+Il fatto che il numero di passaggi richiesti dall'algoritmo di Euclide abbia una crescita logaritmica ha una relazione interessante con i numeri di Fibonacci:
+
+*Teorema di Lamé:* Se l'algoritmo di Euclide richiede latexmath:[k] passi per calcolare il MCD di una coppia, il numero più piccolo nella coppia deve essere maggiore o uguale al latexmath:[k]-esimo numero di Fibonacci.footnote:[Questo teorema fu dimostrato nel 1845 da Gabriel Lamé, un matematico e ingegnere francese noto principalmente per i suoi contributi alla fisica matematica. Per dimostrare il teorema, consideriamo le coppie latexmath:[(a_k, b_k)], dove latexmath:[a_k \geq b_k], per cui l'algoritmo di Euclide termina in latexmath:[k] passi. La prova è basata sull'affermazione che, se latexmath:[(a_ {k + 1}, \ b_{k + 1}) \rightarrow (a_ {k}, \ b_ {k}) \rightarrow (a_{k-1},\ b_{k-1})] sono tre coppie successive nel processo di riduzione, quindi dobbiamo avere latexmath:[b_{k + 1} \geq b_{k} + b_{k-1}]. Per verificare l'affermazione, si consideri che un passo di riduzione è definito applicando la trasformazione latexmath:[a_{k-1} = b_{k}], latexmath:[b_{k-1} = \textrm {resto di } a_{k} \textrm {diviso per} b_{k}]. La seconda equazione significa che latexmath:[a_{k} = qb_{k} + b_{k-1}] per un numero intero positivo latexmath:[q]. E poiché latexmath:[q] deve essere almeno 1, abbiamo latexmath:[a_{k} = qb_{k} + b_{k-1} \geq b_{k} + b_{k-1}]. Ma nel passaggio di riduzione precedente abbiamo latexmath:[b_{k + 1} = a_{k}]. Pertanto, latexmath:[b_{k + 1} = a_{k} \geq b_{k} + b_{k-1}]. Ciò verifica la proposizione. Ora possiamo dimostrare il teorema per induzione su latexmath:[k], il numero di passaggi che l'algoritmo richiede per terminare. Il risultato è vero per latexmath:[k = 1], poiché ciò richiede semplicemente che latexmath:[b] sia grande almeno quanto latexmath:[\text{Fib} (1) = 1]. Ora, supponi che il risultato sia vero per tutti i numeri interi minori o uguali a latexmath:[k] e prova il risultato per latexmath:[k + 1]. Siano latexmath:[(a_{k + 1}, \ b_{k + 1}) \rightarrow (a_{k}, \ b_{k}) \rightarrow (a_{k-1}, \ b_{k- 1}) $] le coppie successive nel processo di riduzione. Dalle nostre ipotesi di induzione, abbiamo latexmath:[b_{k-1} \geq {\textrm {Fib}} (k-1)] e latexmath:[b_{k} \geq {\textrm {Fib} } (k)]. Quindi, applicando l'affermazione che abbiamo appena dimostrato insieme alla definizione dei numeri di Fibonacci si ottiene latexmath:[b_{k + 1} \geq b_{k} + b_{k-1} \geq {\textrm {Fib}} ( k) + {\textrm {Fib}} (k-1) = {\textrm {Fib}} (k + 1)], che completa la dimostrazione del Teorema di Lamé.]
+
+Possiamo usare questo teorema per ottenere una stima del tasso di crescita per l'algoritmo di Euclide. Sia latexmath:[n] il più piccolo dei due input per la funzione. Se il processo richiede latexmath:[k] passaggi, allora dobbiamo avere latexmath:[n\geq {\textrm{Fib}} (k)\approx\phi^k/\sqrt{5}]. Pertanto il numero di passi latexmath:[k] cresce al crescere del logaritmo (alla base latexmath:[\phi]) di latexmath:[n]. Quindi, l'ordine di crescita è latexmath:[\Theta (\log n)].
+
+[[ex:gcd-process]]
+===== Exercise
+
+The process that a function generates is of course dependent on the rules used by the interpreter. As an example, consider the iterative `gcd` function given above. Suppose we were to interpret this function using normal-order evaluation, as discussed in section [sec:substitution-model]. (The normal-order-evaluation rule for conditional expressions is described in exercise [ex:normal-order-vs-appl-order-test].) Using the substitution method (for normal order), illustrate the process generated in evaluating `gcd(206, 40)` and indicate the `remainder` operations that are actually performed. How many `remainder` operations are actually performed in the normal-order evaluation of `gcd(206, 40)`? In the applicative-order evaluation?
+
+[[solution]]
+==== Solution
+
+1.  Using normal-order evaluation, the process undergoes 18 remainder operations. 14 while evaluating the condition, rest during final reduction phase.
++
+....
+gcd(206, 40)
+40 === 0 ? 206 : gcd(40, 206 % 40)
+gcd(40, 206 % 40)
+206 % 40 === 0 ? 40 : gcd(206 % 40,
+                          40 % (206 % 40))
+// remainder operation (1)
+6 === 0 ? 40 : gcd(206 % 40,
+                   40 % (206 % 40))
+gcd(206 % 40, 40 % (206 % 40))
+40 % (206 % 40) === 0 
+    ? 206 % 40 
+    : gcd(40 % (206 % 40),
+          (206 % 40) % (40 % (206 % 40)))
+// remainder operations (2) and (3)
+4 === 0 
+    ? 206 % 40 
+    : gcd(40 % (206 % 40),
+          (206 % 40) % (40 % (206 % 40)))
+gcd(40 % (206 % 40), (206 % 40) % (40 % (206 % 40)))
+(206 % 40) % (40 % (206 % 40)) === 0 
+    ? 40 % (206 % 40)
+    : gcd((206 % 40) % (40 % (206 % 40)), 
+          (40 % (206 % 40)) % ((206 % 40) % (40 % 
+                                             (206 % 40)))
+// remainder operations (4), (5), (6), (7)
+2 === 0
+    ? 40 % (206 % 40)
+    : gcd((206 % 40) % (40 % (206 % 40)), 
+          (40 % (206 % 40)) % ((206 % 40) % (40 % 
+                                             (206 % 40))))
+gcd((206 % 40) % (40 % (206 % 40)), 
+    (40 % (206 % 40)) % ((206 % 40) % (40 % (206 % 40)))
+(40 % (206 % 40)) % ((206 % 40) % (40 % (206 % 40))) === 0
+    ? (206 % 40) % (40 % (206 % 40)) 
+    : gcd((40 % (206 % 40)) % ((206 % 40) % (40 % 
+                                             (206 % 40)),
+          ((206 % 40) % (40 % (206 % 40))) %
+          ((40 % (206 % 40)) % ((206 % 40) % (40 % 
+                                             (206 % 40))))
+// remainder operations 
+                    (8), (9), (10), (11), (12), (13), (14)
+0 === 0
+    ? (206 % 40) % (40 % (206 % 40)) 
+    : gcd((40 % (206 % 40)) % ((206 % 40) % (40 % 
+                                             (206 % 40)),
+          ((206 % 40) % (40 % (206 % 40))) %
+          ((40 % (206 % 40)) % ((206 % 40) % (40 % 
+                                             (206 % 40))))
+(206 % 40) % (40 % (206 % 40))    
+// remainder operations (15), (16), (17), (18)
+2
+....
+2.  Using application order evaluation, the process performs 4 remainder operations.
++
+....
+gcd(206, 40)
+40 === 0 ? 206 : gcd(40, 206 % 40)
+gcd(40, 206 % 40)
+// remainder operation (1)
+gcd(40, 6)
+6 === 0 ? 40 : gcd(6, 40 % 6)
+gcd(6, 40 % 6)
+// remainder operation (2)
+gcd(6, 4)
+4 === 0 ? 6 : gcd(4, 6 % 4)
+gcd(4, 6 % 4)
+// remainder operation (3)
+gcd(4, 2)
+2 === 0 ? 4 : gcd(2, 4 % 2)
+gcd(2, 4 % 2)
+// remainder operation (4)
+gcd(2, 0)
+0 === 0 ? 2 : gcd(0, 2 % 0)
+2
+....

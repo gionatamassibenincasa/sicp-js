@@ -16,7 +16,7 @@ const dimensione = 2;
 fa sì che l'interprete associ il valore 2 al nome `dimensione`. Il
 compito della dichiarazione di costante è creare questa associazione.
 Il valore che l'interprete JavaScript stampa dopo aver definito la costante
-è `undefined`, un valore speciale ``indefinito'', perché la specifica del linguaggio richiede che questo sia il risultato della valutazione delle dichiarazioni di costante. Una volta che il nome `dimensione` è stato associato al numero 2, possiamo fare riferimento al valore 2 per nome, come in
+è `undefined`, un valore speciale _indefinito_, perché la specifica del linguaggio richiede che questo sia il risultato della valutazione delle dichiarazioni di costante. Una volta che il nome `dimensione` è stato associato al numero 2, possiamo fare riferimento al valore 2 per nome, come in
 
 [source,javascript]
 ----

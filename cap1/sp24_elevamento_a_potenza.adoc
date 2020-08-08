@@ -62,8 +62,8 @@ Possiamo sfruttare i ripetuti elevamenti al quadrato anche nel calcolo degli ele
 [stem]
 ++++
 \begin{array}{ll}
-    b^{n} =(b^{n/2})^{2}  & \mbox{if  `e pari}\\
-    b^{n} =b\cdot b^{n-1} & \mbox{if  `e dispari}\\
+    b^{n} =(b^{n/2})^{2}  & \mbox{se } n \mbox{ pari}\\
+    b^{n} =b\cdot b^{n-1} & \mbox{se } n & \mbox{ dispari}\\
 \end{array}
 ++++
  
@@ -93,7 +93,8 @@ Il processo che si origina da `potenza_veloce` cresce logaritmicamente rispetto 
 Per vederlo, osserva come calcolare latexmath:[b^{2n}] usando `potenza_veloce` richiede una sola moltiplicazione in più rispetto al calcolare latexmath:[b^n].
 Il valore dell'esponente che possiamo calcolare (la dimensione del problema) pertanto approssimativamente raddoppia con ogni nuova moltiplicazione.
 Il numero di moltiplicazioni necessarie per un esponente latexmath:[n] cresce tanto velocemente quanto il logaritmo in base 2 di latexmath:[n].
-Il processo ha un tasso di crescita latexmath:[$\Theta(\log n)$].footnote:[Più precisamente, il numero di moltiplicazioni richieste è 1 in meno rispetto al logaritmo in base 2 di latexmath:[n] (numero di dimezzamenti dell'esponente, ndr), più il numero di uni nella rappresentazione binaria di latexmath:[n] (numero di decrementi unitari dell'esponente, ndr). Questo totale è sempre minore del doppio del logaritmo in base 2 di latexmath:[n]. Le costanti arbitrarie latexmath:[k_1] e latexmath:[k_2] nella definizione di notazione del tasso di crescita implicano che, per un processo logaritmico, la base a cui sono presi i logaritmi non è rilevante, quindi tutti questi processi sono descritti come latexmath:[\Theta (\log n)].]
+
+Il processo ha un tasso di crescita latexmath:[$\Theta(\log n)$]. Più precisamente, il numero di moltiplicazioni richieste è 1 in meno rispetto al logaritmo in base 2 di latexmath:[n] (numero di dimezzamenti dell'esponente, ndr), più il numero di uni nella rappresentazione binaria di latexmath:[n] (numero di decrementi unitari dell'esponente, ndr). Questo totale è sempre minore del doppio del logaritmo in base 2 di latexmath:[n]. Le costanti arbitrarie latexmath:[k_1] e latexmath:[k_2] nella definizione di notazione del tasso di crescita implicano che, per un processo logaritmico, la base a cui sono presi i logaritmi non sia rilevante, quindi tutti questi processi sono descritti come latexmath:[\Theta (\log n)].
 
 La differenza tra i tassi di crescita latexmath:[$\Theta(\log n)$] e latexmath:[$\Theta(n)$] diventa sconvolgente al crescere di latexmath:[$n$].
 Per esempio, `potenza_veloce` nel caso di latexmath:[$n=1000$] richiede soltanto 15 moltiplicazioni.footnote:[Sembra sorprendente che qualcuno possa preoccuparsi di elevare un numero alla millesima potenza. Si veda <<sp_test_di_primalita>>.]
@@ -151,7 +152,7 @@ is_even(b) ? double(fast_times(a, halve(b))) : a + fast_times(a, b - 1);
 .Esercizio 1.18. Metodo del contadino russo
 ====
 Utilizzando i risultati degli esercizi <<es_iter_expon_pro>> e <<es_add_expon>>, progetta una funzione che generi un processo iterativo per la moltiplicazione di due numeri interi in termini di addizione, raddoppio e dimezzamento che utilizza un numero logaritmico di passaggi.
-footnote:[Questo algoritmo, che a volte è noto come il ``metodo del contadino russo'' per la moltiplicazione, è antico.
+footnote:[Questo algoritmo, che a volte è noto come il __metodo del contadino russo__''__ per la moltiplicazione, è antico.
 Esempi del suo utilizzo si trovano nel papiro Rhind, uno dei due più antichi documenti matematici esistenti, scritto intorno al 1700 a.C. (e copiato da un documento ancora più antico) da uno scriba egiziano di nome A'h-mose.]
 ====
 
@@ -177,8 +178,31 @@ In altre parole, i numeri di Fibonacci sono prodotti applicando latexmath:[T^n],
 Ora considera latexmath:[T] come il caso speciale di latexmath:[p = 0] e latexmath:[q = 1] in una famiglia di trasformazioni latexmath:[T_{pq}], dove latexmath:[T_{pq}] trasforma la coppia latexmath:[(a, b)] secondo latexmath:[a\leftarrow bq+aq+ap] e latexmath:[b\leftarrow bp+aq].
 Mostra che se applichiamo una tale trasformazione latexmath:[T_{pq}] due volte, l'effetto è lo stesso dell'uso di una singola trasformazione
 latexmath:[T_{p'q'}] della stessa forma e calcola latexmath:[p'] e latexmath:[q'] in termini di latexmath:[p] e latexmath:[q].
-Questo ci dà un modo esplicito per quadrare queste trasformazioni, e quindi possiamo calcolare latexmath: [T^n] usando le quadratura successive, come nella funzione `potenza_veloce`.
-Metti tutto insieme per completare la seguente funzione, che viene eseguita in un numero logaritmico di passaggi.footnote:[Questo esercizio ci è stato suggerito da Joe Stoy, sulla base di un esempio in Kaldewaij 1990.]
+Q    uesto ci dà un modo esplicito per quadrare queste trasformazioni, e quindi possiamo calcolare latexmath: [T^n] usando le quadratura successive, come nella funzione `potenza_veloce`.
+Metti tutto insieme per completare la seguente funzione, che viene eseguita in un numero logaritmico di passaggi:footnote:[Questo esercizio ci è stato suggerito da Joe Stoy, sulla base di un esempio in Kaldewaij 1990.]
+
+[source,javascript]
+----
+function fib(n) {
+    return fib_iter(1, 0, 0, 1, n);
+}
+function fib_iter(a, b, p, q, contatore) {
+    return count === 0
+           ? b
+           : pari(contatore)
+             ? fib_iter(a,
+                        b,
+                        ⟨??⟩,           // calcola p'
+                        ⟨??⟩,           // calcola q'
+                        contatore / 2)
+             : fib_iter(b * q + a * q + a * p,
+                        b * p + a * q,
+                        p,
+                        q,
+                        contatore - 1);
+}
+----
+
 ====
 
 ////
