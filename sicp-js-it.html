@@ -474,12 +474,44 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#sp_ricorsione_ad_albero">1.2.2. Ricorsione ad albero</a></li>
 <li><a href="#sp_tassi_di_crescita">1.2.3. Tassi di crescita</a></li>
 <li><a href="#sp_elevamento_a_potenza">1.2.4. Elevamento a potenza</a></li>
-<li><a href="#sec:gcd">1.2.5. Massimo Comun Divisore</a>
+<li><a href="#sec:gcd">1.2.5. Massimo Comun Divisore</a></li>
+<li><a href="#sp_test_di_primalita">1.2.6. Esempio: Test di primalità</a>
 <ul class="sectlevel4">
-<li><a href="#ex:gcd-process">Exercise</a></li>
+<li><a href="#ricerca_divisori">La ricerca dei divisori</a></li>
+<li><a href="#the-fermat-test">Il test di Fermat</a></li>
+<li><a href="#sp_metodi_probabilistici">Metodi probabilistici</a></li>
 </ul>
 </li>
-<li><a href="#solution">1.2.6. Solution</a></li>
+</ul>
+</li>
+<li><a href="#ex:better-smallest-divisor">1.3. Exercise</a>
+<ul class="sectlevel3">
+<li><a href="#solution-2">1.3.1. Solution</a></li>
+</ul>
+</li>
+<li><a href="#exercise">1.4. Exercise</a>
+<ul class="sectlevel3">
+<li><a href="#solution-3">1.4.1. Solution</a></li>
+</ul>
+</li>
+<li><a href="#exercise-1">1.5. Exercise</a>
+<ul class="sectlevel3">
+<li><a href="#solution-4">1.5.1. Solution</a></li>
+</ul>
+</li>
+<li><a href="#ex:louis-fast-prime">1.6. Exercise</a>
+<ul class="sectlevel3">
+<li><a href="#solution-5">1.6.1. Solution</a></li>
+</ul>
+</li>
+<li><a href="#ex:unlabeled25">1.7. Exercise</a>
+<ul class="sectlevel3">
+<li><a href="#solution-6">1.7.1. Solution</a></li>
+</ul>
+</li>
+<li><a href="#exercise-2">1.8. Exercise</a>
+<ul class="sectlevel3">
+<li><a href="#solution-7">1.8.1. Solution</a></li>
 </ul>
 </li>
 </ul>
@@ -1916,7 +1948,7 @@ corpo di <code>meno</code> con i parametri <code>a</code> e <code>b</code> sosti
 </div>
 </div>
 </details>
-<div class="exampleblock">
+<div id="es_test-ordine-normale-vs-ordine-appl" class="exampleblock">
 <div class="title">Esercizio 1.5. Riflettere sulle conseguenze dell&#8217;ordine di valutazione</div>
 <div class="content">
 <div class="paragraph">
@@ -3780,8 +3812,7 @@ function potenza_iter (b, contatore, prodotto) {
 \(\Theta(1)\) spazio.</p>
 </div>
 <div class="paragraph">
-<p>We can compute exponentials in fewer steps by using successive squaring.
-Siamo in grado di calcolare le potenze in meno passaggi utilizzando degli elevamenti al quadrato uno dopo l&#8217;altro, in successione.
+<p>Siamo in grado di calcolare le potenze in meno passaggi utilizzando degli elevamenti al quadrato uno dopo l&#8217;altro, in successione.
 Per esempio, invece di calcolare \(b^8\) come
 \(b\cdot(b\cdot(b\cdot(b\cdot(b\cdot(b\cdot(b\cdot b))))))\)
 possiamo calcolarlo usando tre moltiplicazioni:</p>
@@ -3842,8 +3873,8 @@ Il numero di moltiplicazioni necessarie per un esponente \(n\) cresce tanto velo
 </div>
 <div class="paragraph">
 <p>La differenza tra i tassi di crescita \(\Theta(\log n)\) e \(\Theta(n)\) diventa sconvolgente al crescere di \(n\).
-Per esempio, <code>potenza_veloce</code> nel caso di \(n=1000\) richiede soltanto 15 moltiplicazioni.<sup class="footnote">[<a id="_footnoteref_8" class="footnote" href="#_footnotedef_8" title="View footnote.">8</a>]</sup></a>.]
-È anche possibile usare l&#8217;idea delle quadrature successive per escogitare un algoritmo iterativo che calcola le potenze con un numero logaritmico di passi (vedi esercizio [es: iter-expon-pro]), sebbene, come spesso accade con gli algoritmi iterativi, questo non è scritto in modo così diretto come l&#8217;algoritmo ricorsivo.<sup class="footnote">[<a id="_footnoteref_9" class="footnote" href="#_footnotedef_9" title="View footnote.">9</a>]</sup></p>
+Per esempio, <code>potenza_veloce</code> nel caso di \(n=1000\) richiede soltanto 15 moltiplicazioni.<sup class="footnote">[<a id="_footnoteref_8" class="footnote" href="#_footnotedef_8" title="View footnote.">8</a>]</sup>
+È anche possibile usare l&#8217;idea delle quadrature successive per escogitare un algoritmo iterativo che calcola le potenze con un numero logaritmico di passi (vedi esercizio <a href="#es_iter_expon_pro">Esercizio 1.16. Elevamento a potenza, processo iterativo in tempo logaritmico.</a>), sebbene, come spesso accade con gli algoritmi iterativi, questo non è scritto in modo così diretto come l&#8217;algoritmo ricorsivo.<sup class="footnote">[<a id="_footnoteref_9" class="footnote" href="#_footnotedef_9" title="View footnote.">9</a>]</sup></p>
 </div>
 <div id="es_iter_expon_pro" class="exampleblock">
 <div class="title">Esercizio 1.16. Elevamento a potenza, processo iterativo in tempo logaritmico.</div>
@@ -3880,7 +3911,7 @@ Usando questi, progetta una funzione di moltiplicazione analoga a <code>potenza_
 </div>
 </div>
 </div>
-<div id="ex:it-pro-mult-int" class="exampleblock">
+<div id="es_it_pro_mult_int" class="exampleblock">
 <div class="title">Esercizio 1.18. Metodo del contadino russo</div>
 <div class="content">
 <div class="paragraph">
@@ -3890,7 +3921,7 @@ Usando questi, progetta una funzione di moltiplicazione analoga a <code>potenza_
 </div>
 </div>
 <div class="exampleblock">
-<div class="title">Esercizio 1.19.</div>
+<div class="title">Esercizio 1.19. Numeri di Fibonacci come applicazione alla n-esima potenza</div>
 <div class="content">
 <div class="paragraph">
 <p>Esiste un algoritmo intelligente per calcolare i numeri di Fibonacci in un numero logaritmico di passaggi.
@@ -3901,7 +3932,7 @@ In altre parole, i numeri di Fibonacci sono prodotti applicando \(T^n\), la \(n\
 Ora considera \(T\) come il caso speciale di \(p = 0\) e \(q = 1\) in una famiglia di trasformazioni \(T_{pq}\), dove \(T_{pq}\) trasforma la coppia \((a, b)\) secondo \(a\leftarrow bq+aq+ap\) e \(b\leftarrow bp+aq\).
 Mostra che se applichiamo una tale trasformazione \(T_{pq}\) due volte, l&#8217;effetto è lo stesso dell&#8217;uso di una singola trasformazione
 \(T_{p'q'}\) della stessa forma e calcola \(p'\) e \(q'\) in termini di \(p\) e \(q\).
-Q    uesto ci dà un modo esplicito per quadrare queste trasformazioni, e quindi possiamo calcolare latexmath: [T^n] usando le quadratura successive, come nella funzione <code>potenza_veloce</code>.
+Questo ci dà un modo esplicito per quadrare queste trasformazioni, e quindi possiamo calcolare \(T^n\) usando le quadratura successive, come nella funzione <code>potenza_veloce</code>.
 Metti tutto insieme per completare la seguente funzione, che viene eseguita in un numero logaritmico di passaggi:<sup class="footnote">[<a id="_footnoteref_11" class="footnote" href="#_footnotedef_11" title="View footnote.">11</a>]</sup></p>
 </div>
 <div class="listingblock">
@@ -3964,11 +3995,11 @@ Questo metodo per calcolare il MCD è noto come <em>Algoritmo di Euclide</em>.<s
 <div class="paragraph">
 <p>È facile esprimere l&#8217;algoritmo di Euclide come una funzione:</p>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>function mcd(a, b) {
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function mcd(a, b) {
     return b === 0 ? a : mcd(b, a % b);
-}</pre>
+}</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -3978,107 +4009,412 @@ Questo metodo per calcolare il MCD è noto come <em>Algoritmo di Euclide</em>.<s
 <p>Il fatto che il numero di passaggi richiesti dall&#8217;algoritmo di Euclide abbia una crescita logaritmica ha una relazione interessante con i numeri di Fibonacci:</p>
 </div>
 <div class="paragraph">
-<p><strong>Teorema di Lamé:</strong> Se l&#8217;algoritmo di Euclide richiede \(k\) passi per calcolare il MCD di una coppia, il numero più piccolo nella coppia deve essere maggiore o uguale al \(k\)-esimo numero di Fibonacci.<sup class="footnote">[<a id="_footnoteref_13" class="footnote" href="#_footnotedef_13" title="View footnote.">13</a>]</sup></p>
+<p><strong>Teorema di Lamé:</strong> Se l&#8217;algoritmo di Euclide richiede \(k\) passi per calcolare il MCD di una coppia, il numero più piccolo nella coppia deve essere maggiore o uguale al \(k\)-esimo numero di Fibonacci.</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">Dimostrazione del Teorema di Lamé</div>
+<div class="paragraph">
+<p>Questo teorema fu dimostrato nel 1845 da Gabriel Lamé, un matematico e ingegnere francese noto principalmente per i suoi contributi alla fisica matematica. Per dimostrare il teorema, consideriamo le coppie \((a_k, b_k)\), dove \(a_k \geq b_k\), per cui l&#8217;algoritmo di Euclide termina in \(k\) passi. La prova è basata sull&#8217;affermazione che, se \((a_ {k + 1}, \ b_{k + 1}) \rightarrow (a_ {k}, \ b_ {k}) \rightarrow (a_{k-1},\ b_{k-1})\) sono tre coppie successive nel processo di riduzione, quindi dobbiamo avere \(b_{k + 1} \geq b_{k} + b_{k-1}\). Per verificare l&#8217;affermazione, si consideri che un passo di riduzione è definito applicando la trasformazione \(a_{k-1} = b_{k}\), \(b_{k-1} = \ \textrm{ resto} \ \textrm{ di } a_{k} \ \textrm{ diviso} \ \textrm{ per } \ b_{k}\). La seconda equazione significa che \(a_{k} = qb_{k} + b_{k-1}\) per un numero intero positivo \(q\). E poiché \(q\) deve essere almeno 1, abbiamo \(a_{k} = qb_{k} + b_{k-1} \geq b_{k} + b_{k-1}\). Ma nel passaggio di riduzione precedente abbiamo \(b_{k + 1} = a_{k}\). Pertanto, \(b_{k + 1} = a_{k} \geq b_{k} + b_{k-1}\). Ciò verifica la proposizione. Ora possiamo dimostrare il teorema per induzione su \(k\), il numero di passaggi che l&#8217;algoritmo richiede per terminare. Il risultato è vero per \(k = 1\), poiché ciò richiede semplicemente che \(b\) sia grande almeno quanto \(\text{Fib} (1) = 1\). Ora, supponi che il risultato sia vero per tutti i numeri interi minori o uguali a \(k\) e prova il risultato per \(k + 1\). Siano \((a_{k + 1}, \ b_{k + 1}) \rightarrow (a_{k}, \ b_{k}) \rightarrow (a_{k-1}, \ b_{k- 1}) $\) le coppie successive nel processo di riduzione. Dalle nostre ipotesi di induzione, abbiamo \(b_{k-1} \geq {\textrm {Fib}} (k-1)\) e \(b_{k} \geq {\textrm {Fib} } (k)\). Quindi, applicando l&#8217;affermazione che abbiamo appena dimostrato insieme alla definizione dei numeri di Fibonacci si ottiene \(b_{k + 1} \geq b_{k} + b_{k-1} \geq {\textrm {Fib}} ( k) + {\textrm {Fib}} (k-1) = {\textrm {Fib}} (k + 1)\), che completa la dimostrazione del Teorema di Lamé.</p>
+</div>
+</div>
 </div>
 <div class="paragraph">
 <p>Possiamo usare questo teorema per ottenere una stima del tasso di crescita per l&#8217;algoritmo di Euclide. Sia \(n\) il più piccolo dei due input per la funzione. Se il processo richiede \(k\) passaggi, allora dobbiamo avere \(n\geq {\textrm{Fib}} (k)\approx\phi^k/\sqrt{5}\). Pertanto il numero di passi \(k\) cresce al crescere del logaritmo (alla base \(\phi\)) di \(n\). Quindi, l&#8217;ordine di crescita è \(\Theta (\log n)\).</p>
 </div>
-<div class="sect4">
-<h5 id="ex:gcd-process">Exercise</h5>
+<div id="es_mcd" class="exampleblock">
+<div class="title">Esercizio 1.20. Massimo comun divisore.</div>
+<div class="content">
 <div class="paragraph">
-<p>The process that a function generates is of course dependent on the rules used by the interpreter. As an example, consider the iterative <code>gcd</code> function given above. Suppose we were to interpret this function using normal-order evaluation, as discussed in section [sec:substitution-model]. (The normal-order-evaluation rule for conditional expressions is described in exercise [ex:normal-order-vs-appl-order-test].) Using the substitution method (for normal order), illustrate the process generated in evaluating <code>gcd(206, 40)</code> and indicate the <code>remainder</code> operations that are actually performed. How many <code>remainder</code> operations are actually performed in the normal-order evaluation of <code>gcd(206, 40)</code>? In the applicative-order evaluation?</p>
+<p>Il processo che una funzione genera dipende dalle regole usate dall&#8217;interprete.
+Come esempio, si consideri la funzione iterativa <code>mcd</code> descritta sopra.
+Supponiamo di dover interpretare questa funzione utilizzando la valutazione nell&#8217;ordine normale, come discusso nel <a href="#sp_modello_sostituzione">paragrafo 1.1.5</a>.
+(La regola di valutazione dell&#8217;ordine normale per le espressioni condizionali è descritta nell&#8217;esercizio <a href="#es_test-ordine-normale-vs-ordine-appl">Esercizio 1.5. Riflettere sulle conseguenze dell&#8217;ordine di valutazione</a>).
+Usando il metodo di sostituzione (per ordine normale), illustra il processo generato nella valutazione di <code>mcd (206, 40)</code> e indica le operazioni del calcolo del resto che vengono effettivamente eseguite.
+Quante operazioni <em>resto</em> sono effettivamente eseguite nella valutazione in ordine normale di <code>mcd (206, 40)</code>? Nella valutazione dell&#8217;ordine applicativo?</p>
+</div>
 </div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="solution">1.2.6. Solution</h4>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Using normal-order evaluation, the process undergoes 18 remainder operations. 14 while evaluating the condition, rest during final reduction phase.</p>
+<h4 id="sp_test_di_primalita">1.2.6. Esempio: Test di primalità</h4>
+<div class="paragraph">
+<p>Questo paragrafo descrive due metodi per controllare la primalità di un numero intero \(n\), uno con tasso di crescita \(\Theta (\sqrt{n})\) e un altro <em>probabilistico</em> con tasso di crescita \(\Theta (\log n)\). Gli esercizi alla fine di questa sezione suggeriscono progetti di programmazione basati su questi algoritmi.</p>
+</div>
+<div class="sect4">
+<h5 id="ricerca_divisori">La ricerca dei divisori</h5>
+<div class="paragraph">
+<p>Sin dai tempi antichi, i matematici sono stati affascinati dai problemi riguardanti i numeri primi e molte persone hanno lavorato al problema di determinare i modi per verificare se i numeri sono primi. Un modo per verificare se un numero è primo è trovare i divisori del numero. Il seguente programma trova il divisore intero più piccolo (maggiore di 1) di un dato numero \(n\). Lo fa in modo semplice, testando \(n\) per la divisibilità per interi successivi che iniziano con 2.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function divisore_minimo(n) {
+    return cerca_divisore(n, 2);
+}
+function cerca_divisore(n, divisore_prova) {
+     return quadrato(divisore_prova) &gt; n
+            ? n
+            : divide(divisore_prova, n)
+              ? divisore_prova
+              : cerca_divisore(n, divisore_prova + 1);
+}
+function divide(a, b) {
+    return b % a === 0;
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Possiamo verificare se un numero è primo come segue: \(n\) è primo se e solo se \(n\) è il suo divisore più piccolo.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function primo(n) {
+    return n === divisore_minimo(n);
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Il test finale per <code>cerca_divisore</code> si basa sul fatto che se \(n\) non è primo, deve avere un divisore minore o uguale a \(\sqrt{n}\). <sup class="footnote">[<a id="_footnoteref_13" class="footnote" href="#_footnotedef_13" title="View footnote.">13</a>]</sup> Ciò significa che l&#8217;algoritmo necessita solo di divisori di test tra 1 e \(\sqrt{n}\). Di conseguenza, il numero di passaggi necessari per identificare \(n\) come primo avrà l&#8217;ordine di crescita \(\Theta (\sqrt{n})\).</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="the-fermat-test">Il test di Fermat</h5>
+<div class="paragraph">
+<p>Il test di primalità con tasso di crescita \(\Theta(\log n)\) si basa su un risultato della teoria dei numeri noto come Piccolo teorema di Fermat. <sup class="footnote">[<a id="_footnoteref_14" class="footnote" href="#_footnotedef_14" title="View footnote.">14</a>]</sup></p>
+</div>
+<div class="paragraph">
+<p><strong>Piccolo teorema di Fermat:</strong> Se \(n\) è un numero primo e \(a\) è un qualsiasi numero intero positivo inferiore a \(n\), allora \(a\) elevato alla \(n\)-esima potenza è congruente a \(a\) modulo \(n\).</p>
+</div>
+<div class="paragraph">
+<p>(Si dice che due numeri siano <em>congruenti modulo</em> \(n\) se entrambi hanno lo stesso resto quando divisi per \(n\). Il resto di un numero \(a\) quando diviso per \(n\) è anche indicato come <em>il resto di</em> \(a\) <em>modulo</em> \(n\), o semplicemente come \(a\) <em>modulo</em> \(n\).)</p>
+</div>
+<div class="paragraph">
+<p>Se \(n\) non è primo, allora, in generale, la maggior parte dei numeri \(a &lt; n\) non soddisferà la relazione di cui sopra. Questo porta al seguente algoritmo per testare la primalità: dato un numero \(n\), scegli un numero casuale \(a &lt; n\) e calcola il resto di \(a^n\) modulo \(n\). Se il risultato non è uguale a \(a\), \(n\) non è certamente primo. Se è \(a\), allora è probabile che \(n\) sia primo. Ora scegli un altro numero casuale \(a\) e testalo con lo stesso metodo. Se anche questo soddisfa l&#8217;equazione, allora possiamo essere ancora più sicuri che \(n\) sia primo. Provando sempre più valori di \(a\), possiamo aumentare la nostra fiducia nel risultato. Questo algoritmo è noto come test di Fermat.</p>
+</div>
+<div class="paragraph">
+<p>Per realizzare il test di Fermat, abbiamo bisogno di una funzione che calcoli l&#8217;elevamento a potenza di un numero modulo un altro numero:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function potenza_modulo(base, esponente, m) {
+    return esponente === 0
+           ? 1
+           : pari(esponente)
+             ? quadrato(potenza_modulo(base, esponente / 2, m)) % m
+             : (base * potenza_modulo(base, esponente - 1, m)) % m;
+
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Questo è molto simile alla funzione <code>potenza_veloce</code> della sezione <a href="#sp_elevamento_a_potenza">paragrafo 1.2.4</a>. Utilizza i quadrati successivi, in modo che il numero di passi cresca logaritmicamente con l&#8217;esponente.<sup class="footnote">[<a id="_footnoteref_15" class="footnote" href="#_footnotedef_15" title="View footnote.">15</a>]</sup></a>.)]</p>
+</div>
+<div class="paragraph">
+<p>Il test di Fermat viene eseguito scegliendo a caso un numero \(a\) compreso tra 1 e \(n-1\) incluso e controllando se il resto modulo \(n\) della \(n\)-esima potenza di \(a\) è uguale a \(a\). Il numero casuale \(a\) viene scelto utilizzando la funzione <code>random</code>, che assumiamo sia inclusa come primitiva in JavaScript. La funzione <code>random</code> restituisce un numero intero non negativo minore del suo intero input. Quindi, per ottenere un numero casuale compreso tra 1 e \(n-1\), chiamiamo <code>random</code> con un input di \(n-1\) e aggiungiamo 1 al risultato:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function test_fermat(n) {
+    function prova(a) {
+        return potenza_modulo(a, n, n) === a;
+    }
+    return prova(1 + random(n - 1));
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>La seguente funzione esegue il test un determinato numero di volte, come specificato da un parametro. Il suo valore è vero se il test riesce ogni volta e falso in caso contrario.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function primo_veloce(n, num_volte) {
+    return num_volte === 0
+        ? true
+        : test_fermat(n)
+            ? primo_veloce(n, num_volte - 1)
+            : false;
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="sp_metodi_probabilistici">Metodi probabilistici</h5>
+<div class="paragraph">
+<p>Il test di Fermat è molto diverso dagli algoritmi più familiari, i quali calcolano una risposta che è garantita essere corretta. In questo caso, la risposta ottenuta è solo probabilmente corretta. Più precisamente, se \(n\) fallisce il test di Fermat, possiamo essere certi che \(n\) non è primo. Ma il fatto che \(n\) superi il test, sebbene sia un&#8217;indicazione estremamente forte, non è ancora una garanzia che \(n\) sia primo. Quello che vorremmo dire è che per qualsiasi numero \(n\), se eseguiamo il test abbastanza volte e risulta che \(n\) supera sempre il test, allora la probabilità di errore nel nostro test di primalità può essere resa piccola a piacere.</p>
+</div>
+<div class="paragraph">
+<p>Purtroppo questa affermazione non è del tutto corretta. Esistono numeri che ingannano il test di Fermat: numeri \(n\) che non sono primi e tuttavia hanno la proprietà che \(a^n\) è congruente a \(a\) modulo \(n\) per tutti i numeri interi \(a &lt; n\). Tali numeri sono estremamente rari, quindi il test di Fermat è abbastanza affidabile nella pratica. <sup class="footnote">[<a id="_footnoteref_16" class="footnote" href="#_footnotedef_16" title="View footnote.">16</a>]</sup></p>
+</div>
+<div class="paragraph">
+<p>Ci sono varianti del test di Fermat che non possono essere ingannate. In questi test, come con il metodo Fermat, si verifica la primalità di un intero \(n\) scegliendo un numero a caso \(a &lt; n\) e verificando alcune condizioni che dipendono da \(n\) e \(a\). (Vedere l&#8217;esercizio [es: miller-rabin] per un esempio di tale test.) D&#8217;altra parte, in contrasto con il test di Fermat, si può dimostrare che, per qualsiasi \(n\), la condizione non vale per la maggior parte degli interi \(a &lt; n\) a meno che \(n\) non sia primo. La probabilità che \(n\) superi il test per una scelta casuale di \(a\), sono maggiori di quelle che \(n\) sia primo. Se \(n\) supera il test per due scelte casuali di \(a\), le probabilità che \(n\) sia primo sono maggiori di 3 su 4. Eseguendo il test con valori sempre più valori di \(a\) scelti a caso possiamo rendere la probabilità di errore piccola a piacere.</p>
+</div>
+<div class="paragraph">
+<p>L&#8217;esistenza di test per i quali si può dimostrare che la possibilità di errore diventa arbitrariamente piccola ha suscitato interesse per algoritmi di questo tipo, che sono diventati noti come <em>algoritmi probabilistici</em>. C&#8217;è una grande attività di ricerca in quest&#8217;area e gli algoritmi probabilistici sono stati applicati con successo in molti campi. <sup class="footnote">[<a id="_footnoteref_17" class="footnote" href="#_footnotedef_17" title="View footnote.">17</a>]</sup></p>
+</div>
+<div id="ex:use-smallest-divisor" class="exampleblock">
+<div class="title">Esercizio 1.21. Applicazione di <code>divisore_minimo</code></div>
+<div class="content">
+<div class="paragraph">
+<p>Usa la funzione <code>divisore_minimo</code> per trovare il divisore più piccolo di ciascuno dei seguenti numeri: 199, 1999, 19999.</p>
+</div>
+</div>
+</div>
+<div id="ex:search-for-primes" class="exampleblock">
+<div class="title">Esercizio 1.22. Fare esperienza della complessità di ricerca dei numeri primi grandi</div>
+<div class="content">
+<div class="paragraph">
+<p>Assumiamo che una funzione primitiva <code>get_time</code> senza argomenti ogni volta che viene chiamata restituisca il numero di millisecondi trascorsi dalla mezzanotte di giovedì 1 gennaio 1970. <sup class="footnote">[<a id="_footnoteref_18" class="footnote" href="#_footnotedef_18" title="View footnote.">18</a>]</sup> La seguente funzione <code>test_primalita_temporizzata</code>, quando chiamata con un numero intero \(n\), stampa \(n\) e controlla se \(n\) sia primo. Se \(n\) è primo, la funzione stampa tre asterischi.<sup class="footnote">[<a id="_footnoteref_19" class="footnote" href="#_footnotedef_19" title="View footnote.">19</a>]</sup> introduce le stringhe in modo più approfondito.] seguita dal tempo impiegato per eseguire il test.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function test_primalita_temporizzata(n) {
+    display(n);
+    return inizia_test_primalita(n, get_time());
+}
+function inizia_test_primalita(n, tempo_inizio) {
+    return primo(n)
+           ? stampa_primo(get_time() - tempo_inizio)
+           : true;
+}
+function stampa_primo(tempo_trascorso) {
+    display(" *** ");
+    display(tempo_trascorso);
+}
+----</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Usando questa funzione, scrivi una funzione <code>ricerca_primi</code> che controlla la primalità degli interi dispari consecutivi in ​​un intervallo specificato. Usa la tua funzione per trovare i tre numeri primi più piccoli maggiori di 1000; maggiori di 10.000; maggiori di 100.000; maggiori di 1.000.000. Prendi nota del tempo necessario per testare ogni primo. Poiché l&#8217;algoritmo di test ha tasso di crescita \(\Theta (\sqrt{n})\), dovresti aspettarti che il test per i numeri primi intorno a 10.000 dovrebbe richiedere circa \(\sqrt{10}\) volte il tempo di verifica dei numeri primi intorno a 1000. I dati sui tempi lo confermano? In che misura i dati per 100.000 e 1.000.000 confermano la previsione \(\sqrt{n}\)? Il tuo risultato è compatibile con l&#8217;idea che i programmi sulla tua macchina vengano eseguiti nel tempo proporzionale al numero di passaggi necessari per il calcolo?</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="ex:better-smallest-divisor">1.3. Exercise</h3>
+<div class="paragraph">
+<p>The <code>smallest_divisor</code> function shown at the start of this section does lots of needless testing: After it checks to see if the number is divisible by 2 there is no point in checking to see if it is divisible by any larger even numbers. This suggests that the values used for <code>test_divisor</code> should not be 2, 3, 4, 5, 6, … but rather 2, 3, 5, 7, 9, …. To implement this change, declare a function <code>next</code> that returns 3 if its input is equal to 2 and otherwise returns its input plus 2. Modify the <code>smallest_divisor</code> function to use <code>next(test_divisor)</code> instead of <code>test_divisor + 1</code>. With <code>timed_prime_test</code> incorporating this modified version of <code>smallest_divisor</code>, run the test for each of the 12 primes found in exercise [ex:search-for-primes]. Since this modification halves the number of test steps, you should expect it to run about twice as fast. Is this expectation confirmed? If not, what is the observed ratio of the speeds of the two algorithms, and how do you explain the fact that it is different from 2?</p>
+</div>
+<div class="sect3">
+<h4 id="solution-2">1.3.1. Solution</h4>
 <div class="literalblock">
 <div class="content">
-<pre>gcd(206, 40)
-40 === 0 ? 206 : gcd(40, 206 % 40)
-gcd(40, 206 % 40)
-206 % 40 === 0 ? 40 : gcd(206 % 40,
-                          40 % (206 % 40))
-// remainder operation (1)
-6 === 0 ? 40 : gcd(206 % 40,
-                   40 % (206 % 40))
-gcd(206 % 40, 40 % (206 % 40))
-40 % (206 % 40) === 0
-    ? 206 % 40
-    : gcd(40 % (206 % 40),
-          (206 % 40) % (40 % (206 % 40)))
-// remainder operations (2) and (3)
-4 === 0
-    ? 206 % 40
-    : gcd(40 % (206 % 40),
-          (206 % 40) % (40 % (206 % 40)))
-gcd(40 % (206 % 40), (206 % 40) % (40 % (206 % 40)))
-(206 % 40) % (40 % (206 % 40)) === 0
-    ? 40 % (206 % 40)
-    : gcd((206 % 40) % (40 % (206 % 40)),
-          (40 % (206 % 40)) % ((206 % 40) % (40 %
-                                             (206 % 40)))
-// remainder operations (4), (5), (6), (7)
-2 === 0
-    ? 40 % (206 % 40)
-    : gcd((206 % 40) % (40 % (206 % 40)),
-          (40 % (206 % 40)) % ((206 % 40) % (40 %
-                                             (206 % 40))))
-gcd((206 % 40) % (40 % (206 % 40)),
-    (40 % (206 % 40)) % ((206 % 40) % (40 % (206 % 40)))
-(40 % (206 % 40)) % ((206 % 40) % (40 % (206 % 40))) === 0
-    ? (206 % 40) % (40 % (206 % 40))
-    : gcd((40 % (206 % 40)) % ((206 % 40) % (40 %
-                                             (206 % 40)),
-          ((206 % 40) % (40 % (206 % 40))) %
-          ((40 % (206 % 40)) % ((206 % 40) % (40 %
-                                             (206 % 40))))
-// remainder operations
-                    (8), (9), (10), (11), (12), (13), (14)
-0 === 0
-    ? (206 % 40) % (40 % (206 % 40))
-    : gcd((40 % (206 % 40)) % ((206 % 40) % (40 %
-                                             (206 % 40)),
-          ((206 % 40) % (40 % (206 % 40))) %
-          ((40 % (206 % 40)) % ((206 % 40) % (40 %
-                                             (206 % 40))))
-(206 % 40) % (40 % (206 % 40))
-// remainder operations (15), (16), (17), (18)
-2</pre>
+<pre>function next(input) {
+    return input === 2
+        ? 3
+        : input + 2;
+}
+
+function find_divisor(n, test_divisor) {</pre>
 </div>
 </div>
-</li>
-<li>
-<p>Using application order evaluation, the process performs 4 remainder operations.</p>
 <div class="literalblock">
 <div class="content">
-<pre>gcd(206, 40)
-40 === 0 ? 206 : gcd(40, 206 % 40)
-gcd(40, 206 % 40)
-// remainder operation (1)
-gcd(40, 6)
-6 === 0 ? 40 : gcd(6, 40 % 6)
-gcd(6, 40 % 6)
-// remainder operation (2)
-gcd(6, 4)
-4 === 0 ? 6 : gcd(4, 6 % 4)
-gcd(4, 6 % 4)
-// remainder operation (3)
-gcd(4, 2)
-2 === 0 ? 4 : gcd(2, 4 % 2)
-gcd(2, 4 % 2)
-// remainder operation (4)
-gcd(2, 0)
-0 === 0 ? 2 : gcd(0, 2 % 0)
-2</pre>
+<pre>    return square(test_divisor) &gt; n
+            ? n
+            : divides(test_divisor, n)
+              ? test_divisor
+              : find_divisor(n, next(test_divisor));
+}</pre>
 </div>
 </div>
-</li>
-</ol>
+<div class="paragraph">
+<p>The ratio of the speeds of the two algorithms is not exactly 2, but this might be due to hardware / network issues. It is about 1.5 times faster compared to previous solution.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="exercise">1.4. Exercise</h3>
+<div class="paragraph">
+<p>Modify the <code>timed_prime_test</code> function of exercise [ex:search-for-primes] to use <code>fast_is_prime</code> (the Fermat method), and test each of the 12 primes you found in that exercise. Since the Fermat test has \(\Theta(\log n)\) growth, how would you expect the time to test primes near 1,000,000 to compare with the time needed to test primes near 1000? Do your data bear this out? Can you explain any discrepancy you find? [ex:mod-timed-prime-test]</p>
+</div>
+<div class="sect3">
+<h4 id="solution-3">1.4.1. Solution</h4>
+<div class="literalblock">
+<div class="content">
+<pre>function timed_prime_test(n) {
+    display(n);
+    return start_prime_test(n, get_time());
+}
+function start_prime_test(n, start_time) {
+    return fast_is_prime(n, math_floor(math_log(n)))</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>          ? report_prime(get_time() - start_time)
+          : true;
+}
+function report_prime(elapsed_time) {
+    display(" *** ");
+    display(elapsed_time);
+}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The time to test primes near 1,000,000 using <code>fast_is_prime</code> is about 4 ms, 4 times the time needed to test primes near 1,000. This is faster compared to 8 ms that we achieved if we use the <code>is_prime</code>. However, despite being 4 times slower, this fact cannot lead us to believe that it has a greater growth than \(\Theta(\log n)\), as it should be tested with greater numbers to gain a more accurate understanding of the growth of the function.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="exercise-1">1.5. Exercise</h3>
+<div class="paragraph">
+<p>Alyssa P. Hacker complains that we went to a lot of extra work in writing <code>expmod</code>. After all, she says, since we already know how to compute exponentials, we could have simply written</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>function expmod(base, exp, m) {
+    return fast_expt(base, exp) % m;
+}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Is she correct? Would this function serve as well for our fast prime tester? Explain. [ex:Alyssas-expmod]</p>
+</div>
+<div class="sect3">
+<h4 id="solution-4">1.5.1. Solution</h4>
+<div class="paragraph">
+<p>Alyssa’s suggestion is correct at first sight: her <code>expmod</code> function computes \(\textit{base}^{\textit{exp}}\) and then finds its remainder modulo \(m\), as required in the Fermat test.</p>
+</div>
+<div class="paragraph">
+<p>However, for large bases, Alyssa’s method will quickly bump into limitations because JavaScript uses 64 bits to represent numbers, following the double-precision floating point standard. When the numbers become so large that they cannot be represented precisely any longer in this standard, the results become unreliable. Even worse, the method might exceed the largest number that can be represented in this standard, and the computation leads to an error.</p>
+</div>
+<div class="paragraph">
+<p>For small bases, however, Alyssa’s method may be even faster than the original <code>expmod</code> function, because it will carry out only one single remainder operation.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="ex:louis-fast-prime">1.6. Exercise</h3>
+<div class="paragraph">
+<p>Louis Reasoner is having great difficulty doing exercise [ex:mod-timed-prime-test]. His <code>fast_is_prime</code> test seems to run more slowly than his <code>is_prime</code> test. Louis calls his friend Eva Lu Ator over to help. When they examine Louis’s code, they find that he has rewritten the <code>expmod</code> function to use an explicit multiplication, rather than calling <code>square</code>:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>function expmod(base, exp, m) {
+    return exp === 0
+           ? 1
+           : is_even(exp)
+             ? expmod(base, exp / 2, m)
+               * expmod(base, exp / 2, m)</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>               % m
+             : base
+               * expmod(base, exp - 1, m)
+               % m;
+}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>I don’t see what difference that could make,'' says Louis. </code>I do.'' says Eva. ``By writing the function like that, you have transformed the \(\Theta(\log n)\) process into a \(\Theta(n)\) process.'' Explain.</p>
+</div>
+<div class="sect3">
+<h4 id="solution-5">1.6.1. Solution</h4>
+<div class="paragraph">
+<p>Eva is correct: by evaluating the expression:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>expmod(base, exp / 2, m)
+* expmod(base, exp / 2, m)
+% m</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>the expression <code>expmod(base, exp / 2, m)</code> is evaluated twice at each step in the computation when the exponent is even, eliminating the benefit of the fast exponentiation algorithm—which halves the exponent when the exponent is even—therefore eliminating the feature of the algorithm that makes it faster.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="ex:unlabeled25">1.7. Exercise</h3>
+<div class="paragraph">
+<p>Demonstrate that the Carmichael numbers listed in footnote [foot:carmichaelfn] really do fool the Fermat test. That is, write a function that takes an integer \(n\) and tests whether \(a^n\) is congruent to \(a\) modulo \(n\) for every \(a &lt; n\), and try your function on the given Carmichael numbers.</p>
+</div>
+<div class="sect3">
+<h4 id="solution-6">1.7.1. Solution</h4>
+<div class="literalblock">
+<div class="content">
+<pre>function carmichael(n) {
+    function expmod(base, exp, m) {
+        return exp === 0
+               ? 1
+               : is_even(exp)
+                 ? square(expmod(base, exp / 2, m)) % m</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>                 : (base * expmod(base, exp - 1, m)) % m;
+    }
+    function fermat_test(n, a) {
+        return expmod(a, n, n) === a;
+    }
+    function iter(n, i) {
+        return i === n
+               ? true
+               : fermat_test(n, i)
+                 ? iter(n, i + 1)
+                 : false;
+    }
+    return iter(n, 2);
+}</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="exercise-2">1.8. Exercise</h3>
+<div class="paragraph">
+<p>One variant of the Fermat test that cannot be fooled is called the <em>Miller-Rabin test</em> (Miller 1976; Rabin 1980). This starts from an alternate form of Fermat’s Little Theorem, which states that if \(n\) is a prime number and \(a\) is any positive integer less than \(n\), then \(a\) raised to the \((n-1)\)st power is congruent to 1 modulo \(n\). To test the primality of a number \(n\) by the Miller-Rabin test, we pick a random number \(a &lt; n\) and raise \(a\) to the \((n-1)\)st power modulo \(n\) using the <code>expmod</code> function. However, whenever we perform the squaring step in <code>expmod</code>, we check to see if we have discovered a <code>`nontrivial square root of 1 modulo \(n\),'' that is, a number not equal to 1 or \(n-1\) whose square is equal to 1 modulo \(n\). It is possible to prove that if such a nontrivial square root of 1 exists, then \(n\) is not prime. It is also possible to prove that if \(n\) is an odd number that is not prime, then, for at least half the numbers \(a &lt; n\), computing \(a^{n-1}\) in this way will reveal a nontrivial square root of 1 modulo \(n\). (This is why the Miller-Rabin test cannot be fooled.) Modify the `expmod</code> function to signal if it discovers a nontrivial square root of 1, and use this to implement the Miller-Rabin test with a function analogous to <code>fermat_test</code>. Check your function by testing various known primes and non-primes. Hint: One convenient way to make <code>expmod</code> signal is to have it return 0. [ex:miller-rabin]</p>
+</div>
+<div class="sect3">
+<h4 id="solution-7">1.8.1. Solution</h4>
+<div class="literalblock">
+<div class="content">
+<pre>function random(n) {
+    return math_floor(math_random() * n);
+}
+function miller_rabin_test(n) {
+    function expmod(base, exp, m) {
+        return exp === 0</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>               ? 1
+               : is_even(exp)
+                 ? square(trivial_test(expmod(base,
+                                              exp / 2,
+                                              m),
+                                       m))
+                   % m
+         : (base * expmod(base, exp - 1, m))
+                   % m;
+    }
+    function trivial_test(r, m) {
+        return r === 1 || r === m - 1
+               ? r
+               : square(r) % m === 1
+                 ? 0
+                 : r;
+    }
+    function try_it(a) {
+        return expmod(a, n - 1, n) === 1;
+    }
+    return try_it(1 + random(n - 1));
+}
+function do_miller_rabin_test(n, times) {
+    return times === 0
+           ? true
+           : miller_rabin_test(n)
+             ? do_miller_rabin_test(n, times - 1)
+             : false;
+}</pre>
+</div>
 </div>
 </div>
 </div>
@@ -4109,7 +4445,7 @@ gcd(2, 0)
 <a href="#_footnoteref_7">7</a>. Queste affermazioni mascherano una grande semplificazione eccessiva. Ad esempio, se contiamo i passi del processo come operazioni della macchina, assumiamo che il numero di operazioni della macchina necessarie per eseguire, diciamo, una moltiplicazione sia indipendente dalla dimensione dei numeri da moltiplicare, il che è falso se i numeri sono sufficientemente grande. Osservazioni simili valgono per le stime dello spazio. Come la progettazione e la descrizione di un processo, l&#8217;analisi di un processo può essere effettuata a vari livelli di astrazione.
 </div>
 <div class="footnote" id="_footnotedef_8">
-<a href="#_footnoteref_8">8</a>. Sembra sorprendente che qualcuno possa preoccuparsi di elevare un numero alla millesima potenza. Si veda <a href="#sp_test_di_primalita">[sp_test_di_primalita
+<a href="#_footnoteref_8">8</a>. Sembra sorprendente che qualcuno possa preoccuparsi di elevare un numero alla millesima potenza. Si veda <a href="#sp_test_di_primalita">paragrafo 1.2.6</a>.
 </div>
 <div class="footnote" id="_footnotedef_9">
 <a href="#_footnoteref_9">9</a>. Questo algoritmo iterativo è antico. Appare nel <em>Chandah-sutra</em> di Áchárya, scritto prima del 200 a.C. Vedere Knuth 1981, sezione 4.6.3, per una discussione e un&#8217;analisi completa di questo e altri metodi di elevamento a potenza.
@@ -4124,7 +4460,25 @@ gcd(2, 0)
 <a href="#_footnoteref_12">12</a>. L'<em>Algoritmo di Euclide</em> è così chiamato perché appare negli <em>Elementi</em> di Euclide (Libro 7, circa 300 a.C. Secondo Knuth (1973), può essere considerato il più antico algoritmo non banale conosciuto. L&#8217;antico metodo egiziano di moltiplicazione (esercizio ??) è sicuramente più antico, ma, come spiega Knuth, l&#8217;algoritmo di Euclide è il più antico noto per essere stato presentato come un algoritmo generale, piuttosto che come un serie di esempi illustrativi.
 </div>
 <div class="footnote" id="_footnotedef_13">
-<a href="#_footnoteref_13">13</a>. Questo teorema fu dimostrato nel 1845 da Gabriel Lamé, un matematico e ingegnere francese noto principalmente per i suoi contributi alla fisica matematica. Per dimostrare il teorema, consideriamo le coppie \((a_k, b_k)\), dove \(a_k \geq b_k\), per cui l&#8217;algoritmo di Euclide termina in \(k\) passi. La prova è basata sull&#8217;affermazione che, se \((a_ {k + 1}, \ b_{k + 1}) \rightarrow (a_ {k}, \ b_ {k}) \rightarrow (a_{k-1},\ b_{k-1})\) sono tre coppie successive nel processo di riduzione, quindi dobbiamo avere \(b_{k + 1} \geq b_{k} + b_{k-1}\). Per verificare l&#8217;affermazione, si consideri che un passo di riduzione è definito applicando la trasformazione \(a_{k-1} = b_{k}\), \(b_{k-1} = \textrm {resto di } a_{k} \textrm {diviso per} b_{k}\). La seconda equazione significa che \(a_{k} = qb_{k} + b_{k-1}\) per un numero intero positivo \(q\). E poiché \(q\) deve essere almeno 1, abbiamo \(a_{k} = qb_{k} + b_{k-1} \geq b_{k} + b_{k-1}\). Ma nel passaggio di riduzione precedente abbiamo \(b_{k + 1} = a_{k}\). Pertanto, \(b_{k + 1} = a_{k} \geq b_{k} + b_{k-1}\). Ciò verifica la proposizione. Ora possiamo dimostrare il teorema per induzione su \(k\), il numero di passaggi che l&#8217;algoritmo richiede per terminare. Il risultato è vero per \(k = 1\), poiché ciò richiede semplicemente che \(b\) sia grande almeno quanto \(\text{Fib} (1) = 1\). Ora, supponi che il risultato sia vero per tutti i numeri interi minori o uguali a \(k\) e prova il risultato per \(k + 1\). Siano \((a_{k + 1}, \ b_{k + 1}) \rightarrow (a_{k}, \ b_{k}) \rightarrow (a_{k-1}, \ b_{k- 1}) $\) le coppie successive nel processo di riduzione. Dalle nostre ipotesi di induzione, abbiamo \(b_{k-1} \geq {\textrm {Fib}} (k-1)\) e \(b_{k} \geq {\textrm {Fib} } (k)\). Quindi, applicando l&#8217;affermazione che abbiamo appena dimostrato insieme alla definizione dei numeri di Fibonacci si ottiene \(b_{k + 1} \geq b_{k} + b_{k-1} \geq {\textrm {Fib}} ( k) + {\textrm {Fib}} (k-1) = {\textrm {Fib}} (k + 1) $\), che completa la dimostrazione del Teorema di Lamé.
+<a href="#_footnoteref_13">13</a>. Se \(d\) è un divisore di \(n\), lo è anche \(n / d\). Ma \(d\) e \(n / d\) non possono essere entrambi maggiori di \(\sqrt{n}\).
+</div>
+<div class="footnote" id="_footnotedef_14">
+<a href="#_footnoteref_14">14</a>. Pierre de Fermat (1601–1665) è considerato il fondatore della moderna teoria dei numeri. Ottenne molti importanti risultati di teoria dei numeri, ma di solito annunciava solo i risultati, senza fornire le sue dimostrazioni. Il piccolo teorema di Fermat fu enunciato in una lettera che scrisse nel 1640. La prima dimostrazione pubblicata fu data da Eulero nel 1736 (e una dimostrazione identica e precedente fu scoperta nei manoscritti inediti di Leibniz). Il più famoso dei risultati di Fermat, noto come Ultimo teorema di Fermat, fu annotato nel 1637 nella sua copia del libro <em>Aritmetica</em> (del matematico greco del III secolo Diofanto) con l&#8217;osservazione: <em>Ho scoperto una dimostazione davvero notevole, ma questo  margine è troppo piccolo per contenerla.</em> Trovare una dimostrazione dell&#8217;ultimo teorema di Fermat divenne una delle sfide più famose nella teoria dei numeri. Una soluzione completa è stata infine fornita nel 1995 da Andrew Wiles della Princeton University.
+</div>
+<div class="footnote" id="_footnotedef_15">
+<a href="#_footnoteref_15">15</a>. I passi di riduzione nei casi in cui l&#8217;esponente \(e\) è maggiore di 1 si basano sul fatto che, per qualsiasi interi \(x\), \(y\) e \(m\), possiamo trovare il resto di \(x\) per \(y\) modulo \(m\) calcolando separatamente i resti di \(x\) modulo \(m\) e \(y\) modulo \(m\), moltiplicandoli e quindi prendendo il resto del risultato modulo \(m\). Ad esempio, nel caso in cui \(e\) è pari, calcoliamo il resto di \(b^{e / 2}\) modulo \(m\), ne facciamo il quadrato e prendiamo il resto modulo \(m\). Questa tecnica è utile perché significa che possiamo eseguire il nostro calcolo senza dover mai avere a che fare con numeri molto più grandi di \(m\). (Confronta l&#8217;esercizio <a href="#es_alyssas_expmod">[es_alyssas_expmod
+</div>
+<div class="footnote" id="_footnotedef_16">
+<a href="#_footnoteref_16">16</a>. I numeri che ingannano il test di Fermat sono chiamati <em>numeri di Carmichael</em>, e poco si sa su di loro oltre al fatto che sono estremamente rari. Ci sono 255 numeri di Carmichael sotto i 100.000.000. I più piccoli sono 561, 1105, 1729, 2465, 2821 e 6601. Nel testare la primalità di numeri molto grandi scelti a caso, la possibilità di imbattersi in un valore che inganna il test di Fermat è inferiore alla possibilità che la radiazione cosmica farà commettere un errore computer nell&#8217;esecuzione di un algoritmo <em>corretto</em>. Considerare un algoritmo inadeguato per la prima ragione ma non per la seconda illustra bene la differenza tra matematica e ingegneria.
+</div>
+<div class="footnote" id="_footnotedef_17">
+<a href="#_footnoteref_17">17</a>. Una delle applicazioni più sorprendenti dei test probabilistici di primalità è nel campo della crittografia. Sebbene ora sia computazionalmente impossibile fattorizzare un numero arbitrario di 200 cifre, la primalità di tale numero può essere verificata in pochi secondi con il test di Fermat. Questo fatto costituisce la base di una tecnica suggerita da Rivest, Shamir e Adleman (1977) per costruire <em>codici indistruttibili</em>. Il risultato è diventato una tecnica ampiamente utilizzata per migliorare la sicurezza delle comunicazioni elettroniche. Per questo e per i relativi sviluppi, lo studio dei numeri primi, un tempo considerato l&#8217;epitome di un argomento di matematica <em>pura</em> da studiare solo per il piacere di farlo, risulta ora avere importanti applicazioni pratiche alla crittografia, al trasferimento elettronico di fondi e recupero delle informazioni.
+</div>
+<div class="footnote" id="_footnotedef_18">
+<a href="#_footnoteref_18">18</a>. Questa data, 1970-01-01 00:00:00 UTC, è chiamata <em>UNIX epoch</em> e fa parte del specifica delle funzioni che si occupano del tempo nel sistema operativo UNIX&#8482;.
+</div>
+<div class="footnote" id="_footnotedef_19">
+<a href="#_footnoteref_19">19</a>. La funzione primitiva <code>display</code> restituisce il suo argomento, ma lo stampa anche. Qui <em>***</em> è una <em>stringa</em>, una sequenza di caratteri che passiamo come argomento alla funzione <code>display</code>. La sezione [sp_stringhe
 </div>
 </div>
 <div id="footer">

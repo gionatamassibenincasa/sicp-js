@@ -1,0 +1,36 @@
+[[sec:higher-order-procedures]]
+=== Formulare astrazioni con funzioni di ordine superiore
+
+//We have seen that functions are, in effect, abstractions that describe compound operations on numbers independent of the particular numbers. For example, when we declare
+Abbiamo visto che le funzioni sono, in effetti, astrazioni che descrivono operazioni composte su numeri indipendenti dai numeri particolari. Ad esempio, quando dichiariamo
+
+[source,javascript]
+----
+function cubo(x) {
+    return x * x * x;
+}
+----
+
+//we are not talking about the cube of a particular number, but rather about a method for obtaining the cube of any number. Of course we could get along without ever declaring this function, by always writing expressions such as
+non stiamo parlando del cubo di un numero particolare, ma piuttosto di un metodo per ottenere il cubo di un numero qualsiasi. Ovviamente potremmo andare d'accordo senza mai dichiarare questa funzione, scrivendo sempre espressioni come
+
+[source,javascript]
+----
+3 * 3 * 3;
+x * x * x;
+y * y * y;
+----
+
+//and never mentioning `cube` explicitly. This would place us at a serious disadvantage, forcing us to work always at the level of the particular operations that happen to be primitives in the language (multiplication, in this case) rather than in terms of higher-level operations. Our programs would be able to compute cubes, but our language would lack the ability to express the concept of cubing. One of the things we should demand from a powerful programming language is the ability to build abstractions by assigning names to common patterns and then to work in terms of the abstractions directly. Functions provide this ability. This is why all but the most primitive programming languages include mechanisms for declaring functions.
+e non menzionare mai esplicitamente "cubo". Questo ci porterebbe in un grave svantaggio, costringendoci a lavorare sempre al livello delle operazioni particolari che sono primitive nel linguaggio (moltiplicazione, in questo caso) piuttosto che in termini di operazioni di livello superiore. I nostri programmi sarebbero in grado di calcolare i cubi, ma il nostro linguaggio non avrebbe la capacità di esprimere il concetto di cubo. Una delle cose che dovremmo chiedere a un potente linguaggio di programmazione è la capacità di costruire astrazioni assegnando nomi a schemi comuni e quindi di lavorare direttamente in termini di astrazioni. Le funzioni forniscono questa capacità. Questo è il motivo per cui tutti i linguaggi di programmazione tranne i più primitivi includono meccanismi per la dichiarazione di funzioni.
+
+// Yet even in numerical processing we will be severely limited in our ability to create abstractions if we are restricted to functions whose parameters must be numbers. Often the same programming pattern will be used with a number of different functions. To express such patterns as concepts, we will need to construct functions that can accept functions as arguments or return functions as values. Functions that manipulate functions are called This section shows how higher-order functions can serve as powerful abstraction mechanisms, vastly increasing the expressive power of our language.
+Tuttavia, anche nell'elaborazione numerica saremo fortemente limitati nella nostra capacità di creare astrazioni se siamo limitati a funzioni i cui parametri devono essere numeri. Spesso lo stesso schema di programmazione verrà utilizzato con un numero di funzioni diverse. Per esprimere tali modelli come concetti, avremo bisogno di costruire funzioni che possono accettare funzioni come argomenti o restituire funzioni come valori. Le funzioni che manipolano le funzioni sono chiamate __funzioni di ordine superiore__.
+
+Questo paragrafo mostra come le funzioni di ordine superiore possono fungere da potenti meccanismi di astrazione, aumentando enormemente la potenza espressiva del nostro linguaggio.
+
+include::sp31_funzioni_come_argomenti.adoc[]
+
+include::sp32_espressioni_definizione_funzioni.adoc[]
+
+include::sp33_funzioni_come_metodi_generali.adoc[]

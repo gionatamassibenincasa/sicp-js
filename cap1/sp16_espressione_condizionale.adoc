@@ -320,6 +320,7 @@ corpo di ``meno`` con i parametri ``a`` e ``b`` sostituiti rispettivamente da
 ====
 endif::backend-pdf[]
 
+[[es_test-ordine-normale-vs-ordine-appl]]
 .Esercizio 1.5. Riflettere sulle conseguenze dell'ordine di valutazione
 ==== 
 Ben Bitdiddle ha inventato un test per determinare se

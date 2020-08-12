@@ -41,7 +41,7 @@ function potenza_iter (b, contatore, prodotto) {
 Questa versione richiede latexmath:[\Theta(n)] passi e
 latexmath:[$\Theta(1)$] spazio.
 
-We can compute exponentials in fewer steps by using successive squaring.
+//We can compute exponentials in fewer steps by using successive squaring.
 Siamo in grado di calcolare le potenze in meno passaggi utilizzando degli elevamenti al quadrato uno dopo l'altro, in successione.
 Per esempio, invece di calcolare latexmath:[b^8] come
 latexmath:[b\cdot(b\cdot(b\cdot(b\cdot(b\cdot(b\cdot(b\cdot b))))))]
@@ -98,7 +98,7 @@ Il processo ha un tasso di crescita latexmath:[$\Theta(\log n)$]. Più precisame
 
 La differenza tra i tassi di crescita latexmath:[$\Theta(\log n)$] e latexmath:[$\Theta(n)$] diventa sconvolgente al crescere di latexmath:[$n$].
 Per esempio, `potenza_veloce` nel caso di latexmath:[$n=1000$] richiede soltanto 15 moltiplicazioni.footnote:[Sembra sorprendente che qualcuno possa preoccuparsi di elevare un numero alla millesima potenza. Si veda <<sp_test_di_primalita>>.]
-È anche possibile usare l'idea delle quadrature successive per escogitare un algoritmo iterativo che calcola le potenze con un numero logaritmico di passi (vedi esercizio [es: iter-expon-pro]), sebbene, come spesso accade con gli algoritmi iterativi, questo non è scritto in modo così diretto come l'algoritmo ricorsivo.footnote:[Questo algoritmo iterativo è antico.
+È anche possibile usare l'idea delle quadrature successive per escogitare un algoritmo iterativo che calcola le potenze con un numero logaritmico di passi (vedi esercizio <<es_iter_expon_pro>>), sebbene, come spesso accade con gli algoritmi iterativi, questo non è scritto in modo così diretto come l'algoritmo ricorsivo.footnote:[Questo algoritmo iterativo è antico.
 Appare nel __Chandah-sutra__ di Áchárya, scritto prima del 200 a.C.
 Vedere Knuth 1981, sezione 4.6.3, per una discussione e un'analisi completa di questo e altri metodi di elevamento a potenza.]
 
@@ -148,7 +148,7 @@ is_even(b) ? double(fast_times(a, halve(b))) : a + fast_times(a, b - 1);
 ////
 
 
-[[ex:it-pro-mult-int]]
+[[es_it_pro_mult_int]]
 .Esercizio 1.18. Metodo del contadino russo
 ====
 Utilizzando i risultati degli esercizi <<es_iter_expon_pro>> e <<es_add_expon>>, progetta una funzione che generi un processo iterativo per la moltiplicazione di due numeri interi in termini di addizione, raddoppio e dimezzamento che utilizza un numero logaritmico di passaggi.
@@ -168,7 +168,7 @@ function fast_times_iter(total, a, b) return b === 1 ? total + a : a ===
 function times(a, b) return fast_times_iter(0, a, b);
 ////
 
-.Esercizio 1.19.
+.Esercizio 1.19. Numeri di Fibonacci come applicazione alla n-esima potenza
 ====
 Esiste un algoritmo intelligente per calcolare i numeri di Fibonacci in un numero logaritmico di passaggi.
 Ricorda la trasformazione delle variabili di stato latexmath:[a] e latexmath:[b] nel processo `fib_iter` del paragrafo <<sp_ricorsione_ad_albero>>:
@@ -178,7 +178,7 @@ In altre parole, i numeri di Fibonacci sono prodotti applicando latexmath:[T^n],
 Ora considera latexmath:[T] come il caso speciale di latexmath:[p = 0] e latexmath:[q = 1] in una famiglia di trasformazioni latexmath:[T_{pq}], dove latexmath:[T_{pq}] trasforma la coppia latexmath:[(a, b)] secondo latexmath:[a\leftarrow bq+aq+ap] e latexmath:[b\leftarrow bp+aq].
 Mostra che se applichiamo una tale trasformazione latexmath:[T_{pq}] due volte, l'effetto è lo stesso dell'uso di una singola trasformazione
 latexmath:[T_{p'q'}] della stessa forma e calcola latexmath:[p'] e latexmath:[q'] in termini di latexmath:[p] e latexmath:[q].
-Q    uesto ci dà un modo esplicito per quadrare queste trasformazioni, e quindi possiamo calcolare latexmath: [T^n] usando le quadratura successive, come nella funzione `potenza_veloce`.
+Questo ci dà un modo esplicito per quadrare queste trasformazioni, e quindi possiamo calcolare latexmath:[T^n] usando le quadratura successive, come nella funzione `potenza_veloce`.
 Metti tutto insieme per completare la seguente funzione, che viene eseguita in un numero logaritmico di passaggi:footnote:[Questo esercizio ci è stato suggerito da Joe Stoy, sulla base di un esempio in Kaldewaij 1990.]
 
 [source,javascript]

@@ -1,0 +1,438 @@
+[[sp_test_di_primalita]]
+==== Esempio: Test di primalità
+
+////
+This section describes two methods for checking the primality of an integer latexmath:[$n$], one with order of growth latexmath:[$\Theta(\sqrt{n})$], and a ``probabilistic'' algorithm with order of growth latexmath:[$\Theta(\log n)$]. The exercises at the end of this section suggest programming projects based on these algorithms.
+////
+Questo paragrafo descrive due metodi per controllare la primalità di un numero intero latexmath:[n], uno con tasso di crescita latexmath:[\Theta (\sqrt{n})] e un altro __probabilistico__ con tasso di crescita latexmath:[\Theta (\log n)]. Gli esercizi alla fine di questa sezione suggeriscono progetti di programmazione basati su questi algoritmi.
+
+[[ricerca_divisori]]
+===== La ricerca dei divisori
+
+////
+Since ancient times, mathematicians have been fascinated by problems concerning prime numbers, and many people have worked on the problem of determining ways to test if numbers are prime. One way to test if a number is prime is to find the number’s divisors. The following program finds the smallest integral divisor (greater than 1) of a given number latexmath:[$n$]. It does this in a straightforward way, by testing latexmath:[$n$] for divisibility by successive integers starting with 2.
+////
+Sin dai tempi antichi, i matematici sono stati affascinati dai problemi riguardanti i numeri primi e molte persone hanno lavorato al problema di determinare i modi per verificare se i numeri sono primi. Un modo per verificare se un numero è primo è trovare i divisori del numero. Il seguente programma trova il divisore intero più piccolo (maggiore di 1) di un dato numero latexmath:[n]. Lo fa in modo semplice, testando latexmath:[n] per la divisibilità per interi successivi che iniziano con 2.
+
+[source,javascript]
+----
+function divisore_minimo(n) {
+    return cerca_divisore(n, 2);
+}
+function cerca_divisore(n, divisore_prova) {
+     return quadrato(divisore_prova) > n
+            ? n
+            : divide(divisore_prova, n)
+              ? divisore_prova
+              : cerca_divisore(n, divisore_prova + 1);
+}
+function divide(a, b) {
+    return b % a === 0;
+}
+----
+
+////
+We can test whether a number is prime as follows: latexmath:[$n$] is prime if and only if latexmath:[$n$] is its own smallest divisor.
+////
+Possiamo verificare se un numero è primo come segue: latexmath:[n] è primo se e solo se latexmath:[n] è il suo divisore più piccolo.
+
+[source,javascript]
+----
+function primo(n) {
+    return n === divisore_minimo(n);
+}
+----
+
+////
+The end test for `find_divisor` is based on the fact that if latexmath:[$n$] is not prime it must have a divisor less than or equal to latexmath:[$\sqrt{n}$].footnote:[If latexmath:[$d$] is a divisor of latexmath:[$n$], then so is latexmath:[$n/d$]. But latexmath:[$d$] and latexmath:[$n/d$] cannot both be greater than latexmath:[$\sqrt{n}$].] This means that the algorithm need only test divisors between 1 and latexmath:[$\sqrt{n}$]. Consequently, the number of steps required to identify latexmath:[$n$] as prime will have order of growth latexmath:[$\Theta(\sqrt{n})$].
+////
+Il test finale per `cerca_divisore` si basa sul fatto che se latexmath:[n] non è primo, deve avere un divisore minore o uguale a latexmath:[\sqrt{n}]. footnote:[Se latexmath:[d] è un divisore di latexmath:[n], lo è anche latexmath:[n / d]. Ma latexmath:[d] e latexmath:[n / d] non possono essere entrambi maggiori di latexmath:[\sqrt{n}].] Ciò significa che l'algoritmo necessita solo di divisori di test tra 1 e latexmath:[\sqrt{n}]. Di conseguenza, il numero di passaggi necessari per identificare latexmath:[n] come primo avrà l'ordine di crescita latexmath:[\Theta (\sqrt{n})].
+
+[[the-fermat-test]]
+===== Il test di Fermat
+
+////
+The latexmath:[$\Theta(\log n)$] primality test is based on a result from number theory known as Fermat’s Little Theorem.footnote:[Pierre de Fermat (1601–1665) is considered to be the founder of modern number theory. He obtained many important number-theoretic results, but he usually announced just the results, without providing his proofs. Fermat’s Little Theorem was stated in a letter he wrote in 1640. The first published proof was given by Euler in 1736 (and an earlier, identical proof was discovered in the unpublished manuscripts of Leibniz). The most famous of Fermat’s results—known as Fermat’s Last Theorem—was jotted down in 1637 in his copy of the book _Arithmetic_ (by the third-century Greek mathematician Diophantus) with the remark ``I have discovered a truly remarkable proof, but this margin is too small to contain it.'' Finding a proof of Fermat’s Last Theorem became one of the most famous challenges in number theory. A complete solution was finally given in 1995 by Andrew Wiles of Princeton University.]
+////
+Il test di primalità con tasso di crescita latexmath:[\Theta(\log n)] si basa su un risultato della teoria dei numeri noto come Piccolo teorema di Fermat. footnote:[Pierre de Fermat (1601–1665) è considerato il fondatore della moderna teoria dei numeri. Ottenne molti importanti risultati di teoria dei numeri, ma di solito annunciava solo i risultati, senza fornire le sue dimostrazioni. Il piccolo teorema di Fermat fu enunciato in una lettera che scrisse nel 1640. La prima dimostrazione pubblicata fu data da Eulero nel 1736 (e una dimostrazione identica e precedente fu scoperta nei manoscritti inediti di Leibniz). Il più famoso dei risultati di Fermat, noto come Ultimo teorema di Fermat, fu annotato nel 1637 nella sua copia del libro __Aritmetica__ (del matematico greco del III secolo Diofanto) con l'osservazione: __Ho scoperto una dimostazione davvero notevole, ma questo  margine è troppo piccolo per contenerla.__ Trovare una dimostrazione dell'ultimo teorema di Fermat divenne una delle sfide più famose nella teoria dei numeri. Una soluzione completa è stata infine fornita nel 1995 da Andrew Wiles della Princeton University.]
+
+////
+*Fermat’s Little Theorem:* If latexmath:[$n$] is a prime number and latexmath:[$a$] is any positive integer less than latexmath:[$n$], then latexmath:[$a$] raised to the latexmath:[$n$]th power is congruent to latexmath:[$a$] modulo latexmath:[$n$].
+////
+**Piccolo teorema di Fermat:** Se latexmath:[n] è un numero primo e latexmath:[a] è un qualsiasi numero intero positivo inferiore a latexmath:[n], allora latexmath:[a] elevato alla latexmath:[n]-esima potenza è congruente a latexmath:[a] modulo latexmath:[n].
+
+////
+(Two numbers are said to be _congruent modulo_ latexmath:[$n$] if they both have the same remainder when divided by latexmath:[$n$]. The remainder of a number latexmath:[$a$] when divided by latexmath:[$n$] is also referred to as the latexmath:[$a$] _modulo_ latexmath:[$n$], or simply as latexmath:[$a$] _modulo_ latexmath:[$n$].)
+////
+(Si dice che due numeri siano _congruenti modulo_ latexmath:[n] se entrambi hanno lo stesso resto quando divisi per latexmath:[n]. Il resto di un numero latexmath:[a] quando diviso per latexmath:[n] è anche indicato come __il resto di__ latexmath:[a] _modulo_ latexmath:[n], o semplicemente come latexmath:[a] _modulo_ latexmath:[n].)
+
+////
+If latexmath:[$n$] is not prime, then, in general, most of the numbers latexmath:[$a < n$] will not satisfy the above relation. This leads to the following algorithm for testing primality: Given a number latexmath:[$n$], pick a random number latexmath:[$a < n$] and compute the remainder of latexmath:[$a^n$] modulo latexmath:[$n$]. If the result is not equal to latexmath:[$a$], then latexmath:[$n$] is certainly not prime. If it is latexmath:[$a$], then chances are good that latexmath:[$n$] is prime. Now pick another random number latexmath:[$a$] and test it with the same method. If it also satisfies the equation, then we can be even more confident that latexmath:[$n$] is prime. By trying more and more values of latexmath:[$a$], we can increase our confidence in the result. This algorithm is known as the Fermat test.
+////
+Se latexmath:[n] non è primo, allora, in generale, la maggior parte dei numeri latexmath:[a < n] non soddisferà la relazione di cui sopra. Questo porta al seguente algoritmo per testare la primalità: dato un numero latexmath:[n], scegli un numero casuale latexmath:[a < n] e calcola il resto di latexmath:[a^n] modulo latexmath:[n]. Se il risultato non è uguale a latexmath:[a], latexmath:[n] non è certamente primo. Se è latexmath:[a], allora è probabile che latexmath:[n] sia primo. Ora scegli un altro numero casuale latexmath:[a] e testalo con lo stesso metodo. Se anche questo soddisfa l'equazione, allora possiamo essere ancora più sicuri che latexmath:[n] sia primo. Provando sempre più valori di latexmath:[a], possiamo aumentare la nostra fiducia nel risultato. Questo algoritmo è noto come test di Fermat.
+
+////
+To implement the Fermat test, we need a function that computes the exponential of a number modulo another number:
+////
+Per realizzare il test di Fermat, abbiamo bisogno di una funzione che calcoli l'elevamento a potenza di un numero modulo un altro numero:
+
+[source,javascript]
+----
+function potenza_modulo(base, esponente, m) {
+    return esponente === 0
+           ? 1
+           : pari(esponente)
+             ? quadrato(potenza_modulo(base, esponente / 2, m)) % m
+             : (base * potenza_modulo(base, esponente - 1, m)) % m;
+
+}
+----
+
+////
+This is very similar to the `fast_expt` function of section [sec:exponentiation]. It uses successive squaring, so that the number of steps grows logarithmically with the exponent.footnote:[The reduction steps in the cases where the exponent latexmath:[$e$] is greater than 1 are based on the fact that, for any integers latexmath:[$x$], latexmath:[$y$], and latexmath:[$m$], we can find the remainder of latexmath:[$x$] times latexmath:[$y$] modulo latexmath:[$m$] by computing separately the remainders of latexmath:[$x$] modulo latexmath:[$m$] and latexmath:[$y$] modulo latexmath:[$m$], multiplying these, and then taking the remainder of the result modulo latexmath:[$m$]. For instance, in the case where latexmath:[$e$] is even, we compute the remainder of latexmath:[$b^{e/2}$] modulo latexmath:[$m$], square this, and take the remainder modulo latexmath:[$m$]. This technique is useful because it means we can perform our computation without ever having to deal with numbers much larger than latexmath:[$m$]. (Compare exercise [ex:Alyssas-expmod].)]
+////
+Questo è molto simile alla funzione `potenza_veloce` della sezione <<sp_elevamento_a_potenza>>. Utilizza i quadrati successivi, in modo che il numero di passi cresca logaritmicamente con l'esponente.footnote:[I passi di riduzione nei casi in cui l'esponente latexmath:[e] è maggiore di 1 si basano sul fatto che, per qualsiasi interi latexmath:[x], latexmath:[y] e latexmath:[m], possiamo trovare il resto di latexmath:[x] per latexmath:[y] modulo latexmath:[m] calcolando separatamente i resti di latexmath:[x] modulo latexmath:[m] e latexmath:[y] modulo latexmath:[m], moltiplicandoli e quindi prendendo il resto del risultato modulo latexmath:[m]. Ad esempio, nel caso in cui latexmath:[e] è pari, calcoliamo il resto di latexmath:[b^{e / 2}] modulo latexmath:[m], ne facciamo il quadrato e prendiamo il resto modulo latexmath:[m]. Questa tecnica è utile perché significa che possiamo eseguire il nostro calcolo senza dover mai avere a che fare con numeri molto più grandi di latexmath:[m]. (Confronta l'esercizio <<es_alyssas_expmod>>.)]
+
+////
+The Fermat test is performed by choosing at random a number latexmath:[$a$] between 1 and latexmath:[$n-1$] inclusive and checking whether the remainder modulo latexmath:[$n$] of the latexmath:[$n$]th power of latexmath:[$a$] is equal to latexmath:[$a$]. The random number latexmath:[$a$] is chosen using the function `random`, which we assume is included as a primitive in JavaScript. The function `random` returns a nonnegative integer less than its integer input. Hence, to obtain a random number between 1 and latexmath:[$n-1$], we call `random` with an input of latexmath:[$n-1$] and add 1 to the result:
+////
+Il test di Fermat viene eseguito scegliendo a caso un numero latexmath:[a] compreso tra 1 e latexmath:[n-1] incluso e controllando se il resto modulo latexmath:[n] della latexmath:[n]-esima potenza di latexmath:[a] è uguale a latexmath:[a]. Il numero casuale latexmath:[a] viene scelto utilizzando la funzione `random`, che assumiamo sia inclusa come primitiva in JavaScript. La funzione `random` restituisce un numero intero non negativo minore del suo intero input. Quindi, per ottenere un numero casuale compreso tra 1 e latexmath:[n-1], chiamiamo `random` con un input di latexmath:[n-1] e aggiungiamo 1 al risultato:
+
+[source,javascript]
+----
+function test_fermat(n) {
+    function prova(a) {
+        return potenza_modulo(a, n, n) === a;
+    }
+    return prova(1 + random(n - 1));
+}
+----
+
+////
+The following function runs the test a given number of times, as specified by a parameter. Its value is true if the test succeeds every time, and false otherwise.
+////
+La seguente funzione esegue il test un determinato numero di volte, come specificato da un parametro. Il suo valore è vero se il test riesce ogni volta e falso in caso contrario.
+
+[source,javascript]
+----
+function primo_veloce(n, num_volte) {
+    return num_volte === 0
+        ? true
+        : test_fermat(n)
+            ? primo_veloce(n, num_volte - 1)
+            : false;
+}
+----
+
+[[sp_metodi_probabilistici]]
+===== Metodi probabilistici
+
+////
+The Fermat test differs in character from most familiar algorithms, in which one computes an answer that is guaranteed to be correct. Here, the answer obtained is only probably correct. More precisely, if latexmath:[$n$] ever fails the Fermat test, we can be certain that latexmath:[$n$] is not prime. But the fact that latexmath:[$n$] passes the test, while an extremely strong indication, is still not a guarantee that latexmath:[$n$] is prime. What we would like to say is that for any number latexmath:[$n$], if we perform the test enough times and find that latexmath:[$n$] always passes the test, then the probability of error in our primality test can be made as small as we like.
+////
+Il test di Fermat è molto diverso dagli algoritmi più familiari, i quali calcolano una risposta che è garantita essere corretta. In questo caso, la risposta ottenuta è solo probabilmente corretta. Più precisamente, se latexmath:[n] fallisce il test di Fermat, possiamo essere certi che latexmath:[n] non è primo. Ma il fatto che latexmath:[n] superi il test, sebbene sia un'indicazione estremamente forte, non è ancora una garanzia che latexmath:[n] sia primo. Quello che vorremmo dire è che per qualsiasi numero latexmath:[n], se eseguiamo il test abbastanza volte e risulta che latexmath:[n] supera sempre il test, allora la probabilità di errore nel nostro test di primalità può essere resa piccola a piacere.
+
+////
+Unfortunately, this assertion is not quite correct. There do exist numbers that fool the Fermat test: numbers latexmath:[$n$] that are not prime and yet have the property that latexmath:[$a^n$] is congruent to latexmath:[$a$] modulo latexmath:[$n$] for all integers latexmath:[$a < n$]. Such numbers are extremely rare, so the Fermat test is quite reliable in practice.footnote:[[foot:carmichaelfn] Numbers that fool the Fermat test are called _Carmichael numbers_, and little is known about them other than that they are extremely rare. There are 255 Carmichael numbers below 100,000,000. The smallest few are 561, 1105, 1729, 2465, 2821, and 6601. In testing primality of very large numbers chosen at random, the chance of stumbling upon a value that fools the Fermat test is less than the chance that cosmic radiation will cause the computer to make an error in carrying out a ``correct'' algorithm. Considering an algorithm to be inadequate for the first reason but not for the second illustrates the difference between mathematics and engineering.]
+////
+Purtroppo questa affermazione non è del tutto corretta. Esistono numeri che ingannano il test di Fermat: numeri latexmath:[n] che non sono primi e tuttavia hanno la proprietà che latexmath:[a^n] è congruente a latexmath:[a] modulo latexmath:[n] per tutti i numeri interi latexmath:[a < n]. Tali numeri sono estremamente rari, quindi il test di Fermat è abbastanza affidabile nella pratica. footnote:[I numeri che ingannano il test di Fermat sono chiamati _numeri di Carmichael_, e poco si sa su di loro oltre al fatto che sono estremamente rari. Ci sono 255 numeri di Carmichael sotto i 100.000.000. I più piccoli sono 561, 1105, 1729, 2465, 2821 e 6601. Nel testare la primalità di numeri molto grandi scelti a caso, la possibilità di imbattersi in un valore che inganna il test di Fermat è inferiore alla possibilità che la radiazione cosmica farà commettere un errore computer nell'esecuzione di un algoritmo __corretto__. Considerare un algoritmo inadeguato per la prima ragione ma non per la seconda illustra bene la differenza tra matematica e ingegneria.]
+
+////
+There are variations of the Fermat test that cannot be fooled. In these tests, as with the Fermat method, one tests the primality of an integer latexmath:[$n$] by choosing a random integer latexmath:[$a < n$] and checking some condition that depends upon latexmath:[$n$] and latexmath:[$a$]. (See exercise [ex:miller-rabin] for an example of such a test.) On the other hand, in contrast to the Fermat test, one can prove that, for any latexmath:[$n$], the condition does not hold for most of the integers latexmath:[$a < n$] unless latexmath:[$n$] is prime. Thus, if latexmath:[$n$] passes the test for some random choice of latexmath:[$a$], the chances are better than even that latexmath:[$n$] is prime. If latexmath:[$n$] passes the test for two random choices of latexmath:[$a$], the chances are better than 3 out of 4 that latexmath:[$n$] is prime. By running the test with more and more randomly chosen values of latexmath:[$a$] we can make the probability of error as small as we like.
+////
+Ci sono varianti del test di Fermat che non possono essere ingannate. In questi test, come con il metodo Fermat, si verifica la primalità di un intero latexmath:[n] scegliendo un numero a caso latexmath:[a < n] e verificando alcune condizioni che dipendono da latexmath:[n] e latexmath:[a]. (Vedere l'esercizio [es: miller-rabin] per un esempio di tale test.) D'altra parte, in contrasto con il test di Fermat, si può dimostrare che, per qualsiasi latexmath:[n], la condizione non vale per la maggior parte degli interi latexmath:[a < n] a meno che latexmath:[n] non sia primo. La probabilità che latexmath:[n] superi il test per una scelta casuale di latexmath:[a], sono maggiori di quelle che latexmath:[n] sia primo. Se latexmath:[n] supera il test per due scelte casuali di latexmath:[a], le probabilità che latexmath:[n] sia primo sono maggiori di 3 su 4. Eseguendo il test con valori sempre più valori di latexmath:[a] scelti a caso possiamo rendere la probabilità di errore piccola a piacere.
+
+////
+The existence of tests for which one can prove that the chance of error becomes arbitrarily small has sparked interest in algorithms of this type, which have come to be known as _probabilistic algorithms_. There is a great deal of research activity in this area, and probabilistic algorithms have been fruitfully applied to many fields.footnote:[One of the most striking applications of probabilistic prime testing has been to the field of cryptography. Although it is now computationally infeasible to factor an arbitrary 200-digit number, the primality of such a number can be checked in a few seconds with the Fermat test. This fact forms the basis of a technique for constructing ``unbreakable codes'' suggested by Rivest, Shamir, and Adleman (1977). The resulting has become a widely used technique for enhancing the security of electronic communications. Because of this and related developments, the study of prime numbers, once considered the epitome of a topic in ``pure'' mathematics to be studied only for its own sake, now turns out to have important practical applications to cryptography, electronic funds transfer, and information retrieval.]
+////
+L'esistenza di test per i quali si può dimostrare che la possibilità di errore diventa arbitrariamente piccola ha suscitato interesse per algoritmi di questo tipo, che sono diventati noti come _algoritmi probabilistici_. C'è una grande attività di ricerca in quest'area e gli algoritmi probabilistici sono stati applicati con successo in molti campi. footnote:[Una delle applicazioni più sorprendenti dei test probabilistici di primalità è nel campo della crittografia. Sebbene ora sia computazionalmente impossibile fattorizzare un numero arbitrario di 200 cifre, la primalità di tale numero può essere verificata in pochi secondi con il test di Fermat. Questo fatto costituisce la base di una tecnica suggerita da Rivest, Shamir e Adleman (1977) per costruire __codici indistruttibili__. Il risultato è diventato una tecnica ampiamente utilizzata per migliorare la sicurezza delle comunicazioni elettroniche. Per questo e per i relativi sviluppi, lo studio dei numeri primi, un tempo considerato l'epitome di un argomento di matematica __pura__ da studiare solo per il piacere di farlo, risulta ora avere importanti applicazioni pratiche alla crittografia, al trasferimento elettronico di fondi e recupero delle informazioni.]
+
+[[ex:use-smallest-divisor]]
+.Esercizio 1.21. Applicazione di `divisore_minimo`
+==== 
+////
+Use the `smallest_divisor` function to find the smallest divisor of each of the following numbers: 199, 1999, 19999.
+////
+Usa la funzione `divisore_minimo` per trovare il divisore più piccolo di ciascuno dei seguenti numeri: 199, 1999, 19999.
+====
+
+////
+[[solution]]
+==== Solution
+
+....
+smallest_divisor(199);
+// smallest_divisor(1999);
+// smallest_divisor(19999);
+....
+////
+
+[[ex:search-for-primes]]
+.Esercizio 1.22. Fare esperienza della complessità di ricerca dei numeri primi grandi
+====
+////
+Assume a primitive function `get_time` of no arguments that whenever it is called returns the number of milliseconds that passed since 00:00:00 UTC Thursday, 1 January 1970.footnote:[This date is called the _UNIX epoch_ and is part of the specification of functions that deal with time in the UNIXlatexmath:[$^{\textrm{TM}}$] operating system.] The following `timed_prime_test` function, when called with an integer latexmath:[$n$], prints latexmath:[$n$] and checks to see if latexmath:[$n$] is prime. If latexmath:[$n$] is prime, the function prints three asterisksfootnote:[The primitive function `display` returns its argument, but also prints it. Here `" *** "` is a _string_, a sequence of characters that we pass as argument to the `display` function. Section [sec:strings] introduces strings more thoroughly.] followed by the amount of time used in performing the test.
+////
+Assumiamo che una funzione primitiva `get_time` senza argomenti ogni volta che viene chiamata restituisca il numero di millisecondi trascorsi dalla mezzanotte di giovedì 1 gennaio 1970. footnote:[Questa data, 1970-01-01 00:00:00 UTC, è chiamata _UNIX epoch_ e fa parte del specifica delle funzioni che si occupano del tempo nel sistema operativo UNIX(TM).] La seguente funzione `test_primalita_temporizzata`, quando chiamata con un numero intero latexmath:[n], stampa latexmath:[n] e controlla se latexmath:[n] sia primo. Se latexmath:[n] è primo, la funzione stampa tre asterischi.footnote:[La funzione primitiva `display` restituisce il suo argomento, ma lo stampa anche. Qui __***__ è una _stringa_, una sequenza di caratteri che passiamo come argomento alla funzione `display`. La sezione [sp_stringhe] introduce le stringhe in modo più approfondito.] seguita dal tempo impiegato per eseguire il test.
+
+[source,javascript]
+----
+function test_primalita_cronometrato(n) {
+    display(n);
+    return inizia_test_primalita(n, get_time());
+}
+function inizia_test_primalita(n, tempo_inizio) {
+    return primo(n)
+           ? stampa_primo(get_time() - tempo_inizio)
+           : false;
+}
+function stampa_primo(tempo_trascorso) {
+    display(" *** ");
+    return display(tempo_trascorso);
+}
+----
+
+////
+Using this function, write a function `search_for_primes` that checks the primality of consecutive odd integers in a specified range. Use your function to find the three smallest primes larger than 1000; larger than 10,000; larger than 100,000; larger than 1,000,000. Note the time needed to test each prime. Since the testing algorithm has order of growth of latexmath:[$\Theta(\sqrt{n})$], you should expect that testing for primes around 10,000 should take about latexmath:[$\sqrt{10}$] times as long as testing for primes around 1000. Do your timing data bear this out? How well do the data for 100,000 and 1,000,000 support the latexmath:[$\sqrt{n}$] prediction? Is your result compatible with the notion that programs on your machine run in time proportional to the number of steps required for the computation?
+////
+Usando questa funzione, scrivi una funzione `cerca_primi` che controlla la primalità degli interi dispari consecutivi in ​​un intervallo specificato. Usa la tua funzione per trovare i tre numeri primi più piccoli maggiori di 1000; maggiori di 10.000; maggiori di 100.000; maggiori di 1.000.000. Prendi nota del tempo necessario per testare ogni primo. Poiché l'algoritmo di test ha tasso di crescita latexmath:[\Theta (\sqrt{n})], dovresti aspettarti che il test per i numeri primi intorno a 10.000 dovrebbe richiedere circa latexmath:[\sqrt{10}] volte il tempo di verifica dei numeri primi intorno a 1000. I dati sui tempi lo confermano? In che misura i dati per 100.000 e 1.000.000 confermano la previsione latexmath:[\sqrt{n}]? Il tuo risultato è compatibile con l'idea che i programmi sulla tua macchina vengano eseguiti nel tempo proporzionale al numero di passaggi necessari per il calcolo?
+====
+
+////
+[[solution-1]]
+==== Solution
+
+....
+function search_for_primes(start, times) {
+    return times === 0
+        ? true
+        : start > 2 && start % 2 === 0
+            ? search_for_primes(start + 1, times)
+            // if we get undefined -> its a prime
+            : is_undefined(timed_prime_test(start)) 
+                ? search_for_primes(start + 2, times - 1)
+                : search_for_primes(start + 2, times);
+}
+....
+
+The timing data quite clearly supports the latexmath:[$\sqrt{n}$] for prediction that is sufficiently big, such as 100,000 and 1,000,000.
+////
+
+[[ex:better-smallest-divisor]]
+.Esercizio 1.23. 
+====
+
+////
+The `smallest_divisor` function shown at the start of this section does lots of needless testing: After it checks to see if the number is divisible by 2 there is no point in checking to see if it is divisible by any larger even numbers. This suggests that the values used for `test_divisor` should not be 2, 3, 4, 5, 6, … but rather 2, 3, 5, 7, 9, …. To implement this change, declare a function `next` that returns 3 if its input is equal to 2 and otherwise returns its input plus 2. Modify the `smallest_divisor` function to use `next(test_divisor)` instead of `test_divisor + 1`. With `timed_prime_test` incorporating this modified version of `smallest_divisor`, run the test for each of the 12 primes found in exercise [ex:search-for-primes]. Since this modification halves the number of test steps, you should expect it to run about twice as fast. Is this expectation confirmed? If not, what is the observed ratio of the speeds of the two algorithms, and how do you explain the fact that it is different from 2?
+////
+La funzione `divisore_minimo` mostrata all'inizio di questo paragrafo fa molti test inutili: dopo aver verificato se il numero è divisibile per 2 non ha senso controllare se è divisibile per numeri pari più grandi. Questo suggerisce che i valori usati per `divisore_prova` non dovrebbero essere 2, 3, 4, 5, 6,... ma piuttosto 2, 3, 5, 7, 9,... . Per implementare questa modifica, dichiara una funzione `prossimo` che restituisce 3 se il suo input è uguale a 2 e altrimenti restituisce il suo input più 2. Modifica la funzione `divisore_minimo` per utilizzare `prossimo` invece di `divisore_prova + 1` . Con `test_primalita_cronometrato` che incorpora questa versione modificata di` divisore_minimo`, esegui il test per ciascuno dei 12 numeri primi trovati nell'esercizio <<es:search-for-primes>>. Poiché questa modifica dimezza il numero di passaggi del test, dovresti aspettarti che venga eseguito circa il doppio più velocemente. Questa aspettativa è confermata? In caso negativo, qual è il rapporto osservato tra le velocità dei due algoritmi e come spieghi il fatto che è diverso da 2?
+====
+
+////
+[[solution-2]]
+==== Solution
+
+....
+function next(input) {
+    return input === 2 
+        ? 3 
+        : input + 2;
+}
+
+function find_divisor(n, test_divisor) {
+    return square(test_divisor) > n
+            ? n
+            : divides(test_divisor, n)
+              ? test_divisor
+              : find_divisor(n, next(test_divisor));
+}
+....
+
+The ratio of the speeds of the two algorithms is not exactly 2, but this might be due to hardware / network issues. It is about 1.5 times faster compared to previous solution.
+////
+
+.Esercizio 1.24.
+====
+
+////
+Modify the `timed_prime_test` function of exercise [ex:search-for-primes] to use `fast_is_prime` (the Fermat method), and test each of the 12 primes you found in that exercise. Since the Fermat test has latexmath:[$\Theta(\log n)$] growth, how would you expect the time to test primes near 1,000,000 to compare with the time needed to test primes near 1000? Do your data bear this out? Can you explain any discrepancy you find? [ex:mod-timed-prime-test]
+////
+Modifica la funzione `test_primalita_cronometrato` dell'esercizio <<es_cerca-numeri primi>> per usare `primo_veloce` (il metodo Fermat), e prova ciascuno dei 12 numeri primi trovati in quell'esercizio. Dato che il test di Fermat ha tasso di crescita latexmath:[\Theta (\log n)], quale rapporto tra i tempi necessari per testare numeri primi vicini a 1.000.000 e quelli per testare numeri primi vicini a 1000 ti aspetteresti? I tuoi dati lo confermano? Puoi spiegare eventuali discrepanze che trovi? [Es: mod-cronometrato-prime-test]
+====
+
+////
+[[solution-3]]
+==== Solution
+
+....
+function timed_prime_test(n) {
+    display(n);
+    return start_prime_test(n, get_time());
+}
+function start_prime_test(n, start_time) {
+    return fast_is_prime(n, math_floor(math_log(n)))
+          ? report_prime(get_time() - start_time)
+          : true;
+}
+function report_prime(elapsed_time) {
+    display(" *** ");
+    display(elapsed_time);
+}
+....
+
+The time to test primes near 1,000,000 using `fast_is_prime` is about 4 ms, 4 times the time needed to test primes near 1,000. This is faster compared to 8 ms that we achieved if we use the `is_prime`. However, despite being 4 times slower, this fact cannot lead us to believe that it has a greater growth than latexmath:[$\Theta(\log n)$], as it should be tested with greater numbers to gain a more accurate understanding of the growth of the function.
+////
+
+[[exercise-1]]
+.Esercizio 1.25.
+====
+
+Alyssa P. Hacker complains that we went to a lot of extra work in writing `expmod`. After all, she says, since we already know how to compute exponentials, we could have simply written
+
+....
+function expmod(base, exp, m) {
+    return fast_expt(base, exp) % m;
+}
+....
+
+Is she correct? Would this function serve as well for our fast prime tester? Explain. [ex:Alyssas-expmod]
+====
+
+////
+[[solution-4]]
+==== Solution
+
+Alyssa’s suggestion is correct at first sight: her `expmod` function computes latexmath:[$\textit{base}^{\textit{exp}}$] and then finds its remainder modulo latexmath:[$m$], as required in the Fermat test.
+
+However, for large bases, Alyssa’s method will quickly bump into limitations because JavaScript uses 64 bits to represent numbers, following the double-precision floating point standard. When the numbers become so large that they cannot be represented precisely any longer in this standard, the results become unreliable. Even worse, the method might exceed the largest number that can be represented in this standard, and the computation leads to an error.
+
+For small bases, however, Alyssa’s method may be even faster than the original `expmod` function, because it will carry out only one single remainder operation.
+////
+
+[[ex:louis-fast-prime]]
+.Esercizio 1.26.
+====
+
+Louis Reasoner is having great difficulty doing exercise [ex:mod-timed-prime-test]. His `fast_is_prime` test seems to run more slowly than his `is_prime` test. Louis calls his friend Eva Lu Ator over to help. When they examine Louis’s code, they find that he has rewritten the `expmod` function to use an explicit multiplication, rather than calling `square`:
+
+....
+function expmod(base, exp, m) {
+    return exp === 0
+           ? 1
+           : is_even(exp)
+             ? expmod(base, exp / 2, m) 
+               * expmod(base, exp / 2, m)
+               % m
+             : base
+               * expmod(base, exp - 1, m) 
+               % m;
+}
+....
+
+__I don’t see what difference that could make,__ says Louis. __I do.__ says Eva. __By writing the function like that, you have transformed the latexmath:[$\Theta(\log n)$] process into a latexmath:[$\Theta(n)$] process.__ Explain.
+====
+
+////
+[[solution-5]]
+==== Solution
+
+Eva is correct: by evaluating the expression:
+
+....
+expmod(base, exp / 2, m) 
+* expmod(base, exp / 2, m)
+% m
+....
+
+the expression `expmod(base, exp / 2, m)` is evaluated twice at each step in the computation when the exponent is even, eliminating the benefit of the fast exponentiation algorithm—which halves the exponent when the exponent is even—therefore eliminating the feature of the algorithm that makes it faster.
+////
+
+[[ex:unlabeled25]]
+.Esercizio 1.27.
+====
+
+Demonstrate that the Carmichael numbers listed in footnote [foot:carmichaelfn] really do fool the Fermat test. That is, write a function that takes an integer latexmath:[n] and tests whether latexmath:[a^n] is congruent to latexmath:[a] modulo latexmath:[n] for every latexmath:[a < n], and try your function on the given Carmichael numbers.
+====
+
+////
+[[solution-6]]
+==== Solution
+
+....
+function carmichael(n) {
+    function expmod(base, exp, m) {
+        return exp === 0
+               ? 1
+               : is_even(exp)
+                 ? square(expmod(base, exp / 2, m)) % m
+                 : (base * expmod(base, exp - 1, m)) % m;
+    }
+    function fermat_test(n, a) {
+        return expmod(a, n, n) === a;
+    }
+    function iter(n, i) {
+        return i === n
+               ? true
+               : fermat_test(n, i)
+                 ? iter(n, i + 1)
+                 : false;
+    }
+    return iter(n, 2);
+}
+....
+////
+
+[[exercise-2]]
+.Esercizio 1.28
+====
+
+One variant of the Fermat test that cannot be fooled is called the _Miller-Rabin test_ (Miller 1976; Rabin 1980). This starts from an alternate form of Fermat’s Little Theorem, which states that if latexmath:[n] is a prime number and latexmath:[a] is any positive integer less than latexmath:[n], then latexmath:[a] raised to the latexmath:[(n-1)]st power is congruent to 1 modulo latexmath:[n]. To test the primality of a number latexmath:[n] by the Miller-Rabin test, we pick a random number latexmath:[a < n] and raise latexmath:[a] to the latexmath:[(n-1)]st power modulo latexmath:[n] using the `expmod` function. However, whenever we perform the squaring step in `expmod`, we check to see if we have discovered a __nontrivial square root of 1 modulo latexmath:[n]__ that is, a number not equal to 1 or latexmath:[n-1] whose square is equal to 1 modulo latexmath:[n]. It is possible to prove that if such a nontrivial square root of 1 exists, then latexmath:[n] is not prime. It is also possible to prove that if latexmath:[n] is an odd number that is not prime, then, for at least half the numbers latexmath:[a < n], computing latexmath:[a^{n-1}] in this way will reveal a nontrivial square root of 1 modulo latexmath:[n]. (This is why the Miller-Rabin test cannot be fooled.) Modify the `expmod` function to signal if it discovers a nontrivial square root of 1, and use this to implement the Miller-Rabin test with a function analogous to `fermat_test`. Check your function by testing various known primes and non-primes. Hint: One convenient way to make `expmod` signal is to have it return 0. [ex:miller-rabin]
+====
+
+////
+[[solution-7]]
+==== Solution
+
+....
+function random(n) {
+    return math_floor(math_random() * n);
+}
+function miller_rabin_test(n) {
+    function expmod(base, exp, m) {
+        return exp === 0
+....
+
+....
+               ? 1
+               : is_even(exp)
+                 ? square(trivial_test(expmod(base,
+                                              exp / 2,
+                                              m), 
+                                       m))
+                   % m
+         : (base * expmod(base, exp - 1, m)) 
+                   % m;
+    }
+    function trivial_test(r, m) {
+        return r === 1 || r === m - 1
+               ? r
+               : square(r) % m === 1
+                 ? 0
+                 : r;
+    }
+    function try_it(a) {
+        return expmod(a, n - 1, n) === 1;
+    }
+    return try_it(1 + random(n - 1));
+}
+function do_miller_rabin_test(n, times) {
+    return times === 0
+           ? true
+           : miller_rabin_test(n)
+             ? do_miller_rabin_test(n, times - 1)
+             : false;
+}
+....
+////
+
+//
