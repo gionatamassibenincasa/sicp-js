@@ -1,3 +1,4 @@
+[[s_funzioni_e_processi]]
 === Le funzioni e i processi da esse generati
 
 Nel primo paragrafo abbiamo considerato gli elementi della programmazione: abbiamo usato operazioni aritmetiche primitive, abbiamo combinato queste operazioni e abbiamo astratto queste operazioni composite dichiarandole come funzioni composte. Ma ciò non è abbastanza per permetterci di dire che sappiamo programmare. La nostra situazione è analoga a quella di colui il quale ha imparato le regole con si muovono i pezzi negli scacchi ma non sa nulla di aperture, tattiche o strategie tipiche. Come il giocatore di scacchi alle prime armi non è ancora a conoscenza degli schemi comuni e non di sa quali mosse valga la pena fare, così a noi manca la conoscenza di quali funzioni meritano di essere dichiarate. Ci manca l'esperienza per prevedere le conseguenze del fare una mossa (eseguire una funzione).

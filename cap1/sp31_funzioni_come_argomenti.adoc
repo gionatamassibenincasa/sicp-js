@@ -1,0 +1,404 @@
+[[sec:procedures-as-parameters]]
+==== Funzioni come Argomenti
+
+//Consider the following three functions. The first computes the sum of the integers from `a` through `b`:
+Considera le seguenti tre funzioni. La prima calcola la somma degli interi da _a_ a _b_:
+
+[source,javascript]
+----
+function somma_interi(a, b) {
+    return a > b
+           ? 0
+           : a + somma_interi(a + 1, b);
+}
+----
+
+//The second computes the sum of the cubes of the integers in the given range:
+La seconda calcola la somma dei cubi degli interi nell'intervallo dato:
+
+[source,javascript]
+----
+function somma_cubi(a, b) {
+    return a > b
+           ? 0
+           : cubo(a) + somma_cubi(a + 1, b);
+}
+----
+
+//The third computes the sum of a sequence of terms in the series latexmath:[\[\frac{1}{1\cdot3}+\frac{1}{5\cdot7}+\frac{1}{9\cdot11}+\cdots\]] which converges to latexmath:[$\pi/8$] (very slowly):footnote:[This series, usually written in the equivalent form latexmath:[$\frac {\pi}{4} = 1-\frac{1}
+La terza calcola la somma di una sequenza di termini nella serie
+
+[stem]
+++++
+\frac{1}{1\cdot3}+\frac{1}{5\cdot7}+\frac{1}{9\cdot11}+\cdots
+++++
+
+che converge a latexmath:[\pi / 8] (molto lentamente):footnote:[Questa serie, di solito scritta nella forma equivalente latexmath:[\frac{\pi}{4} = 1-\frac{1}{3}+\frac{1}{5}-\frac{1}{7}+\cdots], è dovuta a Leibniz. Vedremo come utilizzarla come base per alcuni fantasiosi trucchi numerici nella sezione <<sec:exploiting-streams>>.]
+
+[source,javascript]
+----
+function somma_pi(a, b) {
+    return a > b
+           ? 0
+           : 1.0 / (a * (a + 2)) + 
+             somma_pi(a + 4, b);
+}
+----
+
+//These three functions clearly share a common underlying pattern. They are for the most part identical, differing only in the name of the function, the function of `a` used to compute the term to be added, and the function that provides the next value of `a`. We could generate each of the functions by filling in slots in the same template:
+Queste tre funzioni condividono chiaramente un modello sottostante comune. Sono per la maggior parte identiche, differiscono solo per il nome della funzione, la funzione di _a_ usata per calcolare il termine da aggiungere e la funzione che fornisce il valore successivo di _a_. Potremmo generare ciascuna delle funzioni riempiendo gli slot nello stesso modello:
+
+[source,javascript]
+----
+function $nome$(a, b) {
+    return a > b
+           ? 0
+           : $termine$(a) + $nome$($prossimo$(a), b);
+}
+----
+
+//The presence of such a common pattern is strong evidence that there is a useful abstraction waiting to be brought to the surface. Indeed, mathematicians long ago identified the abstraction of and invented ``sigma notation,'' for example latexmath:[\[{\sum_{n=a}^{b}\ f(n)=f(a)+\cdots+f(b)\,}\]] to express this concept. The power of sigma notation is that it allows mathematicians to deal with the concept of summation itself rather than only with particular sums—for example, to formulate general results about sums that are independent of the particular series being summed.
+La presenza di un modello così comune è una forte evidenza che esiste un'astrazione utile in attesa di essere portata in superficie. In effetti, molto tempo fa i matematici identificarono l'astrazione e inventarono la __notazione sigma__, ad esempio 
+
+[stem]
+++++
+{\sum_{n=a}^{b}\ f(n)=f(a)+\cdots+f(b)\,}
+++++
+
+per esprimere questo concetto. Il potere della notazione sigma è che consente ai matematici di trattare il concetto di sommatoria stesso piuttosto che solo con somme particolari, ad esempio per formulare risultati generali su somme che sono indipendenti dalla particolare serie che viene sommata.
+
+//Similarly, as program designers, we would like our language to be powerful enough so that we can write a function that expresses the concept of summation itself rather than only functions that compute particular sums. We can do so readily in our functional language by taking the common template shown above and transforming the ``slots'' into parameters:
+Allo stesso modo, come progettisti di programmi, vorremmo che il nostro linguaggio fosse abbastanza potente da poter scrivere una funzione che esprima il concetto di sommatoria stesso piuttosto che solo funzioni che calcolano somme particolari. Possiamo farlo prontamente nel nostro linguaggio funzionale prendendo il modello comune mostrato sopra e trasformando gli "slot" in parametri:
+
+[source,javascript]
+----
+function somma(termine, a, prossimo, b) {
+    return a > b
+           ? 0
+           : termine(a) + somma(termine, prossimo(a), prossimo, b);
+}
+----
+
+//Notice that `sum` takes as its arguments the lower and upper bounds `a` and `b` together with the functions `term` and `next`. We can use `sum` just as we would any function. For example, we can use it (along with a function `inc` that increments its argument by 1) to define `sum_cubes`:
+Si noti che "somma" prende come argomenti i limiti inferiore e superiore "a" e "b" insieme alle funzioni "termine" e "prossimo". Possiamo usare "somma" proprio come faremmo con qualsiasi funzione. Ad esempio, possiamo usarla (insieme a una funzione `inc` che incrementa il suo argomento di 1) per definire `somma_cubi`:
+
+[source,javascript]
+----
+function inc(n) {
+    return n + 1;
+}
+function somma_cubi(a, b) {
+    return somma(cubo, a, inc, b);
+}
+----
+
+//Using this, we can compute the sum of the cubes of the integers from 1 to 10:
+Usando questa funzione, possiamo calcolare la somma dei cubi degli interi da 1 a 10:
+
+[source,javascript]
+----
+somma_cubi(1, 10);
+----
+
+//With the aid of an identity function to compute the term, we can define `sum_integers` in terms of `sum`:
+Con l'aiuto di una funzione _identità_ per calcolare il termine, possiamo definire `sommau_interi` in termini di `somma`:
+
+[source,javascript]
+----
+function identita(x) {
+    return x;
+}
+
+function somma_interi(a, b) {
+    return somma(identita, a, inc, b);
+}
+----
+
+//Then we can add up the integers from 1 to 10:
+Quindi possiamo sommare gli interi da 1 a 10:
+
+[source,javascript]
+----
+somma_interi(1, 10);
+----
+
+//We can also declare `pi_sum` in the same way:footnote:[Notice that we have used block structure (section [sec:black-box]) to embed the declarations of `pi_next` and `pi_term` within `pi_sum`, since these functions are unlikely to be useful for any other purpose. We will see how to get rid of them altogether in section [sec:lambda].]
+Possiamo anche dichiarare `somma_pi` nello stesso modo: footnote:[Nota che abbiamo usato la struttura a blocchi (<<sec:black-box>>) per incorporare le dichiarazioni di `pi_somma` e `pi_termine` all'interno di `somma_pi`, poiché è improbabile che queste funzioni siano utili per altri scopi. Vedremo come eliminarli del tutto nel <<sec:lambda>>.]
+
+[source,javascript]
+----
+function pi_sum(a, b) {
+    function pi_term(x) {
+        return 1.0 / (x * (x + 2));
+    }
+    function pi_next(x) {
+        return x + 4;
+    }
+    return sum(pi_term, a, pi_next, b);
+}
+----
+
+//Using these functions, we can compute an approximation to latexmath:[$\pi$]:
+Usando queste funzioni, possiamo calcolare un'approssimazione a latexmath: [\p]:
+
+[source,javascript]
+----
+8 * pi_sum(1, 1000);
+----
+
+//Once we have `sum`, we can use it as a building block in formulating further concepts. For instance, the definite integral of a function latexmath:[$f$] between the limits latexmath:[$a$] and latexmath:[$b$] can be approximated numerically using the formula
+Una volta che abbiamo "somma", possiamo usarla come elemento costitutivo nella formulazione di ulteriori concetti. Ad esempio, l'integrale definito di una funzione latexmath:[f] tra i limiti latexmath:[a] e latexmath:[b] può essere approssimato numericamente utilizzando la formula
+
+[stem]
+++++
+\int_{a}^{b}f =
+      \left[ f\left( a+\frac{dx}{2} \right) + f \left(a+dx+\frac{dx}{2}
+      \right) + f \left( a+2dx+\frac{dx}{2} \right)+\cdots
+      \right] dx
+++++
+per piccoli valori di latexmath:[dx].
+      
+//We can express this directly as a function:
+Possiamo esprimerlo direttamente come una funzione:
+
+[source,javascript]
+----
+function integrale(f, a, b, dx) {
+    function aggiungi_dx(x) {
+        return x + dx;
+    }
+    return somma(f, a + dx / 2, add_dx, b) * dx;
+}
+
+integrale(cubo, 0, 1, 0.01);
+----
+
+//(The exact value of the integral of `cube` between 0 and 1 is 1/4.)
+(Il valore esatto dell'integrale di "cubo" compreso tra 0 e 1 è 1/4.)
+
+[[ex:simpsons-rule]]
+.Esercizio 1.29. Regola di Cavalieri-Simpson
+====
+
+//Simpson’s Rule is a more accurate method of numerical integration than the method illustrated above. Using Simpson’s Rule, the integral of a function latexmath:[$f$] between latexmath:[$a$] and latexmath:[$b$] is approximated as latexmath:[\[\frac{h}{3}[ y_0 +4y_1 +2y_2 +4y_3 +2y_4 +\cdots+2y_{n-2}
+La regola di Cavalieri-Simpson è un metodo di integrazione numerica (quadratura) più accurato rispetto al metodo illustrato sopra. Usando la regola di Cavalieri-Simpson, l'integrale di una funzione latexmath:[f] tra latexmath:[a] e latexmath:[b] viene approssimato come
+
+[stem]
+++++
+\frac{h}{3} [y_0 + 4y_1 + 2y_2 + 4y_3 + 2y_4 + \cdots + 2y_{n-2} +4y_{n-1}+y_n ]
+++++
+
+//where latexmath:[$h=(b-a)/n$], for some even integer latexmath:[$n$], and latexmath:[$y_k =f(a+kh)$]. (Increasing latexmath:[$n$] increases the accuracy of the approximation.) Declare a function that takes as arguments latexmath:[$f$], latexmath:[$a$], latexmath:[$b$], and latexmath:[$n$] and returns the value of the integral, computed using Simpson’s Rule. Use your function to integrate `cube` between 0 and 1 (with latexmath:[$n=100$] and latexmath:[$n=1000$]), and compare the results to those of the `integral` function shown above.
+dove latexmath:[h = (b-a) / n], per un qualche numero intero pari latexmath:[n] e latexmath:[y_k = f (a + kh)]. (Aumentando latexmath:[n] aumenta l'accuratezza dell'approssimazione.) Dichiara una funzione che accetta come argomenti latexmath:[f], latexmath:[a], latexmath:[b] e latexmath:[n] e restituisce il valore dell'integrale, calcolato utilizzando la regola di Cavalieri-Simpson. Usa la tua funzione per integrare "cubo" tra 0 e 1 (con latexmath:[n = 100] e latexmath:[n = 1000]) e confronta i risultati con quelli della funzione "integrale" mostrata sopra.
+====
+
+////
+[[solution]]
+==== Solution
+
+....
+function inc(k) {
+    return k + 1;
+}
+function simpsons_rule_integral(f, a, b, n) {
+    function helper(h) {
+        function y(k) { 
+            return f((k * h) + a);
+        }
+    function term(k) {
+            return k === 0 || k === n
+                   ? y(k)
+                   : k % 2 === 0
+                     ? 2 * y(k)
+                     : 4 * y(k);
+        }
+        return sum(term, 0, inc, n) * (h / 3);
+    }
+    return helper((b - a) / n);
+}
+....
+////
+
+[[ex:unlabeled17]]
+.Esercizio 1.30. Somma come processo iterativo
+====
+//The `sum` function above generates a linear recursion. The function can be rewritten so that the sum is performed iteratively. Show how to do this by filling in the missing expressions in the following declaration:
+La funzione `somma` soprascritta genera una ricorsione lineare. La funzione può essere riscritta in modo che la somma venga eseguita in modo iterativo. Mostra come farlo compilando le espressioni mancanti nella seguente dichiarazione:
+
+[source,javascript]
+----
+function somma(termine, a, prossimo, b) {
+    function iter(a, risultato) {
+        return < ?? >
+               ? < ?? >
+               : iter(< ?? >, < ?? >);
+    }
+    return iter(< ?? >, < ?? >);
+}
+----
+====
+
+////
+[[solution-1]]
+==== Solution
+
+....
+function sum(term, a, next, b) {
+    function iter(a, result) {
+        return a > b
+               ? result
+               : iter(next(a), result + term(a));
+    }
+    return iter(a, 0);
+}
+....
+////
+
+[[es_prodotto]]
+.Esercizio 1.31. Prodotto/produttoria
+====
+//1.  The `sum` function is only the simplest of a vast number of similar abstractions that can be captured as higher-order functions.footnote:[The intent of exercises [ex:product]–[ex:filtered-accumulate] is to demonstrate the expressive power that is attained by using an appropriate abstraction to consolidate many seemingly disparate operations. However, though accumulation and filtering are elegant ideas, our hands are somewhat tied in using them at this point since we do not yet have data structures to provide suitable means of combination for these abstractions. We will return to these ideas in section [sec:sequences-conventional-interfaces] when we show how to use _sequences_ as interfaces for combining filters and accumulators to build even more powerful abstractions. We will see there how these methods really come into their own as a powerful and elegant approach to designing programs.] Write an analogous function called `product` that returns the product of the values of a function at points over a given range. Show how to define `factorial` in terms of `product`. Also use `product` to compute approximations to latexmath:[$\pi$] using the formulafootnote:[This formula was discovered by the seventeenth-century English mathematician John Wallis.]
+. La funzione `somma` è solo la più semplice di un vasto numero di astrazioni simili che possono essere gestite come funzioni di ordine superiore. footnote:[L'intento degli esercizi <<es_prodotto>> -- <<es_filtra_accumula>> è quello di dimostrare il potere espressivo che si ottiene utilizzando un'astrazione appropriata per unificare molte operazioni apparentemente diverse. Tuttavia, sebbene l'accumulazione e il filtraggio siano idee eleganti, a questo punto siamo in qualche modo costretti ad usarle poiché non abbiamo ancora strutture di dati per fornire mezzi di combinazione adeguati per queste astrazioni. Ritorneremo su queste idee nel TODO sec:sequences-traditional-interfaces quando mostreremo come usare le _sequenze_ come interfacce per combinare filtri e accumulatori per costruire astrazioni ancora più potenti. Vedremo qui come questi metodi si rivelino un approccio davvero potente ed elegante alla progettazione di programmi.] Scrivete una funzione analoga chiamata "prodotto" che restituisca il prodotto dei valori di una funzione in punti di un dato intervallo. Mostrate come definire "fattoriale" in termini di "prodotto". Usa anche `prodotto` per calcolare approssimazioni di latexmath:[\pi] usando la formula footnote:[Questa formula fu scoperta dal matematico inglese del XVII secolo John Wallis.]
++
+--
+[stem]
+++++
+\frac{\pi}{4}=\frac{2\cdot 4\cdot 4\cdot 6\cdot 6\cdot 8\cdots}{3\cdot3\cdot 5\cdot 5\cdot 7\cdot 7\cdots}
+++++
+--
+//2.  If your `product` function generates a recursive process, write one that generates an iterative process. If it generates an iterative process, write one that generates a recursive process.
+. Se la tua funzione `prodotto` genera un processo ricorsivo, scrivine uno che generi un processo iterativo. Se genera un processo iterativo, scrivine uno che generi un processo ricorsivo.
+====
+
+////
+[ex:product]
+[[solution-2]]
+==== Solution
+
+....
+//recursive process
+function product_r(term, a, next, b) {
+    return a > b
+           ? 1
+           : term(a) * product_r(term, next(a), next, b);
+}
+....
+
+....
+//iterative process
+function product_i(term, a, next, b) {
+    function iter(a, result) {
+        return a > b
+               ? result
+               : iter(next(a), term(a) * result);
+    }
+    return iter(a, 1);
+}
+....
+////
+
+[[es_accumula]]
+.Esercizio 1.32. Accumula
+====
+//1.  Show that `sum` and `product` (exercise [ex:product]) are both special cases of a still more general notion called `accumulate` that combines a collection of terms, using some general accumulation function:
+. Mostra che `somma` e` prodotto` (<<es_prodotto>>) sono entrambi casi speciali di una nozione ancora più generale chiamata `accumula` che combina una collezione di termini, utilizzando alcune funzioni generali di accumulazione:
++
+--
+[source,javascript]
+----
+accumula(operatore, elemento_neutro, termine, a, prossimo, b);
+----
+--
++
+//The function `accumulate` takes as arguments the same term and range specifications as `sum` and `product`, together with a `combiner` function (of two arguments) that specifies how the current term is to be combined with the accumulation of the preceding terms and a `null_value` that specifies what base value to use when the terms run out. Write `accumulate` and show how `sum` and `product` can both be declared as simple calls to `accumulate`.
+La funzione `accumula` prende come argomenti le stesse specifiche di termine e intervallo di `somma` e `prodotto`, insieme a una funzione `operatore` (di due argomenti) che specifica come il termine corrente deve essere combinato con l'accumulazione dei termini precedenti e un `elemento_neutro` che specifica quale valore di base usare quando i termini si esauriscono. Scrivi `accumula` e mostra come `somma` e `prodotto` possono essere entrambi dichiarati come semplici chiamate ad `accumula`.
+//2.  If your `accumulate` function generates a recursive process, write one that generates an iterative process. If it generates an iterative process, write one that generates a recursive process.
+. Se la tua funzione `accumula` genera un processo ricorsivo, scrivine uno che generi un processo iterativo. Se genera un processo iterativo, scrivine uno che generi un processo ricorsivo.
+====
+
+////
+[[solution-3]]
+==== Solution
+
+....
+//recursive process
+function accumulate_r(combiner, null_value, term, a, next, b) {
+    return a > b
+           ? null_value
+           : combiner(term(a), 
+                      accumulate_r(combiner, 
+                                   null_value, 
+                                   term, next(a), next, b));
+}
+function sum_r(term, a, next, b) {
+    function plus(x, y) {
+        return x + y;
+    }
+    return accumulate_r(plus, 0, term, a, next, b);
+}
+function product_r(term, a, next, b) {
+    function times(x, y) {
+        return x * y;
+    }
+    return accumulate_r(times, 1, term, a, next, b);
+}
+
+//iterative process
+function accumulate_i(combiner, null_value, term, a, next, b) {
+    function iter(a, result) {
+        return a > b
+               ? result
+               : iter(next(a), combiner(term(a), result));
+    }
+    return iter(a, null_value);
+}
+function sum_i(term, a, next, b) {
+    function plus(x, y) {
+        return x + y;
+    }
+    return accumulate_i(plus, 0, term, a, next, b);
+}
+function product_i(term, a, next, b) {
+    function times(x, y) {
+        return x * y;
+    }
+    return accumulate_i(times, 1, term, a, next, b);
+}
+....
+////
+
+[[es_filtra_accumula]]
+.Esercizio 1.33. Accumula i valori filtrati
+====
+
+//You can obtain an even more general version of `accumulate` (exercise [ex:accumulate]) by introducing the notion of a on the terms to be combined. That is, combine only those terms derived from values in the range that satisfy a specified condition. The resulting `filtered_accumulate` abstraction takes the same arguments as accumulate, together with an additional predicate of one argument that specifies the filter. Write `filtered_accumulate` as a function. Show how to express the following using `filtered_accumulate`:
+È possibile ottenere una versione ancora più generale di `accumula` (<<es_accumula>>) introducendo la nozione di un __filtro__ sui termini da combinare. Cioè, combina solo i termini derivati ​​dai valori nell'intervallo che soddisfano una condizione specificata. L'astrazione risultante `accumula_se` accetta gli stessi argomenti di accumula, insieme a un predicato aggiuntivo di un argomento che specifica il filtro. Scrivi "accumula_se" come funzione. Mostra come esprimere quanto segue usando `accumula_se`:
+
+//1.  the sum of the squares of the prime numbers in the interval latexmath:[$a$] to latexmath:[$b$] (assuming that you have a `is_prime` predicate already written)
+. la somma dei quadrati dei numeri primi nell'intervallo da latexmath:[a] a latexmath:[b] (assumendo che tu abbia un predicato `primo` già scritto)
+//2.  the product of all the positive integers less than latexmath:[$n$] that are relatively prime to latexmath:[$n$] (i.e., all positive integers latexmath:[$i < n$] such that latexmath:[$\textrm{GCD}(i,n)=1$]).
+. il prodotto di tutti i numeri interi positivi inferiori a latexmath:[n] che sono relativamente primi rispetto a latexmath:[n] (ovvero, tutti gli interi positivi latexmath:[i<n] tali che latexmath:[\textrm{MCD} (i, n) = 1]).
+====
+
+////
+[[solution-4]]
+==== Solution
+
+....
+function filtered_accumulate(combiner, null_value,
+                             term, a, next, b, filter) {
+    return a > b
+           ? null_value
+           : filter(a)
+             ? combiner(term(a), 
+                   filtered_accumulate(combiner, null_value, 
+                                       term, next(a), next, 
+                                       b, filter))
+             : filtered_accumulate(combiner, null_value, 
+                                   term, next(a), next, 
+                                   b, filter);
+}
+....
+////
+
+//

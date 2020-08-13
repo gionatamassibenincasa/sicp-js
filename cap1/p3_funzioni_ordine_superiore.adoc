@@ -34,3 +34,5 @@ include::sp31_funzioni_come_argomenti.adoc[]
 include::sp32_espressioni_definizione_funzioni.adoc[]
 
 include::sp33_funzioni_come_metodi_generali.adoc[]
+
+include::sp34_funzioni_come_valori_restituiti.adoc[]

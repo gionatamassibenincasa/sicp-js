@@ -149,8 +149,6 @@ che offrono limitati servizi gratuiti.
 
 include::p1_elementi_programmazione.adoc[]
 
-[[s_funzioni_e_processi]]
 include::p2_funzioni_e_processi.adoc[]
 
-//
-
+include::p3_funzioni_ordine_superiore.adoc[]

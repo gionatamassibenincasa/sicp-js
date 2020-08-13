@@ -484,34 +484,92 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 </ul>
 </li>
-<li><a href="#ex:better-smallest-divisor">1.3. Exercise</a>
+<li><a href="#sec:higher-order-procedures">1.3. Formulare astrazioni con funzioni di ordine superiore</a>
 <ul class="sectlevel3">
-<li><a href="#solution-2">1.3.1. Solution</a></li>
+<li><a href="#sec:procedures-as-parameters">1.3.1. Funzioni come Argomenti</a></li>
 </ul>
 </li>
-<li><a href="#exercise">1.4. Exercise</a>
-<ul class="sectlevel3">
-<li><a href="#solution-3">1.4.1. Solution</a></li>
 </ul>
 </li>
-<li><a href="#exercise-1">1.5. Exercise</a>
+<li><a href="#sec:lambda">2. Constructing Functions using Lambda Expressions</a>
 <ul class="sectlevel3">
-<li><a href="#solution-4">1.5.1. Solution</a></li>
+<li><a href="#using-const-to-create-local-names">2.1. Using <code>const</code> to create local names</a></li>
+<li><a href="#conditional-statements">2.2. Conditional statements</a></li>
+<li><a href="#ex:unlabeled18">2.3. Exercise</a>
+<ul class="sectlevel3">
+<li><a href="#solution">2.3.1. Solution</a></li>
 </ul>
 </li>
-<li><a href="#ex:louis-fast-prime">1.6. Exercise</a>
-<ul class="sectlevel3">
-<li><a href="#solution-5">1.6.1. Solution</a></li>
 </ul>
 </li>
-<li><a href="#ex:unlabeled25">1.7. Exercise</a>
+<li><a href="#sec:proc-general-methods">3. Functions as General Methods</a>
 <ul class="sectlevel3">
-<li><a href="#solution-6">1.7.1. Solution</a></li>
+<li><a href="#finding-roots-of-equations-by-the-half-interval-method">3.1. Finding roots of equations by the half-interval method</a></li>
+<li><a href="#finding-fixed-points-of-functions">3.2. Finding fixed points of functions</a></li>
+<li><a href="#ex:unlabeled14">3.3. Exercise</a>
+<ul class="sectlevel3">
+<li><a href="#solution">3.3.1. Solution</a></li>
 </ul>
 </li>
-<li><a href="#exercise-2">1.8. Exercise</a>
+<li><a href="#exercise">3.4. Exercise</a>
 <ul class="sectlevel3">
-<li><a href="#solution-7">1.8.1. Solution</a></li>
+<li><a href="#solution-1">3.4.1. Solution</a></li>
+</ul>
+</li>
+<li><a href="#exercise-1">3.5. Exercise</a>
+<ul class="sectlevel3">
+<li><a href="#solution-2">Solution</a></li>
+</ul>
+</li>
+<li><a href="#ex:unlabeled15">3.6. Exercise</a>
+<ul class="sectlevel3">
+<li><a href="#solution-3">3.6.1. Solution</a></li>
+</ul>
+</li>
+<li><a href="#ex:unlabeled16">3.7. Exercise</a>
+<ul class="sectlevel3">
+<li><a href="#solution-4">3.7.1. Solution</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#sec:proc-returned-values">4. Functions as Returned Values</a>
+<ul class="sectlevel3">
+<li><a href="#newtons-method">4.1. Newton’s method</a></li>
+<li><a href="#abstractions-and-first-class-functions">4.2. Abstractions and first-class functions</a></li>
+<li><a href="#ex:unlabeled26">4.3. Exercise</a>
+<ul class="sectlevel3">
+<li><a href="#solution">4.3.1. Solution</a></li>
+</ul>
+</li>
+<li><a href="#ex:unlabeled27">4.4. Exercise</a>
+<ul class="sectlevel3">
+<li><a href="#solution-1">4.4.1. Solution</a></li>
+</ul>
+</li>
+<li><a href="#ex:compose">4.5. Exercise</a>
+<ul class="sectlevel3">
+<li><a href="#solution-2">4.5.1. Solution</a></li>
+</ul>
+</li>
+<li><a href="#exercise">4.6. Exercise</a>
+<ul class="sectlevel3">
+<li><a href="#solution-3">4.6.1. Solution</a></li>
+</ul>
+</li>
+<li><a href="#ex:smooth">4.7. Exercise</a>
+<ul class="sectlevel3">
+<li><a href="#solution-4">4.7.1. Solution</a></li>
+</ul>
+</li>
+<li><a href="#exercise-1">4.8. Exercise</a>
+<ul class="sectlevel3">
+<li><a href="#solution-5">4.8.1. Solution</a></li>
+</ul>
+</li>
+<li><a href="#ex:unlabeled28">4.9. Exercise</a>
+<ul class="sectlevel3">
+<li><a href="#solution-6">4.9.1. Solution</a></li>
 </ul>
 </li>
 </ul>
@@ -4167,98 +4225,45 @@ function divide(a, b) {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function test_primalita_temporizzata(n) {
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function test_primalita_cronometrato(n) {
     display(n);
     return inizia_test_primalita(n, get_time());
 }
 function inizia_test_primalita(n, tempo_inizio) {
     return primo(n)
            ? stampa_primo(get_time() - tempo_inizio)
-           : true;
+           : false;
 }
 function stampa_primo(tempo_trascorso) {
     display(" *** ");
-    display(tempo_trascorso);
-}
-----</code></pre>
+    return display(tempo_trascorso);
+}</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Usando questa funzione, scrivi una funzione <code>ricerca_primi</code> che controlla la primalità degli interi dispari consecutivi in ​​un intervallo specificato. Usa la tua funzione per trovare i tre numeri primi più piccoli maggiori di 1000; maggiori di 10.000; maggiori di 100.000; maggiori di 1.000.000. Prendi nota del tempo necessario per testare ogni primo. Poiché l&#8217;algoritmo di test ha tasso di crescita \(\Theta (\sqrt{n})\), dovresti aspettarti che il test per i numeri primi intorno a 10.000 dovrebbe richiedere circa \(\sqrt{10}\) volte il tempo di verifica dei numeri primi intorno a 1000. I dati sui tempi lo confermano? In che misura i dati per 100.000 e 1.000.000 confermano la previsione \(\sqrt{n}\)? Il tuo risultato è compatibile con l&#8217;idea che i programmi sulla tua macchina vengano eseguiti nel tempo proporzionale al numero di passaggi necessari per il calcolo?</p>
+<p>Usando questa funzione, scrivi una funzione <code>cerca_primi</code> che controlla la primalità degli interi dispari consecutivi in ​​un intervallo specificato. Usa la tua funzione per trovare i tre numeri primi più piccoli maggiori di 1000; maggiori di 10.000; maggiori di 100.000; maggiori di 1.000.000. Prendi nota del tempo necessario per testare ogni primo. Poiché l&#8217;algoritmo di test ha tasso di crescita \(\Theta (\sqrt{n})\), dovresti aspettarti che il test per i numeri primi intorno a 10.000 dovrebbe richiedere circa \(\sqrt{10}\) volte il tempo di verifica dei numeri primi intorno a 1000. I dati sui tempi lo confermano? In che misura i dati per 100.000 e 1.000.000 confermano la previsione \(\sqrt{n}\)? Il tuo risultato è compatibile con l&#8217;idea che i programmi sulla tua macchina vengano eseguiti nel tempo proporzionale al numero di passaggi necessari per il calcolo?</p>
 </div>
 </div>
 </div>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="ex:better-smallest-divisor">1.3. Exercise</h3>
-<div class="paragraph">
-<p>The <code>smallest_divisor</code> function shown at the start of this section does lots of needless testing: After it checks to see if the number is divisible by 2 there is no point in checking to see if it is divisible by any larger even numbers. This suggests that the values used for <code>test_divisor</code> should not be 2, 3, 4, 5, 6, … but rather 2, 3, 5, 7, 9, …. To implement this change, declare a function <code>next</code> that returns 3 if its input is equal to 2 and otherwise returns its input plus 2. Modify the <code>smallest_divisor</code> function to use <code>next(test_divisor)</code> instead of <code>test_divisor + 1</code>. With <code>timed_prime_test</code> incorporating this modified version of <code>smallest_divisor</code>, run the test for each of the 12 primes found in exercise [ex:search-for-primes]. Since this modification halves the number of test steps, you should expect it to run about twice as fast. Is this expectation confirmed? If not, what is the observed ratio of the speeds of the two algorithms, and how do you explain the fact that it is different from 2?</p>
-</div>
-<div class="sect3">
-<h4 id="solution-2">1.3.1. Solution</h4>
-<div class="literalblock">
+<div id="ex:better-smallest-divisor" class="exampleblock">
+<div class="title">Esercizio 1.23.</div>
 <div class="content">
-<pre>function next(input) {
-    return input === 2
-        ? 3
-        : input + 2;
-}
-
-function find_divisor(n, test_divisor) {</pre>
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>    return square(test_divisor) &gt; n
-            ? n
-            : divides(test_divisor, n)
-              ? test_divisor
-              : find_divisor(n, next(test_divisor));
-}</pre>
-</div>
-</div>
 <div class="paragraph">
-<p>The ratio of the speeds of the two algorithms is not exactly 2, but this might be due to hardware / network issues. It is about 1.5 times faster compared to previous solution.</p>
+<p>La funzione <code>divisore_minimo</code> mostrata all&#8217;inizio di questo paragrafo fa molti test inutili: dopo aver verificato se il numero è divisibile per 2 non ha senso controllare se è divisibile per numeri pari più grandi. Questo suggerisce che i valori usati per <code>divisore_prova</code> non dovrebbero essere 2, 3, 4, 5, 6,&#8230;&#8203; ma piuttosto 2, 3, 5, 7, 9,&#8230;&#8203; . Per implementare questa modifica, dichiara una funzione <code>prossimo</code> che restituisce 3 se il suo input è uguale a 2 e altrimenti restituisce il suo input più 2. Modifica la funzione <code>divisore_minimo</code> per utilizzare <code>prossimo</code> invece di <code>divisore_prova + 1</code> . Con <code>test_primalita_cronometrato</code> che incorpora questa versione modificata di` divisore_minimo`, esegui il test per ciascuno dei 12 numeri primi trovati nell&#8217;esercizio <a href="#es:search-for-primes">[es:search-for-primes]</a>. Poiché questa modifica dimezza il numero di passaggi del test, dovresti aspettarti che venga eseguito circa il doppio più velocemente. Questa aspettativa è confermata? In caso negativo, qual è il rapporto osservato tra le velocità dei due algoritmi e come spieghi il fatto che è diverso da 2?</p>
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="exercise">1.4. Exercise</h3>
-<div class="paragraph">
-<p>Modify the <code>timed_prime_test</code> function of exercise [ex:search-for-primes] to use <code>fast_is_prime</code> (the Fermat method), and test each of the 12 primes you found in that exercise. Since the Fermat test has \(\Theta(\log n)\) growth, how would you expect the time to test primes near 1,000,000 to compare with the time needed to test primes near 1000? Do your data bear this out? Can you explain any discrepancy you find? [ex:mod-timed-prime-test]</p>
-</div>
-<div class="sect3">
-<h4 id="solution-3">1.4.1. Solution</h4>
-<div class="literalblock">
+<div class="exampleblock">
+<div class="title">Esercizio 1.24.</div>
 <div class="content">
-<pre>function timed_prime_test(n) {
-    display(n);
-    return start_prime_test(n, get_time());
-}
-function start_prime_test(n, start_time) {
-    return fast_is_prime(n, math_floor(math_log(n)))</pre>
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>          ? report_prime(get_time() - start_time)
-          : true;
-}
-function report_prime(elapsed_time) {
-    display(" *** ");
-    display(elapsed_time);
-}</pre>
-</div>
-</div>
 <div class="paragraph">
-<p>The time to test primes near 1,000,000 using <code>fast_is_prime</code> is about 4 ms, 4 times the time needed to test primes near 1,000. This is faster compared to 8 ms that we achieved if we use the <code>is_prime</code>. However, despite being 4 times slower, this fact cannot lead us to believe that it has a greater growth than \(\Theta(\log n)\), as it should be tested with greater numbers to gain a more accurate understanding of the growth of the function.</p>
+<p>Modifica la funzione <code>test_primalita_cronometrato</code> dell&#8217;esercizio <a href="#es_cerca-numeri primi">[es_cerca-numeri primi]</a> per usare <code>primo_veloce</code> (il metodo Fermat), e prova ciascuno dei 12 numeri primi trovati in quell&#8217;esercizio. Dato che il test di Fermat ha tasso di crescita \(\Theta (\log n)\), quale rapporto tra i tempi necessari per testare numeri primi vicini a 1.000.000 e quelli per testare numeri primi vicini a 1000 ti aspetteresti? I tuoi dati lo confermano? Puoi spiegare eventuali discrepanze che trovi? [Es: mod-cronometrato-prime-test]</p>
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="exercise-1">1.5. Exercise</h3>
+<div id="exercise-1" class="exampleblock">
+<div class="title">Esercizio 1.25.</div>
+<div class="content">
 <div class="paragraph">
 <p>Alyssa P. Hacker complains that we went to a lot of extra work in writing <code>expmod</code>. After all, she says, since we already know how to compute exponentials, we could have simply written</p>
 </div>
@@ -4272,23 +4277,542 @@ function report_prime(elapsed_time) {
 <div class="paragraph">
 <p>Is she correct? Would this function serve as well for our fast prime tester? Explain. [ex:Alyssas-expmod]</p>
 </div>
-<div class="sect3">
-<h4 id="solution-4">1.5.1. Solution</h4>
+</div>
+</div>
+<div id="ex:louis-fast-prime" class="exampleblock">
+<div class="title">Esercizio 1.26.</div>
+<div class="content">
 <div class="paragraph">
-<p>Alyssa’s suggestion is correct at first sight: her <code>expmod</code> function computes \(\textit{base}^{\textit{exp}}\) and then finds its remainder modulo \(m\), as required in the Fermat test.</p>
+<p>Louis Reasoner is having great difficulty doing exercise [ex:mod-timed-prime-test]. His <code>fast_is_prime</code> test seems to run more slowly than his <code>is_prime</code> test. Louis calls his friend Eva Lu Ator over to help. When they examine Louis’s code, they find that he has rewritten the <code>expmod</code> function to use an explicit multiplication, rather than calling <code>square</code>:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>function expmod(base, exp, m) {
+    return exp === 0
+           ? 1
+           : is_even(exp)
+             ? expmod(base, exp / 2, m)
+               * expmod(base, exp / 2, m)
+               % m
+             : base
+               * expmod(base, exp - 1, m)
+               % m;
+}</pre>
+</div>
 </div>
 <div class="paragraph">
-<p>However, for large bases, Alyssa’s method will quickly bump into limitations because JavaScript uses 64 bits to represent numbers, following the double-precision floating point standard. When the numbers become so large that they cannot be represented precisely any longer in this standard, the results become unreliable. Even worse, the method might exceed the largest number that can be represented in this standard, and the computation leads to an error.</p>
+<p><em>I don’t see what difference that could make,</em> says Louis. <em>I do.</em> says Eva. <em>By writing the function like that, you have transformed the \(\Theta(\log n)\) process into a \(\Theta(n)\) process.</em> Explain.</p>
 </div>
+</div>
+</div>
+<div id="ex:unlabeled25" class="exampleblock">
+<div class="title">Esercizio 1.27.</div>
+<div class="content">
 <div class="paragraph">
-<p>For small bases, however, Alyssa’s method may be even faster than the original <code>expmod</code> function, because it will carry out only one single remainder operation.</p>
+<p>Demonstrate that the Carmichael numbers listed in footnote [foot:carmichaelfn] really do fool the Fermat test. That is, write a function that takes an integer \(n\) and tests whether \(a^n\) is congruent to \(a\) modulo \(n\) for every \(a &lt; n\), and try your function on the given Carmichael numbers.</p>
+</div>
+</div>
+</div>
+<div id="exercise-2" class="exampleblock">
+<div class="title">Esercizio 1.28</div>
+<div class="content">
+<div class="paragraph">
+<p>One variant of the Fermat test that cannot be fooled is called the <em>Miller-Rabin test</em> (Miller 1976; Rabin 1980). This starts from an alternate form of Fermat’s Little Theorem, which states that if \(n\) is a prime number and \(a\) is any positive integer less than \(n\), then \(a\) raised to the \((n-1)\)st power is congruent to 1 modulo \(n\). To test the primality of a number \(n\) by the Miller-Rabin test, we pick a random number \(a &lt; n\) and raise \(a\) to the \((n-1)\)st power modulo \(n\) using the <code>expmod</code> function. However, whenever we perform the squaring step in <code>expmod</code>, we check to see if we have discovered a <em>nontrivial square root of 1 modulo \(n\)</em> that is, a number not equal to 1 or \(n-1\) whose square is equal to 1 modulo \(n\). It is possible to prove that if such a nontrivial square root of 1 exists, then \(n\) is not prime. It is also possible to prove that if \(n\) is an odd number that is not prime, then, for at least half the numbers \(a &lt; n\), computing \(a^{n-1}\) in this way will reveal a nontrivial square root of 1 modulo \(n\). (This is why the Miller-Rabin test cannot be fooled.) Modify the <code>expmod</code> function to signal if it discovers a nontrivial square root of 1, and use this to implement the Miller-Rabin test with a function analogous to <code>fermat_test</code>. Check your function by testing various known primes and non-primes. Hint: One convenient way to make <code>expmod</code> signal is to have it return 0. [ex:miller-rabin]</p>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="ex:louis-fast-prime">1.6. Exercise</h3>
+<h3 id="sec:higher-order-procedures">1.3. Formulare astrazioni con funzioni di ordine superiore</h3>
 <div class="paragraph">
-<p>Louis Reasoner is having great difficulty doing exercise [ex:mod-timed-prime-test]. His <code>fast_is_prime</code> test seems to run more slowly than his <code>is_prime</code> test. Louis calls his friend Eva Lu Ator over to help. When they examine Louis’s code, they find that he has rewritten the <code>expmod</code> function to use an explicit multiplication, rather than calling <code>square</code>:</p>
+<p>Abbiamo visto che le funzioni sono, in effetti, astrazioni che descrivono operazioni composte su numeri indipendenti dai numeri particolari. Ad esempio, quando dichiariamo</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function cubo(x) {
+    return x * x * x;
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>non stiamo parlando del cubo di un numero particolare, ma piuttosto di un metodo per ottenere il cubo di un numero qualsiasi. Ovviamente potremmo andare d&#8217;accordo senza mai dichiarare questa funzione, scrivendo sempre espressioni come</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">3 * 3 * 3;
+x * x * x;
+y * y * y;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>e non menzionare mai esplicitamente "cubo". Questo ci porterebbe in un grave svantaggio, costringendoci a lavorare sempre al livello delle operazioni particolari che sono primitive nel linguaggio (moltiplicazione, in questo caso) piuttosto che in termini di operazioni di livello superiore. I nostri programmi sarebbero in grado di calcolare i cubi, ma il nostro linguaggio non avrebbe la capacità di esprimere il concetto di cubo. Una delle cose che dovremmo chiedere a un potente linguaggio di programmazione è la capacità di costruire astrazioni assegnando nomi a schemi comuni e quindi di lavorare direttamente in termini di astrazioni. Le funzioni forniscono questa capacità. Questo è il motivo per cui tutti i linguaggi di programmazione tranne i più primitivi includono meccanismi per la dichiarazione di funzioni.</p>
+</div>
+<div class="paragraph">
+<p>Tuttavia, anche nell&#8217;elaborazione numerica saremo fortemente limitati nella nostra capacità di creare astrazioni se siamo limitati a funzioni i cui parametri devono essere numeri. Spesso lo stesso schema di programmazione verrà utilizzato con un numero di funzioni diverse. Per esprimere tali modelli come concetti, avremo bisogno di costruire funzioni che possono accettare funzioni come argomenti o restituire funzioni come valori. Le funzioni che manipolano le funzioni sono chiamate <em>funzioni di ordine superiore</em>.</p>
+</div>
+<div class="paragraph">
+<p>Questo paragrafo mostra come le funzioni di ordine superiore possono fungere da potenti meccanismi di astrazione, aumentando enormemente la potenza espressiva del nostro linguaggio.</p>
+</div>
+<div class="sect3">
+<h4 id="sec:procedures-as-parameters">1.3.1. Funzioni come Argomenti</h4>
+<div class="paragraph">
+<p>Considera le seguenti tre funzioni. La prima calcola la somma degli interi da <em>a</em> a <em>b</em>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function somma_interi(a, b) {
+    return a &gt; b
+           ? 0
+           : a + somma_interi(a + 1, b);
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>La seconda calcola la somma dei cubi degli interi nell&#8217;intervallo dato:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function somma_cubi(a, b) {
+    return a &gt; b
+           ? 0
+           : cubo(a) + somma_cubi(a + 1, b);
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>La terza calcola la somma di una sequenza di termini nella serie</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[\frac{1}{1\cdot3}+\frac{1}{5\cdot7}+\frac{1}{9\cdot11}+\cdots\]
+</div>
+</div>
+<div class="paragraph">
+<p>che converge a \(\pi / 8\) (molto lentamente):<sup class="footnote">[<a id="_footnoteref_20" class="footnote" href="#_footnotedef_20" title="View footnote.">20</a>]</sup></a>.]</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function somma_pi(a, b) {
+    return a &gt; b
+           ? 0
+           : 1.0 / (a * (a + 2)) +
+             somma_pi(a + 4, b);
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Queste tre funzioni condividono chiaramente un modello sottostante comune. Sono per la maggior parte identiche, differiscono solo per il nome della funzione, la funzione di <em>a</em> usata per calcolare il termine da aggiungere e la funzione che fornisce il valore successivo di <em>a</em>. Potremmo generare ciascuna delle funzioni riempiendo gli slot nello stesso modello:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function $nome$(a, b) {
+    return a &gt; b
+           ? 0
+           : $termine$(a) + $nome$($prossimo$(a), b);
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>La presenza di un modello così comune è una forte evidenza che esiste un&#8217;astrazione utile in attesa di essere portata in superficie. In effetti, molto tempo fa i matematici identificarono l&#8217;astrazione e inventarono la <em>notazione sigma</em>, ad esempio</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[{\sum_{n=a}^{b}\ f(n)=f(a)+\cdots+f(b)\,}\]
+</div>
+</div>
+<div class="paragraph">
+<p>per esprimere questo concetto. Il potere della notazione sigma è che consente ai matematici di trattare il concetto di sommatoria stesso piuttosto che solo con somme particolari, ad esempio per formulare risultati generali su somme che sono indipendenti dalla particolare serie che viene sommata.</p>
+</div>
+<div class="paragraph">
+<p>Allo stesso modo, come progettisti di programmi, vorremmo che il nostro linguaggio fosse abbastanza potente da poter scrivere una funzione che esprima il concetto di sommatoria stesso piuttosto che solo funzioni che calcolano somme particolari. Possiamo farlo prontamente nel nostro linguaggio funzionale prendendo il modello comune mostrato sopra e trasformando gli "slot" in parametri:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function somma(termine, a, prossimo, b) {
+    return a &gt; b
+           ? 0
+           : termine(a) + somma(termine, prossimo(a), prossimo, b);
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Si noti che "somma" prende come argomenti i limiti inferiore e superiore "a" e "b" insieme alle funzioni "termine" e "prossimo". Possiamo usare "somma" proprio come faremmo con qualsiasi funzione. Ad esempio, possiamo usarla (insieme a una funzione <code>inc</code> che incrementa il suo argomento di 1) per definire <code>somma_cubi</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function inc(n) {
+    return n + 1;
+}
+function somma_cubi(a, b) {
+    return somma(cubo, a, inc, b);
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Usando questa funzione, possiamo calcolare la somma dei cubi degli interi da 1 a 10:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">somma_cubi(1, 10);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Con l&#8217;aiuto di una funzione <em>identità</em> per calcolare il termine, possiamo definire <code>sommau_interi</code> in termini di <code>somma</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function identita(x) {
+    return x;
+}
+
+function somma_interi(a, b) {
+    return somma(identita, a, inc, b);
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Quindi possiamo sommare gli interi da 1 a 10:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">somma_interi(1, 10);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Possiamo anche dichiarare <code>somma_pi</code> nello stesso modo: <sup class="footnote">[<a id="_footnoteref_21" class="footnote" href="#_footnotedef_21" title="View footnote.">21</a>]</sup></a>) per incorporare le dichiarazioni di <code>pi_somma</code> e <code>pi_termine</code> all&#8217;interno di <code>somma_pi</code>, poiché è improbabile che queste funzioni siano utili per altri scopi. Vedremo come eliminarli del tutto nel <a href="#sec:lambda">Capitolo 2</a>.]</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function pi_sum(a, b) {
+    function pi_term(x) {
+        return 1.0 / (x * (x + 2));
+    }
+    function pi_next(x) {
+        return x + 4;
+    }
+    return sum(pi_term, a, pi_next, b);
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Usando queste funzioni, possiamo calcolare un&#8217;approssimazione a latexmath: [\p]:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">8 * pi_sum(1, 1000);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Una volta che abbiamo "somma", possiamo usarla come elemento costitutivo nella formulazione di ulteriori concetti. Ad esempio, l&#8217;integrale definito di una funzione \(f\) tra i limiti \(a\) e \(b\) può essere approssimato numericamente utilizzando la formula</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[\int_{a}^{b}f =
+      \left[ f\left( a+\frac{dx}{2} \right) + f \left(a+dx+\frac{dx}{2}
+      \right) + f \left( a+2dx+\frac{dx}{2} \right)+\cdots
+      \right] dx\]
+</div>
+</div>
+<div class="paragraph">
+<p>per piccoli valori di \(dx\).</p>
+</div>
+<div class="paragraph">
+<p>Possiamo esprimerlo direttamente come una funzione:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function integrale(f, a, b, dx) {
+    function aggiungi_dx(x) {
+        return x + dx;
+    }
+    return somma(f, a + dx / 2, add_dx, b) * dx;
+}
+
+integrale(cubo, 0, 1, 0.01);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>(Il valore esatto dell&#8217;integrale di "cubo" compreso tra 0 e 1 è 1/4.)</p>
+</div>
+<div id="ex:simpsons-rule" class="exampleblock">
+<div class="title">Esercizio 1.29. Regola di Cavalieri-Simpson</div>
+<div class="content">
+<div class="paragraph">
+<p>La regola di Cavalieri-Simpson è un metodo di integrazione numerica (quadratura) più accurato rispetto al metodo illustrato sopra. Usando la regola di Cavalieri-Simpson, l&#8217;integrale di una funzione \(f\) tra \(a\) e \(b\) viene approssimato come</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[\frac{h}{3} [y_0 + 4y_1 + 2y_2 + 4y_3 + 2y_4 + \cdots + 2y_{n-2} +4y_{n-1}+y_n ]\]
+</div>
+</div>
+<div class="paragraph">
+<p>dove \(h = (b-a) / n\), per un qualche numero intero pari \(n\) e \(y_k = f (a + kh)\). (Aumentando \(n\) aumenta l&#8217;accuratezza dell&#8217;approssimazione.) Dichiara una funzione che accetta come argomenti \(f\), \(a\), \(b\) e \(n\) e restituisce il valore dell&#8217;integrale, calcolato utilizzando la regola di Cavalieri-Simpson. Usa la tua funzione per integrare "cubo" tra 0 e 1 (con \(n = 100\) e \(n = 1000\)) e confronta i risultati con quelli della funzione "integrale" mostrata sopra.</p>
+</div>
+</div>
+</div>
+<div id="ex:unlabeled17" class="exampleblock">
+<div class="title">Esercizio 1.30. Somma come processo iterativo</div>
+<div class="content">
+<div class="paragraph">
+<p>La funzione <code>somma</code> soprascritta genera una ricorsione lineare. La funzione può essere riscritta in modo che la somma venga eseguita in modo iterativo. Mostra come farlo compilando le espressioni mancanti nella seguente dichiarazione:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function somma(termine, a, prossimo, b) {
+    function iter(a, risultato) {
+        return &lt; ?? &gt;
+               ? &lt; ?? &gt;
+               : iter(&lt; ?? &gt;, &lt; ?? &gt;);
+    }
+    return iter(&lt; ?? &gt;, &lt; ?? &gt;);
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div id="es_prodotto" class="exampleblock">
+<div class="title">Esercizio 1.31. Prodotto/produttoria</div>
+<div class="content">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>La funzione <code>somma</code> è solo la più semplice di un vasto numero di astrazioni simili che possono essere gestite come funzioni di ordine superiore. <sup class="footnote">[<a id="_footnoteref_22" class="footnote" href="#_footnotedef_22" title="View footnote.">22</a>]</sup> Scrivete una funzione analoga chiamata "prodotto" che restituisca il prodotto dei valori di una funzione in punti di un dato intervallo. Mostrate come definire "fattoriale" in termini di "prodotto". Usa anche <code>prodotto</code> per calcolare approssimazioni di \(\pi\) usando la formula <sup class="footnote">[<a id="_footnoteref_23" class="footnote" href="#_footnotedef_23" title="View footnote.">23</a>]</sup></p>
+<div class="openblock">
+<div class="content">
+<div class="stemblock">
+<div class="content">
+\[\frac{\pi}{4}=\frac{2\cdot 4\cdot 4\cdot 6\cdot 6\cdot 8\cdots}{3\cdot3\cdot 5\cdot 5\cdot 7\cdot 7\cdots}\]
+</div>
+</div>
+</div>
+</div>
+</li>
+<li>
+<p>Se la tua funzione <code>prodotto</code> genera un processo ricorsivo, scrivine uno che generi un processo iterativo. Se genera un processo iterativo, scrivine uno che generi un processo ricorsivo.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div id="es_accumula" class="exampleblock">
+<div class="title">Esercizio 1.32. Accumula</div>
+<div class="content">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Mostra che <code>somma</code> e` prodotto` (<a href="#es_prodotto">Esercizio 1.31. Prodotto/produttoria</a>) sono entrambi casi speciali di una nozione ancora più generale chiamata <code>accumula</code> che combina una collezione di termini, utilizzando alcune funzioni generali di accumulazione:</p>
+<div class="openblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">accumula(operatore, elemento_neutro, termine, a, prossimo, b);</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>La funzione <code>accumula</code> prende come argomenti le stesse specifiche di termine e intervallo di <code>somma</code> e <code>prodotto</code>, insieme a una funzione <code>operatore</code> (di due argomenti) che specifica come il termine corrente deve essere combinato con l&#8217;accumulazione dei termini precedenti e un <code>elemento_neutro</code> che specifica quale valore di base usare quando i termini si esauriscono. Scrivi <code>accumula</code> e mostra come <code>somma</code> e <code>prodotto</code> possono essere entrambi dichiarati come semplici chiamate ad <code>accumula</code>.</p>
+</div>
+</li>
+<li>
+<p>Se la tua funzione <code>accumula</code> genera un processo ricorsivo, scrivine uno che generi un processo iterativo. Se genera un processo iterativo, scrivine uno che generi un processo ricorsivo.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div id="es_filtra_accumula" class="exampleblock">
+<div class="title">Esercizio 1.33. Accumula i valori filtrati</div>
+<div class="content">
+<div class="paragraph">
+<p>È possibile ottenere una versione ancora più generale di <code>accumula</code> (<a href="#es_accumula">Esercizio 1.32. Accumula</a>) introducendo la nozione di un <em>filtro</em> sui termini da combinare. Cioè, combina solo i termini derivati ​​dai valori nell&#8217;intervallo che soddisfano una condizione specificata. L&#8217;astrazione risultante <code>accumula_se</code> accetta gli stessi argomenti di accumula, insieme a un predicato aggiuntivo di un argomento che specifica il filtro. Scrivi "accumula_se" come funzione. Mostra come esprimere quanto segue usando <code>accumula_se</code>:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>la somma dei quadrati dei numeri primi nell&#8217;intervallo da \(a\) a \(b\) (assumendo che tu abbia un predicato <code>primo</code> già scritto)</p>
+</li>
+<li>
+<p>il prodotto di tutti i numeri interi positivi inferiori a \(n\) che sono relativamente primi rispetto a \(n\) (ovvero, tutti gli interi positivi \(i&lt;n\) tali che \(\textrm{MCD} (i, n) = 1\)).</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="sec:lambda">2. Constructing Functions using Lambda Expressions</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In using <code>sum</code> as in section [sec:procedures-as-parameters], it seems terribly awkward to have to declare trivial functions such as <code>pi_term</code> and <code>pi_next</code> just so we can use them as arguments to our higher-order function. Rather than declare <code>pi_next</code> and <code>pi_term</code>, it would be more convenient to have a way to directly specify <code>the function that returns its input incremented by 4'' and </code>the function that returns the reciprocal of its input times its input plus 2.'' We can do this by introducing <em>lambda expressions</em> as a syntactic form for creating functions. Using lambda expressions, we can describe what we want as</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>x =&gt; x + 4;</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>and</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>x =&gt; 1.0 / (x * (x + 2));</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Then our <code>pi_sum</code> function can be expressed without declaring any auxiliary functions as</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>function pi_sum(a, b) {
+    return sum(x =&gt; 1.0 / (x * (x + 2)),
+               a,
+               x =&gt; x + 4,
+               b);
+}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Again using a lambda expression, we can write the <code>integral</code> function without having to declare the auxiliary function <code>add_dx</code>:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>function integral(f, a, b, dx) {
+    return sum(f,
+               a + dx / 2.0,
+               x =&gt; x + dx,
+               b)
+           *</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>           dx;
+}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In general, lambda expressions are used to create functions in the same way as function declarations, except that no name is specified for the function and the return keyword and curly braces are omitted.<sup class="footnote">[<a id="_footnoteref_24" class="footnote" href="#_footnotedef_24" title="View footnote.">24</a>]</sup>, we will extend the syntax of lambda expressions to allow blocks as bodies, as in function declaration statements.]</p>
+</div>
+<div class="paragraph">
+<p>\(\[\texttt{(} \ \textit{parameters}\ \texttt{) =&gt; }
+      \textit{expression}]\)</p>
+</div>
+<div class="paragraph">
+<p>The resulting function is just as much a function as one that is created using a function declaration statement. The only difference is that it has not been associated with any name in the environment. We consider</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>function plus4(x) {
+    return x + 4;
+}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>to be equivalent to<sup class="footnote">[<a id="_footnoteref_25" class="footnote" href="#_footnotedef_25" title="View footnote.">25</a>]</sup>). In this book, we are avoiding these features and shall treat function declarations as equivalent to the corresponding constant declaration.[foot:function-decl-vs-lambda]]</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>const plus4 = x =&gt; x + 4;</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We can read a lambda expression as follows:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$\;\;$                    x              =&gt;             x    +   4</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>\(\Big\uparrow\) \(\Big\uparrow\) \(\Big\uparrow\) \(\Big\uparrow\) \(\Big\uparrow\)</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>the $\texttt{function of an argument x that results $\texttt{in the value plus 4</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Like any expression that has a function as its value, a lambda expression can be used as the function expression in an application such as</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>((x, y, z) =&gt; x + y + square(z))(1, 2, 3);</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>or, more generally, in any context where we would normally use a function name.<sup class="footnote">[<a id="_footnoteref_26" class="footnote" href="#_footnotedef_26" title="View footnote.">26</a>]</sup> Note that <code>&#8658;</code> has lower precedence than function application and thus the parentheses around the lambda expression are necessary here.</p>
+</div>
+<div class="sect3">
+<h4 id="using-const-to-create-local-names">2.1. Using <code>const</code> to create local names</h4>
+<div class="paragraph">
+<p>Another use of lambda expressions is in creating local names. We often need local names in our functions other than those that have been bound as parameters. For example, suppose we wish to compute the function \(\[f(x,y)=x(1+xy)^2 y(1-y)(1+xy)(1-y)]\) which we could also express as \(\[\begin{aligned}
+      a &amp;=&amp; 1+xy\\
+      b &amp;=&amp; 1-y\\
+      f(x,y) &amp;=&amp; xa^2 +yb +ab
+      \end{aligned}]\) In writing a function to compute \(f\), we would like to include as local names not only \(x\) and \(y\) but also the names of intermediate quantities like \(a\) and \(b\). One way to accomplish this is to use an auxiliary function to bind the local names:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>function f(x, y) {
+    function f_helper(a, b) {
+        return x * square(a) +
+               y * b +
+               a * b;
+    }</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>    return f_helper(1 + x * y,
+                    1 - y);
+}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Of course, we could use a lambda expression to specify an anonymous function for binding our local names. The body of <code>f</code> then becomes a single call to that function:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>function f(x,y) {
+    return ( (a, b) =&gt; x * square(a) +
+                      y * b +
+                      a * b
+           )(1 + x * y, 1 - y);
+}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>A more convenient way to declare local names is by using constant declarations within the body of the function. Using <code>const</code>, the function <code>f</code> can be written as</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>function f(x, y) {
+    const a = 1 + x * y;
+    const b = 1 - y;
+    return x * square(a) +
+           y * b +
+           a * b;</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Names that are declared with <code>const</code> inside of a block have the body of the immediately surrounding block as their scope.[multiblock footnote omitted] Section [sec:internal-definitions] shows that declarations of local names can often be seen as syntactic sugar for applications of lambda expressions that have the declared names as parameters.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="conditional-statements">2.2. Conditional statements</h4>
+<div class="paragraph">
+<p>We have seen that it is often useful to declare names that are local to function declarations. When functions become big, we should keep the scope of the names as narrow as possible. Consider for example <code>expmod</code> in exercise [ex:louis-fast-prime].</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -4310,109 +4834,787 @@ function report_prime(elapsed_time) {
 </div>
 </div>
 <div class="paragraph">
-<p><code>I don’t see what difference that could make,'' says Louis. </code>I do.'' says Eva. ``By writing the function like that, you have transformed the \(\Theta(\log n)\) process into a \(\Theta(n)\) process.'' Explain.</p>
-</div>
-<div class="sect3">
-<h4 id="solution-5">1.6.1. Solution</h4>
-<div class="paragraph">
-<p>Eva is correct: by evaluating the expression:</p>
+<p>This function is unnecessarily inefficient, because it contains two identical calls:</p>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>expmod(base, exp / 2, m)
-* expmod(base, exp / 2, m)
-% m</pre>
+<pre>expmod(base, exp / 2, m);</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>the expression <code>expmod(base, exp / 2, m)</code> is evaluated twice at each step in the computation when the exponent is even, eliminating the benefit of the fast exponentiation algorithm—which halves the exponent when the exponent is even—therefore eliminating the feature of the algorithm that makes it faster.</p>
+<p>While this can be easily fixed in this example using the <code>square</code> function, this is not so easy in general. Without using <code>square</code>, we would be tempted to introduce a local name for the expression as follows:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>function expmod(base, exp, m) {
+    const to_half = expmod(base, exp / 2, m);
+    return exp === 0
+           ? 1
+           : is_even(exp)
+             ? to_half * to_half</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>               % m
+             : base
+               * expmod(base, exp - 1, m)
+               % m;
+}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This would make the function not just inefficient, but actually non-terminating! The problem is that the constant declaration appears outside the conditional expression, which means that it is executed even when the base case <code>exp === 0</code> is met. To avoid this situation, we shall provide for <em>conditional statements</em>, and allow <code>return</code> statements to appear in several branches of the statement. Using a conditional statement, the function <code>expmod</code> can be written as follows:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>function expmod(base, exp, m) {
+    if (exp === 0) {
+        return 1;
+    } else {
+        if (is_even(exp)) {
+            const to_half = expmod(base, exp / 2, m);</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>            return to_half * to_half % m;
+        } else {
+            return base * expmod(base, exp - 1, m) % m;
+        }
+    }
+}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The general form of a conditional statement is</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>if ($predicate$) { $consequent$ } else { $alternative$ }</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>and, like conditional expressions, their evaluation first evaluates the \(\textit{predicate}\). If it evaluates to true, the interpreter evaluates the \(\textit{consequent}\) statements and if it evaluates to false, the interpreter evaluates the \(\textit{alternative}\) statements. Note that any constant declarations occurring in either part are local to that part, because both are enclosed in curly braces and thus form their own block.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="ex:unlabeled18">2.3. Exercise</h3>
+<div class="paragraph">
+<p>Suppose we declare</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>function f(g) {
+   return g(2);
+}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Then we have</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>f(square);</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>f(z =&gt; z * (z + 1));</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>What happens if we (perversely) ask the interpreter to evaluate the application <code>f(f)</code>? Explain.</p>
+</div>
+<div class="sect3">
+<h4 id="solution">2.3.1. Solution</h4>
+<div class="paragraph">
+<p>Let’s use the substitution model to illustrate what happens:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>f(f)
+f(2)
+2(2)</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The application <code>2(2)</code> leads to an error, since 2 is neither a primitive nor a compound function.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="sec:proc-general-methods">3. Functions as General Methods</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>We introduced compound functions in section [sec:compound-procedures] as a mechanism for abstracting patterns of numerical operations so as to make them independent of the particular numbers involved. With higher-order functions, such as the <code>integral</code> function of section [sec:procedures-as-parameters], we began to see a more powerful kind of abstraction: functions used to express general methods of computation, independent of the particular functions involved. In this section we discuss two more elaborate examples—general methods for finding zeros and fixed points of functions—and show how these methods can be expressed directly as functions.</p>
+</div>
+<div class="sect3">
+<h4 id="finding-roots-of-equations-by-the-half-interval-method">3.1. Finding roots of equations by the half-interval method</h4>
+<div class="paragraph">
+<p>The <em>half-interval method</em> is a simple but powerful technique for finding roots of an equation \(f(x)=0\), where \(f\) is a continuous function. The idea is that, if we are given points \(a\) and \(b\) such that \(f(a) &lt; 0 &lt; f(b)\), then \(f\) must have at least one zero between \(a\) and \(b\). To locate a zero, let \(x\) be the average of \(a\) and \(b\) and compute \(f(x)\). If \(f(x) &gt; 0\), then \(f\) must have a zero between \(a\) and \(x\). If \(f(x) &lt; 0\), then \(f\) must have a zero between \(x\) and \(b\). Continuing in this way, we can identify smaller and smaller intervals on which \(f\) must have a zero. When we reach a point where the interval is small enough, the process stops. Since the interval of uncertainty is reduced by half at each step of the process, the number of steps required grows as \(\Theta(\log( L/T))\), where \(L\) is the length of the original interval and \(T\) is the error tolerance (that is, the size of the interval we will consider <code>`small enough''). Here is a function that implements this strategy:<sup class="footnote">[<a id="_footnoteref_27" class="footnote" href="#_footnotedef_27" title="View footnote.">27</a>]</sup> by admitting another conditional statement in place of the block following `else</code>.]</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>function search(f, neg_point, pos_point) {
+    const midpoint = average(neg_point,pos_point);
+    if (close_enough(neg_point, pos_point)) {
+        return midpoint;
+    } else {
+        const test_value = f(midpoint);</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>        if (positive(test_value)) {
+            return search(f, neg_point, midpoint);
+        } else if (negative(test_value)) {
+            return search(f, midpoint, pos_point);
+        } else {
+            return midpoint;
+        }
+    }
+}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We assume that we are initially given the function \(f\) together with points at which its values are negative and positive. We first compute the midpoint of the two given points. Next we check to see if the given interval is small enough, and if so we simply return the midpoint as our answer. Otherwise, we compute as a test value the value of \(f\) at the midpoint. If the test value is positive, then we continue the process with a new interval running from the original negative point to the midpoint. If the test value is negative, we continue with the interval from the midpoint to the positive point. Finally, there is the possibility that the test value is 0, in which case the midpoint is itself the root we are searching for. To test whether the endpoints are <code>close enough'' we can use a function similar to the one used in section [sec:sqrt] for computing square roots:<sup class="footnote">[<a id="_footnoteref_28" class="footnote" href="#_footnotedef_28" title="View footnote.">28</a>]</sup></p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>function close_enough(x,y) {
+    return abs(x - y) &lt; 0.001;
+}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The function <code>search</code> is awkward to use directly, because we can accidentally give it points at which \(f\)’s values do not have the required sign, in which case we get a wrong answer. Instead we will use <code>search</code> via the following function, which checks to see which of the endpoints has a negative function value and which has a positive value, and calls the <code>search</code> function accordingly. If the function has the same sign on the two given points, the half-interval method cannot be used, in which case the function signals an error.<sup class="footnote">[<a id="_footnoteref_29" class="footnote" href="#_footnotedef_29" title="View footnote.">29</a>]</sup></p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>function half_interval_method(f, a, b) {
+    const a_value = f(a);
+    const b_value = f(b);
+    return negative(a_value) &amp;&amp; positive(b_value)
+           ? search(f, a, b)
+           : negative(b_value) &amp;&amp; positive(a_value)</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>             ? search(f, b, a)
+             : error("values are not of opposite sign");
+}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The following example uses the half-interval method to approximate \(\pi\) as the root between 2 and 4 of \(\sin\, x = 0\):</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>half_interval_method(math_sin, 2.0, 4.0);</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Here is another example, using the half-interval method to search for a root of the equation \(x^3 - 2x - 3 = 0\) between 1 and 2:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>half_interval_method(
+  x =&gt; x * x * x - 2 * x - 3,
+  1.0,
+  2.0);</pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="finding-fixed-points-of-functions">3.2. Finding fixed points of functions</h4>
+<div class="paragraph">
+<p>A number \(x\) is called a <em>fixed point</em> of a function \(f\) if \(x\) satisfies the equation \(f(x)=x\). For some functions \(f\) we can locate a fixed point by beginning with an initial guess and applying \(f\) repeatedly, \(\[f(x), f(f(x)), f(f(f(x))), \ldots]\) until the value does not change very much. Using this idea, we can devise a function <code>fixed_point</code> that takes as inputs a function and an initial guess and produces an approximation to a fixed point of the function. We apply the function repeatedly until we find two successive values whose difference is less than some prescribed tolerance:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>const tolerance = 0.00001;
+function fixed_point(f, first_guess) {
+    function close_enough(x, y) {
+        return abs(x - y) &lt; tolerance;
+    }
+    function try_with(guess) {</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>        const next = f(guess);
+        return close_enough(guess, next)
+               ? next
+               : try_with(next);
+    }
+    return try_with(first_guess);
+}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For example, we can use this method to approximate the fixed point of the cosine function, starting with 1 as an initial approximation:<sup class="footnote">[<a id="_footnoteref_30" class="footnote" href="#_footnotedef_30" title="View footnote.">30</a>]</sup></p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>fixed_point(math_cos, 1.0);</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Similarly, we can find a solution to the equation \(y=\sin y + \cos y\):</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>fixed_point(
+    y =&gt; math_sin(y) + math_cos(y),
+    1.0);</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The fixed-point process is reminiscent of the process we used for finding square roots in section [sec:sqrt]. Both are based on the idea of repeatedly improving a guess until the result satisfies some criterion. In fact, we can readily formulate the square-root computation as a fixed-point search. Computing the square root of some number \(x\) requires finding a \(y\) such that \(y^2 = x\). Putting this equation into the equivalent form \(y = x/y\), we recognize that we are looking for a fixed point of the function<sup class="footnote">[<a id="_footnoteref_31" class="footnote" href="#_footnotedef_31" title="View footnote.">31</a>]</sup> \(y \mapsto x/y\), and we can therefore try to compute square roots as</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>function sqrt(x) {
+    return fixed_point(y =&gt; x / y, 1.0);
+}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Unfortunately, this fixed-point search does not converge. Consider an initial guess \(y_1\). The next guess is \(y_2 = x/y_1\) and the next guess is \(y_3 = x/y_2 = x/(x/y_1) = y_1\). This results in an infinite loop in which the two guesses \(y_1\) and \(y_2\) repeat over and over, oscillating about the answer.</p>
+</div>
+<div class="paragraph">
+<p>One way to control such oscillations is to prevent the guesses from changing so much. Since the answer is always between our guess \(y\) and \(x/y\), we can make a new guess that is not as far from \(y\) as \(x/y\) by averaging \(y\) with \(x/y\), so that the next guess after \(y\) is \(\frac{1}{2}(y+x/y)\) instead of \(x/y\). The process of making such a sequence of guesses is simply the process of looking for a fixed point of \(y \mapsto \frac{1}{2}(y+x/y)\):</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>function sqrt(x) {
+    return fixed_point(
+               y =&gt; average(y, x / y),
+               1.0);
+}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>(Note that \(y=\frac{1}{2}(y+x/y)\) is a simple transformation of the equation \(y=x/y\); to derive it, add \(y\) to both sides of the equation and divide by 2.)</p>
+</div>
+<div class="paragraph">
+<p>With this modification, the square-root function works. In fact, if we unravel the definitions, we can see that the sequence of approximations to the square root generated here is precisely the same as the one generated by our original square-root function of section [sec:sqrt]. This approach of averaging successive approximations to a solution, a technique we call , often aids the convergence of fixed-point searches.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="ex:unlabeled14">3.3. Exercise</h3>
+<div class="paragraph">
+<p>Show that the golden ratio \(\phi\) (section [sec:tree-recursion]) is a fixed point of the transformation \(x \mapsto 1 + 1/x\), and use this fact to compute \(\phi\) by means of the <code>fixed_point</code> function.</p>
+</div>
+<div class="sect3">
+<h4 id="solution">3.3.1. Solution</h4>
+<div class="paragraph">
+<p>The fixed point of the function is \(\[1 + 1 / x = x]\) Solving for x, we get \(\[x^2 = x + 1]\) \(\[x^2 - x - 1 = 0]\) Using the quadratic equation to solve for \(x\), we find that one of the roots of this equation is the golden ratio \((1+\sqrt{5})/2\).</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>fixed_point(x =&gt; 1 + (1 / x), 1.0);</pre>
+</div>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="ex:unlabeled25">1.7. Exercise</h3>
+<h3 id="exercise">3.4. Exercise</h3>
 <div class="paragraph">
-<p>Demonstrate that the Carmichael numbers listed in footnote [foot:carmichaelfn] really do fool the Fermat test. That is, write a function that takes an integer \(n\) and tests whether \(a^n\) is congruent to \(a\) modulo \(n\) for every \(a &lt; n\), and try your function on the given Carmichael numbers.</p>
+<p>Modify <code>fixed_point</code> so that it prints the sequence of approximations it generates, using the primitive function <code>display</code> shown in exercise [ex:search-for-primes]. Then find a solution to \(x^x = 1000\) by finding a fixed point of \(x \mapsto \log(1000)/\log(x)\). (Use the primitive function <code>math_log</code> which computes natural logarithms.) Compare the number of steps this takes with and without average damping. (Note that you cannot start <code>fixed_point</code> with a guess of 1, as this would cause division by \(\log(1)=0\).) [ex:log-fixed-point]</p>
 </div>
 <div class="sect3">
-<h4 id="solution-6">1.7.1. Solution</h4>
+<h4 id="solution-1">3.4.1. Solution</h4>
+<div class="paragraph">
+<p>We modify the function <code>fixed_point</code> as follows:</p>
+</div>
 <div class="literalblock">
 <div class="content">
-<pre>function carmichael(n) {
-    function expmod(base, exp, m) {
-        return exp === 0
-               ? 1
-               : is_even(exp)
-                 ? square(expmod(base, exp / 2, m)) % m</pre>
+<pre>const tolerance = 0.00001;
+function fixed_point(f, first_guess) {
+    function close_enough(x, y) {
+        return abs(x - y) &lt; tolerance;
+    }
+    function try_with(guess) {</pre>
 </div>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>                 : (base * expmod(base, exp - 1, m)) % m;
+<pre>        display(guess);
+        const next = f(guess);
+        return close_enough(guess, next)
+               ? next
+               : try_with(next);
     }
-    function fermat_test(n, a) {
-        return expmod(a, n, n) === a;
+    return try_with(first_guess);
+}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Here is a version with average dampening built-in:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>function fixed_point_with_average_dampening(f, first_guess) {
+    function close_enough(x, y) {
+        return abs(x - y) &lt; tolerance;
     }
-    function iter(n, i) {
-        return i === n
-               ? true
-               : fermat_test(n, i)
-                 ? iter(n, i + 1)
-                 : false;
+    function try_with(guess) {
+        display(guess);</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>        const next = (guess + f(guess)) / 2;
+        return close_enough(guess, next)
+               ? next
+               : try_with(next);
     }
-    return iter(n, 2);
+    return try_with(first_guess);
 }</pre>
 </div>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="exercise-2">1.8. Exercise</h3>
+<h3 id="exercise-1">3.5. Exercise</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>An infinite <em>continued fraction</em> is an expression of the form \(\[f={\dfrac{N_1}{D_1+
+\dfrac{N_2}{D_2+
+\dfrac{N_3}{D_3+\cdots }}}}]\) As an example, one can show that the infinite continued fraction expansion with the \(N_i\) and the \(D_i\) all equal to 1 produces \(1/\phi\), where \(\phi\) is the golden ratio (described in section [sec:tree-recursion]). One way to approximate an infinite continued fraction is to truncate the expansion after a given number of terms. Such a truncation—a so-called <em>\(k\)-term finite continued fraction</em>—has the form \(\[{\dfrac{N_1}{D_1 +
+\dfrac{N_2}{\ddots +
+\dfrac{N_K}{D_K}}}}]\) Suppose that <code>n</code> and <code>d</code> are functions of one argument (the term index \(i\)) that return the \(N_i\) and \(D_i\) of the terms of the continued fraction. Declare a function <code>cont_frac</code> such that evaluating <code>cont_frac(n, d, k)</code> computes the value of the \(k\)-term finite continued fraction. Check your function by approximating \(1/\phi\) using</p>
+<div class="literalblock">
+<div class="content">
+<pre>cont_frac(i =&gt; 1.0,
+          i =&gt; 1.0,
+          k);</pre>
+</div>
+</div>
 <div class="paragraph">
-<p>One variant of the Fermat test that cannot be fooled is called the <em>Miller-Rabin test</em> (Miller 1976; Rabin 1980). This starts from an alternate form of Fermat’s Little Theorem, which states that if \(n\) is a prime number and \(a\) is any positive integer less than \(n\), then \(a\) raised to the \((n-1)\)st power is congruent to 1 modulo \(n\). To test the primality of a number \(n\) by the Miller-Rabin test, we pick a random number \(a &lt; n\) and raise \(a\) to the \((n-1)\)st power modulo \(n\) using the <code>expmod</code> function. However, whenever we perform the squaring step in <code>expmod</code>, we check to see if we have discovered a <code>`nontrivial square root of 1 modulo \(n\),'' that is, a number not equal to 1 or \(n-1\) whose square is equal to 1 modulo \(n\). It is possible to prove that if such a nontrivial square root of 1 exists, then \(n\) is not prime. It is also possible to prove that if \(n\) is an odd number that is not prime, then, for at least half the numbers \(a &lt; n\), computing \(a^{n-1}\) in this way will reveal a nontrivial square root of 1 modulo \(n\). (This is why the Miller-Rabin test cannot be fooled.) Modify the `expmod</code> function to signal if it discovers a nontrivial square root of 1, and use this to implement the Miller-Rabin test with a function analogous to <code>fermat_test</code>. Check your function by testing various known primes and non-primes. Hint: One convenient way to make <code>expmod</code> signal is to have it return 0. [ex:miller-rabin]</p>
+<p>for successive values of <code>k</code>. How large must you make <code>k</code> in order to get an approximation that is accurate to 4 decimal places?</p>
+</div>
+</li>
+<li>
+<p>If your <code>cont_frac</code> function generates a recursive process, write one that generates an iterative process. If it generates an iterative process, write one that generates a recursive process.</p>
+</li>
+</ul>
 </div>
 <div class="sect3">
-<h4 id="solution-7">1.8.1. Solution</h4>
+<h4 id="solution-2">Solution</h4>
 <div class="literalblock">
 <div class="content">
-<pre>function random(n) {
-    return math_floor(math_random() * n);
-}
-function miller_rabin_test(n) {
-    function expmod(base, exp, m) {
-        return exp === 0</pre>
+<pre>//recursive process
+function cont_frac(n, d, k) {
+    function fraction(i) {
+        return i &gt; k
+               ? 0
+               : n(i) / (d(i) + fraction(i + 1));</pre>
 </div>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>               ? 1
-               : is_even(exp)
-                 ? square(trivial_test(expmod(base,
-                                              exp / 2,
-                                              m),
-                                       m))
-                   % m
-         : (base * expmod(base, exp - 1, m))
-                   % m;
-    }
-    function trivial_test(r, m) {
-        return r === 1 || r === m - 1
-               ? r
-               : square(r) % m === 1
-                 ? 0
-                 : r;
-    }
-    function try_it(a) {
-        return expmod(a, n - 1, n) === 1;
-    }
-    return try_it(1 + random(n - 1));
+<pre>    }
+    return fraction(1);
+}</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>//iterative process
+function cont_frac(n, d, k) {
+    function fraction(i, current) {
+        return i === 0
+               ? current
+               : fraction(i - 1, n(i) / (d(i) + current));</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>    }
+    return fraction(k, 0);
+}</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="ex:unlabeled15">3.6. Exercise</h3>
+<div class="paragraph">
+<p>In 1737, the Swiss mathematician Leonhard Euler published a memoir <em>De Fractionibus Continuis</em>, which included a continued fraction expansion for \(e-2\), where \(e\) is the base of the natural logarithms. In this fraction, the \(N_i\) are all 1, and the \(D_i\) are successively 1, 2, 1, 1, 4, 1, 1, 6, 1, 1, 8, …. Write a program that uses your <code>cont_frac</code> function from exercise [ex:continued-fractions] to approximate \(e\), based on Euler’s expansion.</p>
+</div>
+<div class="sect3">
+<h4 id="solution-3">3.6.1. Solution</h4>
+<div class="literalblock">
+<div class="content">
+<pre>2 + cont_frac(i =&gt; 1,
+              i =&gt; (i + 1) % 3 &lt; 1 ? 2 * (i + 1) / 3 : 1,
+              20);</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="ex:unlabeled16">3.7. Exercise</h3>
+<div class="paragraph">
+<p>A continued fraction representation of the tangent function was published in 1770 by the German mathematician J.H. Lambert: \(\[\tan x={\dfrac{x}{1-
+      \dfrac{x^2}{3-
+      \dfrac{x^2}{5-
+      \dfrac{x^2}{ \ddots }}}}}]\) where \(x\) is in radians. Declare a function <code>tan_cf(x, k)</code> that computes an approximation to the tangent function based on Lambert’s formula. As in exercise [ex:continued-fractions], <code>k</code> specifies the number of terms to compute.</p>
+</div>
+<div class="sect3">
+<h4 id="solution-4">3.7.1. Solution</h4>
+<div class="literalblock">
+<div class="content">
+<pre>function tan_cf(x, k) {
+    return cont_frac(i =&gt; i === 1 ? x : - x * x,
+                     i =&gt; 2 * i - 1,
+                     k);
+}</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="sec:proc-returned-values">4. Functions as Returned Values</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The above examples demonstrate how the ability to pass functions as arguments significantly enhances the expressive power of our programming language. We can achieve even more expressive power by creating functions whose returned values are themselves functions.</p>
+</div>
+<div class="paragraph">
+<p>We can illustrate this idea by looking again at the fixed-point example described at the end of section [sec:proc-general-methods]. We formulated a new version of the square-root function as a fixed-point search, starting with the observation that \(\sqrt{x}\) is a fixed-point of the function \(y\mapsto x/y\). Then we used average damping to make the approximations converge. Average damping is a useful general technique in itself. Namely, given a function \(f\), we consider the function whose value at \(x\) is equal to the average of \(x\) and \(f(x)\).</p>
+</div>
+<div class="paragraph">
+<p>We can express the idea of average damping by means of the following function:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>function average_damp(f) {
+    return x =&gt; average(x, f(x));
+}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The function <code>average_damp</code> is a function that takes as its argument a function <code>f</code> and returns as its value a function (produced by the lambda expression) that, when applied to a number <code>x</code>, produces the average of <code>x</code> and <code>f(x)</code>. For example, applying <code>average_damp</code> to the <code>square</code> function produces a function whose value at some number \(x\) is the average of \(x\) and \(x^2\). Applying this resulting function to 10 returns the average of 10 and 100, or 55:<sup class="footnote">[<a id="_footnoteref_32" class="footnote" href="#_footnotedef_32" title="View footnote.">32</a>]</sup> already demonstrated the ability to form such combinations, but that was only a toy example. Here we begin to see the real need for such combinations—when applying a function that is obtained as the value returned by a higher-order function.]</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>average_damp(square)(10);</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Using <code>average_damp</code>, we can reformulate the square-root function as follows:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>function sqrt(x) {
+    return fixed_point(average_damp(y =&gt; x / y),
+                       1.0);
+}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Notice how this formulation makes explicit the three ideas in the method: fixed-point search, average damping, and the function \(y\mapsto x/y\). It is instructive to compare this formulation of the square-root method with the original version given in section [sec:sqrt]. Bear in mind that these functions express the same process, and notice how much clearer the idea becomes when we express the process in terms of these abstractions. In general, there are many ways to formulate a process as a function. Experienced programmers know how to choose process formulations that are particularly perspicuous, and where useful elements of the process are exposed as separate entities that can be reused in other applications. As a simple example of reuse, notice that the cube root of \(x\) is a fixed point of the function \(y\mapsto x/y^2\), so we can immediately generalize our square-root function to one that extracts cube roots:<sup class="footnote">[<a id="_footnoteref_33" class="footnote" href="#_footnotedef_33" title="View footnote.">33</a>]</sup> for a further generalization.]</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>function cube_root(x) {
+    return fixed_point(average_damp(y =&gt; x / square(y)),
+                       1.0);
+}</pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="newtons-method">4.1. Newton’s method</h4>
+<div class="paragraph">
+<p>When we first introduced the square-root function, in section [sec:sqrt], we mentioned that this was a special case of <em>Newton’s method</em>. If \(x\mapsto g(x)\) is a differentiable function, then a solution of the equation \(g(x)=0\) is a fixed point of the function \(x\mapsto f(x)\) where \(\[f(x) = x - \frac{g(x)}{Dg(x)}]\) and \(Dg(x)\) is the derivative of \(g\) evaluated at \(x\). Newton’s method is the use of the fixed-point method we saw above to approximate a solution of the equation by finding a fixed point of the function \(f\).<sup class="footnote">[<a id="_footnoteref_34" class="footnote" href="#_footnotedef_34" title="View footnote.">34</a>]</sup> For many functions \(g\) and for sufficiently good initial guesses for \(x\), Newton’s method converges very rapidly to a solution of \(g(x)=0\).<sup class="footnote">[<a id="_footnoteref_35" class="footnote" href="#_footnotedef_35" title="View footnote.">35</a>]</sup></p>
+</div>
+<div class="paragraph">
+<p>In order to implement Newton’s method as a function, we must first express the idea of derivative. Note that ``derivative,'' like average damping, is something that transforms a function into another function. For instance, the derivative of the function \(x\mapsto x^3\) is the function \(x \mapsto 3x^2\). In general, if \(g\) is a function and \(dx\) is a small number, then the derivative \(Dg\) of \(g\) is the function whose value at any number \(x\) is given (in the limit of small \(dx\)) by \(\[Dg(x) = \frac {g(x+dx) - g(x)}{dx}]\) Thus, we can express the idea of derivative (taking \(dx\) to be, say, 0.00001) as the function</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>function deriv(g) {
+    return x =&gt; (g(x + dx) - g(x)) / dx;
+}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>along with the declaration</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>const dx = 0.00001;</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Like <code>average_damp</code>, <code>deriv</code> is a function that takes a function as argument and returns a function as value. For example, to approximate the derivative of \(x \mapsto x^3\) at 5 (whose exact value is 75) we can evaluate</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>function cube(x) { return x * x * x; }
+
+deriv(cube)(5);</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>With the aid of <code>deriv</code>, we can express Newton’s method as a fixed-point process:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>function newton_transform(g) {
+   return x =&gt; x - g(x) / deriv(g)(x);
 }
-function do_miller_rabin_test(n, times) {
-    return times === 0
-           ? true
-           : miller_rabin_test(n)
-             ? do_miller_rabin_test(n, times - 1)
-             : false;
+function newtons_method(g, guess) {
+   return fixed_point(newton_transform(g), guess);
+}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>newton_transform</code> function expresses the formula at the beginning of this section, and <code>newtons_method</code> is readily defined in terms of this. It takes as arguments a function that computes the function for which we want to find a zero, together with an initial guess. For instance, to find the square root of \(x\), we can use Newton’s method to find a zero of the function \(y\mapsto y^2-x\) starting with an initial guess of 1.<sup class="footnote">[<a id="_footnoteref_36" class="footnote" href="#_footnotedef_36" title="View footnote.">36</a>]</sup> This provides yet another form of the square-root function:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>function sqrt(x) {
+    return newtons_method(y =&gt; square(y) - x,
+                          1.0);
+}</pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="abstractions-and-first-class-functions">4.2. Abstractions and first-class functions</h4>
+<div class="paragraph">
+<p>We’ve seen two ways to express the square-root computation as an instance of a more general method, once as a fixed-point search and once using Newton’s method. Since Newton’s method was itself expressed as a fixed-point process, we actually saw two ways to compute square roots as fixed points. Each method begins with a function and finds a fixed point of some transformation of the function. We can express this general idea itself as a function:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>function fixed_point_of_transform(g, transform, guess) {
+    return fixed_point(transform(g), guess);
+}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This very general function takes as its arguments a function <code>g</code> that computes some function, a function that transforms <code>g</code>, and an initial guess. The returned result is a fixed point of the transformed function.</p>
+</div>
+<div class="paragraph">
+<p>Using this abstraction, we can recast the first square-root computation from this section (where we look for a fixed point of the average-damped version of \(y \mapsto x/y\)) as an instance of this general method:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>function sqrt(x) {
+    return fixed_point_of_transform(
+               y =&gt; x / y,
+               average_damp,
+               1.0);
+}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Similarly, we can express the second square-root computation from this section (an instance of Newton’s method that finds a fixed point of the Newton transform of \(y\mapsto y^2-x\)) as</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>function sqrt(x) {
+    return fixed_point_of_transform(
+               y =&gt; square(y) - x,
+               newton_transform,
+               1.0);
+}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We began section [sec:higher-order-procedures] with the observation that compound functions are a crucial abstraction mechanism, because they permit us to express general methods of computing as explicit elements in our programming language. Now we’ve seen how higher-order functions permit us to manipulate these general methods to create further abstractions.</p>
+</div>
+<div class="paragraph">
+<p>As programmers, we should be alert to opportunities to identify the underlying abstractions in our programs and to build upon them and generalize them to create more powerful abstractions. This is not to say that one should always write programs in the most abstract way possible; expert programmers know how to choose the level of abstraction appropriate to their task. But it is important to be able to think in terms of these abstractions, so that we can be ready to apply them in new contexts. The significance of higher-order functions is that they enable us to represent these abstractions explicitly as elements in our programming language, so that they can be handled just like other computational elements.</p>
+</div>
+<div class="paragraph">
+<p>In general, programming languages impose restrictions on the ways in which computational elements can be manipulated. Elements with the fewest restrictions are said to have status. Some of the ``rights and privileges'' of first-class elements are:<sup class="footnote">[<a id="_footnoteref_37" class="footnote" href="#_footnotedef_37" title="View footnote.">37</a>]</sup></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>They may be referred to using names.</p>
+</li>
+<li>
+<p>They may be passed as arguments to functions.</p>
+</li>
+<li>
+<p>They may be returned as the results of functions.</p>
+</li>
+<li>
+<p>They may be included in data structures.<sup class="footnote">[<a id="_footnoteref_38" class="footnote" href="#_footnotedef_38" title="View footnote.">38</a>]</sup></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>JavaScript, unlike other common programming languages, awards functions full first-class status. This poses challenges for efficient implementation, but the resulting gain in expressive power is enormous.<sup class="footnote">[<a id="_footnoteref_39" class="footnote" href="#_footnotedef_39" title="View footnote.">39</a>]</sup>, these names are stored in the function’s environment.]</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="ex:unlabeled26">4.3. Exercise</h3>
+<div class="paragraph">
+<p>Declare a function <code>cubic</code> that can be used together with the <code>newtons_method</code> function in expressions of the form</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>newtons_method(cubic(a, b, c), 1);</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>to approximate zeros of the cubic \(x^3 +ax^2 +bx +c\).</p>
+</div>
+<div class="sect3">
+<h4 id="solution">4.3.1. Solution</h4>
+<div class="literalblock">
+<div class="content">
+<pre>function cubic(a, b, c) {
+    return x =&gt; cube(x) + a * square(x) + b * x + c;
+}</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="ex:unlabeled27">4.4. Exercise</h3>
+<div class="paragraph">
+<p>Declare a function <code>double</code> that takes a function of one argument as argument and returns a function that applies the original function twice. For example, if <code>inc</code> is a function that adds 1 to its argument, then <code>double(inc)</code> should be a function that adds 2. What value is returned by</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>double(double(double))(inc)(5);</pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="solution-1">4.4.1. Solution</h4>
+<div class="literalblock">
+<div class="content">
+<pre>function double(f) {
+    return x =&gt; f(f(x));
+}</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="ex:compose">4.5. Exercise</h3>
+<div class="paragraph">
+<p>Let \(f\) and \(g\) be two one-argument functions. The <em>composition</em> \(f\) after \(g\) is defined to be the function \(x\mapsto f(g(x))\). Declare a function <code>compose</code> that implements composition. For example, if <code>inc</code> is a function that adds 1 to its argument,</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>compose(square, inc)(6);</pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="solution-2">4.5.1. Solution</h4>
+<div class="literalblock">
+<div class="content">
+<pre>function compose(f, g) {
+    return x =&gt; f(g(x));
+}</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="exercise">4.6. Exercise</h3>
+<div class="paragraph">
+<p>If \(f\) is a numerical function and \(n\) is a positive integer, then we can form the \(n\)th repeated application of \(f\), which is defined to be the function whose value at \(x\) is \(f(f(\ldots(f(x))\ldots))\). For example, if \(f\) is the function \(x \mapsto x+1\), then the \(n\)th repeated application of \(f\) is the function \(x \mapsto x+n\). If \(f\) is the operation of squaring a number, then the \(n\)th repeated application of \(f\) is the function that raises its argument to the \(2^n\)th power. Write a function that takes as inputs a function that computes \(f\) and a positive integer \(n\) and returns the function that computes the \(n\)th repeated application of \(f\). Your function should be able to be used as follows:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>repeated(square, 2)(5);</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Hint: You may find it convenient to use <code>compose</code> from exercise [ex:compose]. [ex:repeated]</p>
+</div>
+<div class="sect3">
+<h4 id="solution-3">4.6.1. Solution</h4>
+<div class="literalblock">
+<div class="content">
+<pre>function repeated(f, n) {
+    return n === 0
+           ? x =&gt; x
+           : compose(f, repeated(f, n - 1));
+}</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="ex:smooth">4.7. Exercise</h3>
+<div class="paragraph">
+<p>The idea of <em>smoothing</em> a function is an important concept in signal processing. If \(f\) is a function and \(dx\) is some small number, then the smoothed version of \(f\) is the function whose value at a point \(x\) is the average of \(f(x-dx)\), \(f(x)\), and \(f(x+dx)\). Write a function <code>smooth</code> that takes as input a function that computes \(f\) and returns a function that computes the smoothed \(f\). It is sometimes valuable to repeatedly smooth a function (that is, smooth the smoothed function, and so on) to obtained the <em>\(n\)-fold smoothed function</em>. Show how to generate the \(n\)-fold smoothed function of any given function using <code>smooth</code> and <code>repeated</code> from exercise [ex:repeated].</p>
+</div>
+<div class="sect3">
+<h4 id="solution-4">4.7.1. Solution</h4>
+<div class="literalblock">
+<div class="content">
+<pre>const dx = 0.00001;
+function smooth(f) {
+    return x =&gt; (f(x - dx) + f(x) + f(x + dx)) / 3;
+}
+function n_fold_smooth(f, n) {
+    return repeated(smooth, n)(f);</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>}</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="exercise-1">4.8. Exercise</h3>
+<div class="paragraph">
+<p>We saw in section [sec:proc-general-methods] that attempting to compute square roots by naively finding a fixed point of \(y\mapsto x/y\) does not converge, and that this can be fixed by average damping. The same method works for finding cube roots as fixed points of the average-damped \(y\mapsto x/y^2\). Unfortunately, the process does not work for fourth roots—a single average damp is not enough to make a fixed-point search for \(y\mapsto x/y^3\) converge. On the other hand, if we average damp twice (i.e., use the average damp of the average damp of \(y\mapsto x/y^3\)) the fixed-point search does converge. Do some experiments to determine how many average damps are required to compute \(n\)th roots as a fixed-point search based upon repeated average damping of \(y\mapsto x/y^{n-1}\). Use this to implement a simple function for computing \(n\)th roots using <code>fixed_point</code>, <code>average_damp</code>, and the <code>repeated</code> function of exercise [ex:repeated]. Assume that any arithmetic operations you need are available as primitives. [ex:nth-roots]</p>
+</div>
+<div class="sect3">
+<h4 id="solution-5">4.8.1. Solution</h4>
+<div class="literalblock">
+<div class="content">
+<pre>function nth_root(n, x) {
+    return fixed_point(repeated(average_damp,
+                                math_floor(math_log2(n)))
+                       (y =&gt; x / fast_expt(y, n - 1)),
+                       1.0);
+}</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="ex:unlabeled28">4.9. Exercise</h3>
+<div class="paragraph">
+<p>Several of the numerical methods described in this chapter are instances of an extremely general computational strategy known as <em>iterative improvement</em>. Iterative improvement says that, to compute something, we start with an initial guess for the answer, test if the guess is good enough, and otherwise improve the guess and continue the process using the improved guess as the new guess. Write a function <code>iterative_improve</code> that takes two functions as arguments: a method for telling whether a guess is good enough and a method for improving a guess. The function <code>iterative_improve</code> should return as its value a function that takes a guess as argument and keeps improving the guess until it is good enough. Rewrite the <code>sqrt</code> function of section [sec:sqrt] and the <code>fixed_point</code> function of section [sec:proc-general-methods] in terms of <code>iterative_improve</code>.</p>
+</div>
+<div class="sect3">
+<h4 id="solution-6">4.9.1. Solution</h4>
+<div class="literalblock">
+<div class="content">
+<pre>function iterative_improve(good_enough, improve) {
+    function iterate(guess) {
+        return good_enough(guess)
+               ? guess
+               : iterate(improve(guess));
+    }</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>    return iterate;
 }</pre>
 </div>
 </div>
@@ -4479,6 +5681,66 @@ function do_miller_rabin_test(n, times) {
 </div>
 <div class="footnote" id="_footnotedef_19">
 <a href="#_footnoteref_19">19</a>. La funzione primitiva <code>display</code> restituisce il suo argomento, ma lo stampa anche. Qui <em>***</em> è una <em>stringa</em>, una sequenza di caratteri che passiamo come argomento alla funzione <code>display</code>. La sezione [sp_stringhe
+</div>
+<div class="footnote" id="_footnotedef_20">
+<a href="#_footnoteref_20">20</a>. Questa serie, di solito scritta nella forma equivalente \(\frac{\pi}{4} = 1-\frac{1}{3}\frac{1}{5}-\frac{1}{7}\cdots\), è dovuta a Leibniz. Vedremo come utilizzarla come base per alcuni fantasiosi trucchi numerici nella sezione <a href="#sec:exploiting-streams">[sec:exploiting-streams
+</div>
+<div class="footnote" id="_footnotedef_21">
+<a href="#_footnoteref_21">21</a>. Nota che abbiamo usato la struttura a blocchi (<a href="#sec:black-box">[sec:black-box
+</div>
+<div class="footnote" id="_footnotedef_22">
+<a href="#_footnoteref_22">22</a>. L&#8217;intento degli esercizi <a href="#es_prodotto">Esercizio 1.31. Prodotto/produttoria</a>&#8201;&#8212;&#8201;<a href="#es_filtra_accumula">Esercizio 1.33. Accumula i valori filtrati</a> è quello di dimostrare il potere espressivo che si ottiene utilizzando un&#8217;astrazione appropriata per unificare molte operazioni apparentemente diverse. Tuttavia, sebbene l&#8217;accumulazione e il filtraggio siano idee eleganti, a questo punto siamo in qualche modo costretti ad usarle poiché non abbiamo ancora strutture di dati per fornire mezzi di combinazione adeguati per queste astrazioni. Ritorneremo su queste idee nel TODO sec:sequences-traditional-interfaces quando mostreremo come usare le <em>sequenze</em> come interfacce per combinare filtri e accumulatori per costruire astrazioni ancora più potenti. Vedremo qui come questi metodi si rivelino un approccio davvero potente ed elegante alla progettazione di programmi.
+</div>
+<div class="footnote" id="_footnotedef_23">
+<a href="#_footnoteref_23">23</a>. Questa formula fu scoperta dal matematico inglese del XVII secolo John Wallis.
+</div>
+<div class="footnote" id="_footnotedef_24">
+<a href="#_footnoteref_24">24</a>. If there is only one parameter, the parentheses around the parameter list can also be omitted. In section [sec:graphics
+</div>
+<div class="footnote" id="_footnotedef_25">
+<a href="#_footnoteref_25">25</a>. In JavaScript, there are subtle differences between the two versions: Function declaration statements are ``hoisted'' (automatically moved) to the beginning of the surrounding block, whereas constant declarations are not, and names declared with function declaration can be re-assigned using assignment (see chapter [sec:assignment
+</div>
+<div class="footnote" id="_footnotedef_26">
+<a href="#_footnoteref_26">26</a>. It would be clearer and less intimidating to people learning JavaScript if a term more obvious than lambda expression, such as <em>function definition</em> were used. But the convention is very firmly entrenched, not just for Lisp and Scheme but also for JavaScript, Java and other languages, no doubt partly due to the influence of the Scheme editions of this book. The notation is adopted from the \(\lambda\) calculus, a mathematical formalism introduced by the mathematical logician Alonzo Church (1941). Church developed the \(\lambda\) calculus to provide a rigorous foundation for studying the notions of function and function application. The \(\lambda\) calculus has become a basic tool for mathematical investigations of the semantics of programming languages.
+</div>
+<div class="footnote" id="_footnotedef_27">
+<a href="#_footnoteref_27">27</a>. Note that we slightly extend the syntax of conditional statements described in section [sec:lambda
+</div>
+<div class="footnote" id="_footnotedef_28">
+<a href="#_footnoteref_28">28</a>. We have used 0.001 as a representative </code>small'' number to indicate a tolerance for the acceptable error in a calculation. The appropriate tolerance for a real calculation depends upon the problem to be solved and the limitations of the computer and the algorithm. This is often a very subtle consideration, requiring help from a numerical analyst or some other kind of magician.
+</div>
+<div class="footnote" id="_footnotedef_29">
+<a href="#_footnoteref_29">29</a>. This can be accomplished using <code>error</code>, which takes as argument a string that is printed as error message along with the number of the program line that gave rise to the call of <code>error</code>.
+</div>
+<div class="footnote" id="_footnotedef_30">
+<a href="#_footnoteref_30">30</a>. Try this during a boring lecture: Set your calculator to radians mode and then repeatedly press the \(\cos\) button until you obtain the fixed point.
+</div>
+<div class="footnote" id="_footnotedef_31">
+<a href="#_footnoteref_31">31</a>. \(\mapsto\) (pronounced <code>`maps to'') is the mathematician’s way of writing lambda expressions. \(y \mapsto x/y\) means `y &#8658; x / y</code>, that is, the function whose value at \(y\) is \(x/y\).
+</div>
+<div class="footnote" id="_footnotedef_32">
+<a href="#_footnoteref_32">32</a>. Observe that this is a combination whose operator is itself a combination. Exercise [ex:a-plus-abs-b
+</div>
+<div class="footnote" id="_footnotedef_33">
+<a href="#_footnoteref_33">33</a>. See exercise [ex:nth-roots
+</div>
+<div class="footnote" id="_footnotedef_34">
+<a href="#_footnoteref_34">34</a>. Elementary calculus books usually describe Newton’s method in terms of the sequence of approximations \(x_{n+1}=x_n-g(x_n)/Dg(x_n)\). Having language for talking about processes and using the idea of fixed points simplifies the description of the method.
+</div>
+<div class="footnote" id="_footnotedef_35">
+<a href="#_footnoteref_35">35</a>. Newton’s method does not always converge to an answer, but it can be shown that in favorable cases each iteration doubles the number-of-digits accuracy of the approximation to the solution. In such cases, Newton’s method will converge much more rapidly than the half-interval method.
+</div>
+<div class="footnote" id="_footnotedef_36">
+<a href="#_footnoteref_36">36</a>. For finding square roots, Newton’s method converges rapidly to the correct solution from any starting point.
+</div>
+<div class="footnote" id="_footnotedef_37">
+<a href="#_footnoteref_37">37</a>. The notion of first-class status of programming-language elements is due to the British computer scientist Christopher Strachey (1916–1975).
+</div>
+<div class="footnote" id="_footnotedef_38">
+<a href="#_footnoteref_38">38</a>. We’ll see examples of this after we introduce data structures in chapter 2.
+</div>
+<div class="footnote" id="_footnotedef_39">
+<a href="#_footnoteref_39">39</a>. The major implementation cost of first-class functions is that allowing functions to be returned as values requires reserving storage for a function’s free names even while the function is not executing. In the JavaScript implementation we will study in section [sec:mc-eval
 </div>
 </div>
 <div id="footer">
