@@ -1,3 +1,4 @@
+[[sec:black-box]]
 ==== Funzioni come astrazioni nella forma di una scatola nera
 
 La funzione `radice_quadrata` è il nostro primo esempio di un processo definito da
@@ -75,7 +76,7 @@ soli, ma potrebbero averla ottenuta da un altro programmatore come una
 scatola nera. Un utente non dovrebbe avere bisogno di sapere come viene
 implementata la funzione per poterla utilizzare.
 
-[discrete]
+//[discrete]
 ===== Nomi locali
 
 Un dettaglio dell'implementazione di una funzione che non dovrebbe
@@ -153,7 +154,7 @@ La funzione JavaScript `valore_assoluto` calcolerà una diversa funzione
 matematica se sostituiamo `Math.cos` (funzione coseno di
 JavaScript) con `valore_assoluto` nella sua dichiarazione.
 
-[discrete]
+//[discrete]
 ===== Dichiarazioni interne e struttura a blocchi
 
 Finora abbiamo un tipo di isolamento del nome a nostra disposizione: i parametri di una funzione

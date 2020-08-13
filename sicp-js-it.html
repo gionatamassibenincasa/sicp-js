@@ -461,17 +461,30 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_denominazione_e_ambiente">1.1.2. Denominazione e ambiente</a></li>
 <li><a href="#sp_combinazione_operatori">1.1.3. Valutazione delle combinazioni mediante operatori</a></li>
 <li><a href="#sp_funzioni_composte">1.1.4. Funzioni composte</a></li>
-<li><a href="#sp_modello_sostituzione">1.1.5. Il modello di sostituzione per l&#8217;applicazione delle funzioni</a></li>
+<li><a href="#sp_modello_sostituzione">1.1.5. Il modello di sostituzione per l&#8217;applicazione delle funzioni</a>
+<ul class="sectlevel4">
+<li><a href="#_ordine_di_applicazione_e_ordine_normale">Ordine di applicazione e ordine normale</a></li>
+</ul>
+</li>
 <li><a href="#_epressioni_condizionali_e_predicati">1.1.6. Epressioni condizionali e predicati</a></li>
 <li><a href="#_esempio_radici_quadrate_con_il_metodo_di_newton">1.1.7. Esempio: radici quadrate con il metodo di Newton</a></li>
-<li><a href="#_funzioni_come_astrazioni_nella_forma_di_una_scatola_nera">1.1.8. Funzioni come astrazioni nella forma di una scatola nera</a></li>
+<li><a href="#sec:black-box">1.1.8. Funzioni come astrazioni nella forma di una scatola nera</a>
+<ul class="sectlevel4">
+<li><a href="#_nomi_locali">Nomi locali</a></li>
+<li><a href="#_dichiarazioni_interne_e_struttura_a_blocchi">Dichiarazioni interne e struttura a blocchi</a></li>
+</ul>
+</li>
 <li><a href="#_esercizi_aggiuntivi">1.1.9. Esercizi aggiuntivi</a></li>
 </ul>
 </li>
 <li><a href="#s_funzioni_e_processi">1.2. Le funzioni e i processi da esse generati</a>
 <ul class="sectlevel3">
 <li><a href="#sp_ricorsione_iterazione">1.2.1. Ricorsione e iterazione lineari</a></li>
-<li><a href="#sp_ricorsione_ad_albero">1.2.2. Ricorsione ad albero</a></li>
+<li><a href="#sp_ricorsione_ad_albero">1.2.2. Ricorsione ad albero</a>
+<ul class="sectlevel4">
+<li><a href="#_esempio_contare_il_numero_di_cambi">Esempio: Contare il numero di cambi</a></li>
+</ul>
+</li>
 <li><a href="#sp_tassi_di_crescita">1.2.3. Tassi di crescita</a></li>
 <li><a href="#sp_elevamento_a_potenza">1.2.4. Elevamento a potenza</a></li>
 <li><a href="#sec:gcd">1.2.5. Massimo Comun Divisore</a></li>
@@ -487,89 +500,24 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#sec:higher-order-procedures">1.3. Formulare astrazioni con funzioni di ordine superiore</a>
 <ul class="sectlevel3">
 <li><a href="#sec:procedures-as-parameters">1.3.1. Funzioni come Argomenti</a></li>
+<li><a href="#sec:lambda">1.3.2. Costruire le funzioni utilizzando le espressioni Lambda</a>
+<ul class="sectlevel4">
+<li><a href="#using-const-to-create-local-names">Using <code>const</code> to create local names</a></li>
+<li><a href="#conditional-statements">Conditional statements</a></li>
 </ul>
 </li>
+<li><a href="#sec:proc-general-methods">1.3.3. Functions as General Methods</a>
+<ul class="sectlevel4">
+<li><a href="#finding-roots-of-equations-by-the-half-interval-method">Finding roots of equations by the half-interval method</a></li>
+<li><a href="#finding-fixed-points-of-functions">Finding fixed points of functions</a></li>
 </ul>
 </li>
-<li><a href="#sec:lambda">2. Constructing Functions using Lambda Expressions</a>
-<ul class="sectlevel3">
-<li><a href="#using-const-to-create-local-names">2.1. Using <code>const</code> to create local names</a></li>
-<li><a href="#conditional-statements">2.2. Conditional statements</a></li>
-<li><a href="#ex:unlabeled18">2.3. Exercise</a>
-<ul class="sectlevel3">
-<li><a href="#solution">2.3.1. Solution</a></li>
+<li><a href="#sec:proc-returned-values">1.3.4. Functions as Returned Values</a>
+<ul class="sectlevel4">
+<li><a href="#newtons-method">Newton’s method</a></li>
+<li><a href="#abstractions-and-first-class-functions">Abstractions and first-class functions</a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li><a href="#sec:proc-general-methods">3. Functions as General Methods</a>
-<ul class="sectlevel3">
-<li><a href="#finding-roots-of-equations-by-the-half-interval-method">3.1. Finding roots of equations by the half-interval method</a></li>
-<li><a href="#finding-fixed-points-of-functions">3.2. Finding fixed points of functions</a></li>
-<li><a href="#ex:unlabeled14">3.3. Exercise</a>
-<ul class="sectlevel3">
-<li><a href="#solution">3.3.1. Solution</a></li>
-</ul>
-</li>
-<li><a href="#exercise">3.4. Exercise</a>
-<ul class="sectlevel3">
-<li><a href="#solution-1">3.4.1. Solution</a></li>
-</ul>
-</li>
-<li><a href="#exercise-1">3.5. Exercise</a>
-<ul class="sectlevel3">
-<li><a href="#solution-2">Solution</a></li>
-</ul>
-</li>
-<li><a href="#ex:unlabeled15">3.6. Exercise</a>
-<ul class="sectlevel3">
-<li><a href="#solution-3">3.6.1. Solution</a></li>
-</ul>
-</li>
-<li><a href="#ex:unlabeled16">3.7. Exercise</a>
-<ul class="sectlevel3">
-<li><a href="#solution-4">3.7.1. Solution</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#sec:proc-returned-values">4. Functions as Returned Values</a>
-<ul class="sectlevel3">
-<li><a href="#newtons-method">4.1. Newton’s method</a></li>
-<li><a href="#abstractions-and-first-class-functions">4.2. Abstractions and first-class functions</a></li>
-<li><a href="#ex:unlabeled26">4.3. Exercise</a>
-<ul class="sectlevel3">
-<li><a href="#solution">4.3.1. Solution</a></li>
-</ul>
-</li>
-<li><a href="#ex:unlabeled27">4.4. Exercise</a>
-<ul class="sectlevel3">
-<li><a href="#solution-1">4.4.1. Solution</a></li>
-</ul>
-</li>
-<li><a href="#ex:compose">4.5. Exercise</a>
-<ul class="sectlevel3">
-<li><a href="#solution-2">4.5.1. Solution</a></li>
-</ul>
-</li>
-<li><a href="#exercise">4.6. Exercise</a>
-<ul class="sectlevel3">
-<li><a href="#solution-3">4.6.1. Solution</a></li>
-</ul>
-</li>
-<li><a href="#ex:smooth">4.7. Exercise</a>
-<ul class="sectlevel3">
-<li><a href="#solution-4">4.7.1. Solution</a></li>
-</ul>
-</li>
-<li><a href="#exercise-1">4.8. Exercise</a>
-<ul class="sectlevel3">
-<li><a href="#solution-5">4.8.1. Solution</a></li>
-</ul>
-</li>
-<li><a href="#ex:unlabeled28">4.9. Exercise</a>
-<ul class="sectlevel3">
-<li><a href="#solution-6">4.9.1. Solution</a></li>
 </ul>
 </li>
 </ul>
@@ -1534,7 +1482,8 @@ da modelli più raffinati. Il modello di sostituzione non fa eccezione.</p>
 </li>
 </ul>
 </div>
-<h4 id="_ordine_di_applicazione_e_ordine_normale" class="discrete">Ordine di applicazione e ordine normale</h4>
+<div class="sect4">
+<h5 id="_ordine_di_applicazione_e_ordine_normale">Ordine di applicazione e ordine normale</h5>
 <div class="paragraph">
 <p>Secondo la descrizione della valutazione di cui sopra, l&#8217;interprete
 valuta prima la funzione e le espressioni degli argomenti, quindi
@@ -1636,6 +1585,7 @@ significativo, perché la valutazione dell&#8217;ordine normale diventa molto
 più complicata da affrontare quando lasciamo il regno delle procedure
 che può essere modellizzato per sostituzione. D&#8217;altra parte, la valutazione
 dell&#8217;ordine normale può essere uno strumento estremamente prezioso.</p>
+</div>
 </div>
 </div>
 <div class="sect3">
@@ -2519,7 +2469,7 @@ function cubo (x) {
 </details>
 </div>
 <div class="sect3">
-<h4 id="_funzioni_come_astrazioni_nella_forma_di_una_scatola_nera">1.1.8. Funzioni come astrazioni nella forma di una scatola nera</h4>
+<h4 id="sec:black-box">1.1.8. Funzioni come astrazioni nella forma di una scatola nera</h4>
 <div class="paragraph">
 <p>La funzione <code>radice_quadrata</code> è il nostro primo esempio di un processo definito da
 un insieme di funzioni che si definiscono l&#8217;una con l&#8217;altra. Si noti che
@@ -2591,7 +2541,8 @@ soli, ma potrebbero averla ottenuta da un altro programmatore come una
 scatola nera. Un utente non dovrebbe avere bisogno di sapere come viene
 implementata la funzione per poterla utilizzare.</p>
 </div>
-<h5 id="_nomi_locali" class="discrete">Nomi locali</h5>
+<div class="sect4">
+<h5 id="_nomi_locali">Nomi locali</h5>
 <div class="paragraph">
 <p>Un dettaglio dell&#8217;implementazione di una funzione che non dovrebbe
 interessare all&#8217;utente della funzione è la scelta dei nomi da parte
@@ -2673,7 +2624,9 @@ La funzione JavaScript <code>valore_assoluto</code> calcolerà una diversa funzi
 matematica se sostituiamo <code>Math.cos</code> (funzione coseno di
 JavaScript) con <code>valore_assoluto</code> nella sua dichiarazione.</p>
 </div>
-<h5 id="_dichiarazioni_interne_e_struttura_a_blocchi" class="discrete">Dichiarazioni interne e struttura a blocchi</h5>
+</div>
+<div class="sect4">
+<h5 id="_dichiarazioni_interne_e_struttura_a_blocchi">Dichiarazioni interne e struttura a blocchi</h5>
 <div class="paragraph">
 <p>Finora abbiamo un tipo di isolamento del nome a nostra disposizione: i parametri di una funzione
 sono locali al corpo della funzione.
@@ -2790,6 +2743,7 @@ L&#8217;idea della struttura a blocchi è nata con il
 linguaggio di programmazione Algol 60. Appare nella maggior parte dei
 linguaggi di programmazione avanzati ed è uno strumento importante per
 aiutare a organizzare la costruzione di programmi di grandi dimensioni.</p>
+</div>
 </div>
 </div>
 <div class="sect3">
@@ -3539,7 +3493,8 @@ function fib_iter(a, b, count) {
 <div class="paragraph">
 <p>Non si deve concludere da ciò che i processi ricorsivi ad albero siano inutili. Quando consideriamo i processi che operano su dati strutturati gerarchicamente piuttosto che su numeri, scopriremo che la ricorsione dell&#8217;albero è uno strumento naturale e potente. Ma anche nelle operazioni numeriche, i processi ricorsivi ad albero possono essere utili per aiutarci a comprendere e progettare i programmi. Ad esempio, sebbene la prima funzione <code>fib</code> sia molto meno efficiente della seconda, è più semplice, essendo poco più di una traduzione in JavaScript della definizione della sequenza di Fibonacci. Per formulare l&#8217;algoritmo iterativo è necessario notare che il calcolo potrebbe essere trasformato in iterazione con tre variabili di stato.</p>
 </div>
-<h4 id="_esempio_contare_il_numero_di_cambi" class="discrete">Esempio: Contare il numero di cambi</h4>
+<div class="sect4">
+<h5 id="_esempio_contare_il_numero_di_cambi">Esempio: Contare il numero di cambi</h5>
 <div class="paragraph">
 <p>Basta poco ingegno per elaborare l&#8217;algoritmo iterativo di Fibonacci. Al contrario, considera il seguente problema: in quanti modi diversi possiamo cambiare 1 euro con le monete da 50, 20, 10, 2 e un centesimo? Più in generale, possiamo scrivere una funzione per calcolare il numero di modi per cambiare una determinata quantità di denaro?</p>
 </div>
@@ -3741,6 +3696,7 @@ in quanto la riga \(n\)-esima è formata dai coefficienti dei termini dell&#8217
 </div>
 </div>
 </details>
+</div>
 </div>
 <div class="sect3">
 <h4 id="sp_tassi_di_crescita">1.2.3. Tassi di crescita</h4>
@@ -4165,7 +4121,7 @@ function divide(a, b) {
 </div>
 </div>
 <div class="paragraph">
-<p>Questo è molto simile alla funzione <code>potenza_veloce</code> della sezione <a href="#sp_elevamento_a_potenza">paragrafo 1.2.4</a>. Utilizza i quadrati successivi, in modo che il numero di passi cresca logaritmicamente con l&#8217;esponente.<sup class="footnote">[<a id="_footnoteref_15" class="footnote" href="#_footnotedef_15" title="View footnote.">15</a>]</sup></a>.)]</p>
+<p>Questo è molto simile alla funzione <code>potenza_veloce</code> della sezione <a href="#sp_elevamento_a_potenza">paragrafo 1.2.4</a>. Utilizza i quadrati successivi, in modo che il numero di passi cresca logaritmicamente con l&#8217;esponente.<sup class="footnote">[<a id="_footnoteref_15" class="footnote" href="#_footnotedef_15" title="View footnote.">15</a>]</sup></p>
 </div>
 <div class="paragraph">
 <p>Il test di Fermat viene eseguito scegliendo a caso un numero \(a\) compreso tra 1 e \(n-1\) incluso e controllando se il resto modulo \(n\) della \(n\)-esima potenza di \(a\) è uguale a \(a\). Il numero casuale \(a\) viene scelto utilizzando la funzione <code>random</code>, che assumiamo sia inclusa come primitiva in JavaScript. La funzione <code>random</code> restituisce un numero intero non negativo minore del suo intero input. Quindi, per ottenere un numero casuale compreso tra 1 e \(n-1\), chiamiamo <code>random</code> con un input di \(n-1\) e aggiungiamo 1 al risultato:</p>
@@ -4249,19 +4205,19 @@ function stampa_primo(tempo_trascorso) {
 <div class="title">Esercizio 1.23.</div>
 <div class="content">
 <div class="paragraph">
-<p>La funzione <code>divisore_minimo</code> mostrata all&#8217;inizio di questo paragrafo fa molti test inutili: dopo aver verificato se il numero è divisibile per 2 non ha senso controllare se è divisibile per numeri pari più grandi. Questo suggerisce che i valori usati per <code>divisore_prova</code> non dovrebbero essere 2, 3, 4, 5, 6,&#8230;&#8203; ma piuttosto 2, 3, 5, 7, 9,&#8230;&#8203; . Per implementare questa modifica, dichiara una funzione <code>prossimo</code> che restituisce 3 se il suo input è uguale a 2 e altrimenti restituisce il suo input più 2. Modifica la funzione <code>divisore_minimo</code> per utilizzare <code>prossimo</code> invece di <code>divisore_prova + 1</code> . Con <code>test_primalita_cronometrato</code> che incorpora questa versione modificata di` divisore_minimo`, esegui il test per ciascuno dei 12 numeri primi trovati nell&#8217;esercizio <a href="#es:search-for-primes">[es:search-for-primes]</a>. Poiché questa modifica dimezza il numero di passaggi del test, dovresti aspettarti che venga eseguito circa il doppio più velocemente. Questa aspettativa è confermata? In caso negativo, qual è il rapporto osservato tra le velocità dei due algoritmi e come spieghi il fatto che è diverso da 2?</p>
+<p>La funzione <code>divisore_minimo</code> mostrata all&#8217;inizio di questo paragrafo fa molti test inutili: dopo aver verificato se il numero è divisibile per 2 non ha senso controllare se è divisibile per numeri pari più grandi. Questo suggerisce che i valori usati per <code>divisore_prova</code> non dovrebbero essere 2, 3, 4, 5, 6,&#8230;&#8203; ma piuttosto 2, 3, 5, 7, 9,&#8230;&#8203; . Per implementare questa modifica, dichiara una funzione <code>prossimo</code> che restituisce 3 se il suo input è uguale a 2 e altrimenti restituisce il suo input più 2. Modifica la funzione <code>divisore_minimo</code> per utilizzare <code>prossimo</code> invece di <code>divisore_prova + 1</code> . Con <code>test_primalita_cronometrato</code> che incorpora questa versione modificata di` divisore_minimo`, esegui il test per ciascuno dei 12 numeri primi trovati nel <a href="#ex:search-for-primes">Esercizio 1.22. Fare esperienza della complessità di ricerca dei numeri primi grandi</a>. Poiché questa modifica dimezza il numero di passaggi del test, dovresti aspettarti che venga eseguito circa il doppio più velocemente. Questa aspettativa è confermata? In caso negativo, qual è il rapporto osservato tra le velocità dei due algoritmi e come spieghi il fatto che è diverso da 2?</p>
 </div>
 </div>
 </div>
-<div class="exampleblock">
+<div id="ex:mod-timed-prime-test" class="exampleblock">
 <div class="title">Esercizio 1.24.</div>
 <div class="content">
 <div class="paragraph">
-<p>Modifica la funzione <code>test_primalita_cronometrato</code> dell&#8217;esercizio <a href="#es_cerca-numeri primi">[es_cerca-numeri primi]</a> per usare <code>primo_veloce</code> (il metodo Fermat), e prova ciascuno dei 12 numeri primi trovati in quell&#8217;esercizio. Dato che il test di Fermat ha tasso di crescita \(\Theta (\log n)\), quale rapporto tra i tempi necessari per testare numeri primi vicini a 1.000.000 e quelli per testare numeri primi vicini a 1000 ti aspetteresti? I tuoi dati lo confermano? Puoi spiegare eventuali discrepanze che trovi? [Es: mod-cronometrato-prime-test]</p>
+<p>Modifica la funzione <code>test_primalita_cronometrato</code> dell&#8217;esercizio <a href="#ex:search-for-primes">Esercizio 1.22. Fare esperienza della complessità di ricerca dei numeri primi grandi</a> per usare <code>primo_veloce</code> (il metodo Fermat), e prova ciascuno dei 12 numeri primi trovati in quell&#8217;esercizio. Dato che il test di Fermat ha tasso di crescita \(\Theta (\log n)\), quale rapporto tra i tempi necessari per testare numeri primi vicini a 1.000.000 e quelli per testare numeri primi vicini a 1000 ti aspetteresti? I tuoi dati lo confermano? Puoi spiegare eventuali discrepanze che trovi?</p>
 </div>
 </div>
 </div>
-<div id="exercise-1" class="exampleblock">
+<div id="ex:Alyssas-expmod" class="exampleblock">
 <div class="title">Esercizio 1.25.</div>
 <div class="content">
 <div class="paragraph">
@@ -4275,7 +4231,7 @@ function stampa_primo(tempo_trascorso) {
 </div>
 </div>
 <div class="paragraph">
-<p>Is she correct? Would this function serve as well for our fast prime tester? Explain. [ex:Alyssas-expmod]</p>
+<p>Is she correct? Would this function serve as well for our fast prime tester? Explain.</p>
 </div>
 </div>
 </div>
@@ -4390,7 +4346,7 @@ y * y * y;</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>che converge a \(\pi / 8\) (molto lentamente):<sup class="footnote">[<a id="_footnoteref_20" class="footnote" href="#_footnotedef_20" title="View footnote.">20</a>]</sup></a>.]</p>
+<p>che converge a \(\pi / 8\) (molto lentamente):<sup class="footnote">[<a id="_footnoteref_20" class="footnote" href="#_footnotedef_20" title="View footnote.">20</a>]</sup></p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -4459,7 +4415,7 @@ function somma_cubi(a, b) {
 </div>
 </div>
 <div class="paragraph">
-<p>Con l&#8217;aiuto di una funzione <em>identità</em> per calcolare il termine, possiamo definire <code>sommau_interi</code> in termini di <code>somma</code>:</p>
+<p>Con l&#8217;aiuto di una funzione <em>identità</em> per calcolare il termine, possiamo definire <code>somma_interi</code> in termini di <code>somma</code>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -4481,18 +4437,18 @@ function somma_interi(a, b) {
 </div>
 </div>
 <div class="paragraph">
-<p>Possiamo anche dichiarare <code>somma_pi</code> nello stesso modo: <sup class="footnote">[<a id="_footnoteref_21" class="footnote" href="#_footnotedef_21" title="View footnote.">21</a>]</sup></a>) per incorporare le dichiarazioni di <code>pi_somma</code> e <code>pi_termine</code> all&#8217;interno di <code>somma_pi</code>, poiché è improbabile che queste funzioni siano utili per altri scopi. Vedremo come eliminarli del tutto nel <a href="#sec:lambda">Capitolo 2</a>.]</p>
+<p>Possiamo anche dichiarare <code>somma_pi</code> nello stesso modo:<sup class="footnote">[<a id="_footnoteref_21" class="footnote" href="#_footnotedef_21" title="View footnote.">21</a>]</sup></p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function pi_sum(a, b) {
-    function pi_term(x) {
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function somma_pi(a, b) {
+    function pi_termine(x) {
         return 1.0 / (x * (x + 2));
     }
-    function pi_next(x) {
+    function pi_prossimo(x) {
         return x + 4;
     }
-    return sum(pi_term, a, pi_next, b);
+    return somma(pi_termine, a, pi_prossimo, b);
 }</code></pre>
 </div>
 </div>
@@ -4642,317 +4598,285 @@ integrale(cubo, 0, 1, 0.01);</code></pre>
 </div>
 </div>
 </div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="sec:lambda">2. Constructing Functions using Lambda Expressions</h2>
-<div class="sectionbody">
+<div class="sect3">
+<h4 id="sec:lambda">1.3.2. Costruire le funzioni utilizzando le espressioni Lambda</h4>
 <div class="paragraph">
-<p>In using <code>sum</code> as in section [sec:procedures-as-parameters], it seems terribly awkward to have to declare trivial functions such as <code>pi_term</code> and <code>pi_next</code> just so we can use them as arguments to our higher-order function. Rather than declare <code>pi_next</code> and <code>pi_term</code>, it would be more convenient to have a way to directly specify <code>the function that returns its input incremented by 4'' and </code>the function that returns the reciprocal of its input times its input plus 2.'' We can do this by introducing <em>lambda expressions</em> as a syntactic form for creating functions. Using lambda expressions, we can describe what we want as</p>
+<p>Nell&#8217;usare <code>somma</code> come nel <a href="#sec:procedures-as-parameters">paragrafo 1.3.1</a>, sembra terribilmente imbarazzante dover dichiarare funzioni banali come <code>pi_termine</code> e <code>pi_prossimo</code> soltanto perché così possiamo usarle come argomenti per la nostra funzione di ordine superiore. Piuttosto che dichiarare <code>pi_prossimo</code> e <code>pi_termine</code>, sarebbe più conveniente avere un modo per specificare direttamente "la funzione che restituisce il suo input incrementato di 4" e "la funzione che restituisce il reciproco del suo input per il suo input più 2". Possiamo farlo introducendo <em>espressioni lambda</em> come forma sintattica per la creazione di funzioni. Usando le espressioni lambda, possiamo descrivere ciò che vogliamo come</p>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>x =&gt; x + 4;</pre>
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">x =&gt; x + 4;</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>and</p>
+<p>e</p>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>x =&gt; 1.0 / (x * (x + 2));</pre>
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">x =&gt; 1.0 / (x * (x + 2));</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Then our <code>pi_sum</code> function can be expressed without declaring any auxiliary functions as</p>
+<p>Quindi la nostra funzione <code>somma_pi</code> può essere espressa senza dichiarare alcuna funzione ausiliaria come</p>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>function pi_sum(a, b) {
-    return sum(x =&gt; 1.0 / (x * (x + 2)),
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function somma_pi(a, b) {
+    return somma(x =&gt; 1.0 / (x * (x + 2)),
                a,
                x =&gt; x + 4,
                b);
-}</pre>
+}</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Again using a lambda expression, we can write the <code>integral</code> function without having to declare the auxiliary function <code>add_dx</code>:</p>
+<p>Usando ancora un&#8217;espressione lambda, possiamo scrivere la funzione <code>integrale</code> senza dover dichiarare la funzione ausiliaria <code>aggiungi_dx</code>:</p>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>function integral(f, a, b, dx) {
-    return sum(f,
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function integrale(f, a, b, dx) {
+    return somma(f,
                a + dx / 2.0,
                x =&gt; x + dx,
                b)
-           *</pre>
+           *
+           dx;
+}</code></pre>
 </div>
 </div>
-<div class="literalblock">
+<div class="paragraph">
+<p>In generale, le espressioni lambda vengono utilizzate per creare funzioni allo stesso modo delle dichiarazioni di funzione, tranne per il fatto che non viene specificato alcun nome per la funzione e la parola chiave return e le parentesi graffe vengono omesse. <sup class="footnote">[<a id="_footnoteref_24" class="footnote" href="#_footnotedef_24" title="View footnote.">24</a>]</sup></p>
+</div>
+<div class="sidebarblock">
 <div class="content">
-<pre>           dx;
-}</pre>
+<div class="title">Forma della dichiarazione di una espressione lambda</div>
+<div class="paragraph">
+<p><strong>(</strong> <em>parametri</em> <strong>) &#8658; </strong> <em>espressione</em></p>
+</div>
 </div>
 </div>
 <div class="paragraph">
-<p>In general, lambda expressions are used to create functions in the same way as function declarations, except that no name is specified for the function and the return keyword and curly braces are omitted.<sup class="footnote">[<a id="_footnoteref_24" class="footnote" href="#_footnotedef_24" title="View footnote.">24</a>]</sup>, we will extend the syntax of lambda expressions to allow blocks as bodies, as in function declaration statements.]</p>
+<p>La funzione risultante è una funzione tanto quanto quella creata utilizzando un&#8217;istruzione di dichiarazione di funzione. L&#8217;unica differenza è che non è stato associato ad alcun nome nell&#8217;ambiente. Noi consideriamo</p>
 </div>
-<div class="paragraph">
-<p>\(\[\texttt{(} \ \textit{parameters}\ \texttt{) =&gt; }
-      \textit{expression}]\)</p>
-</div>
-<div class="paragraph">
-<p>The resulting function is just as much a function as one that is created using a function declaration statement. The only difference is that it has not been associated with any name in the environment. We consider</p>
-</div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>function plus4(x) {
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function piu4(x) {
     return x + 4;
-}</pre>
+}</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>to be equivalent to<sup class="footnote">[<a id="_footnoteref_25" class="footnote" href="#_footnotedef_25" title="View footnote.">25</a>]</sup>). In this book, we are avoiding these features and shall treat function declarations as equivalent to the corresponding constant declaration.[foot:function-decl-vs-lambda]]</p>
+<div id="foot:function-decl-vs-lambda" class="paragraph">
+<p>essere equivalente a <sup class="footnote">[<a id="_footnoteref_25" class="footnote" href="#_footnotedef_25" title="View footnote.">25</a>]</sup></p>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>const plus4 = x =&gt; x + 4;</pre>
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">const piu4 = x =&gt; x + 4;</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>We can read a lambda expression as follows:</p>
+<p>Possiamo leggere un&#8217;espressione lambda come segue:</p>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>$\;\;$                    x              =&gt;             x    +   4</pre>
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">//                         x       =&gt;             x     +   4
+//                         ^       ^              ^     ^   ^
+//                         |       |              |     |   |
+// la funzione di argomento x che restituisce il valore piu' 4</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>\(\Big\uparrow\) \(\Big\uparrow\) \(\Big\uparrow\) \(\Big\uparrow\) \(\Big\uparrow\)</p>
+<p>Come qualsiasi espressione che ha una funzione come valore, un&#8217;espressione lambda può essere utilizzata come espressione di funzione in un&#8217;applicazione come</p>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>the $\texttt{function of an argument x that results $\texttt{in the value plus 4</pre>
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">((x, y, z) =&gt; x + y + quadrato(z))(1, 2, 3);</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Like any expression that has a function as its value, a lambda expression can be used as the function expression in an application such as</p>
+<p>o, più in generale, in qualsiasi contesto in cui normalmente useremmo un nome di funzione. <sup class="footnote">[<a id="_footnoteref_26" class="footnote" href="#_footnotedef_26" title="View footnote.">26</a>]</sup> Notare che "&#8658;" ha una precedenza inferiore rispetto all&#8217;applicazione della funzione e quindi le parentesi attorno all&#8217;espressione lambda in questo esempio sono necessarie.</p>
 </div>
-<div class="literalblock">
+<div class="sect4">
+<h5 id="using-const-to-create-local-names">Using <code>const</code> to create local names</h5>
+<div class="paragraph">
+<p>Another use of lambda expressions is in creating local names. We often need local names in our functions other than those that have been bound as parameters. For example, suppose we wish to compute the function \(f(x,y)=x(1+xy)^2 y(1-y)(1+xy)(1-y\)]</p>
+</div>
+<div class="paragraph">
+<p>which we could also express as</p>
+</div>
+<div class="stemblock">
 <div class="content">
-<pre>((x, y, z) =&gt; x + y + square(z))(1, 2, 3);</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>or, more generally, in any context where we would normally use a function name.<sup class="footnote">[<a id="_footnoteref_26" class="footnote" href="#_footnotedef_26" title="View footnote.">26</a>]</sup> Note that <code>&#8658;</code> has lower precedence than function application and thus the parentheses around the lambda expression are necessary here.</p>
-</div>
-<div class="sect3">
-<h4 id="using-const-to-create-local-names">2.1. Using <code>const</code> to create local names</h4>
-<div class="paragraph">
-<p>Another use of lambda expressions is in creating local names. We often need local names in our functions other than those that have been bound as parameters. For example, suppose we wish to compute the function \(\[f(x,y)=x(1+xy)^2 y(1-y)(1+xy)(1-y)]\) which we could also express as \(\[\begin{aligned}
+\[\begin{aligned}
       a &amp;=&amp; 1+xy\\
       b &amp;=&amp; 1-y\\
       f(x,y) &amp;=&amp; xa^2 +yb +ab
-      \end{aligned}]\) In writing a function to compute \(f\), we would like to include as local names not only \(x\) and \(y\) but also the names of intermediate quantities like \(a\) and \(b\). One way to accomplish this is to use an auxiliary function to bind the local names:</p>
+\end{aligned}\]
 </div>
-<div class="literalblock">
+</div>
+<div class="paragraph">
+<p>In writing a function to compute \(f\), we would like to include as local names not only \(x\) and \(y\) but also the names of intermediate quantities like \(a\) and \(b\). One way to accomplish this is to use an auxiliary function to bind the local names:</p>
+</div>
+<div class="listingblock">
 <div class="content">
-<pre>function f(x, y) {
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function f(x, y) {
     function f_helper(a, b) {
         return x * square(a) +
                y * b +
                a * b;
-    }</pre>
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>    return f_helper(1 + x * y,
+    }
+    return f_helper(1 + x * y,
                     1 - y);
-}</pre>
+}</code></pre>
 </div>
 </div>
 <div class="paragraph">
 <p>Of course, we could use a lambda expression to specify an anonymous function for binding our local names. The body of <code>f</code> then becomes a single call to that function:</p>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>function f(x,y) {
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function f(x,y) {
     return ( (a, b) =&gt; x * square(a) +
                       y * b +
                       a * b
            )(1 + x * y, 1 - y);
-}</pre>
+}</code></pre>
 </div>
 </div>
 <div class="paragraph">
 <p>A more convenient way to declare local names is by using constant declarations within the body of the function. Using <code>const</code>, the function <code>f</code> can be written as</p>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>function f(x, y) {
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function f(x, y) {
     const a = 1 + x * y;
     const b = 1 - y;
     return x * square(a) +
            y * b +
-           a * b;</pre>
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>}</pre>
+           a * b;
+}</code></pre>
 </div>
 </div>
 <div class="paragraph">
 <p>Names that are declared with <code>const</code> inside of a block have the body of the immediately surrounding block as their scope.[multiblock footnote omitted] Section [sec:internal-definitions] shows that declarations of local names can often be seen as syntactic sugar for applications of lambda expressions that have the declared names as parameters.</p>
 </div>
 </div>
-<div class="sect3">
-<h4 id="conditional-statements">2.2. Conditional statements</h4>
+<div class="sect4">
+<h5 id="conditional-statements">Conditional statements</h5>
 <div class="paragraph">
 <p>We have seen that it is often useful to declare names that are local to function declarations. When functions become big, we should keep the scope of the names as narrow as possible. Consider for example <code>expmod</code> in exercise [ex:louis-fast-prime].</p>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>function expmod(base, exp, m) {
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function expmod(base, exp, m) {
     return exp === 0
            ? 1
            : is_even(exp)
              ? expmod(base, exp / 2, m)
-               * expmod(base, exp / 2, m)</pre>
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>               % m
+               * expmod(base, exp / 2, m)
+               % m
              : base
                * expmod(base, exp - 1, m)
                % m;
-}</pre>
+}</code></pre>
 </div>
 </div>
 <div class="paragraph">
 <p>This function is unnecessarily inefficient, because it contains two identical calls:</p>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>expmod(base, exp / 2, m);</pre>
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">expmod(base, exp / 2, m);</code></pre>
 </div>
 </div>
 <div class="paragraph">
 <p>While this can be easily fixed in this example using the <code>square</code> function, this is not so easy in general. Without using <code>square</code>, we would be tempted to introduce a local name for the expression as follows:</p>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>function expmod(base, exp, m) {
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function expmod(base, exp, m) {
     const to_half = expmod(base, exp / 2, m);
     return exp === 0
            ? 1
            : is_even(exp)
-             ? to_half * to_half</pre>
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>               % m
+             ? to_half * to_half
+               % m
              : base
                * expmod(base, exp - 1, m)
                % m;
-}</pre>
+}</code></pre>
 </div>
 </div>
 <div class="paragraph">
 <p>This would make the function not just inefficient, but actually non-terminating! The problem is that the constant declaration appears outside the conditional expression, which means that it is executed even when the base case <code>exp === 0</code> is met. To avoid this situation, we shall provide for <em>conditional statements</em>, and allow <code>return</code> statements to appear in several branches of the statement. Using a conditional statement, the function <code>expmod</code> can be written as follows:</p>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>function expmod(base, exp, m) {
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function expmod(base, exp, m) {
     if (exp === 0) {
         return 1;
     } else {
         if (is_even(exp)) {
-            const to_half = expmod(base, exp / 2, m);</pre>
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>            return to_half * to_half % m;
+            const to_half = expmod(base, exp / 2, m);
+            return to_half * to_half % m;
         } else {
             return base * expmod(base, exp - 1, m) % m;
         }
     }
-}</pre>
+}</code></pre>
 </div>
 </div>
 <div class="paragraph">
 <p>The general form of a conditional statement is</p>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>if ($predicate$) { $consequent$ } else { $alternative$ }</pre>
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">if ($predicate$) { $consequent$ } else { $alternative$ }</code></pre>
 </div>
 </div>
 <div class="paragraph">
 <p>and, like conditional expressions, their evaluation first evaluates the \(\textit{predicate}\). If it evaluates to true, the interpreter evaluates the \(\textit{consequent}\) statements and if it evaluates to false, the interpreter evaluates the \(\textit{alternative}\) statements. Note that any constant declarations occurring in either part are local to that part, because both are enclosed in curly braces and thus form their own block.</p>
 </div>
+<div id="ex:unlabeled18" class="paragraph">
+<p>Exercise</p>
 </div>
-<div class="sect2">
-<h3 id="ex:unlabeled18">2.3. Exercise</h3>
+<div class="exampleblock">
+<div class="content">
 <div class="paragraph">
 <p>Suppose we declare</p>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>function f(g) {
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function f(g) {
    return g(2);
-}</pre>
+}</code></pre>
 </div>
 </div>
 <div class="paragraph">
 <p>Then we have</p>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>f(square);</pre>
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">f(square);</code></pre>
 </div>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>f(z =&gt; z * (z + 1));</pre>
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">f(z =&gt; z * (z + 1));</code></pre>
 </div>
 </div>
 <div class="paragraph">
 <p>What happens if we (perversely) ask the interpreter to evaluate the application <code>f(f)</code>? Explain.</p>
 </div>
+</div>
+</div>
+</div>
+</div>
 <div class="sect3">
-<h4 id="solution">2.3.1. Solution</h4>
-<div class="paragraph">
-<p>Let’s use the substitution model to illustrate what happens:</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>f(f)
-f(2)
-2(2)</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The application <code>2(2)</code> leads to an error, since 2 is neither a primitive nor a compound function.</p>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="sec:proc-general-methods">3. Functions as General Methods</h2>
-<div class="sectionbody">
+<h4 id="sec:proc-general-methods">1.3.3. Functions as General Methods</h4>
 <div class="paragraph">
 <p>We introduced compound functions in section [sec:compound-procedures] as a mechanism for abstracting patterns of numerical operations so as to make them independent of the particular numbers involved. With higher-order functions, such as the <code>integral</code> function of section [sec:procedures-as-parameters], we began to see a more powerful kind of abstraction: functions used to express general methods of computation, independent of the particular functions involved. In this section we discuss two more elaborate examples—general methods for finding zeros and fixed points of functions—and show how these methods can be expressed directly as functions.</p>
 </div>
-<div class="sect3">
-<h4 id="finding-roots-of-equations-by-the-half-interval-method">3.1. Finding roots of equations by the half-interval method</h4>
+<div class="sect4">
+<h5 id="finding-roots-of-equations-by-the-half-interval-method">Finding roots of equations by the half-interval method</h5>
 <div class="paragraph">
 <p>The <em>half-interval method</em> is a simple but powerful technique for finding roots of an equation \(f(x)=0\), where \(f\) is a continuous function. The idea is that, if we are given points \(a\) and \(b\) such that \(f(a) &lt; 0 &lt; f(b)\), then \(f\) must have at least one zero between \(a\) and \(b\). To locate a zero, let \(x\) be the average of \(a\) and \(b\) and compute \(f(x)\). If \(f(x) &gt; 0\), then \(f\) must have a zero between \(a\) and \(x\). If \(f(x) &lt; 0\), then \(f\) must have a zero between \(x\) and \(b\). Continuing in this way, we can identify smaller and smaller intervals on which \(f\) must have a zero. When we reach a point where the interval is small enough, the process stops. Since the interval of uncertainty is reduced by half at each step of the process, the number of steps required grows as \(\Theta(\log( L/T))\), where \(L\) is the length of the original interval and \(T\) is the error tolerance (that is, the size of the interval we will consider <code>`small enough''). Here is a function that implements this strategy:<sup class="footnote">[<a id="_footnoteref_27" class="footnote" href="#_footnotedef_27" title="View footnote.">27</a>]</sup> by admitting another conditional statement in place of the block following `else</code>.]</p>
 </div>
@@ -5029,8 +4953,8 @@ f(2)
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="finding-fixed-points-of-functions">3.2. Finding fixed points of functions</h4>
+<div class="sect4">
+<h5 id="finding-fixed-points-of-functions">Finding fixed points of functions</h5>
 <div class="paragraph">
 <p>A number \(x\) is called a <em>fixed point</em> of a function \(f\) if \(x\) satisfies the equation \(f(x)=x\). For some functions \(f\) we can locate a fixed point by beginning with an initial guess and applying \(f\) repeatedly, \(\[f(x), f(f(x)), f(f(f(x))), \ldots]\) until the value does not change very much. Using this idea, we can devise a function <code>fixed_point</code> that takes as inputs a function and an initial guess and produces an approximation to a fixed point of the function. We apply the function repeatedly until we find two successive values whose difference is less than some prescribed tolerance:</p>
 </div>
@@ -5104,84 +5028,31 @@ function fixed_point(f, first_guess) {
 <div class="paragraph">
 <p>With this modification, the square-root function works. In fact, if we unravel the definitions, we can see that the sequence of approximations to the square root generated here is precisely the same as the one generated by our original square-root function of section [sec:sqrt]. This approach of averaging successive approximations to a solution, a technique we call , often aids the convergence of fixed-point searches.</p>
 </div>
+<div id="ex:unlabeled14" class="paragraph">
+<p>Exercise</p>
 </div>
-<div class="sect2">
-<h3 id="ex:unlabeled14">3.3. Exercise</h3>
+<div class="exampleblock">
+<div class="content">
 <div class="paragraph">
 <p>Show that the golden ratio \(\phi\) (section [sec:tree-recursion]) is a fixed point of the transformation \(x \mapsto 1 + 1/x\), and use this fact to compute \(\phi\) by means of the <code>fixed_point</code> function.</p>
 </div>
-<div class="sect3">
-<h4 id="solution">3.3.1. Solution</h4>
-<div class="paragraph">
-<p>The fixed point of the function is \(\[1 + 1 / x = x]\) Solving for x, we get \(\[x^2 = x + 1]\) \(\[x^2 - x - 1 = 0]\) Using the quadratic equation to solve for \(x\), we find that one of the roots of this equation is the golden ratio \((1+\sqrt{5})/2\).</p>
 </div>
-<div class="literalblock">
+</div>
+<div id="exercise" class="paragraph">
+<p>Exercise</p>
+</div>
+<div class="exampleblock">
 <div class="content">
-<pre>fixed_point(x =&gt; 1 + (1 / x), 1.0);</pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="exercise">3.4. Exercise</h3>
 <div class="paragraph">
 <p>Modify <code>fixed_point</code> so that it prints the sequence of approximations it generates, using the primitive function <code>display</code> shown in exercise [ex:search-for-primes]. Then find a solution to \(x^x = 1000\) by finding a fixed point of \(x \mapsto \log(1000)/\log(x)\). (Use the primitive function <code>math_log</code> which computes natural logarithms.) Compare the number of steps this takes with and without average damping. (Note that you cannot start <code>fixed_point</code> with a guess of 1, as this would cause division by \(\log(1)=0\).) [ex:log-fixed-point]</p>
 </div>
-<div class="sect3">
-<h4 id="solution-1">3.4.1. Solution</h4>
-<div class="paragraph">
-<p>We modify the function <code>fixed_point</code> as follows:</p>
 </div>
-<div class="literalblock">
+</div>
+<div id="ex:continued-fractions" class="paragraph">
+<p>Exercise</p>
+</div>
+<div class="exampleblock">
 <div class="content">
-<pre>const tolerance = 0.00001;
-function fixed_point(f, first_guess) {
-    function close_enough(x, y) {
-        return abs(x - y) &lt; tolerance;
-    }
-    function try_with(guess) {</pre>
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>        display(guess);
-        const next = f(guess);
-        return close_enough(guess, next)
-               ? next
-               : try_with(next);
-    }
-    return try_with(first_guess);
-}</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Here is a version with average dampening built-in:</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>function fixed_point_with_average_dampening(f, first_guess) {
-    function close_enough(x, y) {
-        return abs(x - y) &lt; tolerance;
-    }
-    function try_with(guess) {
-        display(guess);</pre>
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>        const next = (guess + f(guess)) / 2;
-        return close_enough(guess, next)
-               ? next
-               : try_with(next);
-    }
-    return try_with(first_guess);
-}</pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="exercise-1">3.5. Exercise</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -5206,86 +5077,31 @@ function fixed_point(f, first_guess) {
 </li>
 </ul>
 </div>
-<div class="sect3">
-<h4 id="solution-2">Solution</h4>
-<div class="literalblock">
+</div>
+</div>
+<div id="ex:unlabeled15" class="exampleblock">
+<div class="title">Exercise</div>
 <div class="content">
-<pre>//recursive process
-function cont_frac(n, d, k) {
-    function fraction(i) {
-        return i &gt; k
-               ? 0
-               : n(i) / (d(i) + fraction(i + 1));</pre>
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>    }
-    return fraction(1);
-}</pre>
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>//iterative process
-function cont_frac(n, d, k) {
-    function fraction(i, current) {
-        return i === 0
-               ? current
-               : fraction(i - 1, n(i) / (d(i) + current));</pre>
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>    }
-    return fraction(k, 0);
-}</pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="ex:unlabeled15">3.6. Exercise</h3>
 <div class="paragraph">
 <p>In 1737, the Swiss mathematician Leonhard Euler published a memoir <em>De Fractionibus Continuis</em>, which included a continued fraction expansion for \(e-2\), where \(e\) is the base of the natural logarithms. In this fraction, the \(N_i\) are all 1, and the \(D_i\) are successively 1, 2, 1, 1, 4, 1, 1, 6, 1, 1, 8, …. Write a program that uses your <code>cont_frac</code> function from exercise [ex:continued-fractions] to approximate \(e\), based on Euler’s expansion.</p>
 </div>
-<div class="sect3">
-<h4 id="solution-3">3.6.1. Solution</h4>
-<div class="literalblock">
+</div>
+</div>
+<div id="ex:unlabeled16" class="exampleblock">
+<div class="title">Exercise</div>
 <div class="content">
-<pre>2 + cont_frac(i =&gt; 1,
-              i =&gt; (i + 1) % 3 &lt; 1 ? 2 * (i + 1) / 3 : 1,
-              20);</pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="ex:unlabeled16">3.7. Exercise</h3>
 <div class="paragraph">
 <p>A continued fraction representation of the tangent function was published in 1770 by the German mathematician J.H. Lambert: \(\[\tan x={\dfrac{x}{1-
       \dfrac{x^2}{3-
       \dfrac{x^2}{5-
       \dfrac{x^2}{ \ddots }}}}}]\) where \(x\) is in radians. Declare a function <code>tan_cf(x, k)</code> that computes an approximation to the tangent function based on Lambert’s formula. As in exercise [ex:continued-fractions], <code>k</code> specifies the number of terms to compute.</p>
 </div>
+</div>
+</div>
+</div>
+</div>
 <div class="sect3">
-<h4 id="solution-4">3.7.1. Solution</h4>
-<div class="literalblock">
-<div class="content">
-<pre>function tan_cf(x, k) {
-    return cont_frac(i =&gt; i === 1 ? x : - x * x,
-                     i =&gt; 2 * i - 1,
-                     k);
-}</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="sec:proc-returned-values">4. Functions as Returned Values</h2>
-<div class="sectionbody">
+<h4 id="sec:proc-returned-values">1.3.4. Functions as Returned Values</h4>
 <div class="paragraph">
 <p>The above examples demonstrate how the ability to pass functions as arguments significantly enhances the expressive power of our programming language. We can achieve even more expressive power by creating functions whose returned values are themselves functions.</p>
 </div>
@@ -5332,8 +5148,8 @@ function cont_frac(n, d, k) {
 }</pre>
 </div>
 </div>
-<div class="sect3">
-<h4 id="newtons-method">4.1. Newton’s method</h4>
+<div class="sect4">
+<h5 id="newtons-method">Newton’s method</h5>
 <div class="paragraph">
 <p>When we first introduced the square-root function, in section [sec:sqrt], we mentioned that this was a special case of <em>Newton’s method</em>. If \(x\mapsto g(x)\) is a differentiable function, then a solution of the equation \(g(x)=0\) is a fixed point of the function \(x\mapsto f(x)\) where \(\[f(x) = x - \frac{g(x)}{Dg(x)}]\) and \(Dg(x)\) is the derivative of \(g\) evaluated at \(x\). Newton’s method is the use of the fixed-point method we saw above to approximate a solution of the equation by finding a fixed point of the function \(f\).<sup class="footnote">[<a id="_footnoteref_34" class="footnote" href="#_footnotedef_34" title="View footnote.">34</a>]</sup> For many functions \(g\) and for sufficiently good initial guesses for \(x\), Newton’s method converges very rapidly to a solution of \(g(x)=0\).<sup class="footnote">[<a id="_footnoteref_35" class="footnote" href="#_footnotedef_35" title="View footnote.">35</a>]</sup></p>
 </div>
@@ -5390,8 +5206,8 @@ function newtons_method(g, guess) {
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="abstractions-and-first-class-functions">4.2. Abstractions and first-class functions</h4>
+<div class="sect4">
+<h5 id="abstractions-and-first-class-functions">Abstractions and first-class functions</h5>
 <div class="paragraph">
 <p>We’ve seen two ways to express the square-root computation as an instance of a more general method, once as a fixed-point search and once using Newton’s method. Since Newton’s method was itself expressed as a fixed-point process, we actually saw two ways to compute square roots as fixed points. Each method begins with a function and finds a fixed point of some transformation of the function. We can express this general idea itself as a function:</p>
 </div>
@@ -5459,9 +5275,9 @@ function newtons_method(g, guess) {
 <div class="paragraph">
 <p>JavaScript, unlike other common programming languages, awards functions full first-class status. This poses challenges for efficient implementation, but the resulting gain in expressive power is enormous.<sup class="footnote">[<a id="_footnoteref_39" class="footnote" href="#_footnotedef_39" title="View footnote.">39</a>]</sup>, these names are stored in the function’s environment.]</p>
 </div>
-</div>
-<div class="sect2">
-<h3 id="ex:unlabeled26">4.3. Exercise</h3>
+<div id="ex:unlabeled26" class="exampleblock">
+<div class="title">Exercise</div>
+<div class="content">
 <div class="paragraph">
 <p>Declare a function <code>cubic</code> that can be used together with the <code>newtons_method</code> function in expressions of the form</p>
 </div>
@@ -5473,19 +5289,11 @@ function newtons_method(g, guess) {
 <div class="paragraph">
 <p>to approximate zeros of the cubic \(x^3 +ax^2 +bx +c\).</p>
 </div>
-<div class="sect3">
-<h4 id="solution">4.3.1. Solution</h4>
-<div class="literalblock">
+</div>
+</div>
+<div id="ex:unlabeled27" class="exampleblock">
+<div class="title">Exercise</div>
 <div class="content">
-<pre>function cubic(a, b, c) {
-    return x =&gt; cube(x) + a * square(x) + b * x + c;
-}</pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="ex:unlabeled27">4.4. Exercise</h3>
 <div class="paragraph">
 <p>Declare a function <code>double</code> that takes a function of one argument as argument and returns a function that applies the original function twice. For example, if <code>inc</code> is a function that adds 1 to its argument, then <code>double(inc)</code> should be a function that adds 2. What value is returned by</p>
 </div>
@@ -5494,19 +5302,11 @@ function newtons_method(g, guess) {
 <pre>double(double(double))(inc)(5);</pre>
 </div>
 </div>
-<div class="sect3">
-<h4 id="solution-1">4.4.1. Solution</h4>
-<div class="literalblock">
+</div>
+</div>
+<div id="ex:compose" class="exampleblock">
+<div class="title">Exercise</div>
 <div class="content">
-<pre>function double(f) {
-    return x =&gt; f(f(x));
-}</pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="ex:compose">4.5. Exercise</h3>
 <div class="paragraph">
 <p>Let \(f\) and \(g\) be two one-argument functions. The <em>composition</em> \(f\) after \(g\) is defined to be the function \(x\mapsto f(g(x))\). Declare a function <code>compose</code> that implements composition. For example, if <code>inc</code> is a function that adds 1 to its argument,</p>
 </div>
@@ -5515,19 +5315,11 @@ function newtons_method(g, guess) {
 <pre>compose(square, inc)(6);</pre>
 </div>
 </div>
-<div class="sect3">
-<h4 id="solution-2">4.5.1. Solution</h4>
-<div class="literalblock">
+</div>
+</div>
+<div id="ex:repeated" class="exampleblock">
+<div class="title">Exercise</div>
 <div class="content">
-<pre>function compose(f, g) {
-    return x =&gt; f(g(x));
-}</pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="exercise">4.6. Exercise</h3>
 <div class="paragraph">
 <p>If \(f\) is a numerical function and \(n\) is a positive integer, then we can form the \(n\)th repeated application of \(f\), which is defined to be the function whose value at \(x\) is \(f(f(\ldots(f(x))\ldots))\). For example, if \(f\) is the function \(x \mapsto x+1\), then the \(n\)th repeated application of \(f\) is the function \(x \mapsto x+n\). If \(f\) is the operation of squaring a number, then the \(n\)th repeated application of \(f\) is the function that raises its argument to the \(2^n\)th power. Write a function that takes as inputs a function that computes \(f\) and a positive integer \(n\) and returns the function that computes the \(n\)th repeated application of \(f\). Your function should be able to be used as follows:</p>
 </div>
@@ -5537,85 +5329,33 @@ function newtons_method(g, guess) {
 </div>
 </div>
 <div class="paragraph">
-<p>Hint: You may find it convenient to use <code>compose</code> from exercise [ex:compose]. [ex:repeated]</p>
+<p>Hint: You may find it convenient to use <code>compose</code> from exercise <a href="#ex:compose">Exercise</a>.</p>
 </div>
-<div class="sect3">
-<h4 id="solution-3">4.6.1. Solution</h4>
-<div class="literalblock">
+</div>
+</div>
+<div id="ex:smooth" class="exampleblock">
+<div class="title">Exercise</div>
 <div class="content">
-<pre>function repeated(f, n) {
-    return n === 0
-           ? x =&gt; x
-           : compose(f, repeated(f, n - 1));
-}</pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="ex:smooth">4.7. Exercise</h3>
 <div class="paragraph">
-<p>The idea of <em>smoothing</em> a function is an important concept in signal processing. If \(f\) is a function and \(dx\) is some small number, then the smoothed version of \(f\) is the function whose value at a point \(x\) is the average of \(f(x-dx)\), \(f(x)\), and \(f(x+dx)\). Write a function <code>smooth</code> that takes as input a function that computes \(f\) and returns a function that computes the smoothed \(f\). It is sometimes valuable to repeatedly smooth a function (that is, smooth the smoothed function, and so on) to obtained the <em>\(n\)-fold smoothed function</em>. Show how to generate the \(n\)-fold smoothed function of any given function using <code>smooth</code> and <code>repeated</code> from exercise [ex:repeated].</p>
+<p>The idea of <em>smoothing</em> a function is an important concept in signal processing. If \(f\) is a function and \(dx\) is some small number, then the smoothed version of \(f\) is the function whose value at a point \(x\) is the average of \(f(x-dx)\), \(f(x)\), and \(f(x+dx)\). Write a function <code>smooth</code> that takes as input a function that computes \(f\) and returns a function that computes the smoothed \(f\). It is sometimes valuable to repeatedly smooth a function (that is, smooth the smoothed function, and so on) to obtained the <em>\(n\)-fold smoothed function</em>. Show how to generate the \(n\)-fold smoothed function of any given function using <code>smooth</code> and <code>repeated</code> from exercise <a href="#ex:repeated">Exercise</a>.</p>
 </div>
-<div class="sect3">
-<h4 id="solution-4">4.7.1. Solution</h4>
-<div class="literalblock">
+</div>
+</div>
+<div id="ex:nth-roots" class="exampleblock">
+<div class="title">Exercise</div>
 <div class="content">
-<pre>const dx = 0.00001;
-function smooth(f) {
-    return x =&gt; (f(x - dx) + f(x) + f(x + dx)) / 3;
-}
-function n_fold_smooth(f, n) {
-    return repeated(smooth, n)(f);</pre>
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>}</pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="exercise-1">4.8. Exercise</h3>
 <div class="paragraph">
-<p>We saw in section [sec:proc-general-methods] that attempting to compute square roots by naively finding a fixed point of \(y\mapsto x/y\) does not converge, and that this can be fixed by average damping. The same method works for finding cube roots as fixed points of the average-damped \(y\mapsto x/y^2\). Unfortunately, the process does not work for fourth roots—a single average damp is not enough to make a fixed-point search for \(y\mapsto x/y^3\) converge. On the other hand, if we average damp twice (i.e., use the average damp of the average damp of \(y\mapsto x/y^3\)) the fixed-point search does converge. Do some experiments to determine how many average damps are required to compute \(n\)th roots as a fixed-point search based upon repeated average damping of \(y\mapsto x/y^{n-1}\). Use this to implement a simple function for computing \(n\)th roots using <code>fixed_point</code>, <code>average_damp</code>, and the <code>repeated</code> function of exercise [ex:repeated]. Assume that any arithmetic operations you need are available as primitives. [ex:nth-roots]</p>
+<p>We saw in section [sec:proc-general-methods] that attempting to compute square roots by naively finding a fixed point of \(y\mapsto x/y\) does not converge, and that this can be fixed by average damping. The same method works for finding cube roots as fixed points of the average-damped \(y\mapsto x/y^2\). Unfortunately, the process does not work for fourth roots—a single average damp is not enough to make a fixed-point search for \(y\mapsto x/y^3\) converge. On the other hand, if we average damp twice (i.e., use the average damp of the average damp of \(y\mapsto x/y^3\)) the fixed-point search does converge. Do some experiments to determine how many average damps are required to compute \(n\)th roots as a fixed-point search based upon repeated average damping of \(y\mapsto x/y^{n-1}\). Use this to implement a simple function for computing \(n\)th roots using <code>fixed_point</code>, <code>average_damp</code>, and the <code>repeated</code> function of exercise [ex:repeated]. Assume that any arithmetic operations you need are available as primitives.</p>
 </div>
-<div class="sect3">
-<h4 id="solution-5">4.8.1. Solution</h4>
-<div class="literalblock">
+</div>
+</div>
+<div id="ex:unlabeled28" class="exampleblock">
+<div class="title">Exercise</div>
 <div class="content">
-<pre>function nth_root(n, x) {
-    return fixed_point(repeated(average_damp,
-                                math_floor(math_log2(n)))
-                       (y =&gt; x / fast_expt(y, n - 1)),
-                       1.0);
-}</pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="ex:unlabeled28">4.9. Exercise</h3>
 <div class="paragraph">
-<p>Several of the numerical methods described in this chapter are instances of an extremely general computational strategy known as <em>iterative improvement</em>. Iterative improvement says that, to compute something, we start with an initial guess for the answer, test if the guess is good enough, and otherwise improve the guess and continue the process using the improved guess as the new guess. Write a function <code>iterative_improve</code> that takes two functions as arguments: a method for telling whether a guess is good enough and a method for improving a guess. The function <code>iterative_improve</code> should return as its value a function that takes a guess as argument and keeps improving the guess until it is good enough. Rewrite the <code>sqrt</code> function of section [sec:sqrt] and the <code>fixed_point</code> function of section [sec:proc-general-methods] in terms of <code>iterative_improve</code>.</p>
-</div>
-<div class="sect3">
-<h4 id="solution-6">4.9.1. Solution</h4>
-<div class="literalblock">
-<div class="content">
-<pre>function iterative_improve(good_enough, improve) {
-    function iterate(guess) {
-        return good_enough(guess)
-               ? guess
-               : iterate(improve(guess));
-    }</pre>
+<p>Several of the numerical methods described in this chapter are instances of an extremely general computational strategy known as <em>iterative improvement</em>. Iterative improvement says that, to compute something, we start with an initial guess for the answer, test if the guess is good enough, and otherwise improve the guess and continue the process using the improved guess as the new guess. Write a function <code>iterative_improve</code> that takes two functions as arguments: a method for telling whether a guess is good enough and a method for improving a guess. The function <code>iterative_improve</code> should return as its value a function that takes a guess as argument and keeps improving the guess until it is good enough. Rewrite the <code>sqrt</code> function of section [sec:sqrt] and the <code>fixed_point</code> function of section <a href="#sec:proc-general-methods">paragrafo 1.3.3</a> in terms of <code>iterative_improve</code>.</p>
 </div>
 </div>
-<div class="literalblock">
-<div class="content">
-<pre>    return iterate;
-}</pre>
 </div>
 </div>
 </div>
@@ -5668,7 +5408,7 @@ function n_fold_smooth(f, n) {
 <a href="#_footnoteref_14">14</a>. Pierre de Fermat (1601–1665) è considerato il fondatore della moderna teoria dei numeri. Ottenne molti importanti risultati di teoria dei numeri, ma di solito annunciava solo i risultati, senza fornire le sue dimostrazioni. Il piccolo teorema di Fermat fu enunciato in una lettera che scrisse nel 1640. La prima dimostrazione pubblicata fu data da Eulero nel 1736 (e una dimostrazione identica e precedente fu scoperta nei manoscritti inediti di Leibniz). Il più famoso dei risultati di Fermat, noto come Ultimo teorema di Fermat, fu annotato nel 1637 nella sua copia del libro <em>Aritmetica</em> (del matematico greco del III secolo Diofanto) con l&#8217;osservazione: <em>Ho scoperto una dimostazione davvero notevole, ma questo  margine è troppo piccolo per contenerla.</em> Trovare una dimostrazione dell&#8217;ultimo teorema di Fermat divenne una delle sfide più famose nella teoria dei numeri. Una soluzione completa è stata infine fornita nel 1995 da Andrew Wiles della Princeton University.
 </div>
 <div class="footnote" id="_footnotedef_15">
-<a href="#_footnoteref_15">15</a>. I passi di riduzione nei casi in cui l&#8217;esponente \(e\) è maggiore di 1 si basano sul fatto che, per qualsiasi interi \(x\), \(y\) e \(m\), possiamo trovare il resto di \(x\) per \(y\) modulo \(m\) calcolando separatamente i resti di \(x\) modulo \(m\) e \(y\) modulo \(m\), moltiplicandoli e quindi prendendo il resto del risultato modulo \(m\). Ad esempio, nel caso in cui \(e\) è pari, calcoliamo il resto di \(b^{e / 2}\) modulo \(m\), ne facciamo il quadrato e prendiamo il resto modulo \(m\). Questa tecnica è utile perché significa che possiamo eseguire il nostro calcolo senza dover mai avere a che fare con numeri molto più grandi di \(m\). (Confronta l&#8217;esercizio <a href="#es_alyssas_expmod">[es_alyssas_expmod
+<a href="#_footnoteref_15">15</a>. I passi di riduzione nei casi in cui l&#8217;esponente \(e\) è maggiore di 1 si basano sul fatto che, per qualsiasi interi \(x\), \(y\) e \(m\), possiamo trovare il resto di \(x\) per \(y\) modulo \(m\) calcolando separatamente i resti di \(x\) modulo \(m\) e \(y\) modulo \(m\), moltiplicandoli e quindi prendendo il resto del risultato modulo \(m\). Ad esempio, nel caso in cui \(e\) è pari, calcoliamo il resto di \(b^{e / 2}\) modulo \(m\), ne facciamo il quadrato e prendiamo il resto modulo \(m\). Questa tecnica è utile perché significa che possiamo eseguire il nostro calcolo senza dover mai avere a che fare con numeri molto più grandi di \(m\). (Confronta l&#8217;esercizio <a href="#ex:Alyssas-expmod">Esercizio 1.25.</a>.)
 </div>
 <div class="footnote" id="_footnotedef_16">
 <a href="#_footnoteref_16">16</a>. I numeri che ingannano il test di Fermat sono chiamati <em>numeri di Carmichael</em>, e poco si sa su di loro oltre al fatto che sono estremamente rari. Ci sono 255 numeri di Carmichael sotto i 100.000.000. I più piccoli sono 561, 1105, 1729, 2465, 2821 e 6601. Nel testare la primalità di numeri molto grandi scelti a caso, la possibilità di imbattersi in un valore che inganna il test di Fermat è inferiore alla possibilità che la radiazione cosmica farà commettere un errore computer nell&#8217;esecuzione di un algoritmo <em>corretto</em>. Considerare un algoritmo inadeguato per la prima ragione ma non per la seconda illustra bene la differenza tra matematica e ingegneria.
@@ -5683,10 +5423,10 @@ function n_fold_smooth(f, n) {
 <a href="#_footnoteref_19">19</a>. La funzione primitiva <code>display</code> restituisce il suo argomento, ma lo stampa anche. Qui <em>***</em> è una <em>stringa</em>, una sequenza di caratteri che passiamo come argomento alla funzione <code>display</code>. La sezione [sp_stringhe
 </div>
 <div class="footnote" id="_footnotedef_20">
-<a href="#_footnoteref_20">20</a>. Questa serie, di solito scritta nella forma equivalente \(\frac{\pi}{4} = 1-\frac{1}{3}\frac{1}{5}-\frac{1}{7}\cdots\), è dovuta a Leibniz. Vedremo come utilizzarla come base per alcuni fantasiosi trucchi numerici nella sezione <a href="#sec:exploiting-streams">[sec:exploiting-streams
+<a href="#_footnoteref_20">20</a>. Questa serie, di solito scritta nella forma equivalente \(\frac{\pi}{4} = 1-\frac{1}{3}\frac{1}{5}-\frac{1}{7}\cdots\), è dovuta a Leibniz. Vedremo come utilizzarla come base per alcuni fantasiosi trucchi numerici nella sezione TODO sec:exploiting-streams.
 </div>
 <div class="footnote" id="_footnotedef_21">
-<a href="#_footnoteref_21">21</a>. Nota che abbiamo usato la struttura a blocchi (<a href="#sec:black-box">[sec:black-box
+<a href="#_footnoteref_21">21</a>. Nota che abbiamo usato la struttura a blocchi (<a href="#sec:black-box">paragrafo 1.1.8</a>) per incorporare le dichiarazioni di <code>pi_termine</code> e <code>pi_prossimo</code> all&#8217;interno di <code>somma_pi</code>, poiché è improbabile che queste funzioni siano utili per altri scopi. Vedremo come eliminarli del tutto nel <a href="#sec:lambda">paragrafo 1.3.2</a>.
 </div>
 <div class="footnote" id="_footnotedef_22">
 <a href="#_footnoteref_22">22</a>. L&#8217;intento degli esercizi <a href="#es_prodotto">Esercizio 1.31. Prodotto/produttoria</a>&#8201;&#8212;&#8201;<a href="#es_filtra_accumula">Esercizio 1.33. Accumula i valori filtrati</a> è quello di dimostrare il potere espressivo che si ottiene utilizzando un&#8217;astrazione appropriata per unificare molte operazioni apparentemente diverse. Tuttavia, sebbene l&#8217;accumulazione e il filtraggio siano idee eleganti, a questo punto siamo in qualche modo costretti ad usarle poiché non abbiamo ancora strutture di dati per fornire mezzi di combinazione adeguati per queste astrazioni. Ritorneremo su queste idee nel TODO sec:sequences-traditional-interfaces quando mostreremo come usare le <em>sequenze</em> come interfacce per combinare filtri e accumulatori per costruire astrazioni ancora più potenti. Vedremo qui come questi metodi si rivelino un approccio davvero potente ed elegante alla progettazione di programmi.
@@ -5695,13 +5435,13 @@ function n_fold_smooth(f, n) {
 <a href="#_footnoteref_23">23</a>. Questa formula fu scoperta dal matematico inglese del XVII secolo John Wallis.
 </div>
 <div class="footnote" id="_footnotedef_24">
-<a href="#_footnoteref_24">24</a>. If there is only one parameter, the parentheses around the parameter list can also be omitted. In section [sec:graphics
+<a href="#_footnoteref_24">24</a>. Se è presente un solo parametro, le parentesi intorno all&#8217;elenco dei parametri possono anche essere omesse. Nel TODO sec:graphics, estenderemo la sintassi delle espressioni lambda per consentire di avere i blocchi come corpo, come nelle dichiarazioni di dichiarazione di funzione.
 </div>
 <div class="footnote" id="_footnotedef_25">
-<a href="#_footnoteref_25">25</a>. In JavaScript, there are subtle differences between the two versions: Function declaration statements are ``hoisted'' (automatically moved) to the beginning of the surrounding block, whereas constant declarations are not, and names declared with function declaration can be re-assigned using assignment (see chapter [sec:assignment
+<a href="#_footnoteref_25">25</a>. In JavaScript ci sono sottili differenze tra le due versioni: le istruzioni di dichiarazione di funzione (<strong>function <em>nome</em></strong>) sono <em>sollevate</em> (<em>hoisted</em>, spostate automaticamente) all&#8217;inizio del blocco circostante, mentre le dichiarazioni di costanti non lo sono, e i nomi dichiarati con le dichiarazioni di funzione (<strong>const <em>nome</em> = ( <em>parametri</em> ) &#8658; <em>espressione</em></strong>) possono essere riassegnata usando l&#8217;assegnazione (vedi TODO sec:assegnazione).
 </div>
 <div class="footnote" id="_footnotedef_26">
-<a href="#_footnoteref_26">26</a>. It would be clearer and less intimidating to people learning JavaScript if a term more obvious than lambda expression, such as <em>function definition</em> were used. But the convention is very firmly entrenched, not just for Lisp and Scheme but also for JavaScript, Java and other languages, no doubt partly due to the influence of the Scheme editions of this book. The notation is adopted from the \(\lambda\) calculus, a mathematical formalism introduced by the mathematical logician Alonzo Church (1941). Church developed the \(\lambda\) calculus to provide a rigorous foundation for studying the notions of function and function application. The \(\lambda\) calculus has become a basic tool for mathematical investigations of the semantics of programming languages.
+<a href="#_footnoteref_26">26</a>. Sarebbe più chiaro e meno intimidatorio per le persone che apprendono JavaScript se fosse usato un termine più ovvio dell&#8217;espressione lambda, come <em>definizione di funzione</em>. Ma la convenzione è molto ben radicata, non solo per Lisp e Scheme ma anche per JavaScript, Java e altri linguaggi, senza dubbio in parte a causa dell&#8217;influenza delle edizioni Scheme di questo libro. La notazione è adottata dal \(\lambda\)-calcolo, un formalismo matematico introdotto dal logico matematico Alonzo Church (1941). Church ha sviluppato il \(\lambda\)-calcolo per fornire una base rigorosa per lo studio delle nozioni di funzione e applicazione della funzione. Il \(\lambda\)-calcolo è diventato uno strumento di base per le indagini matematiche sulla semantica dei linguaggi di programmazione.
 </div>
 <div class="footnote" id="_footnotedef_27">
 <a href="#_footnoteref_27">27</a>. Note that we slightly extend the syntax of conditional statements described in section [sec:lambda

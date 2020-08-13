@@ -76,8 +76,8 @@ Questo secondo metodo per calcolare latexmath:[\textrm{Fib} (n)] è un'iterazion
 
 Non si deve concludere da ciò che i processi ricorsivi ad albero siano inutili. Quando consideriamo i processi che operano su dati strutturati gerarchicamente piuttosto che su numeri, scopriremo che la ricorsione dell'albero è uno strumento naturale e potente. Ma anche nelle operazioni numeriche, i processi ricorsivi ad albero possono essere utili per aiutarci a comprendere e progettare i programmi. Ad esempio, sebbene la prima funzione `fib` sia molto meno efficiente della seconda, è più semplice, essendo poco più di una traduzione in JavaScript della definizione della sequenza di Fibonacci. Per formulare l'algoritmo iterativo è necessario notare che il calcolo potrebbe essere trasformato in iterazione con tre variabili di stato.
 
-[discrete]
-==== Esempio: Contare il numero di cambi
+//[discrete]
+===== Esempio: Contare il numero di cambi
 
 Basta poco ingegno per elaborare l'algoritmo iterativo di Fibonacci. Al contrario, considera il seguente problema: in quanti modi diversi possiamo cambiare 1 euro con le monete da 50, 20, 10, 2 e un centesimo? Più in generale, possiamo scrivere una funzione per calcolare il numero di modi per cambiare una determinata quantità di denaro?
 

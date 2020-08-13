@@ -33,7 +33,7 @@ La terza calcola la somma di una sequenza di termini nella serie
 \frac{1}{1\cdot3}+\frac{1}{5\cdot7}+\frac{1}{9\cdot11}+\cdots
 ++++
 
-che converge a latexmath:[\pi / 8] (molto lentamente):footnote:[Questa serie, di solito scritta nella forma equivalente latexmath:[\frac{\pi}{4} = 1-\frac{1}{3}+\frac{1}{5}-\frac{1}{7}+\cdots], è dovuta a Leibniz. Vedremo come utilizzarla come base per alcuni fantasiosi trucchi numerici nella sezione <<sec:exploiting-streams>>.]
+che converge a latexmath:[\pi / 8] (molto lentamente):footnote:[Questa serie, di solito scritta nella forma equivalente latexmath:[\frac{\pi}{4} = 1-\frac{1}{3}+\frac{1}{5}-\frac{1}{7}+\cdots], è dovuta a Leibniz. Vedremo come utilizzarla come base per alcuni fantasiosi trucchi numerici nella sezione TODO sec:exploiting-streams.]
 
 [source,javascript]
 ----
@@ -101,7 +101,7 @@ somma_cubi(1, 10);
 ----
 
 //With the aid of an identity function to compute the term, we can define `sum_integers` in terms of `sum`:
-Con l'aiuto di una funzione _identità_ per calcolare il termine, possiamo definire `sommau_interi` in termini di `somma`:
+Con l'aiuto di una funzione _identità_ per calcolare il termine, possiamo definire `somma_interi` in termini di `somma`:
 
 [source,javascript]
 ----
@@ -123,23 +123,23 @@ somma_interi(1, 10);
 ----
 
 //We can also declare `pi_sum` in the same way:footnote:[Notice that we have used block structure (section [sec:black-box]) to embed the declarations of `pi_next` and `pi_term` within `pi_sum`, since these functions are unlikely to be useful for any other purpose. We will see how to get rid of them altogether in section [sec:lambda].]
-Possiamo anche dichiarare `somma_pi` nello stesso modo: footnote:[Nota che abbiamo usato la struttura a blocchi (<<sec:black-box>>) per incorporare le dichiarazioni di `pi_somma` e `pi_termine` all'interno di `somma_pi`, poiché è improbabile che queste funzioni siano utili per altri scopi. Vedremo come eliminarli del tutto nel <<sec:lambda>>.]
+Possiamo anche dichiarare `somma_pi` nello stesso modo:footnote:[Nota che abbiamo usato la struttura a blocchi (<<sec:black-box>>) per incorporare le dichiarazioni di `pi_termine` e `pi_prossimo` all'interno di `somma_pi`, poiché è improbabile che queste funzioni siano utili per altri scopi. Vedremo come eliminarli del tutto nel <<sec:lambda>>.]
 
 [source,javascript]
 ----
-function pi_sum(a, b) {
-    function pi_term(x) {
+function somma_pi(a, b) {
+    function pi_termine(x) {
         return 1.0 / (x * (x + 2));
     }
-    function pi_next(x) {
+    function pi_prossimo(x) {
         return x + 4;
     }
-    return sum(pi_term, a, pi_next, b);
+    return somma(pi_termine, a, pi_prossimo, b);
 }
 ----
 
 //Using these functions, we can compute an approximation to latexmath:[$\pi$]:
-Usando queste funzioni, possiamo calcolare un'approssimazione a latexmath: [\p]:
+Usando queste funzioni, possiamo calcolare un'approssimazione di latexmath: [\pi]:
 
 [source,javascript]
 ----

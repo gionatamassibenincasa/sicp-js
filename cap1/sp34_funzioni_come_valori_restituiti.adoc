@@ -1,5 +1,5 @@
 [[sec:proc-returned-values]]
-== Functions as Returned Values
+==== Functions as Returned Values
 
 The above examples demonstrate how the ability to pass functions as arguments significantly enhances the expressive power of our programming language. We can achieve even more expressive power by creating functions whose returned values are themselves functions.
 
@@ -38,7 +38,7 @@ function cube_root(x) {
 ....
 
 [[newtons-method]]
-==== Newton’s method
+===== Newton’s method
 
 When we first introduced the square-root function, in section [sec:sqrt], we mentioned that this was a special case of _Newton’s method_. If latexmath:[$x\mapsto g(x)$] is a differentiable function, then a solution of the equation latexmath:[$g(x)=0$] is a fixed point of the function latexmath:[$x\mapsto f(x)$] where latexmath:[\[f(x) = x - \frac{g(x)}{Dg(x)}\]] and latexmath:[$Dg(x)$] is the derivative of latexmath:[$g$] evaluated at latexmath:[$x$]. Newton’s method is the use of the fixed-point method we saw above to approximate a solution of the equation by finding a fixed point of the function latexmath:[$f$].footnote:[Elementary calculus books usually describe Newton’s method in terms of the sequence of approximations latexmath:[$x_{n+1}=x_n-g(x_n)/Dg(x_n)$]. Having language for talking about processes and using the idea of fixed points simplifies the description of the method.] For many functions latexmath:[$g$] and for sufficiently good initial guesses for latexmath:[$x$], Newton’s method converges very rapidly to a solution of latexmath:[$g(x)=0$].footnote:[Newton’s method does not always converge to an answer, but it can be shown that in favorable cases each iteration doubles the number-of-digits accuracy of the approximation to the solution. In such cases, Newton’s method will converge much more rapidly than the half-interval method.]
 
@@ -85,7 +85,7 @@ function sqrt(x) {
 ....
 
 [[abstractions-and-first-class-functions]]
-==== Abstractions and first-class functions
+===== Abstractions and first-class functions
 
 We’ve seen two ways to express the square-root computation as an instance of a more general method, once as a fixed-point search and once using Newton’s method. Since Newton’s method was itself expressed as a fixed-point process, we actually saw two ways to compute square roots as fixed points. Each method begins with a function and finds a fixed point of some transformation of the function. We can express this general idea itself as a function:
 
@@ -133,8 +133,8 @@ In general, programming languages impose restrictions on the ways in which compu
 JavaScript, unlike other common programming languages, awards functions full first-class status. This poses challenges for efficient implementation, but the resulting gain in expressive power is enormous.footnote:[The major implementation cost of first-class functions is that allowing functions to be returned as values requires reserving storage for a function’s free names even while the function is not executing. In the JavaScript implementation we will study in section [sec:mc-eval], these names are stored in the function’s environment.]
 
 [[ex:unlabeled26]]
-=== Exercise
-
+.Exercise
+====
 Declare a function `cubic` that can be used together with the `newtons_method` function in expressions of the form
 
 ....
@@ -142,7 +142,9 @@ newtons_method(cubic(a, b, c), 1);
 ....
 
 to approximate zeros of the cubic latexmath:[$x^3 +ax^2 +bx +c$].
+====
 
+////
 [[solution]]
 ==== Solution
 
@@ -151,16 +153,19 @@ function cubic(a, b, c) {
     return x => cube(x) + a * square(x) + b * x + c;
 }
 ....
+////
 
 [[ex:unlabeled27]]
-=== Exercise
-
+.Exercise
+====
 Declare a function `double` that takes a function of one argument as argument and returns a function that applies the original function twice. For example, if `inc` is a function that adds 1 to its argument, then `double(inc)` should be a function that adds 2. What value is returned by
 
 ....
 double(double(double))(inc)(5);
 ....
+====
 
+////
 [[solution-1]]
 ==== Solution
 
@@ -169,16 +174,19 @@ function double(f) {
     return x => f(f(x));
 }
 ....
+////
 
 [[ex:compose]]
-=== Exercise
-
+.Exercise
+====
 Let latexmath:[$f$] and latexmath:[$g$] be two one-argument functions. The _composition_ latexmath:[$f$] after latexmath:[$g$] is defined to be the function latexmath:[$x\mapsto f(g(x))$]. Declare a function `compose` that implements composition. For example, if `inc` is a function that adds 1 to its argument,
 
 ....
 compose(square, inc)(6);
 ....
+====
 
+////
 [[solution-2]]
 ==== Solution
 
@@ -187,18 +195,21 @@ function compose(f, g) {
     return x => f(g(x));
 }
 ....
+////
 
-[[exercise]]
-=== Exercise
-
+[[ex:repeated]]
+.Exercise
+====
 If latexmath:[$f$] is a numerical function and latexmath:[$n$] is a positive integer, then we can form the latexmath:[$n$]th repeated application of latexmath:[$f$], which is defined to be the function whose value at latexmath:[$x$] is latexmath:[$f(f(\ldots(f(x))\ldots))$]. For example, if latexmath:[$f$] is the function latexmath:[$x \mapsto x+1$], then the latexmath:[$n$]th repeated application of latexmath:[$f$] is the function latexmath:[$x \mapsto x+n$]. If latexmath:[$f$] is the operation of squaring a number, then the latexmath:[$n$]th repeated application of latexmath:[$f$] is the function that raises its argument to the latexmath:[$2^n$]th power. Write a function that takes as inputs a function that computes latexmath:[$f$] and a positive integer latexmath:[$n$] and returns the function that computes the latexmath:[$n$]th repeated application of latexmath:[$f$]. Your function should be able to be used as follows:
 
 ....
 repeated(square, 2)(5);
 ....
 
-Hint: You may find it convenient to use `compose` from exercise [ex:compose]. [ex:repeated]
+Hint: You may find it convenient to use `compose` from exercise <<ex:compose>>.
+====
 
+////
 [[solution-3]]
 ==== Solution
 
@@ -209,12 +220,15 @@ function repeated(f, n) {
            : compose(f, repeated(f, n - 1));
 }
 ....
+////
 
 [[ex:smooth]]
-=== Exercise
+.Exercise
+====
+The idea of _smoothing_ a function is an important concept in signal processing. If latexmath:[$f$] is a function and latexmath:[$dx$] is some small number, then the smoothed version of latexmath:[$f$] is the function whose value at a point latexmath:[$x$] is the average of latexmath:[$f(x-dx)$], latexmath:[$f(x)$], and latexmath:[$f(x+dx)$]. Write a function `smooth` that takes as input a function that computes latexmath:[$f$] and returns a function that computes the smoothed latexmath:[$f$]. It is sometimes valuable to repeatedly smooth a function (that is, smooth the smoothed function, and so on) to obtained the _latexmath:[$n$]-fold smoothed function_. Show how to generate the latexmath:[$n$]-fold smoothed function of any given function using `smooth` and `repeated` from exercise <<ex:repeated>>.
+====
 
-The idea of _smoothing_ a function is an important concept in signal processing. If latexmath:[$f$] is a function and latexmath:[$dx$] is some small number, then the smoothed version of latexmath:[$f$] is the function whose value at a point latexmath:[$x$] is the average of latexmath:[$f(x-dx)$], latexmath:[$f(x)$], and latexmath:[$f(x+dx)$]. Write a function `smooth` that takes as input a function that computes latexmath:[$f$] and returns a function that computes the smoothed latexmath:[$f$]. It is sometimes valuable to repeatedly smooth a function (that is, smooth the smoothed function, and so on) to obtained the _latexmath:[$n$]-fold smoothed function_. Show how to generate the latexmath:[$n$]-fold smoothed function of any given function using `smooth` and `repeated` from exercise [ex:repeated].
-
+////
 [[solution-4]]
 ==== Solution
 
@@ -230,12 +244,15 @@ function n_fold_smooth(f, n) {
 ....
 }
 ....
+////
 
-[[exercise-1]]
-=== Exercise
+[[ex:nth-roots]]
+.Exercise
+====
+We saw in section [sec:proc-general-methods] that attempting to compute square roots by naively finding a fixed point of latexmath:[$y\mapsto x/y$] does not converge, and that this can be fixed by average damping. The same method works for finding cube roots as fixed points of the average-damped latexmath:[$y\mapsto x/y^2$]. Unfortunately, the process does not work for fourth roots—a single average damp is not enough to make a fixed-point search for latexmath:[$y\mapsto x/y^3$] converge. On the other hand, if we average damp twice (i.e., use the average damp of the average damp of latexmath:[$y\mapsto x/y^3$]) the fixed-point search does converge. Do some experiments to determine how many average damps are required to compute latexmath:[$n$]th roots as a fixed-point search based upon repeated average damping of latexmath:[$y\mapsto x/y^{n-1}$]. Use this to implement a simple function for computing latexmath:[$n$]th roots using `fixed_point`, `average_damp`, and the `repeated` function of exercise [ex:repeated]. Assume that any arithmetic operations you need are available as primitives.
+====
 
-We saw in section [sec:proc-general-methods] that attempting to compute square roots by naively finding a fixed point of latexmath:[$y\mapsto x/y$] does not converge, and that this can be fixed by average damping. The same method works for finding cube roots as fixed points of the average-damped latexmath:[$y\mapsto x/y^2$]. Unfortunately, the process does not work for fourth roots—a single average damp is not enough to make a fixed-point search for latexmath:[$y\mapsto x/y^3$] converge. On the other hand, if we average damp twice (i.e., use the average damp of the average damp of latexmath:[$y\mapsto x/y^3$]) the fixed-point search does converge. Do some experiments to determine how many average damps are required to compute latexmath:[$n$]th roots as a fixed-point search based upon repeated average damping of latexmath:[$y\mapsto x/y^{n-1}$]. Use this to implement a simple function for computing latexmath:[$n$]th roots using `fixed_point`, `average_damp`, and the `repeated` function of exercise [ex:repeated]. Assume that any arithmetic operations you need are available as primitives. [ex:nth-roots]
-
+////
 [[solution-5]]
 ==== Solution
 
@@ -247,12 +264,15 @@ function nth_root(n, x) {
                        1.0);
 }
 ....
+////
 
 [[ex:unlabeled28]]
-=== Exercise
+.Exercise
+====
+Several of the numerical methods described in this chapter are instances of an extremely general computational strategy known as _iterative improvement_. Iterative improvement says that, to compute something, we start with an initial guess for the answer, test if the guess is good enough, and otherwise improve the guess and continue the process using the improved guess as the new guess. Write a function `iterative_improve` that takes two functions as arguments: a method for telling whether a guess is good enough and a method for improving a guess. The function `iterative_improve` should return as its value a function that takes a guess as argument and keeps improving the guess until it is good enough. Rewrite the `sqrt` function of section [sec:sqrt] and the `fixed_point` function of section <<sec:proc-general-methods>> in terms of `iterative_improve`.
+====
 
-Several of the numerical methods described in this chapter are instances of an extremely general computational strategy known as _iterative improvement_. Iterative improvement says that, to compute something, we start with an initial guess for the answer, test if the guess is good enough, and otherwise improve the guess and continue the process using the improved guess as the new guess. Write a function `iterative_improve` that takes two functions as arguments: a method for telling whether a guess is good enough and a method for improving a guess. The function `iterative_improve` should return as its value a function that takes a guess as argument and keeps improving the guess until it is good enough. Rewrite the `sqrt` function of section [sec:sqrt] and the `fixed_point` function of section [sec:proc-general-methods] in terms of `iterative_improve`.
-
+////
 [[solution-6]]
 ==== Solution
 
@@ -269,3 +289,6 @@ function iterative_improve(good_enough, improve) {
     return iterate;
 }
 ....
+////
+
+//

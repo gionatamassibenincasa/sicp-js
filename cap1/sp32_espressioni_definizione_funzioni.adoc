@@ -1,243 +1,270 @@
 [[sec:lambda]]
-== Constructing Functions using Lambda Expressions
+==== Costruire le funzioni utilizzando le espressioni Lambda
 
-In using `sum` as in section [sec:procedures-as-parameters], it seems terribly awkward to have to declare trivial functions such as `pi_term` and `pi_next` just so we can use them as arguments to our higher-order function. Rather than declare `pi_next` and `pi_term`, it would be more convenient to have a way to directly specify ``the function that returns its input incremented by 4'' and ``the function that returns the reciprocal of its input times its input plus 2.'' We can do this by introducing _lambda expressions_ as a syntactic form for creating functions. Using lambda expressions, we can describe what we want as
+//In using `sum` as in section [sec:procedures-as-parameters], it seems terribly awkward to have to declare trivial functions such as `pi_term` and `pi_next` just so we can use them as arguments to our higher-order function. Rather than declare `pi_next` and `pi_term`, it would be more convenient to have a way to directly specify ``the function that returns its input incremented by 4'' and ``the function that returns the reciprocal of its input times its input plus 2.'' We can do this by introducing _lambda expressions_ as a syntactic form for creating functions. Using lambda expressions, we can describe what we want as
+Nell'usare `somma` come nel <<sec:procedures-as-parameters>>, sembra terribilmente imbarazzante dover dichiarare funzioni banali come `pi_termine` e `pi_prossimo` soltanto perché così possiamo usarle come argomenti per la nostra funzione di ordine superiore. Piuttosto che dichiarare `pi_prossimo` e `pi_termine`, sarebbe più conveniente avere un modo per specificare direttamente "la funzione che restituisce il suo input incrementato di 4" e "la funzione che restituisce il reciproco del suo input per il suo input più 2". Possiamo farlo introducendo _espressioni lambda_ come forma sintattica per la creazione di funzioni. Usando le espressioni lambda, possiamo descrivere ciò che vogliamo come
 
-....
+[source,javascript]
+----
 x => x + 4;
-....
+----
 
-and
+//and
+e
 
-....
+[source,javascript]
+----
 x => 1.0 / (x * (x + 2));
-....
+----
 
-Then our `pi_sum` function can be expressed without declaring any auxiliary functions as
+//Then our `pi_sum` function can be expressed without declaring any auxiliary functions as
+Quindi la nostra funzione `somma_pi` può essere espressa senza dichiarare alcuna funzione ausiliaria come
 
-....
-function pi_sum(a, b) {
-    return sum(x => 1.0 / (x * (x + 2)),
+[source,javascript]
+----
+function somma_pi(a, b) {
+    return somma(x => 1.0 / (x * (x + 2)),
                a,
                x => x + 4,
                b);
 }
-....
+----
 
-Again using a lambda expression, we can write the `integral` function without having to declare the auxiliary function `add_dx`:
+//Again using a lambda expression, we can write the `integral` function without having to declare the auxiliary function `add_dx`:
+Usando ancora un'espressione lambda, possiamo scrivere la funzione `integrale` senza dover dichiarare la funzione ausiliaria `aggiungi_dx`:
 
-....
-function integral(f, a, b, dx) {
-    return sum(f,
+[source,javascript]
+----
+function integrale(f, a, b, dx) {
+    return somma(f,
                a + dx / 2.0,
                x => x + dx,
                b)
            *
-....
-
-....
            dx;
 }
-....
+----
 
-In general, lambda expressions are used to create functions in the same way as function declarations, except that no name is specified for the function and the return keyword and curly braces are omitted.footnote:[If there is only one parameter, the parentheses around the parameter list can also be omitted. In section [sec:graphics], we will extend the syntax of lambda expressions to allow blocks as bodies, as in function declaration statements.]
+//In general, lambda expressions are used to create functions in the same way as function declarations, except that no name is specified for the function and the return keyword and curly braces are omitted.footnote:[If there is only one parameter, the parentheses around the parameter list can also be omitted. In section [sec:graphics], we will extend the syntax of lambda expressions to allow blocks as bodies, as in function declaration statements.]
+In generale, le espressioni lambda vengono utilizzate per creare funzioni allo stesso modo delle dichiarazioni di funzione, tranne per il fatto che non viene specificato alcun nome per la funzione e la parola chiave return e le parentesi graffe vengono omesse. footnote:[Se è presente un solo parametro, le parentesi intorno all'elenco dei parametri possono anche essere omesse. Nel TODO sec:graphics, estenderemo la sintassi delle espressioni lambda per consentire di avere i blocchi come corpo, come nelle dichiarazioni di dichiarazione di funzione.]
 
-latexmath:[\[\texttt{(} \ \textit{parameters}\ \texttt{) => }
-      \textit{expression}\]]
+.Forma della dichiarazione di una espressione lambda
+****
+**(** _parametri_ **) => ** _espressione_
+****
 
-The resulting function is just as much a function as one that is created using a function declaration statement. The only difference is that it has not been associated with any name in the environment. We consider
+//The resulting function is just as much a function as one that is created using a function declaration statement. The only difference is that it has not been associated with any name in the environment. We consider
+La funzione risultante è una funzione tanto quanto quella creata utilizzando un'istruzione di dichiarazione di funzione. L'unica differenza è che non è stato associato ad alcun nome nell'ambiente. Noi consideriamo
 
-....
-function plus4(x) { 
+[source,javascript]
+----
+function piu4(x) { 
     return x + 4; 
 }
-....
+----
 
-to be equivalent tofootnote:[In JavaScript, there are subtle differences between the two versions: Function declaration statements are ``hoisted'' (automatically moved) to the beginning of the surrounding block, whereas constant declarations are not, and names declared with function declaration can be re-assigned using assignment (see chapter [sec:assignment]). In this book, we are avoiding these features and shall treat function declarations as equivalent to the corresponding constant declaration.[foot:function-decl-vs-lambda]]
+//to be equivalent tofootnote:[In JavaScript, there are subtle differences between the two versions: Function declaration statements are ``hoisted'' (automatically moved) to the beginning of the surrounding block, whereas constant declarations are not, and names declared with function declaration can be re-assigned using assignment (see chapter [sec:assignment]). In this book, we are avoiding these features and shall treat function declarations as equivalent to the corresponding constant declaration.]
+[[foot:function-decl-vs-lambda]]
+essere equivalente a footnote:[In JavaScript ci sono sottili differenze tra le due versioni: le istruzioni di dichiarazione di funzione (**function __nome__**) sono __sollevate__ (__hoisted__, spostate automaticamente) all'inizio del blocco circostante, mentre le dichiarazioni di costanti non lo sono, e i nomi dichiarati con le dichiarazioni di funzione (**const __nome__ = ( __parametri__ ) => __espressione__**) possono essere riassegnata usando l'assegnazione (vedi TODO sec:assegnazione).]
+// In questo libro, stiamo evitando queste caratteristiche e tratteremo le dichiarazioni di funzione come equivalenti alla corrispondente dichiarazione di costante.]
 
-....
-const plus4 = x => x + 4;
-....
+[source,javascript]
+----
+const piu4 = x => x + 4;
+----
 
-We can read a lambda expression as follows:
+//We can read a lambda expression as follows:
+Possiamo leggere un'espressione lambda come segue:
 
-....
-$\;\;$                    x              =>             x    +   4
-....
+[source,javascript]
+----
+//                         x       =>             x     +   4
+//                         ^       ^              ^     ^   ^
+//                         |       |              |     |   |
+// la funzione di argomento x che restituisce il valore piu' 4
+----
 
-latexmath:[$\Big\uparrow$] latexmath:[$\Big\uparrow$] latexmath:[$\Big\uparrow$] latexmath:[$\Big\uparrow$] latexmath:[$\Big\uparrow$]
+//Like any expression that has a function as its value, a lambda expression can be used as the function expression in an application such as
+Come qualsiasi espressione che ha una funzione come valore, un'espressione lambda può essere utilizzata come espressione di funzione in un'applicazione come
 
-....
-the $\texttt{function of an argument x that results $\texttt{in the value plus 4
-....
+[source,javascript]
+----
+((x, y, z) => x + y + quadrato(z))(1, 2, 3);
+----
 
-Like any expression that has a function as its value, a lambda expression can be used as the function expression in an application such as
-
-....
-((x, y, z) => x + y + square(z))(1, 2, 3);
-....
-
-or, more generally, in any context where we would normally use a function name.footnote:[It would be clearer and less intimidating to people learning JavaScript if a term more obvious than lambda expression, such as _function definition_ were used. But the convention is very firmly entrenched, not just for Lisp and Scheme but also for JavaScript, Java and other languages, no doubt partly due to the influence of the Scheme editions of this book. The notation is adopted from the latexmath:[$\lambda$] calculus, a mathematical formalism introduced by the mathematical logician Alonzo Church (1941). Church developed the latexmath:[$\lambda$] calculus to provide a rigorous foundation for studying the notions of function and function application. The latexmath:[$\lambda$] calculus has become a basic tool for mathematical investigations of the semantics of programming languages.] Note that `=>` has lower precedence than function application and thus the parentheses around the lambda expression are necessary here.
+//or, more generally, in any context where we would normally use a function name.footnote:[It would be clearer and less intimidating to people learning JavaScript if a term more obvious than lambda expression, such as _function definition_ were used. But the convention is very firmly entrenched, not just for Lisp and Scheme but also for JavaScript, Java and other languages, no doubt partly due to the influence of the Scheme editions of this book. The notation is adopted from the latexmath:[$\lambda$] calculus, a mathematical formalism introduced by the mathematical logician Alonzo Church (1941). Church developed the latexmath:[$\lambda$] calculus to provide a rigorous foundation for studying the notions of function and function application. The latexmath:[$\lambda$] calculus has become a basic tool for mathematical investigations of the semantics of programming languages.] Note that `=>` has lower precedence than function application and thus the parentheses around the lambda expression are necessary here.
+o, più in generale, in qualsiasi contesto in cui normalmente useremmo un nome di funzione. footnote:[Sarebbe più chiaro e meno intimidatorio per le persone che apprendono JavaScript se fosse usato un termine più ovvio dell'espressione lambda, come __definizione di funzione__. Ma la convenzione è molto ben radicata, non solo per Lisp e Scheme ma anche per JavaScript, Java e altri linguaggi, senza dubbio in parte a causa dell'influenza delle edizioni Scheme di questo libro. La notazione è adottata dal latexmath:[\lambda]-calcolo, un formalismo matematico introdotto dal logico matematico Alonzo Church (1941). Church ha sviluppato il latexmath:[\lambda]-calcolo per fornire una base rigorosa per lo studio delle nozioni di funzione e applicazione della funzione. Il latexmath:[\lambda]-calcolo è diventato uno strumento di base per le indagini matematiche sulla semantica dei linguaggi di programmazione.] Notare che "=>" ha una precedenza inferiore rispetto all'applicazione della funzione e quindi le parentesi attorno all'espressione lambda in questo esempio sono necessarie.
 
 [[using-const-to-create-local-names]]
-==== Using `const` to create local names
+===== Using `const` to create local names
 
-Another use of lambda expressions is in creating local names. We often need local names in our functions other than those that have been bound as parameters. For example, suppose we wish to compute the function latexmath:[\[f(x,y)=x(1+xy)^2 +y(1-y)+(1+xy)(1-y)\]] which we could also express as latexmath:[\[\begin{aligned}
+Another use of lambda expressions is in creating local names. We often need local names in our functions other than those that have been bound as parameters. For example, suppose we wish to compute the function latexmath:[f(x,y)=x(1+xy)^2 +y(1-y)+(1+xy)(1-y]]
+
+which we could also express as
+
+[stem]
+++++
+\begin{aligned}
       a &=& 1+xy\\
       b &=& 1-y\\
       f(x,y) &=& xa^2 +yb +ab
-      \end{aligned}\]] In writing a function to compute latexmath:[$f$], we would like to include as local names not only latexmath:[$x$] and latexmath:[$y$] but also the names of intermediate quantities like latexmath:[$a$] and latexmath:[$b$]. One way to accomplish this is to use an auxiliary function to bind the local names:
+\end{aligned}
+++++
 
-....
+In writing a function to compute latexmath:[$f$], we would like to include as local names not only latexmath:[$x$] and latexmath:[$y$] but also the names of intermediate quantities like latexmath:[$a$] and latexmath:[$b$]. One way to accomplish this is to use an auxiliary function to bind the local names:
+
+[source,javascript]
+----
 function f(x, y) {
     function f_helper(a, b) {
         return x * square(a) + 
                y * b + 
                a * b;
     }
-....
-
-....
     return f_helper(1 + x * y,
                     1 - y);
 }
-....
+----
 
 Of course, we could use a lambda expression to specify an anonymous function for binding our local names. The body of `f` then becomes a single call to that function:
 
-....
+[source,javascript]
+----
 function f(x,y) {
     return ( (a, b) => x * square(a) + 
                       y * b + 
                       a * b
            )(1 + x * y, 1 - y);
 }
-....
+----
 
 A more convenient way to declare local names is by using constant declarations within the body of the function. Using `const`, the function `f` can be written as
 
-....
+[source,javascript]
+----
 function f(x, y) {
     const a = 1 + x * y;
     const b = 1 - y;
     return x * square(a) + 
            y * b + 
            a * b;
-....
-
-....
 }
-....
+----
 
 Names that are declared with `const` inside of a block have the body of the immediately surrounding block as their scope.[multiblock footnote omitted] Section [sec:internal-definitions] shows that declarations of local names can often be seen as syntactic sugar for applications of lambda expressions that have the declared names as parameters.
 
 [[conditional-statements]]
-==== Conditional statements
+===== Conditional statements
 
 We have seen that it is often useful to declare names that are local to function declarations. When functions become big, we should keep the scope of the names as narrow as possible. Consider for example `expmod` in exercise [ex:louis-fast-prime].
 
-....
+[source,javascript]
+----
 function expmod(base, exp, m) {
     return exp === 0
            ? 1
            : is_even(exp)
              ? expmod(base, exp / 2, m) 
                * expmod(base, exp / 2, m)
-....
-
-....
                % m
              : base
                * expmod(base, exp - 1, m) 
                % m;
 }
-....
+----
 
 This function is unnecessarily inefficient, because it contains two identical calls:
 
-....
+[source,javascript]
+----
 expmod(base, exp / 2, m);
-....
+----
 
 While this can be easily fixed in this example using the `square` function, this is not so easy in general. Without using `square`, we would be tempted to introduce a local name for the expression as follows:
 
-....
+[source,javascript]
+----
 function expmod(base, exp, m) {
     const to_half = expmod(base, exp / 2, m);
     return exp === 0
            ? 1
            : is_even(exp)
              ? to_half * to_half
-....
-
-....
                % m
              : base
                * expmod(base, exp - 1, m) 
                % m;
 }
-....
+----
 
 This would make the function not just inefficient, but actually non-terminating! The problem is that the constant declaration appears outside the conditional expression, which means that it is executed even when the base case `exp === 0` is met. To avoid this situation, we shall provide for _conditional statements_, and allow `return` statements to appear in several branches of the statement. Using a conditional statement, the function `expmod` can be written as follows:
 
-....
+[source,javascript]
+----
 function expmod(base, exp, m) {
     if (exp === 0) {
         return 1;
     } else {
         if (is_even(exp)) {
             const to_half = expmod(base, exp / 2, m);    
-....
-
-....
             return to_half * to_half % m;
         } else {
             return base * expmod(base, exp - 1, m) % m;
         }
     }       
 }
-....
+----
 
 The general form of a conditional statement is
 
-....
+[source,javascript]
+----
 if ($predicate$) { $consequent$ } else { $alternative$ }
-....
+----
 
 and, like conditional expressions, their evaluation first evaluates the latexmath:[$\textit{predicate}$]. If it evaluates to true, the interpreter evaluates the latexmath:[$\textit{consequent}$] statements and if it evaluates to false, the interpreter evaluates the latexmath:[$\textit{alternative}$] statements. Note that any constant declarations occurring in either part are local to that part, because both are enclosed in curly braces and thus form their own block.
 
 [[ex:unlabeled18]]
-=== Exercise
-
+Exercise
+====
 Suppose we declare
 
-....
+[source,javascript]
+----
 function f(g) {
    return g(2);
 }
-....
+----
 
 Then we have
 
-....
+[source,javascript]
+----
 f(square);
-....
+----
 
-....
+[source,javascript]
+----
 f(z => z * (z + 1));
-....
+----
 
 What happens if we (perversely) ask the interpreter to evaluate the application `f(f)`? Explain.
+====
 
+////
 [[solution]]
 ==== Solution
 
 Let’s use the substitution model to illustrate what happens:
 
-....
+[source,javascript]
+----
 f(f)
 f(2)
 2(2)
-....
+----
 
 The application `2(2)` leads to an error, since 2 is neither a primitive nor a compound function.
+////
+
+//

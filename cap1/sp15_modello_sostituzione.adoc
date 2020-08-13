@@ -122,8 +122,8 @@ incompleti. Man mano che esaminiamo le cose in modo più dettagliato,
 questi semplici modelli diventano inadeguati e devono essere sostituiti
 da modelli più raffinati. Il modello di sostituzione non fa eccezione.
 
-[discrete]
-==== Ordine di applicazione e ordine normale
+//[discrete]
+===== Ordine di applicazione e ordine normale
 
 Secondo la descrizione della valutazione di cui sopra, l'interprete
 valuta prima la funzione e le espressioni degli argomenti, quindi

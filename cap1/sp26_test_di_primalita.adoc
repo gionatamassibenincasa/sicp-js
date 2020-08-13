@@ -91,7 +91,7 @@ function potenza_modulo(base, esponente, m) {
 ////
 This is very similar to the `fast_expt` function of section [sec:exponentiation]. It uses successive squaring, so that the number of steps grows logarithmically with the exponent.footnote:[The reduction steps in the cases where the exponent latexmath:[$e$] is greater than 1 are based on the fact that, for any integers latexmath:[$x$], latexmath:[$y$], and latexmath:[$m$], we can find the remainder of latexmath:[$x$] times latexmath:[$y$] modulo latexmath:[$m$] by computing separately the remainders of latexmath:[$x$] modulo latexmath:[$m$] and latexmath:[$y$] modulo latexmath:[$m$], multiplying these, and then taking the remainder of the result modulo latexmath:[$m$]. For instance, in the case where latexmath:[$e$] is even, we compute the remainder of latexmath:[$b^{e/2}$] modulo latexmath:[$m$], square this, and take the remainder modulo latexmath:[$m$]. This technique is useful because it means we can perform our computation without ever having to deal with numbers much larger than latexmath:[$m$]. (Compare exercise [ex:Alyssas-expmod].)]
 ////
-Questo è molto simile alla funzione `potenza_veloce` della sezione <<sp_elevamento_a_potenza>>. Utilizza i quadrati successivi, in modo che il numero di passi cresca logaritmicamente con l'esponente.footnote:[I passi di riduzione nei casi in cui l'esponente latexmath:[e] è maggiore di 1 si basano sul fatto che, per qualsiasi interi latexmath:[x], latexmath:[y] e latexmath:[m], possiamo trovare il resto di latexmath:[x] per latexmath:[y] modulo latexmath:[m] calcolando separatamente i resti di latexmath:[x] modulo latexmath:[m] e latexmath:[y] modulo latexmath:[m], moltiplicandoli e quindi prendendo il resto del risultato modulo latexmath:[m]. Ad esempio, nel caso in cui latexmath:[e] è pari, calcoliamo il resto di latexmath:[b^{e / 2}] modulo latexmath:[m], ne facciamo il quadrato e prendiamo il resto modulo latexmath:[m]. Questa tecnica è utile perché significa che possiamo eseguire il nostro calcolo senza dover mai avere a che fare con numeri molto più grandi di latexmath:[m]. (Confronta l'esercizio <<es_alyssas_expmod>>.)]
+Questo è molto simile alla funzione `potenza_veloce` della sezione <<sp_elevamento_a_potenza>>. Utilizza i quadrati successivi, in modo che il numero di passi cresca logaritmicamente con l'esponente.footnote:[I passi di riduzione nei casi in cui l'esponente latexmath:[e] è maggiore di 1 si basano sul fatto che, per qualsiasi interi latexmath:[x], latexmath:[y] e latexmath:[m], possiamo trovare il resto di latexmath:[x] per latexmath:[y] modulo latexmath:[m] calcolando separatamente i resti di latexmath:[x] modulo latexmath:[m] e latexmath:[y] modulo latexmath:[m], moltiplicandoli e quindi prendendo il resto del risultato modulo latexmath:[m]. Ad esempio, nel caso in cui latexmath:[e] è pari, calcoliamo il resto di latexmath:[b^{e / 2}] modulo latexmath:[m], ne facciamo il quadrato e prendiamo il resto modulo latexmath:[m]. Questa tecnica è utile perché significa che possiamo eseguire il nostro calcolo senza dover mai avere a che fare con numeri molto più grandi di latexmath:[m]. (Confronta l'esercizio <<ex:Alyssas-expmod>>.)]
 
 ////
 The Fermat test is performed by choosing at random a number latexmath:[$a$] between 1 and latexmath:[$n-1$] inclusive and checking whether the remainder modulo latexmath:[$n$] of the latexmath:[$n$]th power of latexmath:[$a$] is equal to latexmath:[$a$]. The random number latexmath:[$a$] is chosen using the function `random`, which we assume is included as a primitive in JavaScript. The function `random` returns a nonnegative integer less than its integer input. Hence, to obtain a random number between 1 and latexmath:[$n-1$], we call `random` with an input of latexmath:[$n-1$] and add 1 to the result:
@@ -225,7 +225,7 @@ The timing data quite clearly supports the latexmath:[$\sqrt{n}$] for prediction
 ////
 The `smallest_divisor` function shown at the start of this section does lots of needless testing: After it checks to see if the number is divisible by 2 there is no point in checking to see if it is divisible by any larger even numbers. This suggests that the values used for `test_divisor` should not be 2, 3, 4, 5, 6, … but rather 2, 3, 5, 7, 9, …. To implement this change, declare a function `next` that returns 3 if its input is equal to 2 and otherwise returns its input plus 2. Modify the `smallest_divisor` function to use `next(test_divisor)` instead of `test_divisor + 1`. With `timed_prime_test` incorporating this modified version of `smallest_divisor`, run the test for each of the 12 primes found in exercise [ex:search-for-primes]. Since this modification halves the number of test steps, you should expect it to run about twice as fast. Is this expectation confirmed? If not, what is the observed ratio of the speeds of the two algorithms, and how do you explain the fact that it is different from 2?
 ////
-La funzione `divisore_minimo` mostrata all'inizio di questo paragrafo fa molti test inutili: dopo aver verificato se il numero è divisibile per 2 non ha senso controllare se è divisibile per numeri pari più grandi. Questo suggerisce che i valori usati per `divisore_prova` non dovrebbero essere 2, 3, 4, 5, 6,... ma piuttosto 2, 3, 5, 7, 9,... . Per implementare questa modifica, dichiara una funzione `prossimo` che restituisce 3 se il suo input è uguale a 2 e altrimenti restituisce il suo input più 2. Modifica la funzione `divisore_minimo` per utilizzare `prossimo` invece di `divisore_prova + 1` . Con `test_primalita_cronometrato` che incorpora questa versione modificata di` divisore_minimo`, esegui il test per ciascuno dei 12 numeri primi trovati nell'esercizio <<es:search-for-primes>>. Poiché questa modifica dimezza il numero di passaggi del test, dovresti aspettarti che venga eseguito circa il doppio più velocemente. Questa aspettativa è confermata? In caso negativo, qual è il rapporto osservato tra le velocità dei due algoritmi e come spieghi il fatto che è diverso da 2?
+La funzione `divisore_minimo` mostrata all'inizio di questo paragrafo fa molti test inutili: dopo aver verificato se il numero è divisibile per 2 non ha senso controllare se è divisibile per numeri pari più grandi. Questo suggerisce che i valori usati per `divisore_prova` non dovrebbero essere 2, 3, 4, 5, 6,... ma piuttosto 2, 3, 5, 7, 9,... . Per implementare questa modifica, dichiara una funzione `prossimo` che restituisce 3 se il suo input è uguale a 2 e altrimenti restituisce il suo input più 2. Modifica la funzione `divisore_minimo` per utilizzare `prossimo` invece di `divisore_prova + 1` . Con `test_primalita_cronometrato` che incorpora questa versione modificata di` divisore_minimo`, esegui il test per ciascuno dei 12 numeri primi trovati nel <<ex:search-for-primes>>. Poiché questa modifica dimezza il numero di passaggi del test, dovresti aspettarti che venga eseguito circa il doppio più velocemente. Questa aspettativa è confermata? In caso negativo, qual è il rapporto osservato tra le velocità dei due algoritmi e come spieghi il fatto che è diverso da 2?
 ====
 
 ////
@@ -251,13 +251,13 @@ function find_divisor(n, test_divisor) {
 The ratio of the speeds of the two algorithms is not exactly 2, but this might be due to hardware / network issues. It is about 1.5 times faster compared to previous solution.
 ////
 
+[[ex:mod-timed-prime-test]]
 .Esercizio 1.24.
 ====
-
 ////
 Modify the `timed_prime_test` function of exercise [ex:search-for-primes] to use `fast_is_prime` (the Fermat method), and test each of the 12 primes you found in that exercise. Since the Fermat test has latexmath:[$\Theta(\log n)$] growth, how would you expect the time to test primes near 1,000,000 to compare with the time needed to test primes near 1000? Do your data bear this out? Can you explain any discrepancy you find? [ex:mod-timed-prime-test]
 ////
-Modifica la funzione `test_primalita_cronometrato` dell'esercizio <<es_cerca-numeri primi>> per usare `primo_veloce` (il metodo Fermat), e prova ciascuno dei 12 numeri primi trovati in quell'esercizio. Dato che il test di Fermat ha tasso di crescita latexmath:[\Theta (\log n)], quale rapporto tra i tempi necessari per testare numeri primi vicini a 1.000.000 e quelli per testare numeri primi vicini a 1000 ti aspetteresti? I tuoi dati lo confermano? Puoi spiegare eventuali discrepanze che trovi? [Es: mod-cronometrato-prime-test]
+Modifica la funzione `test_primalita_cronometrato` dell'esercizio <<ex:search-for-primes>> per usare `primo_veloce` (il metodo Fermat), e prova ciascuno dei 12 numeri primi trovati in quell'esercizio. Dato che il test di Fermat ha tasso di crescita latexmath:[\Theta (\log n)], quale rapporto tra i tempi necessari per testare numeri primi vicini a 1.000.000 e quelli per testare numeri primi vicini a 1000 ti aspetteresti? I tuoi dati lo confermano? Puoi spiegare eventuali discrepanze che trovi?
 ====
 
 ////
@@ -283,7 +283,7 @@ function report_prime(elapsed_time) {
 The time to test primes near 1,000,000 using `fast_is_prime` is about 4 ms, 4 times the time needed to test primes near 1,000. This is faster compared to 8 ms that we achieved if we use the `is_prime`. However, despite being 4 times slower, this fact cannot lead us to believe that it has a greater growth than latexmath:[$\Theta(\log n)$], as it should be tested with greater numbers to gain a more accurate understanding of the growth of the function.
 ////
 
-[[exercise-1]]
+[[ex:Alyssas-expmod]]
 .Esercizio 1.25.
 ====
 
@@ -295,7 +295,7 @@ function expmod(base, exp, m) {
 }
 ....
 
-Is she correct? Would this function serve as well for our fast prime tester? Explain. [ex:Alyssas-expmod]
+Is she correct? Would this function serve as well for our fast prime tester? Explain.
 ====
 
 ////
