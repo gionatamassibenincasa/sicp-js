@@ -1,0 +1,37 @@
+#lang racket
+(require plot)
+(require racket/block)
+;; Limiti del grafico
+(define a 1)
+(define b 36)
+(define ymax 12)
+;; Funzioni
+(define (lg2 x)
+  (/ (log x)
+     (log 2)))
+(define (id x)
+  (x))
+(define (xlg2 x)
+  (* x
+     (lg2 x)))
+(define (quadrato x)
+  (* x x))
+;; Ricerca zero di f tra a e b, dove f è monotona crescente e a < b
+(define tol-x 0.001)
+(define (zero-iter f ak bk)
+  (cond ((< (- bk ak) tol-x) (/ (+ ak bk) 2))
+        ((< (f (/ (+ ak bk) 2)) 0) (zero-iter f (/ (+ ak bk) 2) bk))
+        (else (zero-iter f ak (/ (+ ak bk) 2)))))
+(define (zero f)
+   (zero-iter f a b))
+;; Calcolo estremo
+(define (x-max f)
+  (zero (lambda (x) (- (f x) ymax))))
+;; Disegno dei grafici
+(plot (list (axes)
+            (function lg2 a b #:label "lg_2 x" #:color "green")
+            (function sqrt a b #:label "\\sqrt x" #:color "blue")
+            (function id a (/ b 3) #:label "x" #:color "black")
+            (function xlg2 a (/ b 4) #:label "x lg_2 x"  #:color "orange")
+            (function quadrato a b #:label "x^2" #:color "red")
+            ))

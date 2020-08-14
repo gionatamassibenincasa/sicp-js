@@ -1,0 +1,7 @@
+node_modules
+tmp
+.vscode
+.ipynb_checkpoints
+img/stem-*
+bibliografia
+.asciidoctor
