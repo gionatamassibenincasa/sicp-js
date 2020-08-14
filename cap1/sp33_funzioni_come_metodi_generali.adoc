@@ -75,16 +75,17 @@ metodo_bisezione(
 ----
 
 [[finding-fixed-points-of-functions]]
-===== Finding fixed points of functions
+===== Trovare i punti fissi delle funzioni
 
-A number latexmath:[$x$] is called a _fixed point_ of a function latexmath:[$f$] if latexmath:[$x$] satisfies the equation latexmath:[$f(x)=x$]. For some functions latexmath:[$f$] we can locate a fixed point by beginning with an initial guess and applying latexmath:[$f$] repeatedly, latexmath:[\[f(x), f(f(x)), f(f(f(x))), \ldots\]] until the value does not change very much. Using this idea, we can devise a function `punto_fisso` that takes as inputs a function and an initial guess and produces an approximation to a fixed point of the function. We apply the function repeatedly until we find two successive values whose difference is less than some prescribed tolerance:
+//A number latexmath:[$x$] is called a _fixed point_ of a function latexmath:[$f$] if latexmath:[$x$] satisfies the equation latexmath:[$f(x)=x$]. For some functions latexmath:[$f$] we can locate a fixed point by beginning with an initial guess and applying latexmath:[$f$] repeatedly, latexmath:[\[f(x), f(f(x)), f(f(f(x))), \ldots\]] until the value does not change very much. Using this idea, we can devise a function `punto_fisso` that takes as inputs a function and an initial guess and produces an approximation to a fixed point of the function. We apply the function repeatedly until we find two successive values whose difference is less than some prescribed tolerance:
+Un numero latexmath:[x] è chiamato _punto fisso_ di una funzione latexmath:[f] if latexmath:[x] soddisfa l'equazione latexmath:[f (x) = x]. Per alcune funzioni latexmath:[f] possiamo individuare un punto fisso iniziando con un valore iniziale e applicando latexmath:[f] ripetutamente, latexmath:[f (x), f (f (x)) , f (f (f (x))), \ldots] fino a quando il valore non cambia più di molto. Usando questa idea, possiamo ideare una funzione `punto_fisso` che prende come input una funzione e una stima iniziale e produce un'approssimazione di un punto fisso della funzione. Applichiamo la funzione ripetutamente fino a trovare due valori successivi la cui differenza è inferiore a una certa tolleranza prescritta:
 
 [source,javascript]
 ----
-const tolerance = 0.00001;
+const tolleranza = 0.00001;
 function punto_fisso(f, stima_iniziale) {
     function abbastanza_vicino(x, y) {
-        return valore_assoluto(x - y) < tolerance;
+        return valore_assoluto(x - y) < tolleranza;
     }
     function prova_con(stima) {
         const prossimo = f(stima);
@@ -96,14 +97,16 @@ function punto_fisso(f, stima_iniziale) {
 }
 ----
 
-For example, we can use this method to approximate the fixed point of the cosine function, starting with 1 as an initial approximation:footnote:[Try this during a boring lecture: Set your calculator to radians mode and then repeatedly press the latexmath:[$\cos$] button until you obtain the fixed point.]
+//For example, we can use this method to approximate the fixed point of the cosine function, starting with 1 as an initial approximation:footnote:[Try this during a boring lecture: Set your calculator to radians mode and then repeatedly press the latexmath:[$\cos$] button until you obtain the fixed point.]
+Ad esempio, possiamo usare questo metodo per approssimare il punto fisso della funzione coseno, iniziando con 1 come approssimazione iniziale:footnote:[Prova questo durante una lezione noiosa: imposta la tua calcolatrice in modalità radianti e poi premi ripetutamente il latexmath:[\cos] fino ad ottenere il punto fisso.]
 
 [source,javascript]
 ----
 punto_fisso(math_cos, 1.0);
 ----
 
-Similarly, we can find a solution to the equation latexmath:[$y=\sin y + \cos y$]:
+//Similarly, we can find a solution to the equation latexmath:[$y=\sin y + \cos y$]:
+Allo stesso modo, possiamo trovare una soluzione all'equazione latexmath:[y = \sin y + \cos y]:
 
 [source,javascript]
 ----
@@ -112,7 +115,8 @@ punto_fisso(
     1.0);
 ----
 
-The fixed-point process is reminiscent of the process we used for finding square roots in section [sec:sqrt]. Both are based on the idea of repeatedly improving a guess until the result satisfies some criterion. In fact, we can readily formulate the square-root computation as a fixed-point search. Computing the square root of some number latexmath:[$x$] requires finding a latexmath:[$y$] such that latexmath:[$y^2 = x$]. Putting this equation into the equivalent form latexmath:[$y = x/y$], we recognize that we are looking for a fixed point of the functionfootnote:[latexmath:[$\mapsto$] (pronounced ``maps to'') is the mathematician’s way of writing lambda expressions. latexmath:[$y \mapsto x/y$] means `y => x / y`, that is, the function whose value at latexmath:[$y$] is latexmath:[$x/y$].] latexmath:[$y \mapsto x/y$], and we can therefore try to compute square roots as
+//The fixed-point process is reminiscent of the process we used for finding square roots in section [sec:sqrt]. Both are based on the idea of repeatedly improving a guess until the result satisfies some criterion. In fact, we can readily formulate the square-root computation as a fixed-point search. Computing the square root of some number latexmath:[$x$] requires finding a latexmath:[$y$] such that latexmath:[$y^2 = x$]. Putting this equation into the equivalent form latexmath:[$y = x/y$], we recognize that we are looking for a fixed point of the functionfootnote:[latexmath:[$\mapsto$] (pronounced ``maps to'') is the mathematician’s way of writing lambda expressions. latexmath:[$y \mapsto x/y$] means `y => x / y`, that is, the function whose value at latexmath:[$y$] is latexmath:[$x/y$].] latexmath:[$y \mapsto x/y$], and we can therefore try to compute square roots as
+Il processo a virgola fissa ricorda il processo che abbiamo usato per trovare le radici quadrate nel <<sec:sqrt>>. Entrambi si basano sull'idea di migliorare ripetutamente un'ipotesi finché il risultato non soddisfa un criterio. In effetti, possiamo facilmente formulare il calcolo della radice quadrata come una ricerca di un punto fisso. Il calcolo della radice quadrata di un numero latexmath:[x] richiede di trovare un latexmath:[y] tale che latexmath:[y^2 = x]. Mettendo questa equazione nella forma equivalente latexmath:[y = x / y], riconosciamo che stiamo cercando un punto fisso della nota funzione: footnote:[latexmath:[\mapsto] è il modo in cui il matematico scrive le espressioni lambda. latexmath:[y \ mapsto x / y] significa `y => x / y`, cioè la funzione il cui valore in latexmath:[y] è latexmath:[x / y].] latexmath:[y \mapsto x / y], e possiamo quindi provare a calcolare le radici quadrate come
 
 [source,javascript]
 ----
@@ -121,9 +125,11 @@ function radq() {
 }
 ----
 
-Unfortunately, this fixed-point search does not converge. Consider an initial guess latexmath:[$y_1$]. The next guess is latexmath:[$y_2 = x/y_1$] and the next guess is latexmath:[$y_3 = x/y_2 = x/(x/y_1) = y_1$]. This results in an infinite loop in which the two guesses latexmath:[$y_1$] and latexmath:[$y_2$] repeat over and over, oscillating about the answer.
+//Unfortunately, this fixed-point search does not converge. Consider an initial guess latexmath:[$y_1$]. The next guess is latexmath:[$y_2 = x/y_1$] and the next guess is latexmath:[$y_3 = x/y_2 = x/(x/y_1) = y_1$]. This results in an infinite loop in which the two guesses latexmath:[$y_1$] and latexmath:[$y_2$] repeat over and over, oscillating about the answer.
+Sfortunatamente, questa ricerca del punto fisso non converge. Considera una prima stima latexmath:[y_1]. La prossima stima è latexmath:[y_2 = x / y_1] e la successiva è latexmath:[y_3 = x / y_2 = x / (x / y_1) = y_1]. Ciò si traduce in un ciclo infinito in cui le due stime latexmath:[y_1] e latexmath:[y_2] si ripetono più e più volte, oscillando intorno alla soluzione.
 
-One way to control such oscillations is to prevent the guesses from changing so much. Since the answer is always between our guess latexmath:[$y$] and latexmath:[$x/y$], we can make a new guess that is not as far from latexmath:[$y$] as latexmath:[$x/y$] by averaging latexmath:[$y$] with latexmath:[$x/y$], so that the next guess after latexmath:[$y$] is latexmath:[$\frac{1}{2}(y+x/y)$] instead of latexmath:[$x/y$]. The process of making such a sequence of guesses is simply the process of looking for a fixed point of latexmath:[$y \mapsto \frac{1}{2}(y+x/y)$]:
+//One way to control such oscillations is to prevent the guesses from changing so much. Since the answer is always between our guess latexmath:[$y$] and latexmath:[$x/y$], we can make a new guess that is not as far from latexmath:[$y$] as latexmath:[$x/y$] by averaging latexmath:[$y$] with latexmath:[$x/y$], so that the next guess after latexmath:[$y$] is latexmath:[$\frac{1}{2}(y+x/y)$] instead of latexmath:[$x/y$]. The process of making such a sequence of guesses is simply the process of looking for a fixed point of latexmath:[$y \mapsto \frac{1}{2}(y+x/y)$]:
+Un modo per controllare tali oscillazioni è impedire che le ipotesi cambino così tanto. Poiché la risposta è sempre tra la nostra stima latexmath:[y] e latexmath:[x / y], possiamo fare una nuova stima che non sia così lontana da latexmath:[y] come latexmath:[x / y] calcolando la media di latexmath:[y] con latexmath:[x / y], in modo che la prossima stima dopo latexmath:[y] sia latexmath:[\frac{1}{2} (y + x / y)] invece di latexmath:[x / y]. Il processo per fare una tale sequenza di valori è semplicemente il processo di ricerca di un punto fisso di latexmath:[y \ mapsto \frac{1}{2} (y + x / y)]:
 
 [source,javascript]
 ----
@@ -134,14 +140,16 @@ function radq() {
 }
 ----
 
-(Note that latexmath:[$y=\frac{1}{2}(y+x/y)$] is a simple transformation of the equation latexmath:[$y=x/y$]; to derive it, add latexmath:[$y$] to both sides of the equation and divide by 2.)
+//(Note that latexmath:[$y=\frac{1}{2}(y+x/y)$] is a simple transformation of the equation latexmath:[$y=x/y$]; to derive it, add latexmath:[$y$] to both sides of the equation and divide by 2.)
+(Nota che latexmath:[y = \frac{1}{2} (y + x / y)] è una semplice trasformazione dell'equazione latexmath:[y = x / y]; per derivarlo, aggiungi latexmath:[y] su entrambi i lati dell'equazione e dividi per 2.)
 
-With this modification, the square-root function works. In fact, if we unravel the definitions, we can see that the sequence of approximations to the square root generated here is precisely the same as the one generated by our original square-root function of section [sec:sqrt]. This approach of averaging successive approximations to a solution, a technique we call , often aids the convergence of fixed-point searches.
+//With this modification, the square-root function works. In fact, if we unravel the definitions, we can see that the sequence of approximations to the square root generated here is precisely the same as the one generated by our original square-root function of section [sec:sqrt]. This approach of averaging successive approximations to a solution, a technique we call , often aids the convergence of fixed-point searches.
+Con questa modifica, la funzione per l'estrazione della radice quadrata funziona. Infatti, se sveliamo le definizioni, possiamo vedere che la sequenza di approssimazioni alla radice quadrata generata qui è esattamente la stessa di quella generata dalla nostra funzione radice quadrata originale del <<sec:sqrt>>. Questo approccio di calcolare la media di approssimazioni successive a una soluzione, una tecnica che chiamiamo _smorzamento tramite media_, spesso aiuta la convergenza delle ricerche dei punti fissi.
 
-[[ex:unlabeled14]]
-Exercise
+.Esercizio 1.35. Calcolo della sezione aurea
 ====
-Show that the golden ratio latexmath:[$\phi$] (section [sec:tree-recursion]) is a fixed point of the transformation latexmath:[$x \mapsto 1 + 1/x$], and use this fact to compute latexmath:[$\phi$] by means of the `punto_fisso` function.
+//Show that the golden ratio latexmath:[$\phi$] (section [sec:tree-recursion]) is a fixed point of the transformation latexmath:[$x \mapsto 1 + 1/x$], and use this fact to compute latexmath:[$\phi$] by means of the `punto_fisso` function.
+Mostra che la sezione aurea latexmath:[\phi] (<<sp_ricorsione_ad_albero>>) è un punto fisso della trasformazione latexmath:[x \mapsto 1 + 1 / x], e usa questo fatto per calcolare latexmath:[\phi] tramite la funzione `punto_fisso`.
 ====
 
 ////
@@ -156,10 +164,11 @@ punto_fisso(x => 1 + (1 / x), 1.0);
 ----
 ////
 
-[[exercise]]
-Exercise
+[[ex:log-fixed-point]]
+.Esercizio 1.36.
 ====
-Modify `punto_fisso` so that it prints the sequence of approximations it generates, using the primitive function `display` shown in exercise [ex:search-for-primes]. Then find a solution to latexmath:[$x^x = 1000$] by finding a fixed point of latexmath:[$x \mapsto \log(1000)/\log(x)$]. (Use the primitive function `math_log` which computes natural logarithms.) Compare the number of steps this takes with and without average damping. (Note that you cannot start `punto_fisso` with a guess of 1, as this would cause division by latexmath:[$\log(1)=0$].) [ex:log-fixed-point]
+//Modify `punto_fisso` so that it prints the sequence of approximations it generates, using the primitive function `display` shown in exercise <<ex:search-for-primes>>. Then find a solution to latexmath:[$x^x = 1000$] by finding a fixed point of latexmath:[$x \mapsto \log(1000)/\log(x)$]. (Use the primitive function `math_log` which computes natural logarithms.) Compare the number of steps this takes with and without average damping. (Note that you cannot start `punto_fisso` with a guess of 1, as this would cause division by latexmath:[$\log(1)=0$].)
+Modifica `punto_fisso` in modo che stampi la sequenza di approssimazioni che genera, utilizzando la funzione primitiva `display` mostrata nel <<ex:search-for-primes>>. Quindi trova una soluzione a latexmath:[x^x = 1000] trovando un punto fisso di latexmath:[x \mapsto \log (1000) / \log (x)]. (Usa la funzione primitiva `math_log` che calcola i logaritmi naturali.) Confronta il numero di passi che questo richiede con e senza lo __smorzamento mediante media__. (Nota che non puoi iniziare `punto_fisso` con un'ipotesi di 1, poiché ciò causerebbe la divisione per latexmath:[\log (1) = 0].)
 ====
 
 ////
@@ -207,7 +216,7 @@ function punto_fisso_with_average_dampening(f, stima_iniziale) {
 ////
 
 [[ex:continued-fractions]]
-Exercise
+.Esercizio 1.37. Frazioni continue
 ====
 * An infinite _continued fraction_ is an expression of the form latexmath:[\[f={\dfrac{N_1}{D_1+
           \dfrac{N_2}{D_2+
@@ -257,9 +266,9 @@ function cont_frac(n, d, k) {
 ----
 ////
 
-.Exercise
+.Esercizio 1.38.
 ====
-In 1737, the Swiss mathematician Leonhard Euler published a memoir _De Fractionibus Continuis_, which included a continued fraction expansion for latexmath:[$e-2$], where latexmath:[$e$] is the base of the natural logarithms. In this fraction, the latexmath:[$N_i$] are all 1, and the latexmath:[$D_i$] are successively 1, 2, 1, 1, 4, 1, 1, 6, 1, 1, 8, …. Write a program that uses your `cont_frac` function from exercise [ex:continued-fractions] to approximate latexmath:[$e$], based on Euler’s expansion.
+In 1737, the Swiss mathematician Leonhard Euler published a memoir _De Fractionibus Continuis_, which included a continued fraction expansion for latexmath:[$e-2$], where latexmath:[$e$] is the base of the natural logarithms. In this fraction, the latexmath:[$N_i$] are all 1, and the latexmath:[$D_i$] are successively 1, 2, 1, 1, 4, 1, 1, 6, 1, 1, 8, …. Write a program that uses your `cont_frac` function from exercise <<ex:continued-fractions>> to approximate latexmath:[$e$], based on Euler’s expansion.
 ====
 
 ////
@@ -274,12 +283,12 @@ In 1737, the Swiss mathematician Leonhard Euler published a memoir _De Fractioni
 ----
 ////
 
-.Exercise
+.Esercizio 1.39.
 ====
 A continued fraction representation of the tangent function was published in 1770 by the German mathematician J.H. Lambert: latexmath:[\[\tan x={\dfrac{x}{1-
       \dfrac{x^2}{3-
       \dfrac{x^2}{5-
-      \dfrac{x^2}{ \ddots }}}}}\]] where latexmath:[$x$] is in radians. Declare a function `tan_cf(x, k)` that computes an approximation to the tangent function based on Lambert’s formula. As in exercise [ex:continued-fractions], `k` specifies the number of terms to compute.
+      \dfrac{x^2}{ \ddots }}}}}\]] where latexmath:[$x$] is in radians. Declare a function `tan_cf(x, k)` that computes an approximation to the tangent function based on Lambert’s formula. As in <<ex:continued-fractions>>, `k` specifies the number of terms to compute.
 ====
 
 ////

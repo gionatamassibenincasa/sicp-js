@@ -11,3 +11,9 @@ Questo testo è un adattamento in italiano, realizzato con l'auito di Google Tra
 Il testo ritiene è integrato con ulteriori esercizi in quanto per imparare l'arte della programmazione è necessario leggere del buon codice, ragionare su problemi, modelli e algoritmi, ed esercitarsi scrivendo programmi.
 
 include::cap1/cap1_funzioni.adoc[]
+
+ifdef::backend-pdf[]
+[index]
+== Indice analitico
+
+endif::backend-pdf[]

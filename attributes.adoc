@@ -16,7 +16,8 @@
 :autofit-option:
 :experimental:
 :reproducible:
-:toc:
+:toc: left
+ifdef::backend-pdf[:toc:]
 :toclevels: 4
 :xrefstyle: short
 :imagesdir: img
