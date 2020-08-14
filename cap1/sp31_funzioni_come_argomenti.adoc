@@ -1,5 +1,5 @@
 [[sec:procedures-as-parameters]]
-==== Funzioni come Argomenti
+==== Funzioni come Parametri
 
 //Consider the following three functions. The first computes the sum of the integers from `a` through `b`:
 Considera le seguenti tre funzioni. La prima calcola la somma degli interi da _a_ a _b_:

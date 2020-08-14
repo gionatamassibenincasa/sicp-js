@@ -1,3 +1,4 @@
+[[sec:sqrt]]
 ==== Esempio: radici quadrate con il metodo di Newton
 
 Le funzioni, come introdotto sopra, sono molto simili alle normali
