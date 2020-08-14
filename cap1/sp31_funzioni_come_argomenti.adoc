@@ -143,7 +143,7 @@ Usando queste funzioni, possiamo calcolare un'approssimazione di latexmath: [\pi
 
 [source,javascript]
 ----
-8 * pi_sum(1, 1000);
+8 * somma_pi(1, 1000);
 ----
 
 //Once we have `sum`, we can use it as a building block in formulating further concepts. For instance, the definite integral of a function latexmath:[$f$] between the limits latexmath:[$a$] and latexmath:[$b$] can be approximated numerically using the formula
@@ -255,7 +255,7 @@ function sum(term, a, next, b) {
 ////
 
 [[es_prodotto]]
-.Esercizio 1.31. Prodotto/produttoria
+.Esercizio 1.31. Prodotto dei valori di una funzione in un intervallo
 ====
 //1.  The `sum` function is only the simplest of a vast number of similar abstractions that can be captured as higher-order functions.footnote:[The intent of exercises [ex:product]–[ex:filtered-accumulate] is to demonstrate the expressive power that is attained by using an appropriate abstraction to consolidate many seemingly disparate operations. However, though accumulation and filtering are elegant ideas, our hands are somewhat tied in using them at this point since we do not yet have data structures to provide suitable means of combination for these abstractions. We will return to these ideas in section [sec:sequences-conventional-interfaces] when we show how to use _sequences_ as interfaces for combining filters and accumulators to build even more powerful abstractions. We will see there how these methods really come into their own as a powerful and elegant approach to designing programs.] Write an analogous function called `product` that returns the product of the values of a function at points over a given range. Show how to define `factorial` in terms of `product`. Also use `product` to compute approximations to latexmath:[$\pi$] using the formulafootnote:[This formula was discovered by the seventeenth-century English mathematician John Wallis.]
 . La funzione `somma` è solo la più semplice di un vasto numero di astrazioni simili che possono essere gestite come funzioni di ordine superiore. footnote:[L'intento degli esercizi <<es_prodotto>> -- <<es_filtra_accumula>> è quello di dimostrare il potere espressivo che si ottiene utilizzando un'astrazione appropriata per unificare molte operazioni apparentemente diverse. Tuttavia, sebbene l'accumulazione e il filtraggio siano idee eleganti, a questo punto siamo in qualche modo costretti ad usarle poiché non abbiamo ancora strutture di dati per fornire mezzi di combinazione adeguati per queste astrazioni. Ritorneremo su queste idee nel TODO sec:sequences-traditional-interfaces quando mostreremo come usare le _sequenze_ come interfacce per combinare filtri e accumulatori per costruire astrazioni ancora più potenti. Vedremo qui come questi metodi si rivelino un approccio davvero potente ed elegante alla progettazione di programmi.] Scrivete una funzione analoga chiamata "prodotto" che restituisca il prodotto dei valori di una funzione in punti di un dato intervallo. Mostrate come definire "fattoriale" in termini di "prodotto". Usa anche `prodotto` per calcolare approssimazioni di latexmath:[\pi] usando la formula footnote:[Questa formula fu scoperta dal matematico inglese del XVII secolo John Wallis.]

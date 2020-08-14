@@ -502,8 +502,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#sec:procedures-as-parameters">1.3.1. Funzioni come Argomenti</a></li>
 <li><a href="#sec:lambda">1.3.2. Costruire le funzioni utilizzando le espressioni Lambda</a>
 <ul class="sectlevel4">
-<li><a href="#using-const-to-create-local-names">Using <code>const</code> to create local names</a></li>
-<li><a href="#conditional-statements">Conditional statements</a></li>
+<li><a href="#using-const-to-create-local-names">Uso di <code>const</code> per creare nomi locali</a></li>
+<li><a href="#conditional-statements">Istruzioni condizionali</a></li>
 </ul>
 </li>
 <li><a href="#sec:proc-general-methods">1.3.3. Functions as General Methods</a>
@@ -4241,19 +4241,19 @@ function stampa_primo(tempo_trascorso) {
 <div class="paragraph">
 <p>Louis Reasoner is having great difficulty doing exercise [ex:mod-timed-prime-test]. His <code>fast_is_prime</code> test seems to run more slowly than his <code>is_prime</code> test. Louis calls his friend Eva Lu Ator over to help. When they examine Louis’s code, they find that he has rewritten the <code>expmod</code> function to use an explicit multiplication, rather than calling <code>square</code>:</p>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>function expmod(base, exp, m) {
-    return exp === 0
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function potenza_modulo(base, esponente, m) {
+    return esponente === 0
            ? 1
-           : is_even(exp)
-             ? expmod(base, exp / 2, m)
-               * expmod(base, exp / 2, m)
+           : pari(esponente)
+             ? potenza_modulo(base, esponente / 2, m)
+               * potenza_modulo(base, esponente / 2, m)
                % m
              : base
-               * expmod(base, exp - 1, m)
+               * potenza_modulo(base, esponente - 1, m)
                % m;
-}</pre>
+}</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -4453,11 +4453,11 @@ function somma_interi(a, b) {
 </div>
 </div>
 <div class="paragraph">
-<p>Usando queste funzioni, possiamo calcolare un&#8217;approssimazione a latexmath: [\p]:</p>
+<p>Usando queste funzioni, possiamo calcolare un&#8217;approssimazione di latexmath: [\pi]:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">8 * pi_sum(1, 1000);</code></pre>
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">8 * somma_pi(1, 1000);</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -4529,7 +4529,7 @@ integrale(cubo, 0, 1, 0.01);</code></pre>
 </div>
 </div>
 <div id="es_prodotto" class="exampleblock">
-<div class="title">Esercizio 1.31. Prodotto/produttoria</div>
+<div class="title">Esercizio 1.31. Prodotto dei valori di una funzione in un intervallo</div>
 <div class="content">
 <div class="olist arabic">
 <ol class="arabic">
@@ -4558,7 +4558,7 @@ integrale(cubo, 0, 1, 0.01);</code></pre>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Mostra che <code>somma</code> e` prodotto` (<a href="#es_prodotto">Esercizio 1.31. Prodotto/produttoria</a>) sono entrambi casi speciali di una nozione ancora più generale chiamata <code>accumula</code> che combina una collezione di termini, utilizzando alcune funzioni generali di accumulazione:</p>
+<p>Mostra che <code>somma</code> e` prodotto` (<a href="#es_prodotto">Esercizio 1.31. Prodotto dei valori di una funzione in un intervallo</a>) sono entrambi casi speciali di una nozione ancora più generale chiamata <code>accumula</code> che combina una collezione di termini, utilizzando alcune funzioni generali di accumulazione:</p>
 <div class="openblock">
 <div class="content">
 <div class="listingblock">
@@ -4645,7 +4645,7 @@ integrale(cubo, 0, 1, 0.01);</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>In generale, le espressioni lambda vengono utilizzate per creare funzioni allo stesso modo delle dichiarazioni di funzione, tranne per il fatto che non viene specificato alcun nome per la funzione e la parola chiave return e le parentesi graffe vengono omesse. <sup class="footnote">[<a id="_footnoteref_24" class="footnote" href="#_footnotedef_24" title="View footnote.">24</a>]</sup></p>
+<p>In generale, le espressioni lambda vengono utilizzate per creare funzioni allo stesso modo delle dichiarazioni di funzione, tranne per il fatto che non viene specificato alcun nome per la funzione e la parola chiave return e le parentesi graffe vengono omesse.<sup class="footnote">[<a id="_footnoteref_24" class="footnote" href="#_footnotedef_24" title="View footnote.">24</a>]</sup></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -4693,15 +4693,15 @@ integrale(cubo, 0, 1, 0.01);</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>o, più in generale, in qualsiasi contesto in cui normalmente useremmo un nome di funzione. <sup class="footnote">[<a id="_footnoteref_26" class="footnote" href="#_footnotedef_26" title="View footnote.">26</a>]</sup> Notare che "&#8658;" ha una precedenza inferiore rispetto all&#8217;applicazione della funzione e quindi le parentesi attorno all&#8217;espressione lambda in questo esempio sono necessarie.</p>
+<p>o, più in generale, in qualsiasi contesto in cui normalmente useremmo un nome di funzione.<sup class="footnote">[<a id="_footnoteref_26" class="footnote" href="#_footnotedef_26" title="View footnote.">26</a>]</sup> Notare che "&#8658;" ha una precedenza inferiore rispetto all&#8217;applicazione della funzione e quindi le parentesi attorno all&#8217;espressione lambda in questo esempio sono necessarie.</p>
 </div>
 <div class="sect4">
-<h5 id="using-const-to-create-local-names">Using <code>const</code> to create local names</h5>
+<h5 id="using-const-to-create-local-names">Uso di <code>const</code> per creare nomi locali</h5>
 <div class="paragraph">
-<p>Another use of lambda expressions is in creating local names. We often need local names in our functions other than those that have been bound as parameters. For example, suppose we wish to compute the function \(f(x,y)=x(1+xy)^2 y(1-y)(1+xy)(1-y\)]</p>
+<p>Un altro utilizzo delle espressioni lambda è nella creazione di nomi locali. Spesso abbiamo bisogno di nomi locali nelle nostre funzioni diversi da quelli che sono stati associati come parametri. Ad esempio, supponiamo di voler calcolare la funzione \(f(x,y)=x(1+xy)^2 y(1-y)(1+xy)(1-y\)]</p>
 </div>
 <div class="paragraph">
-<p>which we could also express as</p>
+<p>che potremmo anche esprimere come</p>
 </div>
 <div class="stemblock">
 <div class="content">
@@ -4713,28 +4713,28 @@ integrale(cubo, 0, 1, 0.01);</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>In writing a function to compute \(f\), we would like to include as local names not only \(x\) and \(y\) but also the names of intermediate quantities like \(a\) and \(b\). One way to accomplish this is to use an auxiliary function to bind the local names:</p>
+<p>Nello scrivere una funzione per calcolare \(f\), vorremmo includere come nomi locali non solo \(x\) e \(y\) ma anche i nomi di quantità intermedie come \(a\) e \(b\). Un modo per ottenere ciò è utilizzare una funzione ausiliaria per associare i nomi locali:</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function f(x, y) {
-    function f_helper(a, b) {
-        return x * square(a) +
+    function f_ausiliaria(a, b) {
+        return x * quadrato(a) +
                y * b +
                a * b;
     }
-    return f_helper(1 + x * y,
+    return f_ausiliaria(1 + x * y,
                     1 - y);
 }</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Of course, we could use a lambda expression to specify an anonymous function for binding our local names. The body of <code>f</code> then becomes a single call to that function:</p>
+<p>Potremmo usare un&#8217;espressione lambda per specificare una funzione anonima per associare i nostri nomi locali. Il corpo di <code>f</code> diventa quindi una singola chiamata a quella funzione:</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function f(x,y) {
-    return ( (a, b) =&gt; x * square(a) +
+    return ( (a, b) =&gt; x * quadrato(a) +
                       y * b +
                       a * b
            )(1 + x * y, 1 - y);
@@ -4742,94 +4742,95 @@ integrale(cubo, 0, 1, 0.01);</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>A more convenient way to declare local names is by using constant declarations within the body of the function. Using <code>const</code>, the function <code>f</code> can be written as</p>
+<p>Un modo più conveniente per dichiarare i nomi locali consiste nell&#8217;usare dichiarazioni di costanti all&#8217;interno del corpo della funzione. Usando "const", la funzione "f" può essere scritta come</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function f(x, y) {
     const a = 1 + x * y;
     const b = 1 - y;
-    return x * square(a) +
+    return x * quadrato(a) +
            y * b +
            a * b;
 }</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Names that are declared with <code>const</code> inside of a block have the body of the immediately surrounding block as their scope.[multiblock footnote omitted] Section [sec:internal-definitions] shows that declarations of local names can often be seen as syntactic sugar for applications of lambda expressions that have the declared names as parameters.</p>
+<p>I nomi dichiarati con <code>const</code> all&#8217;interno di un blocco hanno come visibilità il corpo del blocco immediatamente circostante.</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="conditional-statements">Conditional statements</h5>
+<h5 id="conditional-statements">Istruzioni condizionali</h5>
 <div class="paragraph">
-<p>We have seen that it is often useful to declare names that are local to function declarations. When functions become big, we should keep the scope of the names as narrow as possible. Consider for example <code>expmod</code> in exercise [ex:louis-fast-prime].</p>
+<p>Abbiamo visto che spesso è utile dichiarare nomi locali alle dichiarazioni di funzione. Quando le funzioni diventano grandi, dovremmo mantenere la visibilità dei nomi la più ristretta possibile. Considera ad esempio "potenza_modulo" in <a href="#ex:louis-fast-prime">Esercizio 1.26.</a>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function expmod(base, exp, m) {
-    return exp === 0
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function potenza_modulo(base, esponente, m) {
+    return esponente === 0
            ? 1
-           : is_even(exp)
-             ? expmod(base, exp / 2, m)
-               * expmod(base, exp / 2, m)
+           : pari(esponente)
+             ? potenza_modulo(base, esponente / 2, m)
+               * potenza_modulo(base, esponente / 2, m)
                % m
              : base
-               * expmod(base, exp - 1, m)
+               * potenza_modulo(base, esponente - 1, m)
                % m;
 }</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>This function is unnecessarily inefficient, because it contains two identical calls:</p>
+<p>Questa funzione è inutilmente inefficiente, perché contiene due chiamate identiche:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">expmod(base, exp / 2, m);</code></pre>
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">potenza_modulo(base, esponente / 2, m)</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>While this can be easily fixed in this example using the <code>square</code> function, this is not so easy in general. Without using <code>square</code>, we would be tempted to introduce a local name for the expression as follows:</p>
+<p>Anche se questo può essere facilmente risolto in questo esempio usando la funzione <code>quadrato</code>, non è così facile in generale. Senza usare "quadrato", saremmo tentati di introdurre un nome locale per l&#8217;espressione come segue:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function expmod(base, exp, m) {
-    const to_half = expmod(base, exp / 2, m);
-    return exp === 0
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function potenza_modulo(base, esponente, m) {
+    const da_quadrare = potenza_modulo(base, esponente / 2, m);
+    return esponente === 0
            ? 1
-           : is_even(exp)
-             ? to_half * to_half
+           : pari(esponente)
+             ? da_quadrare
+               * da_quadrare
                % m
              : base
-               * expmod(base, exp - 1, m)
+               * potenza_modulo(base, esponente - 1, m)
                % m;
 }</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>This would make the function not just inefficient, but actually non-terminating! The problem is that the constant declaration appears outside the conditional expression, which means that it is executed even when the base case <code>exp === 0</code> is met. To avoid this situation, we shall provide for <em>conditional statements</em>, and allow <code>return</code> statements to appear in several branches of the statement. Using a conditional statement, the function <code>expmod</code> can be written as follows:</p>
+<p>Ciò renderebbe la funzione non solo inefficiente, ma addirittura non terminante! Il problema è che la dichiarazione della costante appare al di fuori dell&#8217;espressione condizionale, il che significa che viene eseguita anche quando viene soddisfatto il caso base <code>esponente === 0</code>. Per evitare questa situazione, il linguaggio fornisce le <em>istruzione condizionali</em> e permette che le istruzioni <code>return</code> appaiano in rami diversi dell&#8217;istruzione condizionale. Utilizzando un&#8217;istruzione condizionale, la funzione <code>potenza_modulo</code> può essere scritta come segue:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function expmod(base, exp, m) {
-    if (exp === 0) {
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function potenza_modulo(base, esponente, m) {
+    if (esponente === 0) {
         return 1;
     } else {
-        if (is_even(exp)) {
-            const to_half = expmod(base, exp / 2, m);
-            return to_half * to_half % m;
+        if (pari(esponente)) {
+            const da_quadrare = potenza_modulo(base, esponente / 2, m);
+            return da_quadrare * da_quadrare % m;
         } else {
-            return base * expmod(base, exp - 1, m) % m;
+            return base * potenza_modulo(base, esponente - 1, m) % m;
         }
     }
 }</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>The general form of a conditional statement is</p>
-</div>
-<div class="listingblock">
+<div class="sidebarblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">if ($predicate$) { $consequent$ } else { $alternative$ }</code></pre>
+<div class="title">Forma generale di un&#8217;istruzione condizionale</div>
+<div class="paragraph">
+<p><strong>if (</strong><em>predicato</em><strong>) {</strong> <em>conseguente</em> <strong>} else {</strong> <em>alternativa</em> <strong>}</strong></p>
+</div>
 </div>
 </div>
 <div class="paragraph">
@@ -5429,7 +5430,7 @@ function newtons_method(g, guess) {
 <a href="#_footnoteref_21">21</a>. Nota che abbiamo usato la struttura a blocchi (<a href="#sec:black-box">paragrafo 1.1.8</a>) per incorporare le dichiarazioni di <code>pi_termine</code> e <code>pi_prossimo</code> all&#8217;interno di <code>somma_pi</code>, poiché è improbabile che queste funzioni siano utili per altri scopi. Vedremo come eliminarli del tutto nel <a href="#sec:lambda">paragrafo 1.3.2</a>.
 </div>
 <div class="footnote" id="_footnotedef_22">
-<a href="#_footnoteref_22">22</a>. L&#8217;intento degli esercizi <a href="#es_prodotto">Esercizio 1.31. Prodotto/produttoria</a>&#8201;&#8212;&#8201;<a href="#es_filtra_accumula">Esercizio 1.33. Accumula i valori filtrati</a> è quello di dimostrare il potere espressivo che si ottiene utilizzando un&#8217;astrazione appropriata per unificare molte operazioni apparentemente diverse. Tuttavia, sebbene l&#8217;accumulazione e il filtraggio siano idee eleganti, a questo punto siamo in qualche modo costretti ad usarle poiché non abbiamo ancora strutture di dati per fornire mezzi di combinazione adeguati per queste astrazioni. Ritorneremo su queste idee nel TODO sec:sequences-traditional-interfaces quando mostreremo come usare le <em>sequenze</em> come interfacce per combinare filtri e accumulatori per costruire astrazioni ancora più potenti. Vedremo qui come questi metodi si rivelino un approccio davvero potente ed elegante alla progettazione di programmi.
+<a href="#_footnoteref_22">22</a>. L&#8217;intento degli esercizi <a href="#es_prodotto">Esercizio 1.31. Prodotto dei valori di una funzione in un intervallo</a>&#8201;&#8212;&#8201;<a href="#es_filtra_accumula">Esercizio 1.33. Accumula i valori filtrati</a> è quello di dimostrare il potere espressivo che si ottiene utilizzando un&#8217;astrazione appropriata per unificare molte operazioni apparentemente diverse. Tuttavia, sebbene l&#8217;accumulazione e il filtraggio siano idee eleganti, a questo punto siamo in qualche modo costretti ad usarle poiché non abbiamo ancora strutture di dati per fornire mezzi di combinazione adeguati per queste astrazioni. Ritorneremo su queste idee nel TODO sec:sequences-traditional-interfaces quando mostreremo come usare le <em>sequenze</em> come interfacce per combinare filtri e accumulatori per costruire astrazioni ancora più potenti. Vedremo qui come questi metodi si rivelino un approccio davvero potente ed elegante alla progettazione di programmi.
 </div>
 <div class="footnote" id="_footnotedef_23">
 <a href="#_footnoteref_23">23</a>. Questa formula fu scoperta dal matematico inglese del XVII secolo John Wallis.
