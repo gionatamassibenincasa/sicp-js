@@ -512,9 +512,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#finding-fixed-points-of-functions">Trovare i punti fissi delle funzioni</a></li>
 </ul>
 </li>
-<li><a href="#sec:proc-returned-values">1.3.4. Functions as Returned Values</a>
+<li><a href="#sec:proc-returned-values">1.3.4. Funzioni come valori restituiti</a>
 <ul class="sectlevel4">
-<li><a href="#newtons-method">Newton’s method</a></li>
+<li><a href="#newtons-method">Metodo di Newton</a></li>
 <li><a href="#abstractions-and-first-class-functions">Abstractions and first-class functions</a></li>
 </ul>
 </li>
@@ -1890,7 +1890,7 @@ function esercizio_1_3 (x, y, z) {
 </div>
 </div>
 </details>
-<div class="exampleblock">
+<div id="ex:a-plus-abs-b" class="exampleblock">
 <div class="title">Esercizio 1.4. Riconoscere nel nome di funzione la valutazione dell&#8217;espressione</div>
 <div class="content">
 <div class="paragraph">
@@ -5030,7 +5030,7 @@ function punto_fisso(f, stima_iniziale) {
 <div class="title">Esercizio 1.36.</div>
 <div class="content">
 <div class="paragraph">
-<p>Modify <code>punto_fisso</code> so that it prints the sequence of approximations it generates, using the primitive function <code>display</code> shown in exercise <a href="#ex:search-for-primes">Esercizio 1.22. Fare esperienza della complessità di ricerca dei numeri primi grandi</a>. Then find a solution to \(x^x = 1000\) by finding a fixed point of \(x \mapsto \log(1000)/\log(x)\). (Use the primitive function <code>math_log</code> which computes natural logarithms.) Compare the number of steps this takes with and without average damping. (Note that you cannot start <code>punto_fisso</code> with a guess of 1, as this would cause division by \(\log(1)=0\).)</p>
+<p>Modifica <code>punto_fisso</code> in modo che stampi la sequenza di approssimazioni che genera, utilizzando la funzione primitiva <code>display</code> mostrata nel <a href="#ex:search-for-primes">Esercizio 1.22. Fare esperienza della complessità di ricerca dei numeri primi grandi</a>. Quindi trova una soluzione a \(x^x = 1000\) trovando un punto fisso di \(x \mapsto \log (1000) / \log (x)\). (Usa la funzione primitiva <code>math_log</code> che calcola i logaritmi naturali.) Confronta il numero di passi che questo richiede con e senza lo <em>smorzamento mediante media</em>. (Nota che non puoi iniziare <code>punto_fisso</code> con un&#8217;ipotesi di 1, poiché ciò causerebbe la divisione per \(\log (1) = 0\).)</p>
 </div>
 </div>
 </div>
@@ -5040,24 +5040,44 @@ function punto_fisso(f, stima_iniziale) {
 <div class="ulist">
 <ul>
 <li>
-<p>An infinite <em>continued fraction</em> is an expression of the form \(\[f={\dfrac{N_1}{D_1+
-\dfrac{N_2}{D_2+
-\dfrac{N_3}{D_3+\cdots }}}}]\) As an example, one can show that the infinite continued fraction expansion with the \(N_i\) and the \(D_i\) all equal to 1 produces \(1/\phi\), where \(\phi\) is the golden ratio (described in section [sec:tree-recursion]). One way to approximate an infinite continued fraction is to truncate the expansion after a given number of terms. Such a truncation—a so-called <em>\(k\)-term finite continued fraction</em>—has the form \(\[{\dfrac{N_1}{D_1 +
-\dfrac{N_2}{\ddots +
-\dfrac{N_K}{D_K}}}}]\) Suppose that <code>n</code> and <code>d</code> are functions of one argument (the term index \(i\)) that return the \(N_i\) and \(D_i\) of the terms of the continued fraction. Declare a function <code>cont_frac</code> such that evaluating <code>cont_frac(n, d, k)</code> computes the value of the \(k\)-term finite continued fraction. Check your function by approximating \(1/\phi\) using</p>
+<p>Una <em>frazione continua</em> infinita è un&#8217;espressione della forma</p>
+<div class="openblock">
+<div class="content">
+<div class="stemblock">
+<div class="content">
+\[ f={\dfrac{N_1}{D_1+
+          \dfrac{N_2}{D_2+
+          \dfrac{N_3}{D_3+\cdots }}}}\]
+</div>
+</div>
+<div class="paragraph">
+<p>Ad esempio, si può mostrare che l&#8217;espansione continua infinita della frazione con \(N_i\) e \(D_i\) tutti uguali a 1 produce \(1 / \phi\), dove \(\phi\)  è la sezione aurea (descritta nel <a href="#sp_ricorsione_ad_albero">paragrafo 1.2.2</a>]). Un modo per approssimare una frazione continua infinita è troncare l&#8217;espansione dopo un dato numero di termini. Una frazione continua finita troncata al \(k\)-esimo termine, che chiamero <em>\(k\)-termine</em> ha la forma:</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[{\dfrac{N_1}{D_1 +
+          \dfrac{N_2}{\ddots +
+          \dfrac{N_K}{D_K}}}}\]
+</div>
+</div>
+<div class="paragraph">
+<p>Supponiamo che <code>n</code> e <code>d</code> siano funzioni di un argomento (il termine indice \(i\)) che restituiscono \(N_i\) e \(D_i\) dei termini della frazione continua. Dichiara una funzione <code>fraz_cont</code> tale che la valutazione di `fraz_cont (n, d, k)`calcola il valore di latexmath: [$ k $] - termine finito frazione continua. Controlla la tua funzione approssimando \(1 / \phi\) usando</p>
+</div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">cont_frac(i =&gt; 1.0,
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">fraz_cont(i =&gt; 1.0,
           i =&gt; 1.0,
           k);</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>for successive values of <code>k</code>. How large must you make <code>k</code> in order to get an approximation that is accurate to 4 decimal places?</p>
+<p>per valori successivi di <code>k</code>. Quanto grande devi fare <code>k</code> per ottenere un&#8217;approssimazione che sia accurata fino a 4 cifre decimali?</p>
+</div>
+</div>
 </div>
 </li>
 <li>
-<p>If your <code>cont_frac</code> function generates a recursive process, write one that generates an iterative process. If it generates an iterative process, write one that generates a recursive process.</p>
+<p>Se la tua funzione <code>fraz_cont</code> genera un processo ricorsivo, scrivine uno che generi un processo iterativo. Se genera un processo iterativo, scrivine uno che generi un processo ricorsivo.</p>
 </li>
 </ul>
 </div>
@@ -5067,84 +5087,108 @@ function punto_fisso(f, stima_iniziale) {
 <div class="title">Esercizio 1.38.</div>
 <div class="content">
 <div class="paragraph">
-<p>In 1737, the Swiss mathematician Leonhard Euler published a memoir <em>De Fractionibus Continuis</em>, which included a continued fraction expansion for \(e-2\), where \(e\) is the base of the natural logarithms. In this fraction, the \(N_i\) are all 1, and the \(D_i\) are successively 1, 2, 1, 1, 4, 1, 1, 6, 1, 1, 8, …. Write a program that uses your <code>cont_frac</code> function from exercise <a href="#ex:continued-fractions">Esercizio 1.37. Frazioni continue</a> to approximate \(e\), based on Euler’s expansion.</p>
+<p>Nel 1737, il matematico svizzero Leonhard Euler (Eulero) pubblicò un libro di memorie <em>De Fractionibus Continuis</em>, che includeva una espansione in frazione continua di \(e-2\), dove \(e\) è la base dei logaritmi naturali. In questa frazione, \(N_i\) sono tutti 1 e \(D_i\) sono successivamente 1, 2, 1, 1, 4, 1, 1, 6, 1, 1, 8, &#8230;&#8203; . Scrivi un programma, basato sull&#8217;espansione di Eulero, che utilizzi la tua funzione <code>fraz_cont</code> dell&#8217;esercizio <a href="#ex:continued-fractions">Esercizio 1.37. Frazioni continue</a> per approssimare \(e\).</p>
 </div>
 </div>
 </div>
 <div class="exampleblock">
-<div class="title">Esercizio 1.39.</div>
+<div class="title">Esercizio 1.39. Approssimare \(e\)</div>
 <div class="content">
 <div class="paragraph">
-<p>A continued fraction representation of the tangent function was published in 1770 by the German mathematician J.H. Lambert: \(\[\tan x={\dfrac{x}{1-
+<p>Una rappresentazione in frazione continua della funzione tangente fu pubblicata nel 1770 dal matematico tedesco J.H. Lambert:</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[\tan x={\dfrac{x}{1-
       \dfrac{x^2}{3-
       \dfrac{x^2}{5-
-      \dfrac{x^2}{ \ddots }}}}}]\) where \(x\) is in radians. Declare a function <code>tan_cf(x, k)</code> that computes an approximation to the tangent function based on Lambert’s formula. As in <a href="#ex:continued-fractions">Esercizio 1.37. Frazioni continue</a>, <code>k</code> specifies the number of terms to compute.</p>
+      \dfrac{x^2}{ \ddots }}}}}\]
+</div>
+</div>
+<div class="paragraph">
+<p>dove \(x\) è espresso in radianti. Dichiarare una funzione <code>tan_cf (x, k)</code> che calcola un&#8217;approssimazione alla funzione tangente basata sulla formula di Lambert. Come in <a href="#ex:continued-fractions">Esercizio 1.37. Frazioni continue</a>, <code>k</code> specifica il numero di termini da calcolare.</p>
 </div>
 </div>
 </div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="sec:proc-returned-values">1.3.4. Functions as Returned Values</h4>
+<h4 id="sec:proc-returned-values">1.3.4. Funzioni come valori restituiti</h4>
 <div class="paragraph">
-<p>The above examples demonstrate how the ability to pass functions as arguments significantly enhances the expressive power of our programming language. We can achieve even more expressive power by creating functions whose returned values are themselves functions.</p>
+<p>Gli esempi precedenti dimostrano come la capacità di passare funzioni come argomenti accresca in modo significativo la potenza espressiva del nostro linguaggio di programmazione. Possiamo ottenere un potere espressivo ancora maggiore creando funzioni i cui valori restituiti sono essi stessi funzioni.</p>
 </div>
 <div class="paragraph">
-<p>We can illustrate this idea by looking again at the fixed-point example described at the end of section [sec:proc-general-methods]. We formulated a new version of the square-root function as a fixed-point search, starting with the observation that \(\sqrt{x}\) is a fixed-point of the function \(y\mapsto x/y\). Then we used average damping to make the approximations converge. Average damping is a useful general technique in itself. Namely, given a function \(f\), we consider the function whose value at \(x\) is equal to the average of \(x\) and \(f(x)\).</p>
+<p>Possiamo illustrare questa idea guardando di nuovo l&#8217;esempio del punto fisso descritto alla fine del <a href="#sec:proc-general-methods">paragrafo 1.3.3</a>. Abbiamo formulato una nuova versione della funzione per il calcolo della radice quadrata come ricerca in punto fisso, partendo dall&#8217;osservazione che \(\sqrt{x}\) è un punto fisso della funzione \(y \mapsto x / y\). Quindi abbiamo utilizzato lo smorzamento tramite media per far convergere le approssimazioni. Lo smorzamento tramite media è di per sé un&#8217;utile tecnica generale. Vale a dire, data una funzione \(f\), consideriamo la funzione il cui valore in \(x\) è uguale alla media di \(x\) e \(f (x)\).</p>
 </div>
 <div class="paragraph">
-<p>We can express the idea of average damping by means of the following function:</p>
+<p>Possiamo esprimere l&#8217;idea di smorzamento medio mediante la seguente funzione:</p>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>function average_damp(f) {
-    return x =&gt; average(x, f(x));
-}</pre>
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function smorazmento(f) {
+    return x =&gt; valor_medio(x, f(x));
+}</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The function <code>average_damp</code> is a function that takes as its argument a function <code>f</code> and returns as its value a function (produced by the lambda expression) that, when applied to a number <code>x</code>, produces the average of <code>x</code> and <code>f(x)</code>. For example, applying <code>average_damp</code> to the <code>square</code> function produces a function whose value at some number \(x\) is the average of \(x\) and \(x^2\). Applying this resulting function to 10 returns the average of 10 and 100, or 55:<sup class="footnote">[<a id="_footnoteref_32" class="footnote" href="#_footnotedef_32" title="View footnote.">32</a>]</sup> already demonstrated the ability to form such combinations, but that was only a toy example. Here we begin to see the real need for such combinations—when applying a function that is obtained as the value returned by a higher-order function.]</p>
+<p>La funzione <code>smorazmento</code> è una funzione che prende come argomento una funzione <code>f</code> e restituisce come valore una funzione (prodotta dall&#8217;espressione lambda) che, quando applicata a un numero <code>x</code>, produce la media di <code>x</code> e <code>f (x)</code>. Ad esempio, l&#8217;applicazione di <code>smorzamento</code> alla funzione <code>quadrato</code> produce una funzione il cui valore per un certo numero \(x\) è la media di \(x\) e \(x^2\). L&#8217;applicazione di questa funzione risultante per 10 restituisce la media di 10 e 100 ossia 55: <sup class="footnote">[<a id="_footnoteref_32" class="footnote" href="#_footnotedef_32" title="View footnote.">32</a>]</sup></p>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>average_damp(square)(10);</pre>
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">smorzameto(quadrato)(10);</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Using <code>average_damp</code>, we can reformulate the square-root function as follows:</p>
+<p>Usando <code>smorzamento</code>, possiamo riformulare la funzione radice quadrata come segue:</p>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>function sqrt(x) {
-    return fixed_point(average_damp(y =&gt; x / y),
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function radq(x) {
+    return punto_fisso(smorzamento(y =&gt; x / y),
                        1.0);
-}</pre>
+}</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Notice how this formulation makes explicit the three ideas in the method: fixed-point search, average damping, and the function \(y\mapsto x/y\). It is instructive to compare this formulation of the square-root method with the original version given in section [sec:sqrt]. Bear in mind that these functions express the same process, and notice how much clearer the idea becomes when we express the process in terms of these abstractions. In general, there are many ways to formulate a process as a function. Experienced programmers know how to choose process formulations that are particularly perspicuous, and where useful elements of the process are exposed as separate entities that can be reused in other applications. As a simple example of reuse, notice that the cube root of \(x\) is a fixed point of the function \(y\mapsto x/y^2\), so we can immediately generalize our square-root function to one that extracts cube roots:<sup class="footnote">[<a id="_footnoteref_33" class="footnote" href="#_footnotedef_33" title="View footnote.">33</a>]</sup> for a further generalization.]</p>
+<p>Si noti come questa formulazione rende esplicite le tre idee nel metodo: la ricerca di un punto fisso, lo smorzamento tramite media e la funzione \(y \mapsto x / y\). È istruttivo confrontare questa formulazione del metodo della radice quadrata con la versione originale fornita nel <a href="#sec:sqrt">paragrafo 1.1.7</a>. Tieni presente che queste funzioni esprimono lo stesso processo e nota quanto più chiara l&#8217;idea diventa quando esprimiamo il processo in termini di queste astrazioni. In generale, ci sono molti modi per formulare un processo come una funzione. I programmatori esperti sanno come scegliere formulazioni di processo particolarmente perspicaci e dove elementi utili del processo sono esposti come entità separate che possono essere riutilizzate in altre applicazioni. Come semplice esempio di riutilizzo, si noti che la radice cubica di \(x\) è un punto fisso della funzione \(y \mapsto x / y^2 \), quindi possiamo immediatamente generalizzare la nostra funzione radice quadrata a quella che estrae radici cubiche: <sup class="footnote">[<a id="_footnoteref_33" class="footnote" href="#_footnotedef_33" title="View footnote.">33</a>]</sup></p>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>function cube_root(x) {
-    return fixed_point(average_damp(y =&gt; x / square(y)),
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function radice_cubica(x) {
+    return punto_fisso(smorzamento(y =&gt; x / quadrato(y)),
                        1.0);
-}</pre>
+}</code></pre>
 </div>
 </div>
 <div class="sect4">
-<h5 id="newtons-method">Newton’s method</h5>
+<h5 id="newtons-method">Metodo di Newton</h5>
 <div class="paragraph">
-<p>When we first introduced the square-root function, in section [sec:sqrt], we mentioned that this was a special case of <em>Newton’s method</em>. If \(x\mapsto g(x)\) is a differentiable function, then a solution of the equation \(g(x)=0\) is a fixed point of the function \(x\mapsto f(x)\) where \(\[f(x) = x - \frac{g(x)}{Dg(x)}]\) and \(Dg(x)\) is the derivative of \(g\) evaluated at \(x\). Newton’s method is the use of the fixed-point method we saw above to approximate a solution of the equation by finding a fixed point of the function \(f\).<sup class="footnote">[<a id="_footnoteref_34" class="footnote" href="#_footnotedef_34" title="View footnote.">34</a>]</sup> For many functions \(g\) and for sufficiently good initial guesses for \(x\), Newton’s method converges very rapidly to a solution of \(g(x)=0\).<sup class="footnote">[<a id="_footnoteref_35" class="footnote" href="#_footnotedef_35" title="View footnote.">35</a>]</sup></p>
+<p>Quando abbiamo introdotto per la prima volta la funzione radice quadrata, nel <a href="#sec:sqrt">paragrafo 1.1.7</a>, abbiamo detto che questo era un caso speciale del metodo di <em>Newton</em>. Se \(x \mapsto g (x)\) è una funzione derivabile, allora una soluzione dell&#8217;equazione \(g (x) = 0\) è un punto fisso della funzione \(x \mapsto f (x)\) dove</p>
 </div>
-<div class="paragraph">
-<p>In order to implement Newton’s method as a function, we must first express the idea of derivative. Note that ``derivative,'' like average damping, is something that transforms a function into another function. For instance, the derivative of the function \(x\mapsto x^3\) is the function \(x \mapsto 3x^2\). In general, if \(g\) is a function and \(dx\) is a small number, then the derivative \(Dg\) of \(g\) is the function whose value at any number \(x\) is given (in the limit of small \(dx\)) by \(\[Dg(x) = \frac {g(x+dx) - g(x)}{dx}]\) Thus, we can express the idea of derivative (taking \(dx\) to be, say, 0.00001) as the function</p>
-</div>
-<div class="literalblock">
+<div class="stemblock">
 <div class="content">
-<pre>function deriv(g) {
+\[f (x) = x - \frac {g (x)} {Dg (x)}\]
+</div>
+</div>
+<div class="paragraph">
+<p>e \(Dg (x)\) è il derivata di \(g\) valutata in \(x\). Il metodo di Newton è l&#8217;uso del metodo del punto fisso che abbiamo visto sopra per approssimare una soluzione dell&#8217;equazione trovando un punto fisso della funzione \(f\) <sup class="footnote">[<a id="_footnoteref_34" class="footnote" href="#_footnotedef_34" title="View footnote.">34</a>]</sup> Per molte funzioni \(g\) e per stime iniziali sufficientemente buone per \(x\), il metodo di Newton converge molto rapidamente a una soluzione di \(g (x) = 0\). <sup class="footnote">[<a id="_footnoteref_35" class="footnote" href="#_footnotedef_35" title="View footnote.">35</a>]</sup></p>
+</div>
+<div class="paragraph">
+<p>Per implementare il metodo di Newton come una funzione, dobbiamo prima esprimere l&#8217;idea di derivata. Nota che la <em>derivata</em>, come lo smorzamento tramite media, è qualcosa che trasforma una funzione in un&#8217;altra funzione. Ad esempio, la derivata della funzione \(x \mapsto x^3\) è la funzione \(x \mapsto 3x^2\). In generale, se \(g\) è una funzione e \(dx\) è un numero piccolo, allora la derivata \(Dg\) di \(g\) è la funzione il cui valore in qualsiasi numero \(x\) è dato (nel limite di un piccolo \(dx\)) da</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[Dg (x) = \frac {g (x + dx) - g (x )} {dx}\]
+</div>
+</div>
+<div class="paragraph">
+<p>Quindi, possiamo esprimere l&#8217;idea di derivata (prendendo \(dx\) come, diciamo, 0,00001) come funzione</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function derivata(g) {
     return x =&gt; (g(x + dx) - g(x)) / dx;
-}</pre>
+}</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -5440,19 +5484,19 @@ function newtons_method(g, guess) {
 <a href="#_footnoteref_30">30</a>. Prova questo durante una lezione noiosa: imposta la tua calcolatrice in modalità radianti e poi premi ripetutamente il \(\cos\) fino ad ottenere il punto fisso.
 </div>
 <div class="footnote" id="_footnotedef_31">
-<a href="#_footnoteref_31">31</a>. \(\mapsto\) è il modo in cui il matematico scrive le espressioni lambda. \(y \ mapsto x / y\) significa <code>y &#8658; x / y</code>, cioè la funzione il cui valore in \(y\) è \(x / y\).
+<a href="#_footnoteref_31">31</a>. \(\mapsto\) è il modo in cui il matematico scrive le espressioni lambda. \(y \mapsto x / y\) significa <code>y &#8658; x / y</code>, cioè la funzione il cui valore in \(y\) è \(x / y\).
 </div>
 <div class="footnote" id="_footnotedef_32">
-<a href="#_footnoteref_32">32</a>. Observe that this is a combination whose operator is itself a combination. Exercise [ex:a-plus-abs-b
+<a href="#_footnoteref_32">32</a>. Osserva che questa è una combinazione il cui operatore è esso stesso una combinazione. L&#8217;esercizio <a href="#ex:a-plus-abs-b">Esercizio 1.4. Riconoscere nel nome di funzione la valutazione dell&#8217;espressione</a> ha ​​già dimostrato la capacità di formare tali combinazioni, ma quello era solo un esempio giocattolo. Qui iniziamo a vedere la reale necessità di tali combinazioni, quando si applica una funzione ottenuta come valore restituito da una funzione di ordine superiore.
 </div>
 <div class="footnote" id="_footnotedef_33">
-<a href="#_footnoteref_33">33</a>. See exercise [ex:nth-roots
+<a href="#_footnoteref_33">33</a>. Vedere l&#8217;esercizio <a href="#ex:nth-roots">Exercise</a> per un&#8217;ulteriore generalizzazione.
 </div>
 <div class="footnote" id="_footnotedef_34">
-<a href="#_footnoteref_34">34</a>. Elementary calculus books usually describe Newton’s method in terms of the sequence of approximations \(x_{n+1}=x_n-g(x_n)/Dg(x_n)\). Having language for talking about processes and using the idea of fixed points simplifies the description of the method.
+<a href="#_footnoteref_34">34</a>. I libri di calcolo elementare di solito descrivono il metodo di Newton in termini di la sequenza di approssimazioni \(x_ {n + 1} = x_n-g (x_n) / Dg (x_n)\). Avere un linguaggio per parlare dei processi e usare l&#8217;idea dei punti fissi semplifica la descrizione del metodo.
 </div>
 <div class="footnote" id="_footnotedef_35">
-<a href="#_footnoteref_35">35</a>. Newton’s method does not always converge to an answer, but it can be shown that in favorable cases each iteration doubles the number-of-digits accuracy of the approximation to the solution. In such cases, Newton’s method will converge much more rapidly than the half-interval method.
+<a href="#_footnoteref_35">35</a>. Il metodo di Newton non converge sempre a una soluzione, ma si può dimostrare che nei casi favorevoli ogni iterazione raddoppia l&#8217;accuratezza del numero di cifre dell&#8217;approssimazione alla soluzione. In questi casi, il metodo di Newton converge molto più rapidamente rispetto al metodo di bisezione.
 </div>
 <div class="footnote" id="_footnotedef_36">
 <a href="#_footnoteref_36">36</a>. For finding square roots, Newton’s method converges rapidly to the correct solution from any starting point.

@@ -116,7 +116,7 @@ punto_fisso(
 ----
 
 //The fixed-point process is reminiscent of the process we used for finding square roots in section [sec:sqrt]. Both are based on the idea of repeatedly improving a guess until the result satisfies some criterion. In fact, we can readily formulate the square-root computation as a fixed-point search. Computing the square root of some number latexmath:[$x$] requires finding a latexmath:[$y$] such that latexmath:[$y^2 = x$]. Putting this equation into the equivalent form latexmath:[$y = x/y$], we recognize that we are looking for a fixed point of the functionfootnote:[latexmath:[$\mapsto$] (pronounced ``maps to'') is the mathematician’s way of writing lambda expressions. latexmath:[$y \mapsto x/y$] means `y => x / y`, that is, the function whose value at latexmath:[$y$] is latexmath:[$x/y$].] latexmath:[$y \mapsto x/y$], and we can therefore try to compute square roots as
-Il processo a virgola fissa ricorda il processo che abbiamo usato per trovare le radici quadrate nel <<sec:sqrt>>. Entrambi si basano sull'idea di migliorare ripetutamente un'ipotesi finché il risultato non soddisfa un criterio. In effetti, possiamo facilmente formulare il calcolo della radice quadrata come una ricerca di un punto fisso. Il calcolo della radice quadrata di un numero latexmath:[x] richiede di trovare un latexmath:[y] tale che latexmath:[y^2 = x]. Mettendo questa equazione nella forma equivalente latexmath:[y = x / y], riconosciamo che stiamo cercando un punto fisso della nota funzione: footnote:[latexmath:[\mapsto] è il modo in cui il matematico scrive le espressioni lambda. latexmath:[y \ mapsto x / y] significa `y => x / y`, cioè la funzione il cui valore in latexmath:[y] è latexmath:[x / y].] latexmath:[y \mapsto x / y], e possiamo quindi provare a calcolare le radici quadrate come
+Il processo a virgola fissa ricorda il processo che abbiamo usato per trovare le radici quadrate nel <<sec:sqrt>>. Entrambi si basano sull'idea di migliorare ripetutamente un'ipotesi finché il risultato non soddisfa un criterio. In effetti, possiamo facilmente formulare il calcolo della radice quadrata come una ricerca di un punto fisso. Il calcolo della radice quadrata di un numero latexmath:[x] richiede di trovare un latexmath:[y] tale che latexmath:[y^2 = x]. Mettendo questa equazione nella forma equivalente latexmath:[y = x / y], riconosciamo che stiamo cercando un punto fisso della nota funzione: footnote:[latexmath:[\mapsto] è il modo in cui il matematico scrive le espressioni lambda. latexmath:[y \mapsto x / y] significa `y => x / y`, cioè la funzione il cui valore in latexmath:[y] è latexmath:[x / y].] latexmath:[y \mapsto x / y], e possiamo quindi provare a calcolare le radici quadrate come
 
 [source,javascript]
 ----
@@ -218,21 +218,42 @@ function punto_fisso_with_average_dampening(f, stima_iniziale) {
 [[ex:continued-fractions]]
 .Esercizio 1.37. Frazioni continue
 ====
-* An infinite _continued fraction_ is an expression of the form latexmath:[\[f={\dfrac{N_1}{D_1+
-          \dfrac{N_2}{D_2+
-          \dfrac{N_3}{D_3+\cdots }}}}\]] As an example, one can show that the infinite continued fraction expansion with the latexmath:[$N_i$] and the latexmath:[$D_i$] all equal to 1 produces latexmath:[$1/\phi$], where latexmath:[$\phi$] is the golden ratio (described in section [sec:tree-recursion]). One way to approximate an infinite continued fraction is to truncate the expansion after a given number of terms. Such a truncation—a so-called _latexmath:[$k$]-term finite continued fraction_—has the form latexmath:[\[{\dfrac{N_1}{D_1 +
-          \dfrac{N_2}{\ddots +
-          \dfrac{N_K}{D_K}}}}\]] Suppose that `n` and `d` are functions of one argument (the term index latexmath:[$i$]) that return the latexmath:[$N_i$] and latexmath:[$D_i$] of the terms of the continued fraction. Declare a function `cont_frac` such that evaluating `cont_frac(n, d, k)` computes the value of the latexmath:[$k$]-term finite continued fraction. Check your function by approximating latexmath:[$1/\phi$] using
+//* An infinite _continued fraction_ is an expression of the form
+* Una _frazione continua_ infinita è un'espressione della forma
 +
+--
+[stem]
+++++
+ f={\dfrac{N_1}{D_1+
+          \dfrac{N_2}{D_2+
+          \dfrac{N_3}{D_3+\cdots }}}}
+++++
+
+//As an example, one can show that the infinite continued fraction expansion with the latexmath:[$N_i$] and the latexmath:[$D_i$] all equal to 1 produces latexmath:[$1/\phi$], where latexmath:[$\phi$] is the golden ratio (described in section [sec:tree-recursion]). One way to approximate an infinite continued fraction is to truncate the expansion after a given number of terms. Such a truncation—a so-called _latexmath:[$k$]-term finite continued fraction_—has the form
+Ad esempio, si può mostrare che l'espansione continua infinita della frazione con latexmath:[N_i] e latexmath:[D_i] tutti uguali a 1 produce latexmath:[1 / \phi], dove latexmath:[\phi]  è la sezione aurea (descritta nel <<sp_ricorsione_ad_albero>>]). Un modo per approssimare una frazione continua infinita è troncare l'espansione dopo un dato numero di termini. Una frazione continua finita troncata al latexmath:[k]-esimo termine, che chiamero __latexmath:[k]-termine__ ha la forma:
+
+[stem]
+++++
+{\dfrac{N_1}{D_1 +
+          \dfrac{N_2}{\ddots +
+          \dfrac{N_K}{D_K}}}}
+++++
+
+//Suppose that `n` and `d` are functions of one argument (the term index latexmath:[$i$]) that return the latexmath:[$N_i$] and latexmath:[$D_i$] of the terms of the continued fraction. Declare a function `cont_frac` such that evaluating `cont_frac(n, d, k)` computes the value of the latexmath:[$k$]-term finite continued fraction. Check your function by approximating latexmath:[$1/\phi$] using
+Supponiamo che `n` e `d` siano funzioni di un argomento (il termine indice latexmath:[i]) che restituiscono latexmath:[N_i] e latexmath:[D_i] dei termini della frazione continua. Dichiara una funzione `fraz_cont` tale che la valutazione di `fraz_cont (n, d, k)`calcola il valore di latexmath: [$ k $] - termine finito frazione continua. Controlla la tua funzione approssimando latexmath:[1 / \phi] usando
+
 [source,javascript]
 ----
-cont_frac(i => 1.0,
+fraz_cont(i => 1.0,
           i => 1.0,
           k);
 ----
-+
-for successive values of `k`. How large must you make `k` in order to get an approximation that is accurate to 4 decimal places?
-* If your `cont_frac` function generates a recursive process, write one that generates an iterative process. If it generates an iterative process, write one that generates a recursive process.
+
+//for successive values of `k`. How large must you make `k` in order to get an approximation that is accurate to 4 decimal places?
+per valori successivi di `k`. Quanto grande devi fare `k` per ottenere un'approssimazione che sia accurata fino a 4 cifre decimali?
+--
+//* If your `cont_frac` function generates a recursive process, write one that generates an iterative process. If it generates an iterative process, write one that generates a recursive process.
+* Se la tua funzione `fraz_cont` genera un processo ricorsivo, scrivine uno che generi un processo iterativo. Se genera un processo iterativo, scrivine uno che generi un processo ricorsivo.
 ====
 
 ////
@@ -268,7 +289,8 @@ function cont_frac(n, d, k) {
 
 .Esercizio 1.38.
 ====
-In 1737, the Swiss mathematician Leonhard Euler published a memoir _De Fractionibus Continuis_, which included a continued fraction expansion for latexmath:[$e-2$], where latexmath:[$e$] is the base of the natural logarithms. In this fraction, the latexmath:[$N_i$] are all 1, and the latexmath:[$D_i$] are successively 1, 2, 1, 1, 4, 1, 1, 6, 1, 1, 8, …. Write a program that uses your `cont_frac` function from exercise <<ex:continued-fractions>> to approximate latexmath:[$e$], based on Euler’s expansion.
+//In 1737, the Swiss mathematician Leonhard Euler published a memoir _De Fractionibus Continuis_, which included a continued fraction expansion for latexmath:[$e-2$], where latexmath:[$e$] is the base of the natural logarithms. In this fraction, the latexmath:[$N_i$] are all 1, and the latexmath:[$D_i$] are successively 1, 2, 1, 1, 4, 1, 1, 6, 1, 1, 8, …. Write a program that uses your `cont_frac` function from exercise <<ex:continued-fractions>> to approximate latexmath:[$e$], based on Euler’s expansion.
+Nel 1737, il matematico svizzero Leonhard Euler (Eulero) pubblicò un libro di memorie _De Fractionibus Continuis_, che includeva una espansione in frazione continua di latexmath:[e-2], dove latexmath:[e] è la base dei logaritmi naturali. In questa frazione, latexmath:[N_i] sono tutti 1 e latexmath:[D_i] sono successivamente 1, 2, 1, 1, 4, 1, 1, 6, 1, 1, 8, ... . Scrivi un programma, basato sull'espansione di Eulero, che utilizzi la tua funzione `fraz_cont` dell'esercizio <<ex:continued-fractions>> per approssimare latexmath:[e].
 ====
 
 ////
@@ -283,12 +305,21 @@ In 1737, the Swiss mathematician Leonhard Euler published a memoir _De Fractioni
 ----
 ////
 
-.Esercizio 1.39.
+.Esercizio 1.39. Approssimare latexmath:[e]
 ====
-A continued fraction representation of the tangent function was published in 1770 by the German mathematician J.H. Lambert: latexmath:[\[\tan x={\dfrac{x}{1-
+//A continued fraction representation of the tangent function was published in 1770 by the German mathematician J.H. Lambert:
+Una rappresentazione in frazione continua della funzione tangente fu pubblicata nel 1770 dal matematico tedesco J.H. Lambert:
+
+[stem]
+++++
+\tan x={\dfrac{x}{1-
       \dfrac{x^2}{3-
       \dfrac{x^2}{5-
-      \dfrac{x^2}{ \ddots }}}}}\]] where latexmath:[$x$] is in radians. Declare a function `tan_cf(x, k)` that computes an approximation to the tangent function based on Lambert’s formula. As in <<ex:continued-fractions>>, `k` specifies the number of terms to compute.
+      \dfrac{x^2}{ \ddots }}}}}
+++++
+
+//where latexmath:[x] is in radians. Declare a function `tan_cf(x, k)` that computes an approximation to the tangent function based on Lambert’s formula. As in <<ex:continued-fractions>>, `k` specifies the number of terms to compute.
+dove latexmath:[x] è espresso in radianti. Dichiarare una funzione `tan_cf (x, k)` che calcola un'approssimazione alla funzione tangente basata sulla formula di Lambert. Come in <<ex:continued-fractions>>, `k` specifica il numero di termini da calcolare.
 ====
 
 ////

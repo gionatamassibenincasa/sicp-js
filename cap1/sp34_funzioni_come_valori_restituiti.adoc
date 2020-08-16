@@ -1,54 +1,81 @@
 [[sec:proc-returned-values]]
-==== Functions as Returned Values
+==== Funzioni come valori restituiti
 
-The above examples demonstrate how the ability to pass functions as arguments significantly enhances the expressive power of our programming language. We can achieve even more expressive power by creating functions whose returned values are themselves functions.
+//The above examples demonstrate how the ability to pass functions as arguments significantly enhances the expressive power of our programming language. We can achieve even more expressive power by creating functions whose returned values are themselves functions.
+Gli esempi precedenti dimostrano come la capacità di passare funzioni come argomenti accresca in modo significativo la potenza espressiva del nostro linguaggio di programmazione. Possiamo ottenere un potere espressivo ancora maggiore creando funzioni i cui valori restituiti sono essi stessi funzioni.
 
-We can illustrate this idea by looking again at the fixed-point example described at the end of section [sec:proc-general-methods]. We formulated a new version of the square-root function as a fixed-point search, starting with the observation that latexmath:[$\sqrt{x}$] is a fixed-point of the function latexmath:[$y\mapsto x/y$]. Then we used average damping to make the approximations converge. Average damping is a useful general technique in itself. Namely, given a function latexmath:[$f$], we consider the function whose value at latexmath:[$x$] is equal to the average of latexmath:[$x$] and latexmath:[$f(x)$].
+//We can illustrate this idea by looking again at the fixed-point example described at the end of section [sec:proc-general-methods]. We formulated a new version of the square-root function as a fixed-point search, starting with the observation that latexmath:[$\sqrt{x}$] is a fixed-point of the function latexmath:[$y\mapsto x/y$]. Then we used average damping to make the approximations converge. Average damping is a useful general technique in itself. Namely, given a function latexmath:[$f$], we consider the function whose value at latexmath:[$x$] is equal to the average of latexmath:[$x$] and latexmath:[$f(x)$].
+Possiamo illustrare questa idea guardando di nuovo l'esempio del punto fisso descritto alla fine del <<sec:proc-general-methods>>. Abbiamo formulato una nuova versione della funzione per il calcolo della radice quadrata come ricerca in punto fisso, partendo dall'osservazione che latexmath:[\sqrt{x}] è un punto fisso della funzione latexmath:[y \mapsto x / y]. Quindi abbiamo utilizzato lo smorzamento tramite media per far convergere le approssimazioni. Lo smorzamento tramite media è di per sé un'utile tecnica generale. Vale a dire, data una funzione latexmath:[f], consideriamo la funzione il cui valore in latexmath:[x] è uguale alla media di latexmath:[x] e latexmath:[f (x)].
 
-We can express the idea of average damping by means of the following function:
+//We can express the idea of average damping by means of the following function:
+Possiamo esprimere l'idea di smorzamento medio mediante la seguente funzione:
 
-....
-function average_damp(f) {
-    return x => average(x, f(x));
+[source,javascript]
+----
+function smorazmento(f) {
+    return x => valor_medio(x, f(x));
 }
-....
+----
 
-The function `average_damp` is a function that takes as its argument a function `f` and returns as its value a function (produced by the lambda expression) that, when applied to a number `x`, produces the average of `x` and `f(x)`. For example, applying `average_damp` to the `square` function produces a function whose value at some number latexmath:[$x$] is the average of latexmath:[$x$] and latexmath:[$x^2$]. Applying this resulting function to 10 returns the average of 10 and 100, or 55:footnote:[Observe that this is a combination whose operator is itself a combination. Exercise [ex:a-plus-abs-b] already demonstrated the ability to form such combinations, but that was only a toy example. Here we begin to see the real need for such combinations—when applying a function that is obtained as the value returned by a higher-order function.]
+//The function `average_damp` is a function that takes as its argument a function `f` and returns as its value a function (produced by the lambda expression) that, when applied to a number `x`, produces the average of `x` and `f(x)`. For example, applying `average_damp` to the `square` function produces a function whose value at some number latexmath:[$x$] is the average of latexmath:[$x$] and latexmath:[$x^2$]. Applying this resulting function to 10 returns the average of 10 and 100, or 55:footnote:[Observe that this is a combination whose operator is itself a combination. Exercise [ex:a-plus-abs-b] already demonstrated the ability to form such combinations, but that was only a toy example. Here we begin to see the real need for such combinations—when applying a function that is obtained as the value returned by a higher-order function.]
+La funzione `smorazmento` è una funzione che prende come argomento una funzione `f` e restituisce come valore una funzione (prodotta dall'espressione lambda) che, quando applicata a un numero `x`, produce la media di `x` e `f (x)`. Ad esempio, l'applicazione di `smorzamento` alla funzione `quadrato` produce una funzione il cui valore per un certo numero latexmath:[x] è la media di latexmath:[x] e latexmath:[x^2]. L'applicazione di questa funzione risultante per 10 restituisce la media di 10 e 100 ossia 55: footnote:[Osserva che questa è una combinazione il cui operatore è esso stesso una combinazione. L'esercizio <<ex:a-plus-abs-b>> ha ​​già dimostrato la capacità di formare tali combinazioni, ma quello era solo un esempio giocattolo. Qui iniziamo a vedere la reale necessità di tali combinazioni, quando si applica una funzione ottenuta come valore restituito da una funzione di ordine superiore.]
 
-....
-average_damp(square)(10);
-....
+[source,javascript]
+----
+smorzameto(quadrato)(10);
+----
 
-Using `average_damp`, we can reformulate the square-root function as follows:
+//Using `average_damp`, we can reformulate the square-root function as follows:
+Usando `smorzamento`, possiamo riformulare la funzione radice quadrata come segue:
 
-....
-function sqrt(x) {
-    return fixed_point(average_damp(y => x / y),
+[source,javascript]
+----
+function radq(x) {
+    return punto_fisso(smorzamento(y => x / y),
                        1.0);
 }
-....
+----
 
-Notice how this formulation makes explicit the three ideas in the method: fixed-point search, average damping, and the function latexmath:[$y\mapsto x/y$]. It is instructive to compare this formulation of the square-root method with the original version given in section [sec:sqrt]. Bear in mind that these functions express the same process, and notice how much clearer the idea becomes when we express the process in terms of these abstractions. In general, there are many ways to formulate a process as a function. Experienced programmers know how to choose process formulations that are particularly perspicuous, and where useful elements of the process are exposed as separate entities that can be reused in other applications. As a simple example of reuse, notice that the cube root of latexmath:[$x$] is a fixed point of the function latexmath:[$y\mapsto x/y^2$], so we can immediately generalize our square-root function to one that extracts cube roots:footnote:[See exercise [ex:nth-roots] for a further generalization.]
+//Notice how this formulation makes explicit the three ideas in the method: fixed-point search, average damping, and the function latexmath:[$y\mapsto x/y$]. It is instructive to compare this formulation of the square-root method with the original version given in section [sec:sqrt]. Bear in mind that these functions express the same process, and notice how much clearer the idea becomes when we express the process in terms of these abstractions. In general, there are many ways to formulate a process as a function. Experienced programmers know how to choose process formulations that are particularly perspicuous, and where useful elements of the process are exposed as separate entities that can be reused in other applications. As a simple example of reuse, notice that the cube root of latexmath:[$x$] is a fixed point of the function latexmath:[$y\mapsto x/y^2$], so we can immediately generalize our square-root function to one that extracts cube roots:footnote:[See exercise [ex:nth-roots] for a further generalization.]
+Si noti come questa formulazione rende esplicite le tre idee nel metodo: la ricerca di un punto fisso, lo smorzamento tramite media e la funzione latexmath:[y \mapsto x / y]. È istruttivo confrontare questa formulazione del metodo della radice quadrata con la versione originale fornita nel <<sec:sqrt>>. Tieni presente che queste funzioni esprimono lo stesso processo e nota quanto più chiara l'idea diventa quando esprimiamo il processo in termini di queste astrazioni. In generale, ci sono molti modi per formulare un processo come una funzione. I programmatori esperti sanno come scegliere formulazioni di processo particolarmente perspicaci e dove elementi utili del processo sono esposti come entità separate che possono essere riutilizzate in altre applicazioni. Come semplice esempio di riutilizzo, si noti che la radice cubica di latexmath:[x] è un punto fisso della funzione latexmath:[y \mapsto x / y^2 ], quindi possiamo immediatamente generalizzare la nostra funzione radice quadrata a quella che estrae radici cubiche: footnote:[Vedere l'esercizio <<ex:nth-roots>> per un'ulteriore generalizzazione.]
 
-....
-function cube_root(x) {
-    return fixed_point(average_damp(y => x / square(y)),
+[source,javascript]
+----
+function radice_cubica(x) {
+    return punto_fisso(smorzamento(y => x / quadrato(y)),
                        1.0);
 }
-....
+----
 
 [[newtons-method]]
-===== Newton’s method
+===== Metodo di Newton
 
-When we first introduced the square-root function, in section [sec:sqrt], we mentioned that this was a special case of _Newton’s method_. If latexmath:[$x\mapsto g(x)$] is a differentiable function, then a solution of the equation latexmath:[$g(x)=0$] is a fixed point of the function latexmath:[$x\mapsto f(x)$] where latexmath:[\[f(x) = x - \frac{g(x)}{Dg(x)}\]] and latexmath:[$Dg(x)$] is the derivative of latexmath:[$g$] evaluated at latexmath:[$x$]. Newton’s method is the use of the fixed-point method we saw above to approximate a solution of the equation by finding a fixed point of the function latexmath:[$f$].footnote:[Elementary calculus books usually describe Newton’s method in terms of the sequence of approximations latexmath:[$x_{n+1}=x_n-g(x_n)/Dg(x_n)$]. Having language for talking about processes and using the idea of fixed points simplifies the description of the method.] For many functions latexmath:[$g$] and for sufficiently good initial guesses for latexmath:[$x$], Newton’s method converges very rapidly to a solution of latexmath:[$g(x)=0$].footnote:[Newton’s method does not always converge to an answer, but it can be shown that in favorable cases each iteration doubles the number-of-digits accuracy of the approximation to the solution. In such cases, Newton’s method will converge much more rapidly than the half-interval method.]
+//When we first introduced the square-root function, in section [sec:sqrt], we mentioned that this was a special case of _Newton’s method_. If latexmath:[$x\mapsto g(x)$] is a differentiable function, then a solution of the equation latexmath:[$g(x)=0$] is a fixed point of the function latexmath:[$x\mapsto f(x)$] where latexmath:[\[f(x) = x - \frac{g(x)}{Dg(x)}\]] and latexmath:[$Dg(x)$] is the derivative of latexmath:[$g$] evaluated at latexmath:[$x$]. Newton’s method is the use of the fixed-point method we saw above to approximate a solution of the equation by finding a fixed point of the function latexmath:[$f$].footnote:[Elementary calculus books usually describe Newton’s method in terms of the sequence of approximations latexmath:[$x_{n+1}=x_n-g(x_n)/Dg(x_n)$]. Having language for talking about processes and using the idea of fixed points simplifies the description of the method.] For many functions latexmath:[$g$] and for sufficiently good initial guesses for latexmath:[$x$], Newton’s method converges very rapidly to a solution of latexmath:[$g(x)=0$].footnote:[Newton’s method does not always converge to an answer, but it can be shown that in favorable cases each iteration doubles the number-of-digits accuracy of the approximation to the solution. In such cases, Newton’s method will converge much more rapidly than the half-interval method.]
+Quando abbiamo introdotto per la prima volta la funzione radice quadrata, nel <<sec:sqrt>>, abbiamo detto che questo era un caso speciale del metodo di _Newton_. Se latexmath:[x \mapsto g (x)] è una funzione derivabile, allora una soluzione dell'equazione latexmath:[g (x) = 0] è un punto fisso della funzione latexmath:[x \mapsto f (x)] dove
 
-In order to implement Newton’s method as a function, we must first express the idea of derivative. Note that ``derivative,'' like average damping, is something that transforms a function into another function. For instance, the derivative of the function latexmath:[$x\mapsto x^3$] is the function latexmath:[$x \mapsto 3x^2$]. In general, if latexmath:[$g$] is a function and latexmath:[$dx$] is a small number, then the derivative latexmath:[$Dg$] of latexmath:[$g$] is the function whose value at any number latexmath:[$x$] is given (in the limit of small latexmath:[$dx$]) by latexmath:[\[Dg(x) = \frac {g(x+dx) - g(x)}{dx}\]] Thus, we can express the idea of derivative (taking latexmath:[$dx$] to be, say, 0.00001) as the function
+[stem]
+++++
+f (x) = x - \frac {g (x)} {Dg (x)}
+++++
 
-....
-function deriv(g) {
+e latexmath:[Dg (x)] è il derivata di latexmath:[g] valutata in latexmath:[x]. Il metodo di Newton è l'uso del metodo del punto fisso che abbiamo visto sopra per approssimare una soluzione dell'equazione trovando un punto fisso della funzione latexmath:[f] footnote:[I libri di calcolo elementare di solito descrivono il metodo di Newton in termini di la sequenza di approssimazioni latexmath:[x_ {n + 1} = x_n-g (x_n) / Dg (x_n)]. Avere un linguaggio per parlare dei processi e usare l'idea dei punti fissi semplifica la descrizione del metodo.] Per molte funzioni latexmath:[g] e per stime iniziali sufficientemente buone per latexmath:[x], il metodo di Newton converge molto rapidamente a una soluzione di latexmath:[g (x) = 0]. footnote:[Il metodo di Newton non converge sempre a una soluzione, ma si può dimostrare che nei casi favorevoli ogni iterazione raddoppia l'accuratezza del numero di cifre dell'approssimazione alla soluzione. In questi casi, il metodo di Newton converge molto più rapidamente rispetto al metodo di bisezione.]
+
+//In order to implement Newton’s method as a function, we must first express the idea of derivative. Note that ``derivative,'' like average damping, is something that transforms a function into another function. For instance, the derivative of the function latexmath:[$x\mapsto x^3$] is the function latexmath:[$x \mapsto 3x^2$]. In general, if latexmath:[$g$] is a function and latexmath:[$dx$] is a small number, then the derivative latexmath:[$Dg$] of latexmath:[$g$] is the function whose value at any number latexmath:[$x$] is given (in the limit of small latexmath:[$dx$]) by latexmath:[\[Dg(x) = \frac {g(x+dx) - g(x)}{dx}\]] Thus, we can express the idea of derivative (taking latexmath:[$dx$] to be, say, 0.00001) as the function
+Per implementare il metodo di Newton come una funzione, dobbiamo prima esprimere l'idea di derivata. Nota che la _derivata_, come lo smorzamento tramite media, è qualcosa che trasforma una funzione in un'altra funzione. Ad esempio, la derivata della funzione latexmath:[x \mapsto x^3] è la funzione latexmath:[x \mapsto 3x^2]. In generale, se latexmath:[g] è una funzione e latexmath:[dx] è un numero piccolo, allora la derivata latexmath:[Dg] di latexmath:[g] è la funzione il cui valore in qualsiasi numero latexmath:[x] è dato (nel limite di un piccolo latexmath:[dx]) da
+
+[stem]
+++++
+Dg (x) = \frac {g (x + dx) - g (x )} {dx}
+++++
+ 
+Quindi, possiamo esprimere l'idea di derivata (prendendo latexmath:[dx] come, diciamo, 0,00001) come funzione
+
+[source,javascript]
+----
+function derivata(g) {
     return x => (g(x + dx) - g(x)) / dx;
 }
-....
+----
 
 along with the declaration
 

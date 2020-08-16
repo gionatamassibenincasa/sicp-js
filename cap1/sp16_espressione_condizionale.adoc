@@ -267,6 +267,7 @@ function esercizio_1_3 (x, y, z) {
 ====
 endif::backend-pdf[]
 
+[[ex:a-plus-abs-b]]
 .Esercizio 1.4. Riconoscere nel nome di funzione la valutazione dell'espressione
 ====
 Si noti che il nostro modello di valutazione consente
