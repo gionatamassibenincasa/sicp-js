@@ -95,7 +95,7 @@ Quale valore viene restituito dalla dichiarazione? Quale valore è prodotto dall
 ==== 
 Quale valore viene restituito dalla seguente sequenza di istruzioni?
 
-[source, javascript]
+[source,javascript]
 ----
 1 + 2;
 3;
@@ -108,7 +108,7 @@ Quale valore viene restituito dalla seguente sequenza di istruzioni?
 ==== 
 Disegna l'albero di valutazione per la seguente espressione?
 
-[source, javascript]
+[source,javascript]
 ----
 2 * 10 - 19.62 * 7;
 ----

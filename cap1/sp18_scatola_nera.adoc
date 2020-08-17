@@ -91,7 +91,7 @@ function quadrato (x) {
 }
 
 function quadrato (y) {
-   	return y * y;
+	return y * y;
 }
 ----
 
@@ -182,7 +182,7 @@ della radice quadrata possiamo scrivere
 
 .Programma per il calcolo della radice quadrata con funzioni annidate
 [[radq2]]
-[source, javascript]
+[source,javascript]
 ----
 function radice_quadrata (x) {
 	function radice_quadrata_iter (stima, x) {
@@ -232,7 +232,7 @@ Questa disciplina si chiama visibilità lessicale, o visibilità statica (static
 
 .Programma per il calcolo della radice quadrata che sfrutta la visibilià statica
 [[radq3]]
-[source, javascript]
+[source,javascript]
 ----
 function radice_quadrata (x) {
 	function radice_quadrata_iter (stima) {

@@ -1,4 +1,5 @@
 node_modules
+asciidoctor-exts
 tmp
 .vscode
 .ipynb_checkpoints

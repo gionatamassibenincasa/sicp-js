@@ -8,7 +8,7 @@ Abbiamo introdotto le funzioni composte nel <<sp_funzioni_composte>> come meccan
 ===== Trovare le radici delle equazioni con il metodo della bisezione
 
 //The _half-interval method_ is a simple but powerful technique for finding roots of an equation latexmath:[$f(x)=0$], where latexmath:[$f$] is a continuous function. The idea is that, if we are given points latexmath:[$a$] and latexmath:[$b$] such that latexmath:[$f(a) < 0 < f(b)$], then latexmath:[$f$] must have at least one zero between latexmath:[$a$] and latexmath:[$b$]. To locate a zero, let latexmath:[$x$] be the average of latexmath:[$a$] and latexmath:[$b$] and compute latexmath:[$f(x)$]. If latexmath:[$f(x) > 0$], then latexmath:[$f$] must have a zero between latexmath:[$a$] and latexmath:[$x$]. If latexmath:[$f(x) < 0$], then latexmath:[$f$] must have a zero between latexmath:[$x$] and latexmath:[$b$]. Continuing in this way, we can identify smaller and smaller intervals on which latexmath:[$f$] must have a zero. When we reach a point where the interval is small enough, the process stops. Since the interval of uncertainty is reduced by half at each step of the process, the number of steps required grows as latexmath:[$\Theta(\log( L/T))$], where latexmath:[$L$] is the length of the original interval and latexmath:[$T$] is the error tolerance (that is, the size of the interval we will consider ``small enough''). Here is a function that implements this strategy:footnote:[Note that we slightly extend the syntax of conditional statements described in section [sec:lambda] by admitting another conditional statement in place of the block following `else`.]
-Il __metodo di bisezione__ è una tecnica semplice ma potente per trovare le radici di un'equazione latexmath:[f (x) = 0], dove latexmath:[f] è una funzione continua. L'idea è che, se ci vengono dati due punti latexmath:[a] e latexmath:[b] tali che latexmath:[f (a) < 0 < f (b)], allora latexmath:[f] deve avere almeno uno zero tra latexmath:[a] e latexmath:[b]. Per individuare uno zero, sia latexmath:[x] la media di latexmath:[a] e latexmath:[b] e calcoli latexmath:[f (x)]. Se latexmath:[f (x)> 0], latexmath:[f] deve avere uno zero tra latexmath:[a] e latexmath:[x]. Se latexmath:[f (x) <0], latexmath:[f] deve avere uno zero tra latexmath:[x] e latexmath:[b]. Continuando in questo modo, possiamo identificare intervalli sempre più piccoli su cui latexmath:[f]deve avere uno zero. Quando raggiungiamo un punto in cui l'intervallo è abbastanza piccolo, il processo si interrompe. Poiché l'intervallo di incertezza si riduce della metà in ogni fase del processo, il numero di passaggi richiesti cresce come latexmath:[\Theta (\log (L / T))], dove latexmath:[L]è la lunghezza dell'intervallo originale e latexmath:[T] è la tolleranza all'errore (ovvero, la dimensione dell'intervallo che considereremo __abbastanza piccola__). Ecco una funzione che implementa questa strategia:footnote:[Nota che estendiamo leggermente la sintassi delle istruzioni condizionali descritte nel <<sec:lambda>> ammettendo un'altra istruzione condizionale al posto del blocco che segue "else".]
+Il __metodo di bisezione__ è una tecnica semplice ma potente per trovare le radici di un'equazione latexmath:[f (x) = 0], dove latexmath:[f] è una funzione continua. L'idea è che, se ci vengono dati due punti latexmath:[a] e latexmath:[b] tali che latexmath:[f (a) < 0 < f (b)], allora latexmath:[f] deve avere almeno uno zero tra latexmath:[a] e latexmath:[b]. Per individuare uno zero, sia latexmath:[x] la media di latexmath:[a] e latexmath:[b] e calcoli latexmath:[f (x)]. Se latexmath:[f (x)> 0], latexmath:[f] deve avere uno zero tra latexmath:[a] e latexmath:[x]. Se latexmath:[f (x) <0], latexmath:[f] deve avere uno zero tra latexmath:[x] e latexmath:[b]. Continuando in questo modo, possiamo identificare intervalli sempre più piccoli su cui latexmath:[f]deve avere uno zero. Quando raggiungiamo un punto in cui l'intervallo è abbastanza piccolo, il processo si interrompe. Poiché l'intervallo di incertezza si riduce della metà in ogni fase del processo, il numero di passaggi richiesti cresce come latexmath:[\Theta (\log (L / T))], dove latexmath:[L] è la lunghezza dell'intervallo originale e latexmath:[T] è la tolleranza all'errore (ovvero, la dimensione dell'intervallo che considereremo __abbastanza piccola__). Ecco una funzione che implementa questa strategia:footnote:[Nota che estendiamo leggermente la sintassi delle istruzioni condizionali descritte nel <<sec:lambda>> ammettendo un'altra istruzione condizionale al posto del blocco che segue "else".]
 
 [source,javascript]
 ----
@@ -120,7 +120,7 @@ Il processo a virgola fissa ricorda il processo che abbiamo usato per trovare le
 
 [source,javascript]
 ----
-function radq() {
+function radice_quadrata() {
     return punto_fisso(y => x / y, 1.0);
 }
 ----
@@ -133,7 +133,7 @@ Un modo per controllare tali oscillazioni è impedire che le ipotesi cambino cos
 
 [source,javascript]
 ----
-function radq() {
+function radice_quadrata() {
     return punto_fisso(
                y => valor_medio(y, x / y),
                1.0);

@@ -45,7 +45,7 @@ Il seno di un angolo (specificato in radianti) può essere calcolato tramite l'a
 (Per gli scopi di questo esercizio un angolo è considerato __sufficientemente piccolo__ quando il suo valore assoluto non è maggiore di 0,1 radianti.)
 Queste idee sono racchiuse nelle funzioni seguenti:
 
-[source, javascript]
+[source,javascript]
 ----
 function cubo(x) {
     return x * x * x;

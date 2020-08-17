@@ -25,12 +25,11 @@ Per esempio,
 riduce latexmath:[\textrm{MCD}(206, 40)] a latexmath:[\textrm{MCD}(2, 0)], che è 2.
 È possibile mostrare che iniziare con due numeri interi positivi ed eseguire riduzioni ripetute alla fine produrrà sempre una coppia in cui il secondo numero è 0.
 In tale caso il MCD è l'altro numero nella coppia.
-Questo metodo per calcolare il MCD è noto come _Algoritmo di Euclide_.footnote:[L'_Algoritmo di Euclide_ è così chiamato perché appare negli _Elementi_ di Euclide (Libro 7, circa 300 a.C. Secondo Knuth (1973), può essere considerato il più antico algoritmo non banale conosciuto.
-L'antico metodo egiziano di moltiplicazione (esercizio ??) è sicuramente più antico, ma, come spiega Knuth, l'algoritmo di Euclide è il più antico noto per essere stato presentato come un algoritmo generale, piuttosto che come un serie di esempi illustrativi.]
+Questo metodo per calcolare il MCD è noto come _Algoritmo di Euclide_.footnote:[L'_Algoritmo di Euclide_ è così chiamato perché appare negli _Elementi_ di Euclide (Libro 7, circa 300 a.C. Secondo Knuth (1973), può essere considerato il più antico algoritmo non banale conosciuto. L'antico metodo egiziano di moltiplicazione (esercizio ??) è sicuramente più antico, ma, come spiega Knuth, l'algoritmo di Euclide è il più antico noto per essere stato presentato come un algoritmo generale, piuttosto che come un serie di esempi illustrativi.]
 
 È facile esprimere l'algoritmo di Euclide come una funzione:
 
-[source, javascript]
+[source,javascript]
 ----
 function mcd(a, b) {
     return b === 0 ? a : mcd(b, a % b);

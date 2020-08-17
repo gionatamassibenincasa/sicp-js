@@ -30,7 +30,7 @@ Usando `smorzamento`, possiamo riformulare la funzione radice quadrata come segu
 
 [source,javascript]
 ----
-function radq(x) {
+function radice_quadrata(x) {
     return punto_fisso(smorzamento(y => x / y),
                        1.0);
 }
@@ -77,39 +77,47 @@ function derivata(g) {
 }
 ----
 
-along with the declaration
+//along with the declaration
+insieme alla dichiarazione
 
-....
+[source,javascript]
+----
 const dx = 0.00001;
-....
+----
 
-Like `average_damp`, `deriv` is a function that takes a function as argument and returns a function as value. For example, to approximate the derivative of latexmath:[$x \mapsto x^3$] at 5 (whose exact value is 75) we can evaluate
+//Like `average_damp`, `deriv` is a function that takes a function as argument and returns a function as value. For example, to approximate the derivative of latexmath:[$x \mapsto x^3$] at 5 (whose exact value is 75) we can evaluate
+Come `smorzamento`,` derivata` è una funzione che accetta una funzione come argomento e restituisce una funzione come valore. Ad esempio, per approssimare la derivata di latexmath:[x \mapsto x^3] in 5 (il cui valore esatto è 75) possiamo valutare
 
-....
-function cube(x) { return x * x * x; }
+[source,javascript]
+----
+function cubo(x) { return x * x * x; }
 
-deriv(cube)(5);
-....
+derivata(cubo)(5);
+----
 
-With the aid of `deriv`, we can express Newton’s method as a fixed-point process:
+//With the aid of `deriv`, we can express Newton’s method as a fixed-point process:
+Con l'aiuto della `derivata`, possiamo esprimere il metodo di Newton come un processo di punto fisso:
 
-....
-function newton_transform(g) {
-   return x => x - g(x) / deriv(g)(x);
+[source,javascript]
+----
+function trasformata_newton(g) {
+   return x => x - g(x) / derivata(g)(x);
 }
-function newtons_method(g, guess) {
-   return fixed_point(newton_transform(g), guess);
+function metodo_newton(g, stima) {
+   return punto_fisso(trasformata_newton(g), stima);
 }
-....
+----
 
-The `newton_transform` function expresses the formula at the beginning of this section, and `newtons_method` is readily defined in terms of this. It takes as arguments a function that computes the function for which we want to find a zero, together with an initial guess. For instance, to find the square root of latexmath:[$x$], we can use Newton’s method to find a zero of the function latexmath:[$y\mapsto y^2-x$] starting with an initial guess of 1.footnote:[For finding square roots, Newton’s method converges rapidly to the correct solution from any starting point.] This provides yet another form of the square-root function:
+//The `newton_transform` function expresses the formula at the beginning of this section, and `newtons_method` is readily defined in terms of this. It takes as arguments a function that computes the function for which we want to find a zero, together with an initial guess. For instance, to find the square root of latexmath:[$x$], we can use Newton’s method to find a zero of the function latexmath:[$y\mapsto y^2-x$] starting with an initial guess of 1.footnote:[For finding square roots, Newton’s method converges rapidly to the correct solution from any starting point.] This provides yet another form of the square-root function:
+La funzione `trasformata_newton` esprime la formula all'inizio di questa sezione, e `metodo_newton` è facilmente definita in termini di ciò. Prende come argomenti una funzione che calcola la funzione per la quale vogliamo trovare uno zero, insieme a una stima iniziale. Ad esempio, per trovare la radice quadrata di latexmath:[x], possiamo usare il metodo di Newton per trovare uno zero della funzione latexmath:[y \mapsto y^2-x] iniziando con una stima iniziale di 1.footnote:[Per trovare le radici quadrate, il metodo di Newton converge rapidamente alla soluzione corretta da qualsiasi punto di partenza.] Questo fornisce ancora un'altra forma della funzione radice quadrata:
 
-....
-function sqrt(x) {
-    return newtons_method(y => square(y) - x,
+[source,javascript]
+----
+function radice_quadrata(x) {
+    return metodo_newton(y => quadrato(y) - x,
                           1.0);
 }
-....
+----
 
 [[abstractions-and-first-class-functions]]
 ===== Abstractions and first-class functions

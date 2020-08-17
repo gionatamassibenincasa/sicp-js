@@ -50,7 +50,7 @@ verifica se il primo numero è maggiore o uguale al secondo numero,
 restituendo vero o falso di conseguenza.
 
 JavaScript fornisce una serie di predicati primitivi che funzionano in
-modo simile a ``>=``, inclusi ``>``, ``<``, ``<=`` e ``===``. Oltre a questi
+modo simile a ``>=``, inclusi ``>``, ``<``, [x-]``<=`` e ``===``. Oltre a questi
 predicati primitivi, esistono operazioni logiche di composizione che ci
 consentono di costruire predicati composti. I tre più utilizzati sono
 questi:
@@ -236,7 +236,7 @@ ifndef::backend-pdf[]
 .Click per vedere le soluzioni dell'esercizio
 [%collapsible]
 ==== 
-[source, javascript]
+[source,javascript]
 ----
 // Soluzione dell'esercizio 1.2
 (5 + 4 + (2 - (3 - (6 + 4 / 5)))) 
@@ -256,7 +256,7 @@ ifndef::backend-pdf[]
 .Click per vedere le soluzioni dell'esercizio
 [%collapsible]
 ==== 
-[source, javascript]
+[source,javascript]
 ----
 // Soluzione dell'esercizio 1.3
 function esercizio_1_3 (x, y, z) {

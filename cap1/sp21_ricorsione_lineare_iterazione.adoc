@@ -15,7 +15,7 @@ n! = n\cdot \left[ (n-1) \cdot (n-2) \cdots 3 \cdot 2 \cdot 1 \right] = n \cdot 
 Pertanto, possiamo calcolare latexmath:[n!] calcolando latexmath:[(n-1)!] e moltiplicando il risultato di latexmath:[n]. Se aggiungiamo la clausola che latexmath:[1!] è uguale a latexmath:[1], questa osservazione si traduce direttamente nella funzione:
 
 .Definizione della funzione fattoriale
-[source, javascript]
+[source,javascript]
 ----
 function fattoriale (n) {
 	return n === 1 
@@ -51,7 +51,7 @@ e che latexmath:[n!] è il valore del prodotto quando il contatore supera latexm
 Ancora una volta, possiamo riscrivere la nostra descrizione come funzione per calcolare la dichiarazione della funzione interna:
 
 .Definizione della funzione fattoriale come processo iterativo lineare
-[source, javascript]
+[source,javascript]
 ----
 function fattoriale (n) {
     function iter (prodotto, contatore) {
@@ -93,7 +93,7 @@ Le due funzioni seguenti definiscono entramber un metodo per sommare due
 numeri naturali nei temini della funzione `inc`, che incrementa il suo
 argomento di 1, e della funzione `dec`, che decrementa il suo argomento di 1.
 
-[source, javascript]
+[source,javascript]
 ----
 function piu(a, b) {  // <1>
     return a === 0 ? b : inc(piu(dec(a), b)); 
@@ -113,7 +113,7 @@ ifndef::backend-pdf[]
 
 Il processo generato dalla prima funzione è recursivo.
 
-[source, javascript]
+[source,javascript]
 ----
 piu(4, 5)
 4 === 0 ? 5 : inc(piu(dec(4), 5))
@@ -136,7 +136,7 @@ inc( 8 )
 
 Il processo generato dalla seconda funzione è iterativo.
 
-[source, javascript]
+[source,javascript]
 ----
 piu(4, 5)
 4 === 0 ? 5 : piu(dec(4), inc(5))
@@ -162,7 +162,7 @@ La funzione seguente calcola una funzione matematica chiamata
 funzione di Ackermann.
 
 .Funzione di Ackermann
-[source, javascript]
+[source,javascript]
 ----
 function A(x,y) {
     return y === 0
@@ -177,7 +177,7 @@ function A(x,y) {
 
 Come vengono valutate le seguenti espressioni?
 
-[source, javascript]
+[source,javascript]
 ----
 A(1, 10);
 A(2, 4);
@@ -186,7 +186,7 @@ A(3, 3);
 
 Considera le seguenti funzioni, in cui `A` è la funzione definita sopra:  
 
-[source, javascript]
+[source,javascript]
 ----
 function f(n) {
     return A(0, n);

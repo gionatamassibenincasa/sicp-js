@@ -15,7 +15,7 @@ Un modo per farlo è tramite la definizione ricorsiva
 
 che si traduce facilmente nella funzione
 
-[source, javascript]
+[source,javascript]
 ----
 function potenza (b, n) {
     return n === 0 ? 1 : b * potenza (b, n - 1);
@@ -25,7 +25,7 @@ function potenza (b, n) {
 Questo è un processo ricorsivo lineare, che richiede latexmath:[\Theta (n)] passi e latexmath:[\Theta (n)] spazio.
 Proprio come per il fattoriale, possiamo facilmente riformularlo per generare un processo iterativo lineare equivalente:
 
-[source, javascript]
+[source,javascript]
 ----
 function potenza (b,n) {
     return potenza_iter (b, n, 1);
@@ -69,7 +69,7 @@ Possiamo sfruttare i ripetuti elevamenti al quadrato anche nel calcolo degli ele
  
 Si può esprimere questo metodo con la funzione:
 
-[source, javascript]
+[source,javascript]
 ----
 function potenza_veloce(b, n) {
     return n === 0
@@ -82,7 +82,7 @@ function potenza_veloce(b, n) {
 
 dove il predicato per verificare se un numero intero è pari è definito in termini dell'operatore `%`, che calcola il resto della divisione tra numeri interi:
 
-[source, javascript]
+[source,javascript]
 ----
 function pari(n) {
     return n % 2 === 0;

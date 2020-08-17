@@ -130,7 +130,7 @@ così come possiamo usare qualsiasi funzione.
 
 .Programma per il calcolo della radice quadrata e funzioni da cui dipende
 [[radq1]]
-[source, javascript]
+[source,javascript]
 ----
 function radice_quadrata_iter (stima, x) {
 	return suff_accurata (stima, x)
@@ -165,22 +165,22 @@ function quadrato (x) {
 
 Alcuni esempi di applicazione della nostra nuova funzione composta:
 
-[source, javascript]
+[source,javascript]
 ----
 radice_quadrata (9);
 ----
 
-[source, javascript]
+[source,javascript]
 ----
 radice_quadrata (100 + 37);
 ----
 
-[source, javascript]
+[source,javascript]
 ----
 radice_quadrata (radice_quadrata (2) + radice_quadrata (3));
 ----
 
-[source, javascript]
+[source,javascript]
 ----
 quadrato (radice_quadrata (1000));
 ----
@@ -280,7 +280,7 @@ ifndef::backend-pdf[]
 .Click per vedere le soluzioni dell'esercizio
 [%collapsible]
 ==== 
-[source, javascript]
+[source,javascript]
 ----
 // Soluzione esercizio 1.7
 
@@ -349,7 +349,7 @@ ifndef::backend-pdf[]
 .Click per vedere le soluzioni dell'esercizio
 [%collapsible]
 ====
-[source, javascript]
+[source,javascript]
 ----
 // Soluzione dell'esercizio 1.8
 

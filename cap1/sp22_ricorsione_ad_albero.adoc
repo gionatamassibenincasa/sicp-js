@@ -21,7 +21,7 @@ Un numero di Fibonacci, in generale, può essere definito dalla regola:
 
 Possiamo tradurre immediatamente questa definizione in una funzione ricorsiva per il calcolo dei numeri di Fibonacci:
 
-[source, javascript]
+[source,javascript]
 ----
 function fib(n) {
     return n === 0
@@ -100,7 +100,7 @@ Possiamo, pertanto, ricondurre in modo ricorsivo il problema di cambiare un dete
 
 Possiamo facilmente tradurre questa descrizione in una funzione ricorsiva:
 
-[source, javascript]
+[source,javascript]
 ----
 function conta_cambi(importo) {
     return cc(importo, 5);
@@ -128,7 +128,7 @@ function primo_valore_nominale (num_tagli) {
 
 La funzione `primo_valore_nominale` prende come input il numero di tipi di monete disponibili e restituisce il valore del primo tipo. Qui stiamo pensando alle monete come disposte in ordine dal più grande al più piccolo, ma qualsiasi ordine funziona. Ora possiamo rispondere alla nostra domanda originale sul cambio di un dollaro:
 
-[source, javascript]
+[source,javascript]
 ----
 conta_cambi(100);
 ----
