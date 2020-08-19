@@ -36,7 +36,7 @@
 :xrefstyle: short
 //
 :lang: it
-ifdef::backend-html[:source-highlighter: highlightjs]
+:source-highlighter: highlightjs
 ifdef::backend-pdf[:source-highlighter: rouge]
 ifdef::backend-pdf[:toc:]
 ifdef::lang[include::attributes-{lang}.adoc[]]

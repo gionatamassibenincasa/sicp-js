@@ -120,63 +120,84 @@ function radice_quadrata(x) {
 ----
 
 [[abstractions-and-first-class-functions]]
-===== Abstractions and first-class functions
+===== Astrazioni e funzioni di prima classe
 
-We’ve seen two ways to express the square-root computation as an instance of a more general method, once as a fixed-point search and once using Newton’s method. Since Newton’s method was itself expressed as a fixed-point process, we actually saw two ways to compute square roots as fixed points. Each method begins with a function and finds a fixed point of some transformation of the function. We can express this general idea itself as a function:
+//We’ve seen two ways to express the square-root computation as an instance of a more general method, once as a fixed-point search and once using Newton’s method. Since Newton’s method was itself expressed as a fixed-point process, we actually saw two ways to compute square roots as fixed points. Each method begins with a function and finds a fixed point of some transformation of the function. We can express this general idea itself as a function:
+Abbiamo visto due modi per esprimere il calcolo della radice quadrata come istanza di un metodo più generale, una volta come ricerca di un punto fisso e una volta utilizzando il metodo di Newton. Poiché il metodo di Newton era esso stesso espresso come un processo di punto fisso, abbiamo effettivamente visto due modi per calcolare le radici quadrate come punti fissi. Ogni metodo inizia con una funzione e trova un punto fisso di un qualche trasformazione della funzione. Possiamo esprimere questa idea generale stessa come una funzione:
 
-....
-function fixed_point_of_transform(g, transform, guess) {
-    return fixed_point(transform(g), guess);
+[source,javascript]
+----
+function punto_fisso_di_trasformata(g, trasformata, stima) {
+    return punto_fisso(transformata(g), stima);
 }
-....
+----
 
-This very general function takes as its arguments a function `g` that computes some function, a function that transforms `g`, and an initial guess. The returned result is a fixed point of the transformed function.
+//This very general function takes as its arguments a function `g` that computes some function, a function that transforms `g`, and an initial guess. The returned result is a fixed point of the transformed function.
+Questa funzione molto generale prende come argomenti una funzione `g` che calcola qualche funzione, una funzione che trasforma `g` e una stima iniziale. Il risultato restituito è un punto fisso della funzione trasformata.
 
-Using this abstraction, we can recast the first square-root computation from this section (where we look for a fixed point of the average-damped version of latexmath:[$y \mapsto x/y$]) as an instance of this general method:
+//Using this abstraction, we can recast the first square-root computation from this section (where we look for a fixed point of the average-damped version of latexmath:[$y \mapsto x/y$]) as an instance of this general method:
+Usando questa astrazione, possiamo riscrivere il primo modo di calcolare la radice quadrata di questo paragrafo (dove cerchiamo un punto fisso della versione smorzata di latexmath:[y \mapsto x / y]) come istanza di questo metodo generale:
 
-....
-function sqrt(x) {
-    return fixed_point_of_transform(
+[source,javascript]
+----
+function radice_quadrata(x) {
+    return punto_fisso_di_trasformata(
                y => x / y,
-               average_damp,
+               smorzamento,
                1.0);
 }
-....
+----
 
-Similarly, we can express the second square-root computation from this section (an instance of Newton’s method that finds a fixed point of the Newton transform of latexmath:[$y\mapsto y^2-x$]) as
+//Similarly, we can express the second square-root computation from this section (an instance of Newton’s method that finds a fixed point of the Newton transform of latexmath:[$y\mapsto y^2-x$]) as
+Allo stesso modo, possiamo esprimere il secondo metodo per il calcolo della radice quadrata di questo paragrafo (un'istanza del metodo di Newton che trova un punto fisso della trasformata di Newton di latexmath:[y \mapsto y^2-x]) come
 
-....
-function sqrt(x) {
-    return fixed_point_of_transform(
+[source,javascript]
+----
+function radice_quadrata(x) {
+    return punto_fisso_di_trasformata(
                y => square(y) - x,
-               newton_transform,
+               trasformata_newton,
                1.0);
 }
-....
+----
 
-We began section [sec:higher-order-procedures] with the observation that compound functions are a crucial abstraction mechanism, because they permit us to express general methods of computing as explicit elements in our programming language. Now we’ve seen how higher-order functions permit us to manipulate these general methods to create further abstractions.
+//We began section [sec:higher-order-procedures] with the observation that compound functions are a crucial abstraction mechanism, because they permit us to express general methods of computing as explicit elements in our programming language. Now we’ve seen how higher-order functions permit us to manipulate these general methods to create further abstractions.
+Abbiamo iniziato il <<sec:higher-order-procedures>> osservando che le funzioni composte sono un meccanismo di astrazione cruciale, perché ci permettono di esprimere metodi generali di calcolo come elementi espliciti nel nostro linguaggio di programmazione. Ora abbiamo visto come le funzioni di ordine superiore ci permettono di manipolare questi metodi generali per creare ulteriori astrazioni.
 
-As programmers, we should be alert to opportunities to identify the underlying abstractions in our programs and to build upon them and generalize them to create more powerful abstractions. This is not to say that one should always write programs in the most abstract way possible; expert programmers know how to choose the level of abstraction appropriate to their task. But it is important to be able to think in terms of these abstractions, so that we can be ready to apply them in new contexts. The significance of higher-order functions is that they enable us to represent these abstractions explicitly as elements in our programming language, so that they can be handled just like other computational elements.
+//As programmers, we should be alert to opportunities to identify the underlying abstractions in our programs and to build upon them and generalize them to create more powerful abstractions. This is not to say that one should always write programs in the most abstract way possible; expert programmers know how to choose the level of abstraction appropriate to their task. But it is important to be able to think in terms of these abstractions, so that we can be ready to apply them in new contexts. The significance of higher-order functions is that they enable us to represent these abstractions explicitly as elements in our programming language, so that they can be handled just like other computational elements.
+Come programmatori, dovremmo essere attenti alle opportunità di identificare le astrazioni sottostanti nei nostri programmi e di costruire su di esse e generalizzarle per creare astrazioni più potenti. Questo non vuol dire che si debba sempre scrivere programmi nel modo più astratto possibile; i programmatori esperti sanno scegliere il livello di astrazione appropriato al loro compito. Ma è importante essere in grado di pensare in termini di queste astrazioni, in modo da essere pronti ad applicarle in nuovi contesti. Il significato delle funzioni di ordine superiore è che ci consentono di rappresentare queste astrazioni esplicitamente come elementi nel nostro linguaggio di programmazione, in modo che possano essere gestite proprio come gli altri elementi computazionali.
 
-In general, programming languages impose restrictions on the ways in which computational elements can be manipulated. Elements with the fewest restrictions are said to have status. Some of the ``rights and privileges'' of first-class elements are:footnote:[The notion of first-class status of programming-language elements is due to the British computer scientist Christopher Strachey (1916–1975).]
+//In general, programming languages impose restrictions on the ways in which computational elements can be manipulated. Elements with the fewest restrictions are said to have status. Some of the ``rights and privileges'' of first-class elements are:footnote:[The notion of first-class status of programming-language elements is due to the British computer scientist Christopher Strachey (1916–1975).]
+In generale, i linguaggi di programmazione impongono restrizioni sui modi in cui gli elementi computazionali possono essere manipolati. Si dice che gli elementi con il minor numero di restrizioni abbiano uno __status__. Alcuni dei __diritti e privilegi__ degli elementi di prima classe sono:footnote:[La nozione di __status__ di prima classe degli elementi del linguaggio di programmazione è dovuta allo scienziato informatico britannico Christopher Strachey (1916-1975).]
 
+////
 * They may be referred to using names.
 * They may be passed as arguments to functions.
 * They may be returned as the results of functions.
 * They may be included in data structures.footnote:[We’ll see examples of this after we introduce data structures in chapter 2.]
+////
 
-JavaScript, unlike other common programming languages, awards functions full first-class status. This poses challenges for efficient implementation, but the resulting gain in expressive power is enormous.footnote:[The major implementation cost of first-class functions is that allowing functions to be returned as values requires reserving storage for a function’s free names even while the function is not executing. In the JavaScript implementation we will study in section [sec:mc-eval], these names are stored in the function’s environment.]
+* Possono essere indicati utilizzando nomi.
+* Possono essere passati come argomenti alle funzioni.
+* Possono essere restituiti come risultati di funzioni.
+* Possono essere inclusi nelle strutture dati.footnote:[Vedremo esempi di questo dopo aver introdotto le strutture dati nel capitolo 2.]
+
+//JavaScript, unlike other common programming languages, awards functions full first-class status. This poses challenges for efficient implementation, but the resulting gain in expressive power is enormous.footnote:[The major implementation cost of first-class functions is that allowing functions to be returned as values requires reserving storage for a function’s free names even while the function is not executing. In the JavaScript implementation we will study in section [sec:mc-eval], these names are stored in the function’s environment.]
+JavaScript, a differenza di altri linguaggi di programmazione comuni, assegna alle funzioni uno status di prima classe completo. Ciò pone sfide per un'implementazione efficiente, ma il guadagno risultante in potenza espressiva è enorme.footnote:[Il costo di implementazione principale delle funzioni di prima classe è che consentire alle funzioni di essere restituite come valori richiede di riservare la memoria per i nomi liberi di una funzione anche mentre la funzione non è in esecuzione. Nell'implementazione JavaScript che studieremo nella sezione TODOD sec:mc-eval, questi nomi sono memorizzati nell'ambiente della funzione.]
 
 [[ex:unlabeled26]]
-.Exercise
+.Esercizio 1.40.
 ====
-Declare a function `cubic` that can be used together with the `newtons_method` function in expressions of the form
+//Declare a function `cubic` that can be used together with the `newtons_method` function in expressions of the form
+Dichiara una funzione `cubica` che può essere usata insieme alla funzione `metodo_newton` nelle espressioni della forma
 
-....
-newtons_method(cubic(a, b, c), 1);
-....
+[source,javascript]
+----
+metodo_newton(cubica(a, b, c), 1);
+----
 
-to approximate zeros of the cubic latexmath:[$x^3 +ax^2 +bx +c$].
+//to approximate zeros of the cubic latexmath:[$x^3 +ax^2 +bx +c$].
+per approssimare gli zeri di latexmath:[x^3 + ax^2 + bx + c].
 ====
 
 ////
@@ -191,13 +212,15 @@ function cubic(a, b, c) {
 ////
 
 [[ex:unlabeled27]]
-.Exercise
+.Esercizio 1.41.
 ====
-Declare a function `double` that takes a function of one argument as argument and returns a function that applies the original function twice. For example, if `inc` is a function that adds 1 to its argument, then `double(inc)` should be a function that adds 2. What value is returned by
+//Declare a function `double` that takes a function of one argument as argument and returns a function that applies the original function twice. For example, if `inc` is a function that adds 1 to its argument, then `double(inc)` should be a function that adds 2. What value is returned by
+Dichiara una funzione `applica_due_volte` che accetta una funzione di un argomento come argomento e restituisce una funzione che applica due volte la funzione originale. Ad esempio, se `inc` è una funzione che aggiunge 1 al suo argomento, allora `applica_due_volte(inc)` dovrebbe essere una funzione che aggiunge 2. Quale valore viene restituito da
 
-....
-double(double(double))(inc)(5);
-....
+[source,javascript]
+----
+applica_due_volte(applica_due_volte(applica_due_volte))(inc)(5);
+----
 ====
 
 ////
@@ -212,13 +235,17 @@ function double(f) {
 ////
 
 [[ex:compose]]
-.Exercise
+.Esercizio 1.42. Componi
 ====
-Let latexmath:[$f$] and latexmath:[$g$] be two one-argument functions. The _composition_ latexmath:[$f$] after latexmath:[$g$] is defined to be the function latexmath:[$x\mapsto f(g(x))$]. Declare a function `compose` that implements composition. For example, if `inc` is a function that adds 1 to its argument,
+//Let latexmath:[$f$] and latexmath:[$g$] be two one-argument functions. The _composition_ latexmath:[$f$] after latexmath:[$g$] is defined to be the function latexmath:[$x\mapsto f(g(x))$]. Declare a function `compose` that implements composition. For example, if `inc` is a function that adds 1 to its argument,
+Siano latexmath:[f] e latexmath:[g] due funzioni di un argomento. La _composizione_ latexmath:[f] dopo latexmath:[g] è definita come la funzione latexmath:[x \mapsto f (g (x))]. Dichiarare una funzione `componi` che implementa la composizione. Ad esempio, se `inc` è una funzione che aggiunge 1 al suo argomento,
 
-....
-compose(square, inc)(6);
-....
+[source,javascript]
+----
+componi(quadrato, inc)(6);
+----
+
+restituisce 49.
 ====
 
 ////
@@ -233,15 +260,18 @@ function compose(f, g) {
 ////
 
 [[ex:repeated]]
-.Exercise
+.Esercizio 1.43.
 ====
-If latexmath:[$f$] is a numerical function and latexmath:[$n$] is a positive integer, then we can form the latexmath:[$n$]th repeated application of latexmath:[$f$], which is defined to be the function whose value at latexmath:[$x$] is latexmath:[$f(f(\ldots(f(x))\ldots))$]. For example, if latexmath:[$f$] is the function latexmath:[$x \mapsto x+1$], then the latexmath:[$n$]th repeated application of latexmath:[$f$] is the function latexmath:[$x \mapsto x+n$]. If latexmath:[$f$] is the operation of squaring a number, then the latexmath:[$n$]th repeated application of latexmath:[$f$] is the function that raises its argument to the latexmath:[$2^n$]th power. Write a function that takes as inputs a function that computes latexmath:[$f$] and a positive integer latexmath:[$n$] and returns the function that computes the latexmath:[$n$]th repeated application of latexmath:[$f$]. Your function should be able to be used as follows:
+//If latexmath:[$f$] is a numerical function and latexmath:[$n$] is a positive integer, then we can form the latexmath:[$n$]th repeated application of latexmath:[$f$], which is defined to be the function whose value at latexmath:[$x$] is latexmath:[$f(f(\ldots(f(x))\ldots))$]. For example, if latexmath:[$f$] is the function latexmath:[$x \mapsto x+1$], then the latexmath:[$n$]th repeated application of latexmath:[$f$] is the function latexmath:[$x \mapsto x+n$]. If latexmath:[$f$] is the operation of squaring a number, then the latexmath:[$n$]th repeated application of latexmath:[$f$] is the function that raises its argument to the latexmath:[$2^n$]th power. Write a function that takes as inputs a function that computes latexmath:[$f$] and a positive integer latexmath:[$n$] and returns the function that computes the latexmath:[$n$]th repeated application of latexmath:[$f$]. Your function should be able to be used as follows:
+Se latexmath:[f] è una funzione numerica e latexmath:[n] è un numero intero positivo, allora possiamo formare la latexmath:[n]-esima ripetizione dell'applicazione di latexmath:[f], che è definita come la funzione il cui valore in latexmath:[x] è latexmath:[f (f (\ldots (f (x)) \ldots))]. Ad esempio, se latexmath:[f] è la funzione latexmath:[x \mapsto x + 1], allora la latexmath:[n] esima ripetizione dell'applicazione di latexmath:[f] è la funzione latexmath:[x \mapsto x + n]. Se latexmath:[f] è l'operazione di elevamento al quadratato di un numero, allora la latexmath:[n]-esima ripetizione dell'applicazione di latexmath:[f] è la funzione che eleva il suo argomento alla latexmath:[2^n]-esima potenza. Scrivi una funzione che prenda come input una funzione che calcola latexmath:[f] e un intero positivo latexmath:[n] e che restituisca la funzione che calcola l'latexmath:[n]-esima ripetizione dell'applicazione di latexmath:[f]. La tua funzione dovrebbe essere in grado di essere utilizzata come segue:
 
-....
-repeated(square, 2)(5);
-....
+[source,javascript]
+----
+ripeti_applicazione(quadrato, 2)(5);
+----
 
-Hint: You may find it convenient to use `compose` from exercise <<ex:compose>>.
+//Hint: You may find it convenient to use `compose` from exercise <<ex:compose>>.
+Suggerimento: potresti trovare conveniente usare `componi` dall'esercizio <<ex:compose>>.
 ====
 
 ////
@@ -258,9 +288,10 @@ function repeated(f, n) {
 ////
 
 [[ex:smooth]]
-.Exercise
+.Esercizio 1.44.
 ====
-The idea of _smoothing_ a function is an important concept in signal processing. If latexmath:[$f$] is a function and latexmath:[$dx$] is some small number, then the smoothed version of latexmath:[$f$] is the function whose value at a point latexmath:[$x$] is the average of latexmath:[$f(x-dx)$], latexmath:[$f(x)$], and latexmath:[$f(x+dx)$]. Write a function `smooth` that takes as input a function that computes latexmath:[$f$] and returns a function that computes the smoothed latexmath:[$f$]. It is sometimes valuable to repeatedly smooth a function (that is, smooth the smoothed function, and so on) to obtained the _latexmath:[$n$]-fold smoothed function_. Show how to generate the latexmath:[$n$]-fold smoothed function of any given function using `smooth` and `repeated` from exercise <<ex:repeated>>.
+//The idea of _smoothing_ a function is an important concept in signal processing. If latexmath:[$f$] is a function and latexmath:[$dx$] is some small number, then the smoothed version of latexmath:[$f$] is the function whose value at a point latexmath:[$x$] is the average of latexmath:[$f(x-dx)$], latexmath:[$f(x)$], and latexmath:[$f(x+dx)$]. Write a function `smooth` that takes as input a function that computes latexmath:[$f$] and returns a function that computes the smoothed latexmath:[$f$]. It is sometimes valuable to repeatedly smooth a function (that is, smooth the smoothed function, and so on) to obtained the _latexmath:[$n$]-fold smoothed function_. Show how to generate the latexmath:[$n$]-fold smoothed function of any given function using `smooth` and `repeated` from exercise <<ex:repeated>>.
+L'idea di _lisciamento_ (o _perequazione_) di una funzione è un concetto importante nell'elaborazione del segnale. Se latexmath:[f] è una funzione e latexmath:[dx] è un numero piccolo, la versione lisciata di latexmath:[f] è la funzione il cui valore in un punto latexmath:[x] è il valor medio di latexmath:[f (x-dx)], latexmath:[f (x)] e latexmath:[f (x + dx)]. Scrivete una funzione `liscia` che prenda come input una funzione che calcola latexmath:[f] e restituisca una funzione che calcoli il lisciamento di latexmath:[f]. A volte è utile lisciare ripetutamente una funzione (cioè lisciare la funzione lisciata, e così via) per ottenere la funzione lisciata latexmath:[n] volte. Mostra come generare la funzione per lisciare latexmath:[n] volte una data funzione usando `liscia` e `ripeti_applicazione` dall'esercizio <<ex:repeated>>.
 ====
 
 ////
@@ -282,9 +313,10 @@ function n_fold_smooth(f, n) {
 ////
 
 [[ex:nth-roots]]
-.Exercise
+.Esercizio 1.45.
 ====
-We saw in section [sec:proc-general-methods] that attempting to compute square roots by naively finding a fixed point of latexmath:[$y\mapsto x/y$] does not converge, and that this can be fixed by average damping. The same method works for finding cube roots as fixed points of the average-damped latexmath:[$y\mapsto x/y^2$]. Unfortunately, the process does not work for fourth roots—a single average damp is not enough to make a fixed-point search for latexmath:[$y\mapsto x/y^3$] converge. On the other hand, if we average damp twice (i.e., use the average damp of the average damp of latexmath:[$y\mapsto x/y^3$]) the fixed-point search does converge. Do some experiments to determine how many average damps are required to compute latexmath:[$n$]th roots as a fixed-point search based upon repeated average damping of latexmath:[$y\mapsto x/y^{n-1}$]. Use this to implement a simple function for computing latexmath:[$n$]th roots using `fixed_point`, `average_damp`, and the `repeated` function of exercise [ex:repeated]. Assume that any arithmetic operations you need are available as primitives.
+//We saw in section [sec:proc-general-methods] that attempting to compute square roots by naively finding a fixed point of latexmath:[$y\mapsto x/y$] does not converge, and that this can be fixed by average damping. The same method works for finding cube roots as fixed points of the average-damped latexmath:[$y\mapsto x/y^2$]. Unfortunately, the process does not work for fourth roots—a single average damp is not enough to make a fixed-point search for latexmath:[$y\mapsto x/y^3$] converge. On the other hand, if we average damp twice (i.e., use the average damp of the average damp of latexmath:[$y\mapsto x/y^3$]) the fixed-point search does converge. Do some experiments to determine how many average damps are required to compute latexmath:[$n$]th roots as a fixed-point search based upon repeated average damping of latexmath:[$y\mapsto x/y^{n-1}$]. Use this to implement a simple function for computing latexmath:[$n$]th roots using `fixed_point`, `average_damp`, and the `repeated` function of exercise [ex:repeated]. Assume that any arithmetic operations you need are available as primitives.
+Abbiamo visto nel <<sec:proc-general-methods>> che il tentativo di calcolare le radici quadrate trovando ingenuamente un punto fisso di latexmath:[y \mapsto x / y] non converge e che questo può essere risolto con lo smorzamento. Lo stesso metodo funziona per trovare le radici dei cubi come punti fissi dello smorzamento di  latexmath:[y \mapsto x / y ^ 2]. Sfortunatamente, il processo non funziona per le radici quarte: un singolo smorzamento non è sufficiente per fare convergere una ricerca di un punto fisso di latexmath:[y \mapsto x / y ^ 3]. D'altra parte, se facciamo la media dello smorzamento due volte (cioè, usiamo lo smorzamento dello smorzamento di latexmath:[y \mapsto x / y ^ 3]) la ricerca del punto fisso converge. Fai alcuni esperimenti per determinare il numero di smorzamenti necessari per calcolare le latexmath:[n]-esime radici come ricerca di un punto fisso basato sullo smorzamento ripetuto di latexmath:[y \mapsto x / y^{n-1}]. Usalo per implementare una semplice funzione per calcolare le radici latexmath:[n]-esime radici usando `punto_fisso`, `smorzamento` e la funzione `ripeti_applicazione` dell'esercizio <<ex:repeated>>. Supponi che tutte le operazioni aritmetiche di cui hai bisogno siano disponibili come primitive.
 ====
 
 ////
@@ -293,7 +325,7 @@ We saw in section [sec:proc-general-methods] that attempting to compute square 
 
 ....
 function nth_root(n, x) {
-    return fixed_point(repeated(average_damp, 
+    return punto_fisso(repeated(average_damp, 
                                 math_floor(math_log2(n)))
                        (y => x / fast_expt(y, n - 1)),
                        1.0);
@@ -302,9 +334,10 @@ function nth_root(n, x) {
 ////
 
 [[ex:unlabeled28]]
-.Exercise
+.Esercizio 1.46.
 ====
-Several of the numerical methods described in this chapter are instances of an extremely general computational strategy known as _iterative improvement_. Iterative improvement says that, to compute something, we start with an initial guess for the answer, test if the guess is good enough, and otherwise improve the guess and continue the process using the improved guess as the new guess. Write a function `iterative_improve` that takes two functions as arguments: a method for telling whether a guess is good enough and a method for improving a guess. The function `iterative_improve` should return as its value a function that takes a guess as argument and keeps improving the guess until it is good enough. Rewrite the `sqrt` function of section [sec:sqrt] and the `fixed_point` function of section <<sec:proc-general-methods>> in terms of `iterative_improve`.
+//Several of the numerical methods described in this chapter are instances of an extremely general computational strategy known as _iterative improvement_. Iterative improvement says that, to compute something, we start with an initial guess for the answer, test if the guess is good enough, and otherwise improve the guess and continue the process using the improved guess as the new guess. Write a function `iterative_improve` that takes two functions as arguments: a method for telling whether a guess is good enough and a method for improving a guess. The function `iterative_improve` should return as its value a function that takes a guess as argument and keeps improving the guess until it is good enough. Rewrite the `sqrt` function of section [sec:sqrt] and the `fixed_point` function of section <<sec:proc-general-methods>> in terms of `iterative_improve`.
+Molti dei metodi numerici descritti in questo capitolo sono esempi di una strategia computazionale estremamente generale nota come __miglioramento iterativo__. Il miglioramento iterativo dice che, per calcolare qualcosa, iniziamo con una stima iniziale della soluzione, testiamo se la stima è abbastanza buona, e se non lo è miglioriamo la stima e continuiamo il processo utilizzando la stima migliorata come nuova stima. Scrivi una funzione `migliora_iterativo` che accetta due funzioni come argomenti: un metodo per dire se una stima è abbastanza buona e un metodo per migliorare la stima. La funzione `migliora_iterativo` dovrebbe restituire come valore una funzione che accetta una stima come argomento e continua a migliorare la stima finché non è abbastanza buona. Riscrivi la funzione `radice_quadrata` del <<sec:sqrt>> e la funzione `punto_fisso` del <<sec:proc-general-methods>> in termini di `migliora_iterativo`.
 ====
 
 ////

@@ -10,434 +10,7 @@
 <meta name="author" content="Gionata Massi">
 <title>Struttura e interpretazione dei programmi del calcolatore - adattato al JavaScript</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
-<style>
-/* Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
-/* Uncomment @import statement to use as custom stylesheet */
-/*@import "https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700";*/
-article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section{display:block}
-audio,video{display:inline-block}
-audio:not([controls]){display:none;height:0}
-html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}
-a{background:none}
-a:focus{outline:thin dotted}
-a:active,a:hover{outline:0}
-h1{font-size:2em;margin:.67em 0}
-abbr[title]{border-bottom:1px dotted}
-b,strong{font-weight:bold}
-dfn{font-style:italic}
-hr{-moz-box-sizing:content-box;box-sizing:content-box;height:0}
-mark{background:#ff0;color:#000}
-code,kbd,pre,samp{font-family:monospace;font-size:1em}
-pre{white-space:pre-wrap}
-q{quotes:"\201C" "\201D" "\2018" "\2019"}
-small{font-size:80%}
-sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}
-sup{top:-.5em}
-sub{bottom:-.25em}
-img{border:0}
-svg:not(:root){overflow:hidden}
-figure{margin:0}
-fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}
-legend{border:0;padding:0}
-button,input,select,textarea{font-family:inherit;font-size:100%;margin:0}
-button,input{line-height:normal}
-button,select{text-transform:none}
-button,html input[type="button"],input[type="reset"],input[type="submit"]{-webkit-appearance:button;cursor:pointer}
-button[disabled],html input[disabled]{cursor:default}
-input[type="checkbox"],input[type="radio"]{box-sizing:border-box;padding:0}
-button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0}
-textarea{overflow:auto;vertical-align:top}
-table{border-collapse:collapse;border-spacing:0}
-*,*::before,*::after{-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box}
-html,body{font-size:100%}
-body{background:#fff;color:rgba(0,0,0,.8);padding:0;margin:0;font-family:"Noto Serif","DejaVu Serif",serif;font-weight:400;font-style:normal;line-height:1;position:relative;cursor:auto;tab-size:4;-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased}
-a:hover{cursor:pointer}
-img,object,embed{max-width:100%;height:auto}
-object,embed{height:100%}
-img{-ms-interpolation-mode:bicubic}
-.left{float:left!important}
-.right{float:right!important}
-.text-left{text-align:left!important}
-.text-right{text-align:right!important}
-.text-center{text-align:center!important}
-.text-justify{text-align:justify!important}
-.hide{display:none}
-img,object,svg{display:inline-block;vertical-align:middle}
-textarea{height:auto;min-height:50px}
-select{width:100%}
-.center{margin-left:auto;margin-right:auto}
-.stretch{width:100%}
-.subheader,.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{line-height:1.45;color:#7a2518;font-weight:400;margin-top:0;margin-bottom:.25em}
-div,dl,dt,dd,ul,ol,li,h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6,pre,form,p,blockquote,th,td{margin:0;padding:0;direction:ltr}
-a{color:#2156a5;text-decoration:underline;line-height:inherit}
-a:hover,a:focus{color:#1d4b8f}
-a img{border:0}
-p{font-family:inherit;font-weight:400;font-size:1em;line-height:1.6;margin-bottom:1.25em;text-rendering:optimizeLegibility}
-p aside{font-size:.875em;line-height:1.35;font-style:italic}
-h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{font-family:"Open Sans","DejaVu Sans",sans-serif;font-weight:300;font-style:normal;color:#ba3925;text-rendering:optimizeLegibility;margin-top:1em;margin-bottom:.5em;line-height:1.0125em}
-h1 small,h2 small,h3 small,#toctitle small,.sidebarblock>.content>.title small,h4 small,h5 small,h6 small{font-size:60%;color:#e99b8f;line-height:0}
-h1{font-size:2.125em}
-h2{font-size:1.6875em}
-h3,#toctitle,.sidebarblock>.content>.title{font-size:1.375em}
-h4,h5{font-size:1.125em}
-h6{font-size:1em}
-hr{border:solid #dddddf;border-width:1px 0 0;clear:both;margin:1.25em 0 1.1875em;height:0}
-em,i{font-style:italic;line-height:inherit}
-strong,b{font-weight:bold;line-height:inherit}
-small{font-size:60%;line-height:inherit}
-code{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;font-weight:400;color:rgba(0,0,0,.9)}
-ul,ol,dl{font-size:1em;line-height:1.6;margin-bottom:1.25em;list-style-position:outside;font-family:inherit}
-ul,ol{margin-left:1.5em}
-ul li ul,ul li ol{margin-left:1.25em;margin-bottom:0;font-size:1em}
-ul.square li ul,ul.circle li ul,ul.disc li ul{list-style:inherit}
-ul.square{list-style-type:square}
-ul.circle{list-style-type:circle}
-ul.disc{list-style-type:disc}
-ol li ul,ol li ol{margin-left:1.25em;margin-bottom:0}
-dl dt{margin-bottom:.3125em;font-weight:bold}
-dl dd{margin-bottom:1.25em}
-abbr,acronym{text-transform:uppercase;font-size:90%;color:rgba(0,0,0,.8);border-bottom:1px dotted #ddd;cursor:help}
-abbr{text-transform:none}
-blockquote{margin:0 0 1.25em;padding:.5625em 1.25em 0 1.1875em;border-left:1px solid #ddd}
-blockquote cite{display:block;font-size:.9375em;color:rgba(0,0,0,.6)}
-blockquote cite::before{content:"\2014 \0020"}
-blockquote cite a,blockquote cite a:visited{color:rgba(0,0,0,.6)}
-blockquote,blockquote p{line-height:1.6;color:rgba(0,0,0,.85)}
-@media screen and (min-width:768px){h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2}
-h1{font-size:2.75em}
-h2{font-size:2.3125em}
-h3,#toctitle,.sidebarblock>.content>.title{font-size:1.6875em}
-h4{font-size:1.4375em}}
-table{background:#fff;margin-bottom:1.25em;border:solid 1px #dedede}
-table thead,table tfoot{background:#f7f8f7}
-table thead tr th,table thead tr td,table tfoot tr th,table tfoot tr td{padding:.5em .625em .625em;font-size:inherit;color:rgba(0,0,0,.8);text-align:left}
-table tr th,table tr td{padding:.5625em .625em;font-size:inherit;color:rgba(0,0,0,.8)}
-table tr.even,table tr.alt{background:#f8f8f7}
-table thead tr th,table tfoot tr th,table tbody tr td,table tr td,table tfoot tr td{display:table-cell;line-height:1.6}
-h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2;word-spacing:-.05em}
-h1 strong,h2 strong,h3 strong,#toctitle strong,.sidebarblock>.content>.title strong,h4 strong,h5 strong,h6 strong{font-weight:400}
-.clearfix::before,.clearfix::after,.float-group::before,.float-group::after{content:" ";display:table}
-.clearfix::after,.float-group::after{clear:both}
-:not(pre):not([class^=L])>code{font-size:.9375em;font-style:normal!important;letter-spacing:0;padding:.1em .5ex;word-spacing:-.15em;background:#f7f7f8;-webkit-border-radius:4px;border-radius:4px;line-height:1.45;text-rendering:optimizeSpeed;word-wrap:break-word}
-:not(pre)>code.nobreak{word-wrap:normal}
-:not(pre)>code.nowrap{white-space:nowrap}
-pre{color:rgba(0,0,0,.9);font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;line-height:1.45;text-rendering:optimizeSpeed}
-pre code,pre pre{color:inherit;font-size:inherit;line-height:inherit}
-pre>code{display:block}
-pre.nowrap,pre.nowrap pre{white-space:pre;word-wrap:normal}
-em em{font-style:normal}
-strong strong{font-weight:400}
-.keyseq{color:rgba(51,51,51,.8)}
-kbd{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;display:inline-block;color:rgba(0,0,0,.8);font-size:.65em;line-height:1.45;background:#f7f7f7;border:1px solid #ccc;-webkit-border-radius:3px;border-radius:3px;-webkit-box-shadow:0 1px 0 rgba(0,0,0,.2),0 0 0 .1em white inset;box-shadow:0 1px 0 rgba(0,0,0,.2),0 0 0 .1em #fff inset;margin:0 .15em;padding:.2em .5em;vertical-align:middle;position:relative;top:-.1em;white-space:nowrap}
-.keyseq kbd:first-child{margin-left:0}
-.keyseq kbd:last-child{margin-right:0}
-.menuseq,.menuref{color:#000}
-.menuseq b:not(.caret),.menuref{font-weight:inherit}
-.menuseq{word-spacing:-.02em}
-.menuseq b.caret{font-size:1.25em;line-height:.8}
-.menuseq i.caret{font-weight:bold;text-align:center;width:.45em}
-b.button::before,b.button::after{position:relative;top:-1px;font-weight:400}
-b.button::before{content:"[";padding:0 3px 0 2px}
-b.button::after{content:"]";padding:0 2px 0 3px}
-p a>code:hover{color:rgba(0,0,0,.9)}
-#header,#content,#footnotes,#footer{width:100%;margin-left:auto;margin-right:auto;margin-top:0;margin-bottom:0;max-width:62.5em;*zoom:1;position:relative;padding-left:.9375em;padding-right:.9375em}
-#header::before,#header::after,#content::before,#content::after,#footnotes::before,#footnotes::after,#footer::before,#footer::after{content:" ";display:table}
-#header::after,#content::after,#footnotes::after,#footer::after{clear:both}
-#content{margin-top:1.25em}
-#content::before{content:none}
-#header>h1:first-child{color:rgba(0,0,0,.85);margin-top:2.25rem;margin-bottom:0}
-#header>h1:first-child+#toc{margin-top:8px;border-top:1px solid #dddddf}
-#header>h1:only-child,body.toc2 #header>h1:nth-last-child(2){border-bottom:1px solid #dddddf;padding-bottom:8px}
-#header .details{border-bottom:1px solid #dddddf;line-height:1.45;padding-top:.25em;padding-bottom:.25em;padding-left:.25em;color:rgba(0,0,0,.6);display:-ms-flexbox;display:-webkit-flex;display:flex;-ms-flex-flow:row wrap;-webkit-flex-flow:row wrap;flex-flow:row wrap}
-#header .details span:first-child{margin-left:-.125em}
-#header .details span.email a{color:rgba(0,0,0,.85)}
-#header .details br{display:none}
-#header .details br+span::before{content:"\00a0\2013\00a0"}
-#header .details br+span.author::before{content:"\00a0\22c5\00a0";color:rgba(0,0,0,.85)}
-#header .details br+span#revremark::before{content:"\00a0|\00a0"}
-#header #revnumber{text-transform:capitalize}
-#header #revnumber::after{content:"\00a0"}
-#content>h1:first-child:not([class]){color:rgba(0,0,0,.85);border-bottom:1px solid #dddddf;padding-bottom:8px;margin-top:0;padding-top:1rem;margin-bottom:1.25rem}
-#toc{border-bottom:1px solid #e7e7e9;padding-bottom:.5em}
-#toc>ul{margin-left:.125em}
-#toc ul.sectlevel0>li>a{font-style:italic}
-#toc ul.sectlevel0 ul.sectlevel1{margin:.5em 0}
-#toc ul{font-family:"Open Sans","DejaVu Sans",sans-serif;list-style-type:none}
-#toc li{line-height:1.3334;margin-top:.3334em}
-#toc a{text-decoration:none}
-#toc a:active{text-decoration:underline}
-#toctitle{color:#7a2518;font-size:1.2em}
-@media screen and (min-width:768px){#toctitle{font-size:1.375em}
-body.toc2{padding-left:15em;padding-right:0}
-#toc.toc2{margin-top:0!important;background:#f8f8f7;position:fixed;width:15em;left:0;top:0;border-right:1px solid #e7e7e9;border-top-width:0!important;border-bottom-width:0!important;z-index:1000;padding:1.25em 1em;height:100%;overflow:auto}
-#toc.toc2 #toctitle{margin-top:0;margin-bottom:.8rem;font-size:1.2em}
-#toc.toc2>ul{font-size:.9em;margin-bottom:0}
-#toc.toc2 ul ul{margin-left:0;padding-left:1em}
-#toc.toc2 ul.sectlevel0 ul.sectlevel1{padding-left:0;margin-top:.5em;margin-bottom:.5em}
-body.toc2.toc-right{padding-left:0;padding-right:15em}
-body.toc2.toc-right #toc.toc2{border-right-width:0;border-left:1px solid #e7e7e9;left:auto;right:0}}
-@media screen and (min-width:1280px){body.toc2{padding-left:20em;padding-right:0}
-#toc.toc2{width:20em}
-#toc.toc2 #toctitle{font-size:1.375em}
-#toc.toc2>ul{font-size:.95em}
-#toc.toc2 ul ul{padding-left:1.25em}
-body.toc2.toc-right{padding-left:0;padding-right:20em}}
-#content #toc{border-style:solid;border-width:1px;border-color:#e0e0dc;margin-bottom:1.25em;padding:1.25em;background:#f8f8f7;-webkit-border-radius:4px;border-radius:4px}
-#content #toc>:first-child{margin-top:0}
-#content #toc>:last-child{margin-bottom:0}
-#footer{max-width:100%;background:rgba(0,0,0,.8);padding:1.25em}
-#footer-text{color:rgba(255,255,255,.8);line-height:1.44}
-#content{margin-bottom:.625em}
-.sect1{padding-bottom:.625em}
-@media screen and (min-width:768px){#content{margin-bottom:1.25em}
-.sect1{padding-bottom:1.25em}}
-.sect1:last-child{padding-bottom:0}
-.sect1+.sect1{border-top:1px solid #e7e7e9}
-#content h1>a.anchor,h2>a.anchor,h3>a.anchor,#toctitle>a.anchor,.sidebarblock>.content>.title>a.anchor,h4>a.anchor,h5>a.anchor,h6>a.anchor{position:absolute;z-index:1001;width:1.5ex;margin-left:-1.5ex;display:block;text-decoration:none!important;visibility:hidden;text-align:center;font-weight:400}
-#content h1>a.anchor::before,h2>a.anchor::before,h3>a.anchor::before,#toctitle>a.anchor::before,.sidebarblock>.content>.title>a.anchor::before,h4>a.anchor::before,h5>a.anchor::before,h6>a.anchor::before{content:"\00A7";font-size:.85em;display:block;padding-top:.1em}
-#content h1:hover>a.anchor,#content h1>a.anchor:hover,h2:hover>a.anchor,h2>a.anchor:hover,h3:hover>a.anchor,#toctitle:hover>a.anchor,.sidebarblock>.content>.title:hover>a.anchor,h3>a.anchor:hover,#toctitle>a.anchor:hover,.sidebarblock>.content>.title>a.anchor:hover,h4:hover>a.anchor,h4>a.anchor:hover,h5:hover>a.anchor,h5>a.anchor:hover,h6:hover>a.anchor,h6>a.anchor:hover{visibility:visible}
-#content h1>a.link,h2>a.link,h3>a.link,#toctitle>a.link,.sidebarblock>.content>.title>a.link,h4>a.link,h5>a.link,h6>a.link{color:#ba3925;text-decoration:none}
-#content h1>a.link:hover,h2>a.link:hover,h3>a.link:hover,#toctitle>a.link:hover,.sidebarblock>.content>.title>a.link:hover,h4>a.link:hover,h5>a.link:hover,h6>a.link:hover{color:#a53221}
-details,.audioblock,.imageblock,.literalblock,.listingblock,.stemblock,.videoblock{margin-bottom:1.25em}
-details>summary:first-of-type{cursor:pointer;display:list-item;outline:none;margin-bottom:.75em}
-.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{text-rendering:optimizeLegibility;text-align:left;font-family:"Noto Serif","DejaVu Serif",serif;font-size:1rem;font-style:italic}
-table.tableblock.fit-content>caption.title{white-space:nowrap;width:0}
-.paragraph.lead>p,#preamble>.sectionbody>[class="paragraph"]:first-of-type p{font-size:1.21875em;line-height:1.6;color:rgba(0,0,0,.85)}
-table.tableblock #preamble>.sectionbody>[class="paragraph"]:first-of-type p{font-size:inherit}
-.admonitionblock>table{border-collapse:separate;border:0;background:none;width:100%}
-.admonitionblock>table td.icon{text-align:center;width:80px}
-.admonitionblock>table td.icon img{max-width:none}
-.admonitionblock>table td.icon .title{font-weight:bold;font-family:"Open Sans","DejaVu Sans",sans-serif;text-transform:uppercase}
-.admonitionblock>table td.content{padding-left:1.125em;padding-right:1.25em;border-left:1px solid #dddddf;color:rgba(0,0,0,.6)}
-.admonitionblock>table td.content>:last-child>:last-child{margin-bottom:0}
-.exampleblock>.content{border-style:solid;border-width:1px;border-color:#e6e6e6;margin-bottom:1.25em;padding:1.25em;background:#fff;-webkit-border-radius:4px;border-radius:4px}
-.exampleblock>.content>:first-child{margin-top:0}
-.exampleblock>.content>:last-child{margin-bottom:0}
-.sidebarblock{border-style:solid;border-width:1px;border-color:#dbdbd6;margin-bottom:1.25em;padding:1.25em;background:#f3f3f2;-webkit-border-radius:4px;border-radius:4px}
-.sidebarblock>:first-child{margin-top:0}
-.sidebarblock>:last-child{margin-bottom:0}
-.sidebarblock>.content>.title{color:#7a2518;margin-top:0;text-align:center}
-.exampleblock>.content>:last-child>:last-child,.exampleblock>.content .olist>ol>li:last-child>:last-child,.exampleblock>.content .ulist>ul>li:last-child>:last-child,.exampleblock>.content .qlist>ol>li:last-child>:last-child,.sidebarblock>.content>:last-child>:last-child,.sidebarblock>.content .olist>ol>li:last-child>:last-child,.sidebarblock>.content .ulist>ul>li:last-child>:last-child,.sidebarblock>.content .qlist>ol>li:last-child>:last-child{margin-bottom:0}
-.literalblock pre,.listingblock>.content>pre{-webkit-border-radius:4px;border-radius:4px;word-wrap:break-word;overflow-x:auto;padding:1em;font-size:.8125em}
-@media screen and (min-width:768px){.literalblock pre,.listingblock>.content>pre{font-size:.90625em}}
-@media screen and (min-width:1280px){.literalblock pre,.listingblock>.content>pre{font-size:1em}}
-.literalblock pre,.listingblock>.content>pre:not(.highlight),.listingblock>.content>pre[class="highlight"],.listingblock>.content>pre[class^="highlight "]{background:#f7f7f8}
-.literalblock.output pre{color:#f7f7f8;background:rgba(0,0,0,.9)}
-.listingblock>.content{position:relative}
-.listingblock code[data-lang]::before{display:none;content:attr(data-lang);position:absolute;font-size:.75em;top:.425rem;right:.5rem;line-height:1;text-transform:uppercase;color:inherit;opacity:.5}
-.listingblock:hover code[data-lang]::before{display:block}
-.listingblock.terminal pre .command::before{content:attr(data-prompt);padding-right:.5em;color:inherit;opacity:.5}
-.listingblock.terminal pre .command:not([data-prompt])::before{content:"$"}
-.listingblock pre.highlightjs{padding:0}
-.listingblock pre.highlightjs>code{padding:1em;-webkit-border-radius:4px;border-radius:4px}
-.listingblock pre.prettyprint{border-width:0}
-.prettyprint{background:#f7f7f8}
-pre.prettyprint .linenums{line-height:1.45;margin-left:2em}
-pre.prettyprint li{background:none;list-style-type:inherit;padding-left:0}
-pre.prettyprint li code[data-lang]::before{opacity:1}
-pre.prettyprint li:not(:first-child) code[data-lang]::before{display:none}
-table.linenotable{border-collapse:separate;border:0;margin-bottom:0;background:none}
-table.linenotable td[class]{color:inherit;vertical-align:top;padding:0;line-height:inherit;white-space:normal}
-table.linenotable td.code{padding-left:.75em}
-table.linenotable td.linenos{border-right:1px solid currentColor;opacity:.35;padding-right:.5em}
-pre.pygments .lineno{border-right:1px solid currentColor;opacity:.35;display:inline-block;margin-right:.75em}
-pre.pygments .lineno::before{content:"";margin-right:-.125em}
-.quoteblock{margin:0 1em 1.25em 1.5em;display:table}
-.quoteblock:not(.excerpt)>.title{margin-left:-1.5em;margin-bottom:.75em}
-.quoteblock blockquote,.quoteblock p{color:rgba(0,0,0,.85);font-size:1.15rem;line-height:1.75;word-spacing:.1em;letter-spacing:0;font-style:italic;text-align:justify}
-.quoteblock blockquote{margin:0;padding:0;border:0}
-.quoteblock blockquote::before{content:"\201c";float:left;font-size:2.75em;font-weight:bold;line-height:.6em;margin-left:-.6em;color:#7a2518;text-shadow:0 1px 2px rgba(0,0,0,.1)}
-.quoteblock blockquote>.paragraph:last-child p{margin-bottom:0}
-.quoteblock .attribution{margin-top:.75em;margin-right:.5ex;text-align:right}
-.verseblock{margin:0 1em 1.25em}
-.verseblock pre{font-family:"Open Sans","DejaVu Sans",sans;font-size:1.15rem;color:rgba(0,0,0,.85);font-weight:300;text-rendering:optimizeLegibility}
-.verseblock pre strong{font-weight:400}
-.verseblock .attribution{margin-top:1.25rem;margin-left:.5ex}
-.quoteblock .attribution,.verseblock .attribution{font-size:.9375em;line-height:1.45;font-style:italic}
-.quoteblock .attribution br,.verseblock .attribution br{display:none}
-.quoteblock .attribution cite,.verseblock .attribution cite{display:block;letter-spacing:-.025em;color:rgba(0,0,0,.6)}
-.quoteblock.abstract blockquote::before,.quoteblock.excerpt blockquote::before,.quoteblock .quoteblock blockquote::before{display:none}
-.quoteblock.abstract blockquote,.quoteblock.abstract p,.quoteblock.excerpt blockquote,.quoteblock.excerpt p,.quoteblock .quoteblock blockquote,.quoteblock .quoteblock p{line-height:1.6;word-spacing:0}
-.quoteblock.abstract{margin:0 1em 1.25em;display:block}
-.quoteblock.abstract>.title{margin:0 0 .375em;font-size:1.15em;text-align:center}
-.quoteblock.excerpt>blockquote,.quoteblock .quoteblock{padding:0 0 .25em 1em;border-left:.25em solid #dddddf}
-.quoteblock.excerpt,.quoteblock .quoteblock{margin-left:0}
-.quoteblock.excerpt blockquote,.quoteblock.excerpt p,.quoteblock .quoteblock blockquote,.quoteblock .quoteblock p{color:inherit;font-size:1.0625rem}
-.quoteblock.excerpt .attribution,.quoteblock .quoteblock .attribution{color:inherit;text-align:left;margin-right:0}
-table.tableblock{max-width:100%;border-collapse:separate}
-p.tableblock:last-child{margin-bottom:0}
-td.tableblock>.content>:last-child{margin-bottom:-1.25em}
-td.tableblock>.content>:last-child.sidebarblock{margin-bottom:0}
-table.tableblock,th.tableblock,td.tableblock{border:0 solid #dedede}
-table.grid-all>thead>tr>.tableblock,table.grid-all>tbody>tr>.tableblock{border-width:0 1px 1px 0}
-table.grid-all>tfoot>tr>.tableblock{border-width:1px 1px 0 0}
-table.grid-cols>*>tr>.tableblock{border-width:0 1px 0 0}
-table.grid-rows>thead>tr>.tableblock,table.grid-rows>tbody>tr>.tableblock{border-width:0 0 1px}
-table.grid-rows>tfoot>tr>.tableblock{border-width:1px 0 0}
-table.grid-all>*>tr>.tableblock:last-child,table.grid-cols>*>tr>.tableblock:last-child{border-right-width:0}
-table.grid-all>tbody>tr:last-child>.tableblock,table.grid-all>thead:last-child>tr>.tableblock,table.grid-rows>tbody>tr:last-child>.tableblock,table.grid-rows>thead:last-child>tr>.tableblock{border-bottom-width:0}
-table.frame-all{border-width:1px}
-table.frame-sides{border-width:0 1px}
-table.frame-topbot,table.frame-ends{border-width:1px 0}
-table.stripes-all tr,table.stripes-odd tr:nth-of-type(odd),table.stripes-even tr:nth-of-type(even),table.stripes-hover tr:hover{background:#f8f8f7}
-th.halign-left,td.halign-left{text-align:left}
-th.halign-right,td.halign-right{text-align:right}
-th.halign-center,td.halign-center{text-align:center}
-th.valign-top,td.valign-top{vertical-align:top}
-th.valign-bottom,td.valign-bottom{vertical-align:bottom}
-th.valign-middle,td.valign-middle{vertical-align:middle}
-table thead th,table tfoot th{font-weight:bold}
-tbody tr th{display:table-cell;line-height:1.6;background:#f7f8f7}
-tbody tr th,tbody tr th p,tfoot tr th,tfoot tr th p{color:rgba(0,0,0,.8);font-weight:bold}
-p.tableblock>code:only-child{background:none;padding:0}
-p.tableblock{font-size:1em}
-ol{margin-left:1.75em}
-ul li ol{margin-left:1.5em}
-dl dd{margin-left:1.125em}
-dl dd:last-child,dl dd:last-child>:last-child{margin-bottom:0}
-ol>li p,ul>li p,ul dd,ol dd,.olist .olist,.ulist .ulist,.ulist .olist,.olist .ulist{margin-bottom:.625em}
-ul.checklist,ul.none,ol.none,ul.no-bullet,ol.no-bullet,ol.unnumbered,ul.unstyled,ol.unstyled{list-style-type:none}
-ul.no-bullet,ol.no-bullet,ol.unnumbered{margin-left:.625em}
-ul.unstyled,ol.unstyled{margin-left:0}
-ul.checklist{margin-left:.625em}
-ul.checklist li>p:first-child>.fa-square-o:first-child,ul.checklist li>p:first-child>.fa-check-square-o:first-child{width:1.25em;font-size:.8em;position:relative;bottom:.125em}
-ul.checklist li>p:first-child>input[type="checkbox"]:first-child{margin-right:.25em}
-ul.inline{display:-ms-flexbox;display:-webkit-box;display:flex;-ms-flex-flow:row wrap;-webkit-flex-flow:row wrap;flex-flow:row wrap;list-style:none;margin:0 0 .625em -1.25em}
-ul.inline>li{margin-left:1.25em}
-.unstyled dl dt{font-weight:400;font-style:normal}
-ol.arabic{list-style-type:decimal}
-ol.decimal{list-style-type:decimal-leading-zero}
-ol.loweralpha{list-style-type:lower-alpha}
-ol.upperalpha{list-style-type:upper-alpha}
-ol.lowerroman{list-style-type:lower-roman}
-ol.upperroman{list-style-type:upper-roman}
-ol.lowergreek{list-style-type:lower-greek}
-.hdlist>table,.colist>table{border:0;background:none}
-.hdlist>table>tbody>tr,.colist>table>tbody>tr{background:none}
-td.hdlist1,td.hdlist2{vertical-align:top;padding:0 .625em}
-td.hdlist1{font-weight:bold;padding-bottom:1.25em}
-.literalblock+.colist,.listingblock+.colist{margin-top:-.5em}
-.colist td:not([class]):first-child{padding:.4em .75em 0;line-height:1;vertical-align:top}
-.colist td:not([class]):first-child img{max-width:none}
-.colist td:not([class]):last-child{padding:.25em 0}
-.thumb,.th{line-height:0;display:inline-block;border:solid 4px #fff;-webkit-box-shadow:0 0 0 1px #ddd;box-shadow:0 0 0 1px #ddd}
-.imageblock.left{margin:.25em .625em 1.25em 0}
-.imageblock.right{margin:.25em 0 1.25em .625em}
-.imageblock>.title{margin-bottom:0}
-.imageblock.thumb,.imageblock.th{border-width:6px}
-.imageblock.thumb>.title,.imageblock.th>.title{padding:0 .125em}
-.image.left,.image.right{margin-top:.25em;margin-bottom:.25em;display:inline-block;line-height:0}
-.image.left{margin-right:.625em}
-.image.right{margin-left:.625em}
-a.image{text-decoration:none;display:inline-block}
-a.image object{pointer-events:none}
-sup.footnote,sup.footnoteref{font-size:.875em;position:static;vertical-align:super}
-sup.footnote a,sup.footnoteref a{text-decoration:none}
-sup.footnote a:active,sup.footnoteref a:active{text-decoration:underline}
-#footnotes{padding-top:.75em;padding-bottom:.75em;margin-bottom:.625em}
-#footnotes hr{width:20%;min-width:6.25em;margin:-.25em 0 .75em;border-width:1px 0 0}
-#footnotes .footnote{padding:0 .375em 0 .225em;line-height:1.3334;font-size:.875em;margin-left:1.2em;margin-bottom:.2em}
-#footnotes .footnote a:first-of-type{font-weight:bold;text-decoration:none;margin-left:-1.05em}
-#footnotes .footnote:last-of-type{margin-bottom:0}
-#content #footnotes{margin-top:-.625em;margin-bottom:0;padding:.75em 0}
-.gist .file-data>table{border:0;background:#fff;width:100%;margin-bottom:0}
-.gist .file-data>table td.line-data{width:99%}
-div.unbreakable{page-break-inside:avoid}
-.big{font-size:larger}
-.small{font-size:smaller}
-.underline{text-decoration:underline}
-.overline{text-decoration:overline}
-.line-through{text-decoration:line-through}
-.aqua{color:#00bfbf}
-.aqua-background{background:#00fafa}
-.black{color:#000}
-.black-background{background:#000}
-.blue{color:#0000bf}
-.blue-background{background:#0000fa}
-.fuchsia{color:#bf00bf}
-.fuchsia-background{background:#fa00fa}
-.gray{color:#606060}
-.gray-background{background:#7d7d7d}
-.green{color:#006000}
-.green-background{background:#007d00}
-.lime{color:#00bf00}
-.lime-background{background:#00fa00}
-.maroon{color:#600000}
-.maroon-background{background:#7d0000}
-.navy{color:#000060}
-.navy-background{background:#00007d}
-.olive{color:#606000}
-.olive-background{background:#7d7d00}
-.purple{color:#600060}
-.purple-background{background:#7d007d}
-.red{color:#bf0000}
-.red-background{background:#fa0000}
-.silver{color:#909090}
-.silver-background{background:#bcbcbc}
-.teal{color:#006060}
-.teal-background{background:#007d7d}
-.white{color:#bfbfbf}
-.white-background{background:#fafafa}
-.yellow{color:#bfbf00}
-.yellow-background{background:#fafa00}
-span.icon>.fa{cursor:default}
-a span.icon>.fa{cursor:inherit}
-.admonitionblock td.icon [class^="fa icon-"]{font-size:2.5em;text-shadow:1px 1px 2px rgba(0,0,0,.5);cursor:default}
-.admonitionblock td.icon .icon-note::before{content:"\f05a";color:#19407c}
-.admonitionblock td.icon .icon-tip::before{content:"\f0eb";text-shadow:1px 1px 2px rgba(155,155,0,.8);color:#111}
-.admonitionblock td.icon .icon-warning::before{content:"\f071";color:#bf6900}
-.admonitionblock td.icon .icon-caution::before{content:"\f06d";color:#bf3400}
-.admonitionblock td.icon .icon-important::before{content:"\f06a";color:#bf0000}
-.conum[data-value]{display:inline-block;color:#fff!important;background:rgba(0,0,0,.8);-webkit-border-radius:100px;border-radius:100px;text-align:center;font-size:.75em;width:1.67em;height:1.67em;line-height:1.67em;font-family:"Open Sans","DejaVu Sans",sans-serif;font-style:normal;font-weight:bold}
-.conum[data-value] *{color:#fff!important}
-.conum[data-value]+b{display:none}
-.conum[data-value]::after{content:attr(data-value)}
-pre .conum[data-value]{position:relative;top:-.125em}
-b.conum *{color:inherit!important}
-.conum:not([data-value]):empty{display:none}
-dt,th.tableblock,td.content,div.footnote{text-rendering:optimizeLegibility}
-h1,h2,p,td.content,span.alt{letter-spacing:-.01em}
-p strong,td.content strong,div.footnote strong{letter-spacing:-.005em}
-p,blockquote,dt,td.content,span.alt{font-size:1.0625rem}
-p{margin-bottom:1.25rem}
-.sidebarblock p,.sidebarblock dt,.sidebarblock td.content,p.tableblock{font-size:1em}
-.exampleblock>.content{background:#fffef7;border-color:#e0e0dc;-webkit-box-shadow:0 1px 4px #e0e0dc;box-shadow:0 1px 4px #e0e0dc}
-.print-only{display:none!important}
-@page{margin:1.25cm .75cm}
-@media print{*{-webkit-box-shadow:none!important;box-shadow:none!important;text-shadow:none!important}
-html{font-size:80%}
-a{color:inherit!important;text-decoration:underline!important}
-a.bare,a[href^="#"],a[href^="mailto:"]{text-decoration:none!important}
-a[href^="http:"]:not(.bare)::after,a[href^="https:"]:not(.bare)::after{content:"(" attr(href) ")";display:inline-block;font-size:.875em;padding-left:.25em}
-abbr[title]::after{content:" (" attr(title) ")"}
-pre,blockquote,tr,img,object,svg{page-break-inside:avoid}
-thead{display:table-header-group}
-svg{max-width:100%}
-p,blockquote,dt,td.content{font-size:1em;orphans:3;widows:3}
-h2,h3,#toctitle,.sidebarblock>.content>.title{page-break-after:avoid}
-#toc,.sidebarblock,.exampleblock>.content{background:none!important}
-#toc{border-bottom:1px solid #dddddf!important;padding-bottom:0!important}
-body.book #header{text-align:center}
-body.book #header>h1:first-child{border:0!important;margin:2.5em 0 1em}
-body.book #header .details{border:0!important;display:block;padding:0!important}
-body.book #header .details span:first-child{margin-left:0!important}
-body.book #header .details br{display:block}
-body.book #header .details br+span::before{content:none!important}
-body.book #toc{border:0!important;text-align:left!important;padding:0!important;margin:0!important}
-body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-break-before:always}
-.listingblock code[data-lang]::before{display:block}
-#footer{padding:0 .9375em}
-.hide-on-print{display:none!important}
-.print-only{display:block!important}
-.hide-for-print{display:none!important}
-.show-for-print{display:inherit!important}}
-@media print,amzn-kf8{#header>h1:first-child{margin-top:1.25rem}
-.sect1{padding:0!important}
-.sect1+.sect1{border:0}
-#footer{background:none}
-#footer-text{color:rgba(0,0,0,.6);font-size:.9em}}
-@media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
-</style>
+<link rel="stylesheet" href="./asciidoctor.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body class="book toc2 toc-left">
@@ -497,6 +70,29 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 </ul>
 </li>
+<li><a href="#sec:higher-order-procedures">1.3. Formulare astrazioni con funzioni di ordine superiore</a>
+<ul class="sectlevel3">
+<li><a href="#sec:procedures-as-parameters">1.3.1. Funzioni come Parametri</a></li>
+<li><a href="#sec:lambda">1.3.2. Costruire le funzioni utilizzando le espressioni Lambda</a>
+<ul class="sectlevel4">
+<li><a href="#using-const-to-create-local-names">Uso di <code>const</code> per creare nomi locali</a></li>
+<li><a href="#conditional-statements">Istruzioni condizionali</a></li>
+</ul>
+</li>
+<li><a href="#sec:proc-general-methods">1.3.3. Funzioni come metodi generali</a>
+<ul class="sectlevel4">
+<li><a href="#finding-roots-of-equations-by-the-half-interval-method">Trovare le radici delle equazioni con il metodo della bisezione</a></li>
+<li><a href="#finding-fixed-points-of-functions">Trovare i punti fissi delle funzioni</a></li>
+</ul>
+</li>
+<li><a href="#sec:proc-returned-values">1.3.4. Funzioni come valori restituiti</a>
+<ul class="sectlevel4">
+<li><a href="#newtons-method">Metodo di Newton</a></li>
+<li><a href="#abstractions-and-first-class-functions">Astrazioni e funzioni di prima classe</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -512,7 +108,7 @@ Il testo ritiene è integrato con ulteriori esercizi in quanto per imparare l&#8
 </div>
 </div>
 <div class="sect1">
-<h2 id="_costruire_astrazioni_con_le_funzioni">1. Costruire astrazioni con le funzioni</h2>
+<h2 id="_costruire_astrazioni_con_le_funzioni"><a class="anchor" href="#_costruire_astrazioni_con_le_funzioni"></a>1. Costruire astrazioni con le funzioni</h2>
 <div class="sectionbody">
 <div class="quoteblock">
 <blockquote>
@@ -705,7 +301,7 @@ che offrono limitati servizi gratuiti.</p>
 </ul>
 </div>
 <div class="sect2">
-<h3 id="_gli_elementi_della_programmazione">1.1. Gli elementi della programmazione</h3>
+<h3 id="_gli_elementi_della_programmazione"><a class="anchor" href="#_gli_elementi_della_programmazione"></a>1.1. Gli elementi della programmazione</h3>
 <div class="paragraph">
 <p>Un linguaggio di programmazione è più di un semplice strumento per
 istruire un computer a svolgere compiti. Il linguaggio funge anche da
@@ -751,7 +347,7 @@ capitoli successivi vedremo che queste stesse regole ci consentono di
 creare funzioni per manipolare anche i dati composti.</p>
 </div>
 <div class="sect3">
-<h4 id="_espressioni">1.1.1. Espressioni</h4>
+<h4 id="_espressioni"><a class="anchor" href="#_espressioni"></a>1.1.1. Espressioni</h4>
 <div class="paragraph">
 <p>Un modo semplice per iniziare a programmare in <em>JavaScript</em> è attraverso uno degli interpreti indicati nell'<a href="#elenco_interpreti">elenco delle webapp che realizzano interpreti JavaScript</a>, oppure  interagire
 con l&#8217;interprete JavaScript integrato nel browser che si sta utilizzando
@@ -895,7 +491,7 @@ dell&#8217;istruzione (<em>print</em>, stampa).</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_denominazione_e_ambiente">1.1.2. Denominazione e ambiente</h4>
+<h4 id="_denominazione_e_ambiente"><a class="anchor" href="#_denominazione_e_ambiente"></a>1.1.2. Denominazione e ambiente</h4>
 <div class="paragraph">
 <p>Un aspetto cruciale di un linguaggio di programmazione è la facoltà di
 usare dei <em>nomi</em> per fare riferimento agli <em>oggetti
@@ -976,7 +572,7 @@ ambienti diversi).<sup class="footnote">[<a id="_footnoteref_3" class="footnote"
 </div>
 </div>
 <div class="sect3">
-<h4 id="sp_combinazione_operatori">1.1.3. Valutazione delle combinazioni mediante operatori</h4>
+<h4 id="sp_combinazione_operatori"><a class="anchor" href="#sp_combinazione_operatori"></a>1.1.3. Valutazione delle combinazioni mediante operatori</h4>
 <div class="paragraph">
 <p>Uno degli obiettivi di questo capitolo è quello di isolare i problemi
 relativi alle descrizioni dei processi. Ad esempio, consideriamo che,
@@ -1103,7 +699,7 @@ linguaggio di programmazione.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="sp_funzioni_composte">1.1.4. Funzioni composte</h4>
+<h4 id="sp_funzioni_composte"><a class="anchor" href="#sp_funzioni_composte"></a>1.1.4. Funzioni composte</h4>
 <div class="paragraph">
 <p>Abbiamo identificato in JavaScript alcuni degli elementi che devono
 apparire in qualsiasi linguaggio di programmazione:</p>
@@ -1297,7 +893,7 @@ come una funzione composta.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="sp_modello_sostituzione">1.1.5. Il modello di sostituzione per l&#8217;applicazione delle funzioni</h4>
+<h4 id="sp_modello_sostituzione"><a class="anchor" href="#sp_modello_sostituzione"></a>1.1.5. Il modello di sostituzione per l&#8217;applicazione delle funzioni</h4>
 <div class="paragraph">
 <p>Per valutare una combinazione mediante applicazione, l&#8217;interprete segue
 un processo simile a quello delle combinazioni mediante operatori,
@@ -1460,7 +1056,7 @@ da modelli più raffinati. Il modello di sostituzione non fa eccezione.</p>
 </ul>
 </div>
 <div class="sect4">
-<h5 id="_ordine_di_applicazione_e_ordine_normale">Ordine di applicazione e ordine normale</h5>
+<h5 id="_ordine_di_applicazione_e_ordine_normale"><a class="anchor" href="#_ordine_di_applicazione_e_ordine_normale"></a>Ordine di applicazione e ordine normale</h5>
 <div class="paragraph">
 <p>Secondo la descrizione della valutazione di cui sopra, l&#8217;interprete
 valuta prima la funzione e le espressioni degli argomenti, quindi
@@ -1566,7 +1162,7 @@ dell&#8217;ordine normale può essere uno strumento estremamente prezioso.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_epressioni_condizionali_e_predicati">1.1.6. Epressioni condizionali e predicati</h4>
+<h4 id="_epressioni_condizionali_e_predicati"><a class="anchor" href="#_epressioni_condizionali_e_predicati"></a>1.1.6. Epressioni condizionali e predicati</h4>
 <div class="paragraph">
 <p>Il potere espressivo della classe di funzioni che possiamo dichiarare a
 questo punto è molto limitato, perché non abbiamo modo di fare test ed
@@ -1998,7 +1594,7 @@ restituisce 0, senza che sia necessario valutare <code>p ()</code>.</p>
 </details>
 </div>
 <div class="sect3">
-<h4 id="sec:sqrt">1.1.7. Esempio: radici quadrate con il metodo di Newton</h4>
+<h4 id="sec:sqrt"><a class="anchor" href="#sec:sqrt"></a>1.1.7. Esempio: radici quadrate con il metodo di Newton</h4>
 <div class="paragraph">
 <p>Le funzioni, come introdotto sopra, sono molto simili alle normali
 funzioni matematiche che si studiano nel quinto anno. Specificano un
@@ -2185,7 +1781,7 @@ sempre supporre che la radice quadrata di qualsiasi numero sia 1:</p>
 così come possiamo usare qualsiasi funzione.</p>
 </div>
 <div id="radq1" class="listingblock">
-<div class="title">Programma per il calcolo della radice quadrata e funzioni da cui dipende</div>
+<div class="title">Elenco 1. Programma per il calcolo della radice quadrata e funzioni da cui dipende</div>
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function radice_quadrata_iter (stima, x) {
 	return suff_accurata (stima, x)
@@ -2446,7 +2042,7 @@ function cubo (x) {
 </details>
 </div>
 <div class="sect3">
-<h4 id="sec:black-box">1.1.8. Funzioni come astrazioni nella forma di una scatola nera</h4>
+<h4 id="sec:black-box"><a class="anchor" href="#sec:black-box"></a>1.1.8. Funzioni come astrazioni nella forma di una scatola nera</h4>
 <div class="paragraph">
 <p>La funzione <code>radice_quadrata</code> è il nostro primo esempio di un processo definito da
 un insieme di funzioni che si definiscono l&#8217;una con l&#8217;altra. Si noti che
@@ -2519,7 +2115,7 @@ scatola nera. Un utente non dovrebbe avere bisogno di sapere come viene
 implementata la funzione per poterla utilizzare.</p>
 </div>
 <div class="sect4">
-<h5 id="_nomi_locali">Nomi locali</h5>
+<h5 id="_nomi_locali"><a class="anchor" href="#_nomi_locali"></a>Nomi locali</h5>
 <div class="paragraph">
 <p>Un dettaglio dell&#8217;implementazione di una funzione che non dovrebbe
 interessare all&#8217;utente della funzione è la scelta dei nomi da parte
@@ -2603,13 +2199,13 @@ JavaScript) con <code>valore_assoluto</code> nella sua dichiarazione.</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_dichiarazioni_interne_e_struttura_a_blocchi">Dichiarazioni interne e struttura a blocchi</h5>
+<h5 id="_dichiarazioni_interne_e_struttura_a_blocchi"><a class="anchor" href="#_dichiarazioni_interne_e_struttura_a_blocchi"></a>Dichiarazioni interne e struttura a blocchi</h5>
 <div class="paragraph">
 <p>Finora abbiamo un tipo di isolamento del nome a nostra disposizione: i parametri di una funzione
 sono locali al corpo della funzione.
 Il programma per il calcolo della radice quadrata
 illustra un altro modo in cui vorremmo controllare l&#8217;uso dei nomi. Il
-programma <a href="#radq1">Programma per il calcolo della radice quadrata e funzioni da cui dipende</a> è costituito da funzioni separate.</p>
+programma <a href="#radq1">Elenco 1</a> è costituito da funzioni separate.</p>
 </div>
 <div class="paragraph">
 <p>Il problema di questo programma è che l&#8217;unica funzione importante per gli utenti è
@@ -2630,7 +2226,7 @@ dichiarazioni interne locali a tale funzione. Ad esempio, nel problema
 della radice quadrata possiamo scrivere</p>
 </div>
 <div id="radq2" class="listingblock">
-<div class="title">Programma per il calcolo della radice quadrata con funzioni annidate</div>
+<div class="title">Elenco 2. Programma per il calcolo della radice quadrata con funzioni annidate</div>
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function radice_quadrata (x) {
 	function radice_quadrata_iter (stima, x) {
@@ -2680,7 +2276,7 @@ che racchiude le funzioni interne.
 Questa disciplina si chiama visibilità lessicale, o visibilità statica (static scoping).</p>
 </div>
 <div id="radq3" class="listingblock">
-<div class="title">Programma per il calcolo della radice quadrata che sfrutta la visibilià statica</div>
+<div class="title">Elenco 3. Programma per il calcolo della radice quadrata che sfrutta la visibilià statica</div>
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function radice_quadrata (x) {
 	function radice_quadrata_iter (stima) {
@@ -2724,7 +2320,7 @@ aiutare a organizzare la costruzione di programmi di grandi dimensioni.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_esercizi_aggiuntivi">1.1.9. Esercizi aggiuntivi</h4>
+<h4 id="_esercizi_aggiuntivi"><a class="anchor" href="#_esercizi_aggiuntivi"></a>1.1.9. Esercizi aggiuntivi</h4>
 <div class="exampleblock">
 <div class="title">Esercizio A-1.1.1</div>
 <div class="content">
@@ -3086,7 +2682,7 @@ maggiore di \(10^{-6}\).</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="s_funzioni_e_processi">1.2. Le funzioni e i processi da esse generati</h3>
+<h3 id="s_funzioni_e_processi"><a class="anchor" href="#s_funzioni_e_processi"></a>1.2. Le funzioni e i processi da esse generati</h3>
 <div class="paragraph">
 <p>Nel primo paragrafo abbiamo considerato gli elementi della programmazione: abbiamo usato operazioni aritmetiche primitive, abbiamo combinato queste operazioni e abbiamo astratto queste operazioni composite dichiarandole come funzioni composte. Ma ciò non è abbastanza per permetterci di dire che sappiamo programmare. La nostra situazione è analoga a quella di colui il quale ha imparato le regole con si muovono i pezzi negli scacchi ma non sa nulla di aperture, tattiche o strategie tipiche. Come il giocatore di scacchi alle prime armi non è ancora a conoscenza degli schemi comuni e non di sa quali mosse valga la pena fare, così a noi manca la conoscenza di quali funzioni meritano di essere dichiarate. Ci manca l&#8217;esperienza per prevedere le conseguenze del fare una mossa (eseguire una funzione).</p>
 </div>
@@ -3107,7 +2703,7 @@ Indagheremo anche le velocità con cui questi processi consumano le risorse comp
 Le funzioni che considereremo sono molto semplici.</p>
 </div>
 <div class="sect3">
-<h4 id="sp_ricorsione_iterazione">1.2.1. Ricorsione e iterazione lineari</h4>
+<h4 id="sp_ricorsione_iterazione"><a class="anchor" href="#sp_ricorsione_iterazione"></a>1.2.1. Ricorsione e iterazione lineari</h4>
 <div class="paragraph">
 <p>Iniziamo considerando la funzione fattoriale, definita da</p>
 </div>
@@ -3126,7 +2722,7 @@ Le funzioni che considereremo sono molto semplici.</p>
 <p>Pertanto, possiamo calcolare \(n!\) calcolando \((n-1)!\) e moltiplicando il risultato di \(n\). Se aggiungiamo la clausola che \(1!\) è uguale a \(1\), questa osservazione si traduce direttamente nella funzione:</p>
 </div>
 <div class="listingblock">
-<div class="title">Definizione della funzione fattoriale</div>
+<div class="title">Elenco 4. Definizione della funzione fattoriale</div>
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function fattoriale (n) {
 	return n === 1
@@ -3168,7 +2764,7 @@ Possiamo descrivere il calcolo dicendo che il contatore e il prodotto cambiano s
 <p>Ancora una volta, possiamo riscrivere la nostra descrizione come funzione per calcolare la dichiarazione della funzione interna:</p>
 </div>
 <div class="listingblock">
-<div class="title">Definizione della funzione fattoriale come processo iterativo lineare</div>
+<div class="title">Elenco 5. Definizione della funzione fattoriale come processo iterativo lineare</div>
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function fattoriale (n) {
     function iter (prodotto, contatore) {
@@ -3291,7 +2887,7 @@ piu(0, 9)
 funzione di Ackermann.</p>
 </div>
 <div class="listingblock">
-<div class="title">Funzione di Ackermann</div>
+<div class="title">Elenco 6. Funzione di Ackermann</div>
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function A(x,y) {
     return y === 0
@@ -3380,7 +2976,7 @@ e che \(g (n) = A (1, n) = A \left(0, A (1, n - 1)\right) = f ( g (n -1)) = 2 \c
 </details>
 </div>
 <div class="sect3">
-<h4 id="sp_ricorsione_ad_albero">1.2.2. Ricorsione ad albero</h4>
+<h4 id="sp_ricorsione_ad_albero"><a class="anchor" href="#sp_ricorsione_ad_albero"></a>1.2.2. Ricorsione ad albero</h4>
 <div class="paragraph">
 <p>Un altro schema di calcolo comune è chiamato ricorsione ad albero. Ad esempio, considera di calcolare la sequenza dei numeri di Fibonacci, in cui ogni numero è la somma dei due precedenti:</p>
 </div>
@@ -3471,7 +3067,7 @@ function fib_iter(a, b, count) {
 <p>Non si deve concludere da ciò che i processi ricorsivi ad albero siano inutili. Quando consideriamo i processi che operano su dati strutturati gerarchicamente piuttosto che su numeri, scopriremo che la ricorsione dell&#8217;albero è uno strumento naturale e potente. Ma anche nelle operazioni numeriche, i processi ricorsivi ad albero possono essere utili per aiutarci a comprendere e progettare i programmi. Ad esempio, sebbene la prima funzione <code>fib</code> sia molto meno efficiente della seconda, è più semplice, essendo poco più di una traduzione in JavaScript della definizione della sequenza di Fibonacci. Per formulare l&#8217;algoritmo iterativo è necessario notare che il calcolo potrebbe essere trasformato in iterazione con tre variabili di stato.</p>
 </div>
 <div class="sect4">
-<h5 id="_esempio_contare_il_numero_di_cambi">Esempio: Contare il numero di cambi</h5>
+<h5 id="_esempio_contare_il_numero_di_cambi"><a class="anchor" href="#_esempio_contare_il_numero_di_cambi"></a>Esempio: Contare il numero di cambi</h5>
 <div class="paragraph">
 <p>Basta poco ingegno per elaborare l&#8217;algoritmo iterativo di Fibonacci. Al contrario, considera il seguente problema: in quanti modi diversi possiamo cambiare 1 euro con le monete da 50, 20, 10, 2 e un centesimo? Più in generale, possiamo scrivere una funzione per calcolare il numero di modi per cambiare una determinata quantità di denaro?</p>
 </div>
@@ -3676,7 +3272,7 @@ in quanto la riga \(n\)-esima è formata dai coefficienti dei termini dell&#8217
 </div>
 </div>
 <div class="sect3">
-<h4 id="sp_tassi_di_crescita">1.2.3. Tassi di crescita</h4>
+<h4 id="sp_tassi_di_crescita"><a class="anchor" href="#sp_tassi_di_crescita"></a>1.2.3. Tassi di crescita</h4>
 <div class="paragraph">
 <p>Gli esempi precedenti mostrano che i processi possono differire notevolmente nelle velocità con cui consumano risorse computazionali.
 Un modo per descrivere questa differenza è usare la nozione di <strong>tasso di crescita</strong> per ottenere una misura grossolana delle risorse richieste da un processo man mano che gli input diventano più grandi.</p>
@@ -3757,7 +3353,7 @@ function seno(angolo) {
 </div>
 </div>
 <div class="sect3">
-<h4 id="sp_elevamento_a_potenza">1.2.4. Elevamento a potenza</h4>
+<h4 id="sp_elevamento_a_potenza"><a class="anchor" href="#sp_elevamento_a_potenza"></a>1.2.4. Elevamento a potenza</h4>
 <div class="paragraph">
 <p>Considera il problema di calcolare una potenza di un dato numero.
 Vorremmo una funzione che presi come argomenti una base \(b\) e un esponente intero positivo \(n\) calcoli \(b^n\).
@@ -3952,7 +3548,7 @@ function fib_iter(a, b, p, q, contatore) {
 </div>
 </div>
 <div class="sect3">
-<h4 id="sec:gcd">1.2.5. Massimo Comun Divisore</h4>
+<h4 id="sec:gcd"><a class="anchor" href="#sec:gcd"></a>1.2.5. Massimo Comun Divisore</h4>
 <div class="paragraph">
 <p>Il massimo comune divisore (MCD) di due interi \(a\) e \(b\) è definito come il numero intero più grande che divide sia \(a\) che \(b\) senza resto.
 Ad esempio, il MCD di 16 e 28 è 4. Nel capitolo 2, quando indaghiamo su come implementare l&#8217;aritmetica dei numeri razionali, dovremo essere in grado di calcolare i MCD per ridurre i numeri razionali ai minimi termini.
@@ -4028,12 +3624,12 @@ Quante operazioni <em>resto</em> sono effettivamente eseguite nella valutazione 
 </div>
 </div>
 <div class="sect3">
-<h4 id="sp_test_di_primalita">1.2.6. Esempio: Test di primalità</h4>
+<h4 id="sp_test_di_primalita"><a class="anchor" href="#sp_test_di_primalita"></a>1.2.6. Esempio: Test di primalità</h4>
 <div class="paragraph">
 <p>Questo paragrafo descrive due metodi per controllare la primalità di un numero intero \(n\), uno con tasso di crescita \(\Theta (\sqrt{n})\) e un altro <em>probabilistico</em> con tasso di crescita \(\Theta (\log n)\). Gli esercizi alla fine di questa sezione suggeriscono progetti di programmazione basati su questi algoritmi.</p>
 </div>
 <div class="sect4">
-<h5 id="ricerca_divisori">La ricerca dei divisori</h5>
+<h5 id="ricerca_divisori"><a class="anchor" href="#ricerca_divisori"></a>La ricerca dei divisori</h5>
 <div class="paragraph">
 <p>Sin dai tempi antichi, i matematici sono stati affascinati dai problemi riguardanti i numeri primi e molte persone hanno lavorato al problema di determinare i modi per verificare se i numeri sono primi. Un modo per verificare se un numero è primo è trovare i divisori del numero. Il seguente programma trova il divisore intero più piccolo (maggiore di 1) di un dato numero \(n\). Lo fa in modo semplice, testando \(n\) per la divisibilità per interi successivi che iniziano con 2.</p>
 </div>
@@ -4065,13 +3661,13 @@ function divide(a, b) {
 </div>
 </div>
 <div class="paragraph">
-<p>Il test finale per <code>cerca_divisore</code> si basa sul fatto che se \(n\) non è primo, deve avere un divisore minore o uguale a \(\sqrt{n}\). <sup class="footnote">[<a id="_footnoteref_13" class="footnote" href="#_footnotedef_13" title="View footnote.">13</a>]</sup> Ciò significa che l&#8217;algoritmo necessita solo di divisori di test tra 1 e \(\sqrt{n}\). Di conseguenza, il numero di passaggi necessari per identificare \(n\) come primo avrà l&#8217;ordine di crescita \(\Theta (\sqrt{n})\).</p>
+<p>Il test finale per <code>cerca_divisore</code> si basa sul fatto che se \(n\) non è primo, deve avere un divisore minore o uguale a \(\sqrt{n}\).<sup class="footnote">[<a id="_footnoteref_13" class="footnote" href="#_footnotedef_13" title="View footnote.">13</a>]</sup> Ciò significa che l&#8217;algoritmo necessita solo di divisori di test tra 1 e \(\sqrt{n}\). Di conseguenza, il numero di passaggi necessari per identificare \(n\) come primo avrà l&#8217;ordine di crescita \(\Theta (\sqrt{n})\).</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="the-fermat-test">Il test di Fermat</h5>
+<h5 id="the-fermat-test"><a class="anchor" href="#the-fermat-test"></a>Il test di Fermat</h5>
 <div class="paragraph">
-<p>Il test di primalità con tasso di crescita \(\Theta(\log n)\) si basa su un risultato della teoria dei numeri noto come Piccolo teorema di Fermat. <sup class="footnote">[<a id="_footnoteref_14" class="footnote" href="#_footnotedef_14" title="View footnote.">14</a>]</sup></p>
+<p>Il test di primalità con tasso di crescita \(\Theta(\log n)\) si basa su un risultato della teoria dei numeri noto come Piccolo teorema di Fermat.<sup class="footnote">[<a id="_footnoteref_14" class="footnote" href="#_footnotedef_14" title="View footnote.">14</a>]</sup></p>
 </div>
 <div class="paragraph">
 <p><strong>Piccolo teorema di Fermat:</strong> Se \(n\) è un numero primo e \(a\) è un qualsiasi numero intero positivo inferiore a \(n\), allora \(a\) elevato alla \(n\)-esima potenza è congruente a \(a\) modulo \(n\).</p>
@@ -4129,18 +3725,18 @@ function divide(a, b) {
 </div>
 </div>
 <div class="sect4">
-<h5 id="sp_metodi_probabilistici">Metodi probabilistici</h5>
+<h5 id="sp_metodi_probabilistici"><a class="anchor" href="#sp_metodi_probabilistici"></a>Metodi probabilistici</h5>
 <div class="paragraph">
 <p>Il test di Fermat è molto diverso dagli algoritmi più familiari, i quali calcolano una risposta che è garantita essere corretta. In questo caso, la risposta ottenuta è solo probabilmente corretta. Più precisamente, se \(n\) fallisce il test di Fermat, possiamo essere certi che \(n\) non è primo. Ma il fatto che \(n\) superi il test, sebbene sia un&#8217;indicazione estremamente forte, non è ancora una garanzia che \(n\) sia primo. Quello che vorremmo dire è che per qualsiasi numero \(n\), se eseguiamo il test abbastanza volte e risulta che \(n\) supera sempre il test, allora la probabilità di errore nel nostro test di primalità può essere resa piccola a piacere.</p>
 </div>
 <div class="paragraph">
-<p>Purtroppo questa affermazione non è del tutto corretta. Esistono numeri che ingannano il test di Fermat: numeri \(n\) che non sono primi e tuttavia hanno la proprietà che \(a^n\) è congruente a \(a\) modulo \(n\) per tutti i numeri interi \(a &lt; n\). Tali numeri sono estremamente rari, quindi il test di Fermat è abbastanza affidabile nella pratica. <sup class="footnote">[<a id="_footnoteref_16" class="footnote" href="#_footnotedef_16" title="View footnote.">16</a>]</sup></p>
+<p>Purtroppo questa affermazione non è del tutto corretta. Esistono numeri che ingannano il test di Fermat: numeri \(n\) che non sono primi e tuttavia hanno la proprietà che \(a^n\) è congruente a \(a\) modulo \(n\) per tutti i numeri interi \(a &lt; n\). Tali numeri sono estremamente rari, quindi il test di Fermat è abbastanza affidabile nella pratica.<sup class="footnote">[<a id="_footnoteref_16" class="footnote" href="#_footnotedef_16" title="View footnote.">16</a>]</sup></p>
 </div>
 <div class="paragraph">
 <p>Ci sono varianti del test di Fermat che non possono essere ingannate. In questi test, come con il metodo Fermat, si verifica la primalità di un intero \(n\) scegliendo un numero a caso \(a &lt; n\) e verificando alcune condizioni che dipendono da \(n\) e \(a\). (Vedere l&#8217;esercizio [es: miller-rabin] per un esempio di tale test.) D&#8217;altra parte, in contrasto con il test di Fermat, si può dimostrare che, per qualsiasi \(n\), la condizione non vale per la maggior parte degli interi \(a &lt; n\) a meno che \(n\) non sia primo. La probabilità che \(n\) superi il test per una scelta casuale di \(a\), sono maggiori di quelle che \(n\) sia primo. Se \(n\) supera il test per due scelte casuali di \(a\), le probabilità che \(n\) sia primo sono maggiori di 3 su 4. Eseguendo il test con valori sempre più valori di \(a\) scelti a caso possiamo rendere la probabilità di errore piccola a piacere.</p>
 </div>
 <div class="paragraph">
-<p>L&#8217;esistenza di test per i quali si può dimostrare che la possibilità di errore diventa arbitrariamente piccola ha suscitato interesse per algoritmi di questo tipo, che sono diventati noti come <em>algoritmi probabilistici</em>. C&#8217;è una grande attività di ricerca in quest&#8217;area e gli algoritmi probabilistici sono stati applicati con successo in molti campi. <sup class="footnote">[<a id="_footnoteref_17" class="footnote" href="#_footnotedef_17" title="View footnote.">17</a>]</sup></p>
+<p>L&#8217;esistenza di test per i quali si può dimostrare che la possibilità di errore diventa arbitrariamente piccola ha suscitato interesse per algoritmi di questo tipo, che sono diventati noti come <em>algoritmi probabilistici</em>. C&#8217;è una grande attività di ricerca in quest&#8217;area e gli algoritmi probabilistici sono stati applicati con successo in molti campi.<sup class="footnote">[<a id="_footnoteref_17" class="footnote" href="#_footnotedef_17" title="View footnote.">17</a>]</sup></p>
 </div>
 <div id="ex:use-smallest-divisor" class="exampleblock">
 <div class="title">Esercizio 1.21. Applicazione di <code>divisore_minimo</code></div>
@@ -4198,17 +3794,17 @@ function stampa_primo(tempo_trascorso) {
 <div class="title">Esercizio 1.25.</div>
 <div class="content">
 <div class="paragraph">
-<p>Alyssa P. Hacker complains that we went to a lot of extra work in writing <code>expmod</code>. After all, she says, since we already know how to compute exponentials, we could have simply written</p>
+<p>Alyssa P. Hacker si lamenta del fatto che abbiamo lavorato molto per scrivere <code>expmod</code>. Dopotutto, dice, poiché sappiamo già come calcolare gli esponenziali, avremmo potuto semplicemente scrivere</p>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>function expmod(base, exp, m) {
-    return fast_expt(base, exp) % m;
-}</pre>
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function potenza_modulo(base, esponente, m) {
+    return potenza_veloce(base, esponente) % m;
+}</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Is she correct? Would this function serve as well for our fast prime tester? Explain.</p>
+<p>Ha ragione? Questa funzione servirebbe anche per il nostro test veloce per numeri primi? Spiegare.</p>
 </div>
 </div>
 </div>
@@ -4216,7 +3812,7 @@ function stampa_primo(tempo_trascorso) {
 <div class="title">Esercizio 1.26.</div>
 <div class="content">
 <div class="paragraph">
-<p>Louis Reasoner is having great difficulty doing exercise [ex:mod-timed-prime-test]. His <code>fast_is_prime</code> test seems to run more slowly than his <code>is_prime</code> test. Louis calls his friend Eva Lu Ator over to help. When they examine Louis’s code, they find that he has rewritten the <code>expmod</code> function to use an explicit multiplication, rather than calling <code>square</code>:</p>
+<p>Louis Reasoner ha grandi difficoltà a fare esercizio <a href="#ex:mod-timed-prime-test">Esercizio 1.24.</a>. Il suo test <code>primo_veloce</code> sembra essere più lento del test <code>primo</code>. Louis chiama la sua amica Eva Lu Ator per farsi aiutare. Quando esaminano il codice di Louis, scoprono che ha riscritto la funzione <code>potenza_modulo</code> per utilizzare una moltiplicazione esplicita, piuttosto che chiamare <code>quadrato</code>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -4234,7 +3830,7 @@ function stampa_primo(tempo_trascorso) {
 </div>
 </div>
 <div class="paragraph">
-<p><em>I don’t see what difference that could make,</em> says Louis. <em>I do.</em> says Eva. <em>By writing the function like that, you have transformed the \(\Theta(\log n)\) process into a \(\Theta(n)\) process.</em> Explain.</p>
+<p><em>Non vedo che differenza potrebbe fare,</em> dice Louis. <em>Io la vedo.</em> dice Eva. <em>Scrivendo la funzione in questo modo, hai trasformato il processo \(\Theta (\log n)\) in un processo \(\Theta (n)\).</em> Spiega.</p>
 </div>
 </div>
 </div>
@@ -4242,15 +3838,1127 @@ function stampa_primo(tempo_trascorso) {
 <div class="title">Esercizio 1.27.</div>
 <div class="content">
 <div class="paragraph">
-<p>Demonstrate that the Carmichael numbers listed in footnote [foot:carmichaelfn] really do fool the Fermat test. That is, write a function that takes an integer \(n\) and tests whether \(a^n\) is congruent to \(a\) modulo \(n\) for every \(a &lt; n\), and try your function on the given Carmichael numbers.</p>
+<p>Dimostra che i numeri di Carmichael
+ingannano davvero il test di Fermat. Cioè, scrivi una funzione che accetta un intero \(n\) e verifica se \(a^n\) è congruente a \(a\) modulo \(n\) per ogni \(a&lt;n\), e prova la tua funzione sui numeri Carmichael dati.</p>
 </div>
 </div>
 </div>
-<div id="exercise-2" class="exampleblock">
+<div id="ex:miller-rabin" class="exampleblock">
 <div class="title">Esercizio 1.28</div>
 <div class="content">
 <div class="paragraph">
-<p>One variant of the Fermat test that cannot be fooled is called the <em>Miller-Rabin test</em> (Miller 1976; Rabin 1980). This starts from an alternate form of Fermat’s Little Theorem, which states that if \(n\) is a prime number and \(a\) is any positive integer less than \(n\), then \(a\) raised to the \((n-1)\)st power is congruent to 1 modulo \(n\). To test the primality of a number \(n\) by the Miller-Rabin test, we pick a random number \(a &lt; n\) and raise \(a\) to the \((n-1)\)st power modulo \(n\) using the <code>expmod</code> function. However, whenever we perform the squaring step in <code>expmod</code>, we check to see if we have discovered a <em>nontrivial square root of 1 modulo \(n\)</em> that is, a number not equal to 1 or \(n-1\) whose square is equal to 1 modulo \(n\). It is possible to prove that if such a nontrivial square root of 1 exists, then \(n\) is not prime. It is also possible to prove that if \(n\) is an odd number that is not prime, then, for at least half the numbers \(a &lt; n\), computing \(a^{n-1}\) in this way will reveal a nontrivial square root of 1 modulo \(n\). (This is why the Miller-Rabin test cannot be fooled.) Modify the <code>expmod</code> function to signal if it discovers a nontrivial square root of 1, and use this to implement the Miller-Rabin test with a function analogous to <code>fermat_test</code>. Check your function by testing various known primes and non-primes. Hint: One convenient way to make <code>expmod</code> signal is to have it return 0. [ex:miller-rabin]</p>
+<p>Una variante del test di Fermat che non può essere ingannata è chiamata <em>test di Miller-Rabin</em> (Miller 1976; Rabin 1980). Questo inizia da una forma alternativa del Piccolo teorema di Fermat, che afferma che se \(n\) è un numero primo e \(a\) è un qualsiasi numero intero positivo inferiore a \(n\), allora \(a\) elevato alla \((n-1)\)-esima potenza è congruente a 1 modulo \(n\). Per verificare la primalità di un numero \(n\) con il test di Miller-Rabin, scegliamo un numero casuale \(a &lt; n\) e eleviamo \(a\) alla \((n-1)\)-esima potenza modulo \(n\) utilizzando la funzione <code>potenza_modulo</code>. Tuttavia, ogni volta che eseguiamo il passaggio di quadratura in <code>potenza_modulo</code>, controlliamo se abbiamo scoperto una <em> radice quadrata non convenzionale di 1 modulo \(n\) </em>ovvero un numero diverso da 1 o \(n-1 \) il cui quadrato è uguale a 1 modulo \(n\). È possibile dimostrare che se esiste una radice quadrata non banale di 1, \(n\) non è primo. È anche possibile dimostrare che se \(n\) è un numero dispari che non è primo, allora, per almeno la metà dei numeri \(a &lt;n\), il calcolo \(a^{n-1}\) in questo modo rivelerà una radice quadrata non banale di 1 modulo \(n\). (Questo è il motivo per cui il test di Miller-Rabin non può essere ingannato.) Modifica la funzione <code>potenza_modulo</code> per segnalare se scopre una radice quadrata non banale di 1, e usala per implementare il test di Miller-Rabin con una funzione analoga a <code>test_fermat</code> . Controlla la tua funzione testando vari numeri primi e non primi noti. Suggerimento: un modo conveniente per avere una segnalazione è far restirire 0 da <code>esponente_modulo</code>.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="sec:higher-order-procedures"><a class="anchor" href="#sec:higher-order-procedures"></a>1.3. Formulare astrazioni con funzioni di ordine superiore</h3>
+<div class="paragraph">
+<p>Abbiamo visto che le funzioni sono, in effetti, astrazioni che descrivono operazioni composte su numeri indipendenti dai numeri particolari. Ad esempio, quando dichiariamo</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function cubo(x) {
+    return x * x * x;
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>non stiamo parlando del cubo di un numero particolare, ma piuttosto di un metodo per ottenere il cubo di un numero qualsiasi. Ovviamente potremmo andare d&#8217;accordo senza mai dichiarare questa funzione, scrivendo sempre espressioni come</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">3 * 3 * 3;
+x * x * x;
+y * y * y;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>e non menzionare mai esplicitamente "cubo". Questo ci porterebbe in un grave svantaggio, costringendoci a lavorare sempre al livello delle operazioni particolari che sono primitive nel linguaggio (moltiplicazione, in questo caso) piuttosto che in termini di operazioni di livello superiore. I nostri programmi sarebbero in grado di calcolare i cubi, ma il nostro linguaggio non avrebbe la capacità di esprimere il concetto di cubo. Una delle cose che dovremmo chiedere a un potente linguaggio di programmazione è la capacità di costruire astrazioni assegnando nomi a schemi comuni e quindi di lavorare direttamente in termini di astrazioni. Le funzioni forniscono questa capacità. Questo è il motivo per cui tutti i linguaggi di programmazione tranne i più primitivi includono meccanismi per la dichiarazione di funzioni.</p>
+</div>
+<div class="paragraph">
+<p>Tuttavia, anche nell&#8217;elaborazione numerica saremo fortemente limitati nella nostra capacità di creare astrazioni se siamo limitati a funzioni i cui parametri devono essere numeri. Spesso lo stesso schema di programmazione verrà utilizzato con un numero di funzioni diverse. Per esprimere tali modelli come concetti, avremo bisogno di costruire funzioni che possono accettare funzioni come argomenti o restituire funzioni come valori. Le funzioni che manipolano le funzioni sono chiamate <em>funzioni di ordine superiore</em>.</p>
+</div>
+<div class="paragraph">
+<p>Questo paragrafo mostra come le funzioni di ordine superiore possono fungere da potenti meccanismi di astrazione, aumentando enormemente la potenza espressiva del nostro linguaggio.</p>
+</div>
+<div class="sect3">
+<h4 id="sec:procedures-as-parameters"><a class="anchor" href="#sec:procedures-as-parameters"></a>1.3.1. Funzioni come Parametri</h4>
+<div class="paragraph">
+<p>Considera le seguenti tre funzioni. La prima calcola la somma degli interi da <em>a</em> a <em>b</em>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function somma_interi(a, b) {
+    return a &gt; b
+           ? 0
+           : a + somma_interi(a + 1, b);
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>La seconda calcola la somma dei cubi degli interi nell&#8217;intervallo dato:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function somma_cubi(a, b) {
+    return a &gt; b
+           ? 0
+           : cubo(a) + somma_cubi(a + 1, b);
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>La terza calcola la somma di una sequenza di termini nella serie</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[\frac{1}{1\cdot3}+\frac{1}{5\cdot7}+\frac{1}{9\cdot11}+\cdots\]
+</div>
+</div>
+<div class="paragraph">
+<p>che converge a \(\pi / 8\) (molto lentamente):<sup class="footnote">[<a id="_footnoteref_20" class="footnote" href="#_footnotedef_20" title="View footnote.">20</a>]</sup></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function somma_pi(a, b) {
+    return a &gt; b
+           ? 0
+           : 1.0 / (a * (a + 2)) +
+             somma_pi(a + 4, b);
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Queste tre funzioni condividono chiaramente un modello sottostante comune. Sono per la maggior parte identiche, differiscono solo per il nome della funzione, la funzione di <em>a</em> usata per calcolare il termine da aggiungere e la funzione che fornisce il valore successivo di <em>a</em>. Potremmo generare ciascuna delle funzioni riempiendo gli slot nello stesso modello:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function $nome$(a, b) {
+    return a &gt; b
+           ? 0
+           : $termine$(a) + $nome$($prossimo$(a), b);
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>La presenza di un modello così comune è una forte evidenza che esiste un&#8217;astrazione utile in attesa di essere portata in superficie. In effetti, molto tempo fa i matematici identificarono l&#8217;astrazione e inventarono la <em>notazione sigma</em>, ad esempio</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[{\sum_{n=a}^{b}\ f(n)=f(a)+\cdots+f(b)\,}\]
+</div>
+</div>
+<div class="paragraph">
+<p>per esprimere questo concetto. Il potere della notazione sigma è che consente ai matematici di trattare il concetto di sommatoria stesso piuttosto che solo con somme particolari, ad esempio per formulare risultati generali su somme che sono indipendenti dalla particolare serie che viene sommata.</p>
+</div>
+<div class="paragraph">
+<p>Allo stesso modo, come progettisti di programmi, vorremmo che il nostro linguaggio fosse abbastanza potente da poter scrivere una funzione che esprima il concetto di sommatoria stesso piuttosto che solo funzioni che calcolano somme particolari. Possiamo farlo prontamente nel nostro linguaggio funzionale prendendo il modello comune mostrato sopra e trasformando gli "slot" in parametri:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function somma(termine, a, prossimo, b) {
+    return a &gt; b
+           ? 0
+           : termine(a) + somma(termine, prossimo(a), prossimo, b);
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Si noti che "somma" prende come argomenti i limiti inferiore e superiore "a" e "b" insieme alle funzioni "termine" e "prossimo". Possiamo usare "somma" proprio come faremmo con qualsiasi funzione. Ad esempio, possiamo usarla (insieme a una funzione <code>inc</code> che incrementa il suo argomento di 1) per definire <code>somma_cubi</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function inc(n) {
+    return n + 1;
+}
+function somma_cubi(a, b) {
+    return somma(cubo, a, inc, b);
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Usando questa funzione, possiamo calcolare la somma dei cubi degli interi da 1 a 10:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">somma_cubi(1, 10);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Con l&#8217;aiuto di una funzione <em>identità</em> per calcolare il termine, possiamo definire <code>somma_interi</code> in termini di <code>somma</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function identita(x) {
+    return x;
+}
+
+function somma_interi(a, b) {
+    return somma(identita, a, inc, b);
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Quindi possiamo sommare gli interi da 1 a 10:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">somma_interi(1, 10);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Possiamo anche dichiarare <code>somma_pi</code> nello stesso modo:<sup class="footnote">[<a id="_footnoteref_21" class="footnote" href="#_footnotedef_21" title="View footnote.">21</a>]</sup></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function somma_pi(a, b) {
+    function pi_termine(x) {
+        return 1.0 / (x * (x + 2));
+    }
+    function pi_prossimo(x) {
+        return x + 4;
+    }
+    return somma(pi_termine, a, pi_prossimo, b);
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Usando queste funzioni, possiamo calcolare un&#8217;approssimazione di latexmath: [\pi]:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">8 * somma_pi(1, 1000);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Una volta che abbiamo "somma", possiamo usarla come elemento costitutivo nella formulazione di ulteriori concetti. Ad esempio, l&#8217;integrale definito di una funzione \(f\) tra i limiti \(a\) e \(b\) può essere approssimato numericamente utilizzando la formula</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[\int_{a}^{b}f =
+      \left[ f\left( a+\frac{dx}{2} \right) + f \left(a+dx+\frac{dx}{2}
+      \right) + f \left( a+2dx+\frac{dx}{2} \right)+\cdots
+      \right] dx\]
+</div>
+</div>
+<div class="paragraph">
+<p>per piccoli valori di \(dx\).</p>
+</div>
+<div class="paragraph">
+<p>Possiamo esprimerlo direttamente come una funzione:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function integrale(f, a, b, dx) {
+    function aggiungi_dx(x) {
+        return x + dx;
+    }
+    return somma(f, a + dx / 2, add_dx, b) * dx;
+}
+
+integrale(cubo, 0, 1, 0.01);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>(Il valore esatto dell&#8217;integrale di "cubo" compreso tra 0 e 1 è 1/4.)</p>
+</div>
+<div id="ex:simpsons-rule" class="exampleblock">
+<div class="title">Esercizio 1.29. Regola di Cavalieri-Simpson</div>
+<div class="content">
+<div class="paragraph">
+<p>La regola di Cavalieri-Simpson è un metodo di integrazione numerica (quadratura) più accurato rispetto al metodo illustrato sopra. Usando la regola di Cavalieri-Simpson, l&#8217;integrale di una funzione \(f\) tra \(a\) e \(b\) viene approssimato come</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[\frac{h}{3} [y_0 + 4y_1 + 2y_2 + 4y_3 + 2y_4 + \cdots + 2y_{n-2} +4y_{n-1}+y_n ]\]
+</div>
+</div>
+<div class="paragraph">
+<p>dove \(h = (b-a) / n\), per un qualche numero intero pari \(n\) e \(y_k = f (a + kh)\). (Aumentando \(n\) aumenta l&#8217;accuratezza dell&#8217;approssimazione.) Dichiara una funzione che accetta come argomenti \(f\), \(a\), \(b\) e \(n\) e restituisce il valore dell&#8217;integrale, calcolato utilizzando la regola di Cavalieri-Simpson. Usa la tua funzione per integrare "cubo" tra 0 e 1 (con \(n = 100\) e \(n = 1000\)) e confronta i risultati con quelli della funzione "integrale" mostrata sopra.</p>
+</div>
+</div>
+</div>
+<div id="ex:unlabeled17" class="exampleblock">
+<div class="title">Esercizio 1.30. Somma come processo iterativo</div>
+<div class="content">
+<div class="paragraph">
+<p>La funzione <code>somma</code> soprascritta genera una ricorsione lineare. La funzione può essere riscritta in modo che la somma venga eseguita in modo iterativo. Mostra come farlo compilando le espressioni mancanti nella seguente dichiarazione:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function somma(termine, a, prossimo, b) {
+    function iter(a, risultato) {
+        return &lt; ?? &gt;
+               ? &lt; ?? &gt;
+               : iter(&lt; ?? &gt;, &lt; ?? &gt;);
+    }
+    return iter(&lt; ?? &gt;, &lt; ?? &gt;);
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div id="es_prodotto" class="exampleblock">
+<div class="title">Esercizio 1.31. Prodotto dei valori di una funzione in un intervallo</div>
+<div class="content">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>La funzione <code>somma</code> è solo la più semplice di un vasto numero di astrazioni simili che possono essere gestite come funzioni di ordine superiore. <sup class="footnote">[<a id="_footnoteref_22" class="footnote" href="#_footnotedef_22" title="View footnote.">22</a>]</sup> Scrivete una funzione analoga chiamata "prodotto" che restituisca il prodotto dei valori di una funzione in punti di un dato intervallo. Mostrate come definire "fattoriale" in termini di "prodotto". Usa anche <code>prodotto</code> per calcolare approssimazioni di \(\pi\) usando la formula <sup class="footnote">[<a id="_footnoteref_23" class="footnote" href="#_footnotedef_23" title="View footnote.">23</a>]</sup></p>
+<div class="openblock">
+<div class="content">
+<div class="stemblock">
+<div class="content">
+\[\frac{\pi}{4}=\frac{2\cdot 4\cdot 4\cdot 6\cdot 6\cdot 8\cdots}{3\cdot3\cdot 5\cdot 5\cdot 7\cdot 7\cdots}\]
+</div>
+</div>
+</div>
+</div>
+</li>
+<li>
+<p>Se la tua funzione <code>prodotto</code> genera un processo ricorsivo, scrivine uno che generi un processo iterativo. Se genera un processo iterativo, scrivine uno che generi un processo ricorsivo.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div id="es_accumula" class="exampleblock">
+<div class="title">Esercizio 1.32. Accumula</div>
+<div class="content">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Mostra che <code>somma</code> e` prodotto` (<a href="#es_prodotto">Esercizio 1.31. Prodotto dei valori di una funzione in un intervallo</a>) sono entrambi casi speciali di una nozione ancora più generale chiamata <code>accumula</code> che combina una collezione di termini, utilizzando alcune funzioni generali di accumulazione:</p>
+<div class="openblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">accumula(operatore, elemento_neutro, termine, a, prossimo, b);</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>La funzione <code>accumula</code> prende come argomenti le stesse specifiche di termine e intervallo di <code>somma</code> e <code>prodotto</code>, insieme a una funzione <code>operatore</code> (di due argomenti) che specifica come il termine corrente deve essere combinato con l&#8217;accumulazione dei termini precedenti e un <code>elemento_neutro</code> che specifica quale valore di base usare quando i termini si esauriscono. Scrivi <code>accumula</code> e mostra come <code>somma</code> e <code>prodotto</code> possono essere entrambi dichiarati come semplici chiamate ad <code>accumula</code>.</p>
+</div>
+</li>
+<li>
+<p>Se la tua funzione <code>accumula</code> genera un processo ricorsivo, scrivine uno che generi un processo iterativo. Se genera un processo iterativo, scrivine uno che generi un processo ricorsivo.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div id="es_filtra_accumula" class="exampleblock">
+<div class="title">Esercizio 1.33. Accumula i valori filtrati</div>
+<div class="content">
+<div class="paragraph">
+<p>È possibile ottenere una versione ancora più generale di <code>accumula</code> (<a href="#es_accumula">Esercizio 1.32. Accumula</a>) introducendo la nozione di un <em>filtro</em> sui termini da combinare. Cioè, combina solo i termini derivati ​​dai valori nell&#8217;intervallo che soddisfano una condizione specificata. L&#8217;astrazione risultante <code>accumula_se</code> accetta gli stessi argomenti di accumula, insieme a un predicato aggiuntivo di un argomento che specifica il filtro. Scrivi "accumula_se" come funzione. Mostra come esprimere quanto segue usando <code>accumula_se</code>:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>la somma dei quadrati dei numeri primi nell&#8217;intervallo da \(a\) a \(b\) (assumendo che tu abbia un predicato <code>primo</code> già scritto)</p>
+</li>
+<li>
+<p>il prodotto di tutti i numeri interi positivi inferiori a \(n\) che sono relativamente primi rispetto a \(n\) (ovvero, tutti gli interi positivi \(i&lt;n\) tali che \(\textrm{MCD} (i, n) = 1\)).</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="sec:lambda"><a class="anchor" href="#sec:lambda"></a>1.3.2. Costruire le funzioni utilizzando le espressioni Lambda</h4>
+<div class="paragraph">
+<p>Nell&#8217;usare <code>somma</code> come nel <a href="#sec:procedures-as-parameters">paragrafo 1.3.1</a>, sembra terribilmente imbarazzante dover dichiarare funzioni banali come <code>pi_termine</code> e <code>pi_prossimo</code> soltanto perché così possiamo usarle come argomenti per la nostra funzione di ordine superiore. Piuttosto che dichiarare <code>pi_prossimo</code> e <code>pi_termine</code>, sarebbe più conveniente avere un modo per specificare direttamente "la funzione che restituisce il suo input incrementato di 4" e "la funzione che restituisce il reciproco del suo input per il suo input più 2". Possiamo farlo introducendo <em>espressioni lambda</em> come forma sintattica per la creazione di funzioni. Usando le espressioni lambda, possiamo descrivere ciò che vogliamo come</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">x =&gt; x + 4;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>e</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">x =&gt; 1.0 / (x * (x + 2));</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Quindi la nostra funzione <code>somma_pi</code> può essere espressa senza dichiarare alcuna funzione ausiliaria come</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function somma_pi(a, b) {
+    return somma(x =&gt; 1.0 / (x * (x + 2)),
+               a,
+               x =&gt; x + 4,
+               b);
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Usando ancora un&#8217;espressione lambda, possiamo scrivere la funzione <code>integrale</code> senza dover dichiarare la funzione ausiliaria <code>aggiungi_dx</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function integrale(f, a, b, dx) {
+    return somma(f,
+               a + dx / 2.0,
+               x =&gt; x + dx,
+               b)
+           *
+           dx;
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In generale, le espressioni lambda vengono utilizzate per creare funzioni allo stesso modo delle dichiarazioni di funzione, tranne per il fatto che non viene specificato alcun nome per la funzione e la parola chiave return e le parentesi graffe vengono omesse.<sup class="footnote">[<a id="_footnoteref_24" class="footnote" href="#_footnotedef_24" title="View footnote.">24</a>]</sup></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">Forma della dichiarazione di una espressione lambda</div>
+<div class="paragraph">
+<p><strong>(</strong> <em>parametri</em> <strong>) &#8658; </strong> <em>espressione</em></p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>La funzione risultante è una funzione tanto quanto quella creata utilizzando un&#8217;istruzione di dichiarazione di funzione. L&#8217;unica differenza è che non è stato associato ad alcun nome nell&#8217;ambiente. Noi consideriamo</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function piu4(x) {
+    return x + 4;
+}</code></pre>
+</div>
+</div>
+<div id="foot:function-decl-vs-lambda" class="paragraph">
+<p>essere equivalente a <sup class="footnote">[<a id="_footnoteref_25" class="footnote" href="#_footnotedef_25" title="View footnote.">25</a>]</sup></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">const piu4 = x =&gt; x + 4;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Possiamo leggere un&#8217;espressione lambda come segue:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">//                         x       =&gt;             x     +   4
+//                         ^       ^              ^     ^   ^
+//                         |       |              |     |   |
+// la funzione di argomento x che restituisce il valore piu' 4</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Come qualsiasi espressione che ha una funzione come valore, un&#8217;espressione lambda può essere utilizzata come espressione di funzione in un&#8217;applicazione come</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">((x, y, z) =&gt; x + y + quadrato(z))(1, 2, 3);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>o, più in generale, in qualsiasi contesto in cui normalmente useremmo un nome di funzione.<sup class="footnote">[<a id="_footnoteref_26" class="footnote" href="#_footnotedef_26" title="View footnote.">26</a>]</sup> Notare che "&#8658;" ha una precedenza inferiore rispetto all&#8217;applicazione della funzione e quindi le parentesi attorno all&#8217;espressione lambda in questo esempio sono necessarie.</p>
+</div>
+<div class="sect4">
+<h5 id="using-const-to-create-local-names"><a class="anchor" href="#using-const-to-create-local-names"></a>Uso di <code>const</code> per creare nomi locali</h5>
+<div class="paragraph">
+<p>Un altro utilizzo delle espressioni lambda è nella creazione di nomi locali. Spesso abbiamo bisogno di nomi locali nelle nostre funzioni diversi da quelli che sono stati associati come parametri. Ad esempio, supponiamo di voler calcolare la funzione \(f(x,y)=x(1+xy)^2 y(1-y)(1+xy)(1-y\)]</p>
+</div>
+<div class="paragraph">
+<p>che potremmo anche esprimere come</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[\begin{aligned}
+      a &amp;=&amp; 1+xy\\
+      b &amp;=&amp; 1-y\\
+      f(x,y) &amp;=&amp; xa^2 +yb +ab
+\end{aligned}\]
+</div>
+</div>
+<div class="paragraph">
+<p>Nello scrivere una funzione per calcolare \(f\), vorremmo includere come nomi locali non solo \(x\) e \(y\) ma anche i nomi di quantità intermedie come \(a\) e \(b\). Un modo per ottenere ciò è utilizzare una funzione ausiliaria per associare i nomi locali:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function f(x, y) {
+    function f_ausiliaria(a, b) {
+        return x * quadrato(a) +
+               y * b +
+               a * b;
+    }
+    return f_ausiliaria(1 + x * y,
+                    1 - y);
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Potremmo usare un&#8217;espressione lambda per specificare una funzione anonima per associare i nostri nomi locali. Il corpo di <code>f</code> diventa quindi una singola chiamata a quella funzione:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function f(x,y) {
+    return ( (a, b) =&gt; x * quadrato(a) +
+                      y * b +
+                      a * b
+           )(1 + x * y, 1 - y);
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Un modo più conveniente per dichiarare i nomi locali consiste nell&#8217;usare dichiarazioni di costanti all&#8217;interno del corpo della funzione. Usando "const", la funzione "f" può essere scritta come</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function f(x, y) {
+    const a = 1 + x * y;
+    const b = 1 - y;
+    return x * quadrato(a) +
+           y * b +
+           a * b;
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>I nomi dichiarati con <code>const</code> all&#8217;interno di un blocco hanno come visibilità il corpo del blocco immediatamente circostante.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="conditional-statements"><a class="anchor" href="#conditional-statements"></a>Istruzioni condizionali</h5>
+<div class="paragraph">
+<p>Abbiamo visto che spesso è utile dichiarare nomi locali alle dichiarazioni di funzione. Quando le funzioni diventano grandi, dovremmo mantenere la visibilità dei nomi la più ristretta possibile. Considera ad esempio "potenza_modulo" in <a href="#ex:louis-fast-prime">Esercizio 1.26.</a>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function potenza_modulo(base, esponente, m) {
+    return esponente === 0
+           ? 1
+           : pari(esponente)
+             ? potenza_modulo(base, esponente / 2, m)
+               * potenza_modulo(base, esponente / 2, m)
+               % m
+             : base
+               * potenza_modulo(base, esponente - 1, m)
+               % m;
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Questa funzione è inutilmente inefficiente, perché contiene due chiamate identiche:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">potenza_modulo(base, esponente / 2, m)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Anche se questo può essere facilmente risolto in questo esempio usando la funzione <code>quadrato</code>, non è così facile in generale. Senza usare "quadrato", saremmo tentati di introdurre un nome locale per l&#8217;espressione come segue:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function potenza_modulo(base, esponente, m) {
+    const da_quadrare = potenza_modulo(base, esponente / 2, m);
+    return esponente === 0
+           ? 1
+           : pari(esponente)
+             ? da_quadrare
+               * da_quadrare
+               % m
+             : base
+               * potenza_modulo(base, esponente - 1, m)
+               % m;
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Ciò renderebbe la funzione non solo inefficiente, ma addirittura non terminante! Il problema è che la dichiarazione della costante appare al di fuori dell&#8217;espressione condizionale, il che significa che viene eseguita anche quando viene soddisfatto il caso base <code>esponente === 0</code>. Per evitare questa situazione, il linguaggio fornisce le <em>istruzione condizionali</em> e permette che le istruzioni <code>return</code> appaiano in rami diversi dell&#8217;istruzione condizionale. Utilizzando un&#8217;istruzione condizionale, la funzione <code>potenza_modulo</code> può essere scritta come segue:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function potenza_modulo(base, esponente, m) {
+    if (esponente === 0) {
+        return 1;
+    } else {
+        if (pari(esponente)) {
+            const da_quadrare = potenza_modulo(base, esponente / 2, m);
+            return da_quadrare * da_quadrare % m;
+        } else {
+            return base * potenza_modulo(base, esponente - 1, m) % m;
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>La forma generale di un&#8217;istruzione condizionale è</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">Forma generale di un&#8217;istruzione condizionale</div>
+<div class="paragraph">
+<p><strong>if (</strong><em>predicato</em><strong>) {</strong> <em>conseguente</em> <strong>} else {</strong> <em>alternativa</em> <strong>}</strong></p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>e, come le espressioni condizionali, la loro valutazione prima valuta il <em>predicato</em>. Se restituisce true, l&#8217;interprete valuta le istruzioni <em>conseguente</em> e se restituisce false, l&#8217;interprete valuta le istruzioni <em>alternativa</em>. Si noti che tutte le dichiarazioni di costanti che appaiono in una delle parti sono locali rispetto a quella parte, perché entrambe sono racchiuse tra parentesi graffe e quindi formano il proprio blocco.</p>
+</div>
+<div class="exampleblock">
+<div class="title">Esercizio 1.34. Applicazione di una funzione a se stessa</div>
+<div class="content">
+<div class="paragraph">
+<p>Supponiamo di dichiarare</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function f(g) {
+   return g(2);
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Poi abbiamo</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">f(quadrato);</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">f(z =&gt; z * (z + 1));</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Cosa succede se chiediamo (perversamente) all&#8217;interprete di valutare l&#8217;applicazione <code>f (f)</code>? Spiegarlo.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="sec:proc-general-methods"><a class="anchor" href="#sec:proc-general-methods"></a>1.3.3. Funzioni come metodi generali</h4>
+<div class="paragraph">
+<p>Abbiamo introdotto le funzioni composte nel <a href="#sp_funzioni_composte">paragrafo 1.1.4</a> come meccanismo per astrarre modelli di operazioni numeriche in modo da renderle indipendenti dai numeri particolari coinvolti. Con le funzioni di ordine superiore, come la funzione <code>integrale</code> del <a href="#sec:procedures-as-parameters">paragrafo 1.3.1</a>, abbiamo iniziato a vedere un tipo più potente di astrazione: funzioni usate per esprimere metodi generali di calcolo, indipendentemente dalle funzioni particolari coinvolte. In questo paragrafo discuteremo due esempi più elaborati - dei metodi generali per trovare zeri e punti fissi di funzioni - e mostreremo come questi metodi possono essere espressi direttamente come funzioni.</p>
+</div>
+<div class="sect4">
+<h5 id="finding-roots-of-equations-by-the-half-interval-method"><a class="anchor" href="#finding-roots-of-equations-by-the-half-interval-method"></a>Trovare le radici delle equazioni con il metodo della bisezione</h5>
+<div class="paragraph">
+<p>Il <em>metodo di bisezione</em> è una tecnica semplice ma potente per trovare le radici di un&#8217;equazione \(f (x) = 0\), dove \(f\) è una funzione continua. L&#8217;idea è che, se ci vengono dati due punti \(a\) e \(b\) tali che \(f (a) &lt; 0 &lt; f (b)\), allora \(f\) deve avere almeno uno zero tra \(a\) e \(b\). Per individuare uno zero, sia \(x\) la media di \(a\) e \(b\) e calcoli \(f (x)\). Se \(f (x)&gt; 0\), \(f\) deve avere uno zero tra \(a\) e \(x\). Se \(f (x) &lt;0\), \(f\) deve avere uno zero tra \(x\) e \(b\). Continuando in questo modo, possiamo identificare intervalli sempre più piccoli su cui \(f\)deve avere uno zero. Quando raggiungiamo un punto in cui l&#8217;intervallo è abbastanza piccolo, il processo si interrompe. Poiché l&#8217;intervallo di incertezza si riduce della metà in ogni fase del processo, il numero di passaggi richiesti cresce come \(\Theta (\log (L / T))\), dove \(L\) è la lunghezza dell&#8217;intervallo originale e \(T\) è la tolleranza all&#8217;errore (ovvero, la dimensione dell&#8217;intervallo che considereremo <em>abbastanza piccola</em>). Ecco una funzione che implementa questa strategia:<sup class="footnote">[<a id="_footnoteref_27" class="footnote" href="#_footnotedef_27" title="View footnote.">27</a>]</sup></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function cerca(f, punto_negativo, punto_positivo) {
+    const punto_medio = valor_medio(punto_negativo,punto_positivo);
+    if (abbastanza_vicino(punto_negativo, punto_positivo)) {
+        return punto_medio;
+    } else {
+        const valore_da_confrontare = f(punto_medio);
+        if (positivo(valore_da_confrontare)) {
+            return cerca(f, punto_negativo, punto_medio);
+        } else if (negativo(valore_da_confrontare)) {
+            return cerca(f, punto_medio, punto_positivo);
+        } else {
+            return punto_medio;
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Assumiamo di avere inizialmente la funzione \(f\) insieme ai punti in cui i suoi valori sono negativi e positivi. Calcoliamo prima il punto medio dei due punti dati. Successivamente controlliamo per vedere se l&#8217;intervallo dato è abbastanza piccolo e, in tal caso, restituiamo semplicemente il punto medio come risposta. Altrimenti, calcoliamo come valore di test il valore di \(f\) nel punto medio. Se il valore del test è positivo, continuiamo il processo con un nuovo intervallo che va dal punto negativo originale al punto medio. Se il valore del test è negativo, continuiamo con l&#8217;intervallo dal punto medio al punto positivo. Infine, c&#8217;è la possibilità che il valore del test sia 0, nel qual caso il punto_medio è esso stesso la radice che stiamo cercando. Per verificare se i punti estremi sono <em>abbastanza vicini</em> possiamo usare una funzione simile a quella usata nel <a href="#sec:sqrt">paragrafo 1.1.7</a> per calcolare le radici quadrate: <sup class="footnote">[<a id="_footnoteref_28" class="footnote" href="#_footnotedef_28" title="View footnote.">28</a>]</sup></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function abbastanza_vicino(x,y) {
+    return valore_assoluto(x - y) &lt; 0.001;
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>La funzione <code>cerca</code> è scomoda da usare direttamente, perché possiamo accidentalmente assegnarle punti in cui i valori di \(f\) non hanno il segno richiesto, nel qual caso otteniamo una risposta sbagliata. Invece useremo <code>cerca</code> tramite la seguente funzione, che controlla quale dei punti estremi ha un valore di funzione negativo e quale ha un valore positivo, e chiama la funzione <code>cerca</code> di conseguenza. Se la funzione ha lo stesso segno sui due punti dati, il metodo di bisezione non può essere utilizzato, nel qual caso la funzione segnala un errore. <sup class="footnote">[<a id="_footnoteref_29" class="footnote" href="#_footnotedef_29" title="View footnote.">29</a>]</sup></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function metodo_bisezione(f, a, b) {
+    const valore_in_a = f(a);
+    const valore_in_b = f(b);
+    return negativo(valore_in_a) &amp;&amp; positivo(valore_in_b)
+           ? cerca(f, a, b)
+           : negativo(valore_in_b) &amp;&amp; positivo(valore_in_a)
+             ? cerca(f, b, a)
+             : errore("i valori non sono di segno opposto");
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>L&#8217;esempio seguente utilizza il metodo di bisezione per approssimare \(\pi\) come radice tra 2 e 4 di \(\sin \, x = 0\):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">metodo_bisezione(Math.sin, 2.0, 4.0);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Ecco un altro esempio, utilizzando il metodo di bisezione per cercare una radice dell&#8217;equazione \(x^3 - 2x - 3 = 0\) tra 1 e 2:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">metodo_bisezione(
+  x =&gt; x * x * x - 2 * x - 3,
+  1.0,
+  2.0);</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="finding-fixed-points-of-functions"><a class="anchor" href="#finding-fixed-points-of-functions"></a>Trovare i punti fissi delle funzioni</h5>
+<div class="paragraph">
+<p>Un numero \(x\) è chiamato <em>punto fisso</em> di una funzione \(f\) if \(x\) soddisfa l&#8217;equazione \(f (x) = x\). Per alcune funzioni \(f\) possiamo individuare un punto fisso iniziando con un valore iniziale e applicando \(f\) ripetutamente, \(f (x), f (f (x)) , f (f (f (x))), \ldots\) fino a quando il valore non cambia più di molto. Usando questa idea, possiamo ideare una funzione <code>punto_fisso</code> che prende come input una funzione e una stima iniziale e produce un&#8217;approssimazione di un punto fisso della funzione. Applichiamo la funzione ripetutamente fino a trovare due valori successivi la cui differenza è inferiore a una certa tolleranza prescritta:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">const tolleranza = 0.00001;
+function punto_fisso(f, stima_iniziale) {
+    function abbastanza_vicino(x, y) {
+        return valore_assoluto(x - y) &lt; tolleranza;
+    }
+    function prova_con(stima) {
+        const prossimo = f(stima);
+        return abbastanza_vicino(stima, prossimo)
+               ? prossimo
+               : prova_con(prossimo);
+    }
+    return prova_con(stima_iniziale);
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Ad esempio, possiamo usare questo metodo per approssimare il punto fisso della funzione coseno, iniziando con 1 come approssimazione iniziale:<sup class="footnote">[<a id="_footnoteref_30" class="footnote" href="#_footnotedef_30" title="View footnote.">30</a>]</sup></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">punto_fisso(math_cos, 1.0);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Allo stesso modo, possiamo trovare una soluzione all&#8217;equazione \(y = \sin y + \cos y\):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">punto_fisso(
+    y =&gt; math_sin(y) + math_cos(y),
+    1.0);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Il processo a virgola fissa ricorda il processo che abbiamo usato per trovare le radici quadrate nel <a href="#sec:sqrt">paragrafo 1.1.7</a>. Entrambi si basano sull&#8217;idea di migliorare ripetutamente un&#8217;ipotesi finché il risultato non soddisfa un criterio. In effetti, possiamo facilmente formulare il calcolo della radice quadrata come una ricerca di un punto fisso. Il calcolo della radice quadrata di un numero \(x\) richiede di trovare un \(y\) tale che \(y^2 = x\). Mettendo questa equazione nella forma equivalente \(y = x / y\), riconosciamo che stiamo cercando un punto fisso della nota funzione: <sup class="footnote">[<a id="_footnoteref_31" class="footnote" href="#_footnotedef_31" title="View footnote.">31</a>]</sup> \(y \mapsto x / y\), e possiamo quindi provare a calcolare le radici quadrate come</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function radice_quadrata() {
+    return punto_fisso(y =&gt; x / y, 1.0);
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Sfortunatamente, questa ricerca del punto fisso non converge. Considera una prima stima \(y_1\). La prossima stima è \(y_2 = x / y_1\) e la successiva è \(y_3 = x / y_2 = x / (x / y_1) = y_1\). Ciò si traduce in un ciclo infinito in cui le due stime \(y_1\) e \(y_2\) si ripetono più e più volte, oscillando intorno alla soluzione.</p>
+</div>
+<div class="paragraph">
+<p>Un modo per controllare tali oscillazioni è impedire che le ipotesi cambino così tanto. Poiché la risposta è sempre tra la nostra stima \(y\) e \(x / y\), possiamo fare una nuova stima che non sia così lontana da \(y\) come \(x / y\) calcolando la media di \(y\) con \(x / y\), in modo che la prossima stima dopo \(y\) sia \(\frac{1}{2} (y + x / y)\) invece di \(x / y\). Il processo per fare una tale sequenza di valori è semplicemente il processo di ricerca di un punto fisso di \(y \ mapsto \frac{1}{2} (y + x / y)\):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function radice_quadrata() {
+    return punto_fisso(
+               y =&gt; valor_medio(y, x / y),
+               1.0);
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>(Nota che \(y = \frac{1}{2} (y + x / y)\) è una semplice trasformazione dell&#8217;equazione \(y = x / y\); per derivarlo, aggiungi \(y\) su entrambi i lati dell&#8217;equazione e dividi per 2.)</p>
+</div>
+<div class="paragraph">
+<p>Con questa modifica, la funzione per l&#8217;estrazione della radice quadrata funziona. Infatti, se sveliamo le definizioni, possiamo vedere che la sequenza di approssimazioni alla radice quadrata generata qui è esattamente la stessa di quella generata dalla nostra funzione radice quadrata originale del <a href="#sec:sqrt">paragrafo 1.1.7</a>. Questo approccio di calcolare la media di approssimazioni successive a una soluzione, una tecnica che chiamiamo <em>smorzamento tramite media</em>, spesso aiuta la convergenza delle ricerche dei punti fissi.</p>
+</div>
+<div class="exampleblock">
+<div class="title">Esercizio 1.35. Calcolo della sezione aurea</div>
+<div class="content">
+<div class="paragraph">
+<p>Mostra che la sezione aurea \(\phi\) (<a href="#sp_ricorsione_ad_albero">paragrafo 1.2.2</a>) è un punto fisso della trasformazione \(x \mapsto 1 + 1 / x\), e usa questo fatto per calcolare \(\phi\) tramite la funzione <code>punto_fisso</code>.</p>
+</div>
+</div>
+</div>
+<div id="ex:log-fixed-point" class="exampleblock">
+<div class="title">Esercizio 1.36.</div>
+<div class="content">
+<div class="paragraph">
+<p>Modifica <code>punto_fisso</code> in modo che stampi la sequenza di approssimazioni che genera, utilizzando la funzione primitiva <code>display</code> mostrata nel <a href="#ex:search-for-primes">Esercizio 1.22. Fare esperienza della complessità di ricerca dei numeri primi grandi</a>. Quindi trova una soluzione a \(x^x = 1000\) trovando un punto fisso di \(x \mapsto \log (1000) / \log (x)\). (Usa la funzione primitiva <code>math_log</code> che calcola i logaritmi naturali.) Confronta il numero di passi che questo richiede con e senza lo <em>smorzamento mediante media</em>. (Nota che non puoi iniziare <code>punto_fisso</code> con un&#8217;ipotesi di 1, poiché ciò causerebbe la divisione per \(\log (1) = 0\).)</p>
+</div>
+</div>
+</div>
+<div id="ex:continued-fractions" class="exampleblock">
+<div class="title">Esercizio 1.37. Frazioni continue</div>
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Una <em>frazione continua</em> infinita è un&#8217;espressione della forma</p>
+<div class="openblock">
+<div class="content">
+<div class="stemblock">
+<div class="content">
+\[ f={\dfrac{N_1}{D_1+
+          \dfrac{N_2}{D_2+
+          \dfrac{N_3}{D_3+\cdots }}}}\]
+</div>
+</div>
+<div class="paragraph">
+<p>Ad esempio, si può mostrare che l&#8217;espansione continua infinita della frazione con \(N_i\) e \(D_i\) tutti uguali a 1 produce \(1 / \phi\), dove \(\phi\)  è la sezione aurea (descritta nel <a href="#sp_ricorsione_ad_albero">paragrafo 1.2.2</a>]). Un modo per approssimare una frazione continua infinita è troncare l&#8217;espansione dopo un dato numero di termini. Una frazione continua finita troncata al \(k\)-esimo termine, che chiamero <em>\(k\)-termine</em> ha la forma:</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[{\dfrac{N_1}{D_1 +
+          \dfrac{N_2}{\ddots +
+          \dfrac{N_K}{D_K}}}}\]
+</div>
+</div>
+<div class="paragraph">
+<p>Supponiamo che <code>n</code> e <code>d</code> siano funzioni di un argomento (il termine indice \(i\)) che restituiscono \(N_i\) e \(D_i\) dei termini della frazione continua. Dichiara una funzione <code>fraz_cont</code> tale che la valutazione di `fraz_cont (n, d, k)`calcola il valore di latexmath: [$ k $] - termine finito frazione continua. Controlla la tua funzione approssimando \(1 / \phi\) usando</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">fraz_cont(i =&gt; 1.0,
+          i =&gt; 1.0,
+          k);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>per valori successivi di <code>k</code>. Quanto grande devi fare <code>k</code> per ottenere un&#8217;approssimazione che sia accurata fino a 4 cifre decimali?</p>
+</div>
+</div>
+</div>
+</li>
+<li>
+<p>Se la tua funzione <code>fraz_cont</code> genera un processo ricorsivo, scrivine uno che generi un processo iterativo. Se genera un processo iterativo, scrivine uno che generi un processo ricorsivo.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="title">Esercizio 1.38.</div>
+<div class="content">
+<div class="paragraph">
+<p>Nel 1737, il matematico svizzero Leonhard Euler (Eulero) pubblicò un libro di memorie <em>De Fractionibus Continuis</em>, che includeva una espansione in frazione continua di \(e-2\), dove \(e\) è la base dei logaritmi naturali. In questa frazione, \(N_i\) sono tutti 1 e \(D_i\) sono successivamente 1, 2, 1, 1, 4, 1, 1, 6, 1, 1, 8, &#8230;&#8203; . Scrivi un programma, basato sull&#8217;espansione di Eulero, che utilizzi la tua funzione <code>fraz_cont</code> dell&#8217;esercizio <a href="#ex:continued-fractions">Esercizio 1.37. Frazioni continue</a> per approssimare \(e\).</p>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="title">Esercizio 1.39. Approssimare \(e\)</div>
+<div class="content">
+<div class="paragraph">
+<p>Una rappresentazione in frazione continua della funzione tangente fu pubblicata nel 1770 dal matematico tedesco J.H. Lambert:</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[\tan x={\dfrac{x}{1-
+      \dfrac{x^2}{3-
+      \dfrac{x^2}{5-
+      \dfrac{x^2}{ \ddots }}}}}\]
+</div>
+</div>
+<div class="paragraph">
+<p>dove \(x\) è espresso in radianti. Dichiarare una funzione <code>tan_cf (x, k)</code> che calcola un&#8217;approssimazione alla funzione tangente basata sulla formula di Lambert. Come in <a href="#ex:continued-fractions">Esercizio 1.37. Frazioni continue</a>, <code>k</code> specifica il numero di termini da calcolare.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="sec:proc-returned-values"><a class="anchor" href="#sec:proc-returned-values"></a>1.3.4. Funzioni come valori restituiti</h4>
+<div class="paragraph">
+<p>Gli esempi precedenti dimostrano come la capacità di passare funzioni come argomenti accresca in modo significativo la potenza espressiva del nostro linguaggio di programmazione. Possiamo ottenere un potere espressivo ancora maggiore creando funzioni i cui valori restituiti sono essi stessi funzioni.</p>
+</div>
+<div class="paragraph">
+<p>Possiamo illustrare questa idea guardando di nuovo l&#8217;esempio del punto fisso descritto alla fine del <a href="#sec:proc-general-methods">paragrafo 1.3.3</a>. Abbiamo formulato una nuova versione della funzione per il calcolo della radice quadrata come ricerca in punto fisso, partendo dall&#8217;osservazione che \(\sqrt{x}\) è un punto fisso della funzione \(y \mapsto x / y\). Quindi abbiamo utilizzato lo smorzamento tramite media per far convergere le approssimazioni. Lo smorzamento tramite media è di per sé un&#8217;utile tecnica generale. Vale a dire, data una funzione \(f\), consideriamo la funzione il cui valore in \(x\) è uguale alla media di \(x\) e \(f (x)\).</p>
+</div>
+<div class="paragraph">
+<p>Possiamo esprimere l&#8217;idea di smorzamento medio mediante la seguente funzione:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function smorazmento(f) {
+    return x =&gt; valor_medio(x, f(x));
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>La funzione <code>smorazmento</code> è una funzione che prende come argomento una funzione <code>f</code> e restituisce come valore una funzione (prodotta dall&#8217;espressione lambda) che, quando applicata a un numero <code>x</code>, produce la media di <code>x</code> e <code>f (x)</code>. Ad esempio, l&#8217;applicazione di <code>smorzamento</code> alla funzione <code>quadrato</code> produce una funzione il cui valore per un certo numero \(x\) è la media di \(x\) e \(x^2\). L&#8217;applicazione di questa funzione risultante per 10 restituisce la media di 10 e 100 ossia 55: <sup class="footnote">[<a id="_footnoteref_32" class="footnote" href="#_footnotedef_32" title="View footnote.">32</a>]</sup></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">smorzameto(quadrato)(10);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Usando <code>smorzamento</code>, possiamo riformulare la funzione radice quadrata come segue:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function radice_quadrata(x) {
+    return punto_fisso(smorzamento(y =&gt; x / y),
+                       1.0);
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Si noti come questa formulazione rende esplicite le tre idee nel metodo: la ricerca di un punto fisso, lo smorzamento tramite media e la funzione \(y \mapsto x / y\). È istruttivo confrontare questa formulazione del metodo della radice quadrata con la versione originale fornita nel <a href="#sec:sqrt">paragrafo 1.1.7</a>. Tieni presente che queste funzioni esprimono lo stesso processo e nota quanto più chiara l&#8217;idea diventa quando esprimiamo il processo in termini di queste astrazioni. In generale, ci sono molti modi per formulare un processo come una funzione. I programmatori esperti sanno come scegliere formulazioni di processo particolarmente perspicaci e dove elementi utili del processo sono esposti come entità separate che possono essere riutilizzate in altre applicazioni. Come semplice esempio di riutilizzo, si noti che la radice cubica di \(x\) è un punto fisso della funzione \(y \mapsto x / y^2 \), quindi possiamo immediatamente generalizzare la nostra funzione radice quadrata a quella che estrae radici cubiche: <sup class="footnote">[<a id="_footnoteref_33" class="footnote" href="#_footnotedef_33" title="View footnote.">33</a>]</sup></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function radice_cubica(x) {
+    return punto_fisso(smorzamento(y =&gt; x / quadrato(y)),
+                       1.0);
+}</code></pre>
+</div>
+</div>
+<div class="sect4">
+<h5 id="newtons-method"><a class="anchor" href="#newtons-method"></a>Metodo di Newton</h5>
+<div class="paragraph">
+<p>Quando abbiamo introdotto per la prima volta la funzione radice quadrata, nel <a href="#sec:sqrt">paragrafo 1.1.7</a>, abbiamo detto che questo era un caso speciale del metodo di <em>Newton</em>. Se \(x \mapsto g (x)\) è una funzione derivabile, allora una soluzione dell&#8217;equazione \(g (x) = 0\) è un punto fisso della funzione \(x \mapsto f (x)\) dove</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[f (x) = x - \frac {g (x)} {Dg (x)}\]
+</div>
+</div>
+<div class="paragraph">
+<p>e \(Dg (x)\) è il derivata di \(g\) valutata in \(x\). Il metodo di Newton è l&#8217;uso del metodo del punto fisso che abbiamo visto sopra per approssimare una soluzione dell&#8217;equazione trovando un punto fisso della funzione \(f\) <sup class="footnote">[<a id="_footnoteref_34" class="footnote" href="#_footnotedef_34" title="View footnote.">34</a>]</sup> Per molte funzioni \(g\) e per stime iniziali sufficientemente buone per \(x\), il metodo di Newton converge molto rapidamente a una soluzione di \(g (x) = 0\). <sup class="footnote">[<a id="_footnoteref_35" class="footnote" href="#_footnotedef_35" title="View footnote.">35</a>]</sup></p>
+</div>
+<div class="paragraph">
+<p>Per implementare il metodo di Newton come una funzione, dobbiamo prima esprimere l&#8217;idea di derivata. Nota che la <em>derivata</em>, come lo smorzamento tramite media, è qualcosa che trasforma una funzione in un&#8217;altra funzione. Ad esempio, la derivata della funzione \(x \mapsto x^3\) è la funzione \(x \mapsto 3x^2\). In generale, se \(g\) è una funzione e \(dx\) è un numero piccolo, allora la derivata \(Dg\) di \(g\) è la funzione il cui valore in qualsiasi numero \(x\) è dato (nel limite di un piccolo \(dx\)) da</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[Dg (x) = \frac {g (x + dx) - g (x )} {dx}\]
+</div>
+</div>
+<div class="paragraph">
+<p>Quindi, possiamo esprimere l&#8217;idea di derivata (prendendo \(dx\) come, diciamo, 0,00001) come funzione</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function derivata(g) {
+    return x =&gt; (g(x + dx) - g(x)) / dx;
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>insieme alla dichiarazione</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">const dx = 0.00001;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Come <code>smorzamento</code>,` derivata` è una funzione che accetta una funzione come argomento e restituisce una funzione come valore. Ad esempio, per approssimare la derivata di \(x \mapsto x^3\) in 5 (il cui valore esatto è 75) possiamo valutare</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function cubo(x) { return x * x * x; }
+
+derivata(cubo)(5);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Con l&#8217;aiuto della <code>derivata</code>, possiamo esprimere il metodo di Newton come un processo di punto fisso:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function trasformata_newton(g) {
+   return x =&gt; x - g(x) / derivata(g)(x);
+}
+function metodo_newton(g, stima) {
+   return punto_fisso(trasformata_newton(g), stima);
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>La funzione <code>trasformata_newton</code> esprime la formula all&#8217;inizio di questa sezione, e <code>metodo_newton</code> è facilmente definita in termini di ciò. Prende come argomenti una funzione che calcola la funzione per la quale vogliamo trovare uno zero, insieme a una stima iniziale. Ad esempio, per trovare la radice quadrata di \(x\), possiamo usare il metodo di Newton per trovare uno zero della funzione \(y \mapsto y^2-x\) iniziando con una stima iniziale di 1.<sup class="footnote">[<a id="_footnoteref_36" class="footnote" href="#_footnotedef_36" title="View footnote.">36</a>]</sup> Questo fornisce ancora un&#8217;altra forma della funzione radice quadrata:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function radice_quadrata(x) {
+    return metodo_newton(y =&gt; quadrato(y) - x,
+                          1.0);
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="abstractions-and-first-class-functions"><a class="anchor" href="#abstractions-and-first-class-functions"></a>Astrazioni e funzioni di prima classe</h5>
+<div class="paragraph">
+<p>Abbiamo visto due modi per esprimere il calcolo della radice quadrata come istanza di un metodo più generale, una volta come ricerca di un punto fisso e una volta utilizzando il metodo di Newton. Poiché il metodo di Newton era esso stesso espresso come un processo di punto fisso, abbiamo effettivamente visto due modi per calcolare le radici quadrate come punti fissi. Ogni metodo inizia con una funzione e trova un punto fisso di un qualche trasformazione della funzione. Possiamo esprimere questa idea generale stessa come una funzione:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function punto_fisso_di_trasformata(g, trasformata, stima) {
+    return punto_fisso(transformata(g), stima);
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Questa funzione molto generale prende come argomenti una funzione <code>g</code> che calcola qualche funzione, una funzione che trasforma <code>g</code> e una stima iniziale. Il risultato restituito è un punto fisso della funzione trasformata.</p>
+</div>
+<div class="paragraph">
+<p>Usando questa astrazione, possiamo riscrivere il primo modo di calcolare la radice quadrata di questo paragrafo (dove cerchiamo un punto fisso della versione smorzata di \(y \mapsto x / y\)) come istanza di questo metodo generale:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function radice_quadrata(x) {
+    return punto_fisso_di_trasformata(
+               y =&gt; x / y,
+               smorzamento,
+               1.0);
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Allo stesso modo, possiamo esprimere il secondo metodo per il calcolo della radice quadrata di questo paragrafo (un&#8217;istanza del metodo di Newton che trova un punto fisso della trasformata di Newton di \(y \mapsto y^2-x\)) come</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function radice_quadrata(x) {
+    return punto_fisso_di_trasformata(
+               y =&gt; square(y) - x,
+               trasformata_newton,
+               1.0);
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Abbiamo iniziato il <a href="#sec:higher-order-procedures">paragrafo 1.3</a> osservando che le funzioni composte sono un meccanismo di astrazione cruciale, perché ci permettono di esprimere metodi generali di calcolo come elementi espliciti nel nostro linguaggio di programmazione. Ora abbiamo visto come le funzioni di ordine superiore ci permettono di manipolare questi metodi generali per creare ulteriori astrazioni.</p>
+</div>
+<div class="paragraph">
+<p>Come programmatori, dovremmo essere attenti alle opportunità di identificare le astrazioni sottostanti nei nostri programmi e di costruire su di esse e generalizzarle per creare astrazioni più potenti. Questo non vuol dire che si debba sempre scrivere programmi nel modo più astratto possibile; i programmatori esperti sanno scegliere il livello di astrazione appropriato al loro compito. Ma è importante essere in grado di pensare in termini di queste astrazioni, in modo da essere pronti ad applicarle in nuovi contesti. Il significato delle funzioni di ordine superiore è che ci consentono di rappresentare queste astrazioni esplicitamente come elementi nel nostro linguaggio di programmazione, in modo che possano essere gestite proprio come gli altri elementi computazionali.</p>
+</div>
+<div class="paragraph">
+<p>In generale, i linguaggi di programmazione impongono restrizioni sui modi in cui gli elementi computazionali possono essere manipolati. Si dice che gli elementi con il minor numero di restrizioni abbiano uno <em>status</em>. Alcuni dei <em>diritti e privilegi</em> degli elementi di prima classe sono:<sup class="footnote">[<a id="_footnoteref_37" class="footnote" href="#_footnotedef_37" title="View footnote.">37</a>]</sup></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Possono essere indicati utilizzando nomi.</p>
+</li>
+<li>
+<p>Possono essere passati come argomenti alle funzioni.</p>
+</li>
+<li>
+<p>Possono essere restituiti come risultati di funzioni.</p>
+</li>
+<li>
+<p>Possono essere inclusi nelle strutture dati.<sup class="footnote">[<a id="_footnoteref_38" class="footnote" href="#_footnotedef_38" title="View footnote.">38</a>]</sup></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>JavaScript, a differenza di altri linguaggi di programmazione comuni, assegna alle funzioni uno status di prima classe completo. Ciò pone sfide per un&#8217;implementazione efficiente, ma il guadagno risultante in potenza espressiva è enorme.<sup class="footnote">[<a id="_footnoteref_39" class="footnote" href="#_footnotedef_39" title="View footnote.">39</a>]</sup></p>
+</div>
+<div id="ex:unlabeled26" class="exampleblock">
+<div class="title">Esercizio 1.40.</div>
+<div class="content">
+<div class="paragraph">
+<p>Dichiara una funzione <code>cubica</code> che può essere usata insieme alla funzione <code>metodo_newton</code> nelle espressioni della forma</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">metodo_newton(cubica(a, b, c), 1);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>per approssimare gli zeri di \(x^3 + ax^2 + bx + c\).</p>
+</div>
+</div>
+</div>
+<div id="ex:unlabeled27" class="exampleblock">
+<div class="title">Esercizio 1.41.</div>
+<div class="content">
+<div class="paragraph">
+<p>Dichiara una funzione <code>applica_due_volte</code> che accetta una funzione di un argomento come argomento e restituisce una funzione che applica due volte la funzione originale. Ad esempio, se <code>inc</code> è una funzione che aggiunge 1 al suo argomento, allora <code>applica_due_volte(inc)</code> dovrebbe essere una funzione che aggiunge 2. Quale valore viene restituito da</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">applica_due_volte(applica_due_volte(applica_due_volte))(inc)(5);</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div id="ex:compose" class="exampleblock">
+<div class="title">Esercizio 1.42. Componi</div>
+<div class="content">
+<div class="paragraph">
+<p>Siano \(f\) e \(g\) due funzioni di un argomento. La <em>composizione</em> \(f\) dopo \(g\) è definita come la funzione \(x \mapsto f (g (x))\). Dichiarare una funzione <code>componi</code> che implementa la composizione. Ad esempio, se <code>inc</code> è una funzione che aggiunge 1 al suo argomento,</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">componi(quadrato, inc)(6);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>restituisce 49.</p>
+</div>
+</div>
+</div>
+<div id="ex:repeated" class="exampleblock">
+<div class="title">Esercizio 1.43.</div>
+<div class="content">
+<div class="paragraph">
+<p>Se \(f\) è una funzione numerica e \(n\) è un numero intero positivo, allora possiamo formare la \(n\)-esima ripetizione dell&#8217;applicazione di \(f\), che è definita come la funzione il cui valore in \(x\) è \(f (f (\ldots (f (x)) \ldots))\). Ad esempio, se \(f\) è la funzione \(x \mapsto x + 1\), allora la \(n\) esima ripetizione dell&#8217;applicazione di \(f\) è la funzione \(x \mapsto x + n\). Se \(f\) è l&#8217;operazione di elevamento al quadratato di un numero, allora la \(n\)-esima ripetizione dell&#8217;applicazione di \(f\) è la funzione che eleva il suo argomento alla \(2^n\)-esima potenza. Scrivi una funzione che prenda come input una funzione che calcola \(f\) e un intero positivo \(n\) e che restituisca la funzione che calcola l'\(n\)-esima ripetizione dell&#8217;applicazione di \(f\). La tua funzione dovrebbe essere in grado di essere utilizzata come segue:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">ripeti_applicazione(quadrato, 2)(5);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Suggerimento: potresti trovare conveniente usare <code>componi</code> dall&#8217;esercizio <a href="#ex:compose">Esercizio 1.42. Componi</a>.</p>
+</div>
+</div>
+</div>
+<div id="ex:smooth" class="exampleblock">
+<div class="title">Esercizio 1.44.</div>
+<div class="content">
+<div class="paragraph">
+<p>L&#8217;idea di <em>lisciamento</em> (o <em>perequazione</em>) di una funzione è un concetto importante nell&#8217;elaborazione del segnale. Se \(f\) è una funzione e \(dx\) è un numero piccolo, la versione lisciata di \(f\) è la funzione il cui valore in un punto \(x\) è il valor medio di \(f (x-dx)\), \(f (x)\) e \(f (x + dx)\). Scrivete una funzione <code>liscia</code> che prenda come input una funzione che calcola \(f\) e restituisca una funzione che calcoli il lisciamento di \(f\). A volte è utile lisciare ripetutamente una funzione (cioè lisciare la funzione lisciata, e così via) per ottenere la funzione lisciata \(n\) volte. Mostra come generare la funzione per lisciare \(n\) volte una data funzione usando <code>liscia</code> e <code>ripeti_applicazione</code> dall&#8217;esercizio <a href="#ex:repeated">Esercizio 1.43.</a>.</p>
+</div>
+</div>
+</div>
+<div id="ex:nth-roots" class="exampleblock">
+<div class="title">Esercizio 1.45.</div>
+<div class="content">
+<div class="paragraph">
+<p>Abbiamo visto nel <a href="#sec:proc-general-methods">paragrafo 1.3.3</a> che il tentativo di calcolare le radici quadrate trovando ingenuamente un punto fisso di \(y \mapsto x / y\) non converge e che questo può essere risolto con lo smorzamento. Lo stesso metodo funziona per trovare le radici dei cubi come punti fissi dello smorzamento di  \(y \mapsto x / y ^ 2\). Sfortunatamente, il processo non funziona per le radici quarte: un singolo smorzamento non è sufficiente per fare convergere una ricerca di un punto fisso di \(y \mapsto x / y ^ 3\). D&#8217;altra parte, se facciamo la media dello smorzamento due volte (cioè, usiamo lo smorzamento dello smorzamento di \(y \mapsto x / y ^ 3\)) la ricerca del punto fisso converge. Fai alcuni esperimenti per determinare il numero di smorzamenti necessari per calcolare le \(n\)-esime radici come ricerca di un punto fisso basato sullo smorzamento ripetuto di \(y \mapsto x / y^{n-1}\). Usalo per implementare una semplice funzione per calcolare le radici \(n\)-esime radici usando <code>punto_fisso</code>, <code>smorzamento</code> e la funzione <code>ripeti_applicazione</code> dell&#8217;esercizio <a href="#ex:repeated">Esercizio 1.43.</a>. Supponi che tutte le operazioni aritmetiche di cui hai bisogno siano disponibili come primitive.</p>
+</div>
+</div>
+</div>
+<div id="ex:unlabeled28" class="exampleblock">
+<div class="title">Esercizio 1.46.</div>
+<div class="content">
+<div class="paragraph">
+<p>Molti dei metodi numerici descritti in questo capitolo sono esempi di una strategia computazionale estremamente generale nota come <em>miglioramento iterativo</em>. Il miglioramento iterativo dice che, per calcolare qualcosa, iniziamo con una stima iniziale della soluzione, testiamo se la stima è abbastanza buona, e se non lo è miglioriamo la stima e continuiamo il processo utilizzando la stima migliorata come nuova stima. Scrivi una funzione <code>migliora_iterativo</code> che accetta due funzioni come argomenti: un metodo per dire se una stima è abbastanza buona e un metodo per migliorare la stima. La funzione <code>migliora_iterativo</code> dovrebbe restituire come valore una funzione che accetta una stima come argomento e continua a migliorare la stima finché non è abbastanza buona. Riscrivi la funzione <code>radice_quadrata</code> del <a href="#sec:sqrt">paragrafo 1.1.7</a> e la funzione <code>punto_fisso</code> del <a href="#sec:proc-general-methods">paragrafo 1.3.3</a> in termini di <code>migliora_iterativo</code>.</p>
 </div>
 </div>
 </div>
@@ -4318,6 +5026,66 @@ function stampa_primo(tempo_trascorso) {
 </div>
 <div class="footnote" id="_footnotedef_19">
 <a href="#_footnoteref_19">19</a>. La funzione primitiva <code>display</code> restituisce il suo argomento, ma lo stampa anche. Qui <em>***</em> è una <em>stringa</em>, una sequenza di caratteri che passiamo come argomento alla funzione <code>display</code>. La sezione &lt;&lt;+ sp_stringhe &gt;&gt;+ introduce le stringhe in modo più approfondito.
+</div>
+<div class="footnote" id="_footnotedef_20">
+<a href="#_footnoteref_20">20</a>. Questa serie, di solito scritta nella forma equivalente \(\frac{\pi}{4} = 1-\frac{1}{3}\frac{1}{5}-\frac{1}{7}\cdots\), è dovuta a Leibniz. Vedremo come utilizzarla come base per alcuni fantasiosi trucchi numerici nella sezione TODO sec:exploiting-streams.
+</div>
+<div class="footnote" id="_footnotedef_21">
+<a href="#_footnoteref_21">21</a>. Nota che abbiamo usato la struttura a blocchi (<a href="#sec:black-box">paragrafo 1.1.8</a>) per incorporare le dichiarazioni di <code>pi_termine</code> e <code>pi_prossimo</code> all&#8217;interno di <code>somma_pi</code>, poiché è improbabile che queste funzioni siano utili per altri scopi. Vedremo come eliminarli del tutto nel <a href="#sec:lambda">paragrafo 1.3.2</a>.
+</div>
+<div class="footnote" id="_footnotedef_22">
+<a href="#_footnoteref_22">22</a>. L&#8217;intento degli esercizi <a href="#es_prodotto">Esercizio 1.31. Prodotto dei valori di una funzione in un intervallo</a>&#8201;&#8212;&#8201;<a href="#es_filtra_accumula">Esercizio 1.33. Accumula i valori filtrati</a> è quello di dimostrare il potere espressivo che si ottiene utilizzando un&#8217;astrazione appropriata per unificare molte operazioni apparentemente diverse. Tuttavia, sebbene l&#8217;accumulazione e il filtraggio siano idee eleganti, a questo punto siamo in qualche modo costretti ad usarle poiché non abbiamo ancora strutture di dati per fornire mezzi di combinazione adeguati per queste astrazioni. Ritorneremo su queste idee nel TODO sec:sequences-traditional-interfaces quando mostreremo come usare le <em>sequenze</em> come interfacce per combinare filtri e accumulatori per costruire astrazioni ancora più potenti. Vedremo qui come questi metodi si rivelino un approccio davvero potente ed elegante alla progettazione di programmi.
+</div>
+<div class="footnote" id="_footnotedef_23">
+<a href="#_footnoteref_23">23</a>. Questa formula fu scoperta dal matematico inglese del XVII secolo John Wallis.
+</div>
+<div class="footnote" id="_footnotedef_24">
+<a href="#_footnoteref_24">24</a>. Se è presente un solo parametro, le parentesi intorno all&#8217;elenco dei parametri possono anche essere omesse. Nel TODO sec:graphics, estenderemo la sintassi delle espressioni lambda per consentire di avere i blocchi come corpo, come nelle dichiarazioni di dichiarazione di funzione.
+</div>
+<div class="footnote" id="_footnotedef_25">
+<a href="#_footnoteref_25">25</a>. In JavaScript ci sono sottili differenze tra le due versioni: le istruzioni di dichiarazione di funzione (<strong>function <em>nome</em></strong>) sono <em>sollevate</em> (<em>hoisted</em>, spostate automaticamente) all&#8217;inizio del blocco circostante, mentre le dichiarazioni di costanti non lo sono, e i nomi dichiarati con le dichiarazioni di funzione (<strong>const <em>nome</em> = ( <em>parametri</em> ) &#8658; <em>espressione</em></strong>) possono essere riassegnata usando l&#8217;assegnazione (vedi TODO sec:assegnazione).
+</div>
+<div class="footnote" id="_footnotedef_26">
+<a href="#_footnoteref_26">26</a>. Sarebbe più chiaro e meno intimidatorio per le persone che apprendono JavaScript se fosse usato un termine più ovvio dell&#8217;espressione lambda, come <em>definizione di funzione</em>. Ma la convenzione è molto ben radicata, non solo per Lisp e Scheme ma anche per JavaScript, Java e altri linguaggi, senza dubbio in parte a causa dell&#8217;influenza delle edizioni Scheme di questo libro. La notazione è adottata dal \(\lambda\)-calcolo, un formalismo matematico introdotto dal logico matematico Alonzo Church (1941). Church ha sviluppato il \(\lambda\)-calcolo per fornire una base rigorosa per lo studio delle nozioni di funzione e applicazione della funzione. Il \(\lambda\)-calcolo è diventato uno strumento di base per le indagini matematiche sulla semantica dei linguaggi di programmazione.
+</div>
+<div class="footnote" id="_footnotedef_27">
+<a href="#_footnoteref_27">27</a>. Nota che estendiamo leggermente la sintassi delle istruzioni condizionali descritte nel <a href="#sec:lambda">paragrafo 1.3.2</a> ammettendo un&#8217;altra istruzione condizionale al posto del blocco che segue "else".
+</div>
+<div class="footnote" id="_footnotedef_28">
+<a href="#_footnoteref_28">28</a>. Abbiamo usato 0.001 come un numero <em>piccolo</em> rappresentativo per indicare una tolleranza per l&#8217;errore accettabile in un calcolo. La tolleranza appropriata per un calcolo reale dipende dal problema da risolvere e dai limiti del computer e dell&#8217;algoritmo. Questa è spesso una considerazione molto raffinata, che richiede l&#8217;aiuto di un analista numerico o di qualche altro tipo di mago.
+</div>
+<div class="footnote" id="_footnotedef_29">
+<a href="#_footnoteref_29">29</a>. Questo può essere ottenuto utilizzando <code>errore</code>, che prende come argomento una stringa che viene stampato come messaggio di errore insieme al numero della riga del programma che ha dato origine alla chiamata di "errore".
+</div>
+<div class="footnote" id="_footnotedef_30">
+<a href="#_footnoteref_30">30</a>. Prova questo durante una lezione noiosa: imposta la tua calcolatrice in modalità radianti e poi premi ripetutamente il \(\cos\) fino ad ottenere il punto fisso.
+</div>
+<div class="footnote" id="_footnotedef_31">
+<a href="#_footnoteref_31">31</a>. \(\mapsto\) è il modo in cui il matematico scrive le espressioni lambda. \(y \mapsto x / y\) significa <code>y &#8658; x / y</code>, cioè la funzione il cui valore in \(y\) è \(x / y\).
+</div>
+<div class="footnote" id="_footnotedef_32">
+<a href="#_footnoteref_32">32</a>. Osserva che questa è una combinazione il cui operatore è esso stesso una combinazione. L&#8217;esercizio <a href="#ex:a-plus-abs-b">Esercizio 1.4. Riconoscere nel nome di funzione la valutazione dell&#8217;espressione</a> ha ​​già dimostrato la capacità di formare tali combinazioni, ma quello era solo un esempio giocattolo. Qui iniziamo a vedere la reale necessità di tali combinazioni, quando si applica una funzione ottenuta come valore restituito da una funzione di ordine superiore.
+</div>
+<div class="footnote" id="_footnotedef_33">
+<a href="#_footnoteref_33">33</a>. Vedere l&#8217;esercizio <a href="#ex:nth-roots">Esercizio 1.45.</a> per un&#8217;ulteriore generalizzazione.
+</div>
+<div class="footnote" id="_footnotedef_34">
+<a href="#_footnoteref_34">34</a>. I libri di calcolo elementare di solito descrivono il metodo di Newton in termini di la sequenza di approssimazioni \(x_ {n + 1} = x_n-g (x_n) / Dg (x_n)\). Avere un linguaggio per parlare dei processi e usare l&#8217;idea dei punti fissi semplifica la descrizione del metodo.
+</div>
+<div class="footnote" id="_footnotedef_35">
+<a href="#_footnoteref_35">35</a>. Il metodo di Newton non converge sempre a una soluzione, ma si può dimostrare che nei casi favorevoli ogni iterazione raddoppia l&#8217;accuratezza del numero di cifre dell&#8217;approssimazione alla soluzione. In questi casi, il metodo di Newton converge molto più rapidamente rispetto al metodo di bisezione.
+</div>
+<div class="footnote" id="_footnotedef_36">
+<a href="#_footnoteref_36">36</a>. Per trovare le radici quadrate, il metodo di Newton converge rapidamente alla soluzione corretta da qualsiasi punto di partenza.
+</div>
+<div class="footnote" id="_footnotedef_37">
+<a href="#_footnoteref_37">37</a>. La nozione di <em>status</em> di prima classe degli elementi del linguaggio di programmazione è dovuta allo scienziato informatico britannico Christopher Strachey (1916-1975).
+</div>
+<div class="footnote" id="_footnotedef_38">
+<a href="#_footnoteref_38">38</a>. Vedremo esempi di questo dopo aver introdotto le strutture dati nel capitolo 2.
+</div>
+<div class="footnote" id="_footnotedef_39">
+<a href="#_footnoteref_39">39</a>. Il costo di implementazione principale delle funzioni di prima classe è che consentire alle funzioni di essere restituite come valori richiede di riservare la memoria per i nomi liberi di una funzione anche mentre la funzione non è in esecuzione. Nell&#8217;implementazione JavaScript che studieremo nella sezione TODOD sec:mc-eval, questi nomi sono memorizzati nell&#8217;ambiente della funzione.
 </div>
 </div>
 <div id="footer">
