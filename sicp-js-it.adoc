@@ -12,6 +12,8 @@ Il testo ritiene è integrato con ulteriori esercizi in quanto per imparare l'ar
 
 include::cap1/cap1_funzioni.adoc[]
 
+include::cap2/cap2_dati.adoc[]
+
 ifdef::backend-pdf[]
 [index]
 == Indice analitico

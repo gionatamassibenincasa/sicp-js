@@ -95,6 +95,7 @@
 </li>
 </ul>
 </li>
+<li><a href="#building-abstractions-with-data">2. Costruire astrazioni con i dati</a></li>
 </ul>
 </div>
 </div>
@@ -4967,6 +4968,61 @@ function metodo_newton(g, stima) {
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="building-abstractions-with-data"><a class="anchor" href="#building-abstractions-with-data"></a>2. Costruire astrazioni con i dati</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Ci siamo concentrati nel capitolo 1 sui processi computazionali e sul ruolo delle funzioni nella progettazione di programmi. Abbiamo visto come usare dati primitivi (numeri) e operazioni primitive (operazioni aritmetiche), come combinare funzioni per formare funzioni composte attraverso composizione, condizionali e l&#8217;uso di parametri e come astrarre processi usando dichiarazioni di funzione. Abbiamo visto che una funzione può essere considerata come un modello per l&#8217;evoluzione locale di un processo e abbiamo classificato, ragionato ed eseguito semplici analisi algoritmiche di alcuni modelli comuni per processi incorporati nelle funzioni. Abbiamo anche visto che le funzioni di ordine superiore aumentano la potenza del nostro linguaggio permettendoci di manipolare, e quindi di ragionare in termini di metodi generali di calcolo. Questa è gran parte dell&#8217;essenza della programmazione.</p>
+</div>
+<div class="paragraph">
+<p>In questo capitolo esamineremo dati più complessi. Tutte le funzioni del capitolo 1 operano su dati numerici semplici e dati semplici non sono sufficienti per molti dei problemi che desideriamo affrontare utilizzando il calcolo. I programmi sono tipicamente progettati per modellare fenomeni complessi e il più delle volte si devono costruire oggetti computazionali che hanno più parti per modellare fenomeni del mondo reale che hanno diversi aspetti. Pertanto, mentre il nostro focus nel capitolo 1 era sulla costruzione di astrazioni combinando funzioni per formare funzioni composte, in questo capitolo ci rivolgiamo a un altro aspetto chiave di qualsiasi linguaggio di programmazione: i mezzi che fornisce per costruire astrazioni combinando oggetti dati per formare <em>dati composti</em>.</p>
+</div>
+<div class="paragraph">
+<p>Perché vogliamo dati composti in un linguaggio di programmazione? Per gli stessi motivi per cui vogliamo funzioni composte: elevare il livello concettuale al quale possiamo progettare i nostri programmi, aumentare la modularità dei nostri progetti e migliorare la potenza espressiva del nostro linguaggio. Proprio come la capacità di dichiarare funzioni ci consente di trattare i processi a un livello concettuale più alto di quello delle operazioni primitive del linguaggio, la capacità di costruire oggetti di dati composti ci permette di trattare i dati a un livello concettuale più alto di quello oggetti dati primitivi del linguaggio.</p>
+</div>
+<div class="paragraph">
+<p>Considera il compito di progettare un sistema per eseguire operazioni aritmetiche con numeri razionali. Potremmo immaginare un&#8217;operazione <code>add_rat</code> che prende due numeri razionali e produce la loro somma. In termini di dati semplici, un numero razionale può essere pensato come due numeri interi: un numeratore e un denominatore. Quindi, potremmo progettare un programma in cui ogni numero razionale sarebbe rappresentato da due numeri interi (un numeratore e un denominatore) e dove <code>add_rat</code> sarebbe implementato da due funzioni (una che produce il numeratore della somma e una che produce il denominatore) . Ma questo sarebbe imbarazzante, perché avremmo quindi bisogno di tenere esplicitamente traccia di quali numeratori corrispondevano a quali denominatori. In un sistema inteso a eseguire molte operazioni su molti numeri razionali, tali dettagli contabili ingombrerebbero sostanzialmente i programmi, per non parlare di ciò che farebbero alla nostra mente. Sarebbe molto meglio se potessimo "incollare" un numeratore e un denominatore per formare una coppia - un <em>oggetto dati composto</em> - che i nostri programmi potrebbero manipolare in un modo coerente con il considerare un numero razionale come una singola unità concettuale .</p>
+</div>
+<div class="paragraph">
+<p>L&#8217;utilizzo di dati composti ci consente inoltre di aumentare la modularità dei nostri programmi. Se possiamo manipolare i numeri razionali direttamente come oggetti a sé stanti, allora possiamo separare la parte del nostro programma che tratta i numeri razionali di per sé dai dettagli di come i numeri razionali possono essere rappresentati come coppie di interi. La tecnica generale per isolare le parti di un programma che si occupano del modo in cui vengono rappresentati gli oggetti di dati dalle parti di un programma che si occupano del modo in cui vengono utilizzati gli oggetti di dati è una potente metodologia di progettazione chiamata. Vedremo come l&#8217;astrazione dei dati renda i programmi molto più facili da progettare, mantenere e modificare.</p>
+</div>
+<div class="paragraph">
+<p>L&#8217;utilizzo di dati composti porta ad un reale aumento della potenza espressiva del nostro linguaggio di programmazione. Considera l&#8217;idea di formare una "combinazione lineare" \(ax + by\). Potremmo scrivere una funzione che accetti \(a\), \(b\), \(x\) e \(y\) come argomenti e restituisca il valore di \(ax + bx\). Questo non presenta difficoltà se gli argomenti devono essere numeri, perché possiamo dichiarare prontamente la funzione</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function linear_combination(a, b, x, y) {
+    return a * x + b * y;
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Ma supponiamo che non ci occupiamo solo dei numeri. Supponiamo di voler descrivere un processo che forma combinazioni lineari ogni volta che vengono definite addizioni e moltiplicazioni, per numeri razionali, numeri complessi, polinomi o qualsiasi altra cosa. Potremmo esprimerlo in funzione della forma</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function linear_combination(a, b, x, y) {
+    return add(mul(a, x), mul(b, y));
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>dove <code>add</code> e` mul` non sono le funzioni primitive <code>+</code> e <code>*</code> ma piuttosto cose più complesse che eseguiranno le operazioni appropriate per qualunque tipo di dati passiamo come argomenti <code>a</code>,` b`, "x" e "y". Il punto chiave è che l&#8217;unica cosa che <code>linear_combination</code> dovrebbe avere bisogno di sapere su` a`, <code>b</code>,` x` e <code>y</code> è che le funzioni` add` e <code>mul</code> eseguiranno le manipolazioni appropriate. Dal punto di vista della funzione <code>linear_combination</code>, è irrilevante cosa siano` a`, <code>b</code>,` x` e <code>y</code> e ancora più irrilevante come potrebbero essere rappresentati in termini di dati più primitivi. Questo stesso esempio mostra perché è importante che il nostro linguaggio di programmazione fornisca la possibilità di manipolare direttamente oggetti composti: senza questo, non c&#8217;è modo per una funzione come <code>linear_combination</code> di passare i suoi argomenti a <code>add</code> e <code>mul</code> senza dover conoscere la loro struttura dettagliata. <sup class="footnote">[<a id="_footnoteref_40" class="footnote" href="#_footnotedef_40" title="View footnote.">40</a>]</sup></p>
+</div>
+<div class="paragraph">
+<p>Iniziamo questo capitolo implementando il sistema aritmetico dei numeri razionali menzionato sopra. Questo costituirà lo sfondo per la nostra discussione sui dati composti e sull&#8217;astrazione dei dati. Come per le funzioni composte, il problema principale da affrontare è quello dell&#8217;astrazione come tecnica per affrontare la complessità, e vedremo come l&#8217;astrazione dei dati ci consente di erigere adatto tra le diverse parti di un programma.</p>
+</div>
+<div class="paragraph">
+<p>Vedremo che la chiave per formare dati composti è che un linguaggio di programmazione dovrebbe fornire una sorta di "colla" in modo che gli oggetti dati possano essere combinati per formare oggetti dati più complessi. Ci sono molti possibili tipi di colla. In effetti, scopriremo come formare dati composti senza utilizzare alcuna operazione speciale sui "dati", ma solo funzioni. Questo offuscherà ulteriormente la distinzione tra "funzione" e "dati", che stava già diventando tenue verso la fine del capitolo 1. Esploreremo anche alcune tecniche convenzionali per rappresentare sequenze e alberi. Un&#8217;idea chiave nel trattare i dati composti è la nozione di —che il collante che usiamo per combinare oggetti di dati dovrebbe permetterci di combinare non solo oggetti di dati primitivi, ma anche oggetti di dati composti. Un&#8217;altra idea chiave è che gli oggetti di dati composti possono servire per combinare i moduli del programma in modi combinati. Illustriamo alcune di queste idee presentando un semplice linguaggio grafico che sfrutta la chiusura.</p>
+</div>
+<div class="paragraph">
+<p>Aumenteremo quindi il potere rappresentativo del nostro linguaggio introducendo dati le cui parti elementari possono essere simboli arbitrari anziché solo numeri. Esploriamo varie alternative per rappresentare insiemi di oggetti. Scopriremo che, proprio come una data funzione numerica può essere calcolata da molti differenti processi computazionali, ci sono molti modi in cui una data struttura dati può essere rappresentata in termini di oggetti più semplici, e la scelta della rappresentazione può avere un impatto significativo sul requisiti di tempo e spazio dei processi che manipolano i dati. Investigheremo queste idee nel contesto della differenziazione simbolica, della rappresentazione degli insiemi e della codifica delle informazioni.</p>
+</div>
+<div class="paragraph">
+<p>Successivamente affronteremo il problema di lavorare con dati che possono essere rappresentati in modo diverso da parti diverse di un programma. Questo porta alla necessità di implementare, che deve gestire molti diversi tipi di dati. Il mantenimento della modularità in presenza di operazioni generiche richiede barriere di astrazione più potenti di quelle che possono essere erette con la semplice astrazione dei dati. In particolare, introduciamo la <em>programmazione diretta ai dati</em> come tecnica che consente di progettare singole rappresentazioni di dati isolatamente e quindi combinarle (cioè senza modifiche). Per illustrare la potenza di questo approccio alla progettazione del sistema, chiudiamo il capitolo applicando quanto appreso all&#8217;implementazione di un pacchetto per eseguire aritmetica simbolica su polinomi, in cui i coefficienti dei polinomi possono essere interi, numeri razionali, numeri complessi e anche altri polinomi.</p>
+</div>
+</div>
+</div>
 </div>
 <div id="footnotes">
 <hr>
@@ -5086,6 +5142,9 @@ function metodo_newton(g, stima) {
 </div>
 <div class="footnote" id="_footnotedef_39">
 <a href="#_footnoteref_39">39</a>. Il costo di implementazione principale delle funzioni di prima classe è che consentire alle funzioni di essere restituite come valori richiede di riservare la memoria per i nomi liberi di una funzione anche mentre la funzione non è in esecuzione. Nell&#8217;implementazione JavaScript che studieremo nella sezione TODOD sec:mc-eval, questi nomi sono memorizzati nell&#8217;ambiente della funzione.
+</div>
+<div class="footnote" id="_footnotedef_40">
+<a href="#_footnoteref_40">40</a>. La capacità di manipolare direttamente le funzioni fornisce un analogo aumento della potenza espressiva di un linguaggio di programmazione. Ad esempio, nella sezione <a href="#sec:procedures-as-parameters">paragrafo 1.3.1</a> abbiamo introdotto la funzione <code>sum</code>, che accetta una funzione <code>term</code> come argomento e calcola la somma dei valori di <code>term</code> su un intervallo specificato. Per definire "sum", è cruciale poter parlare di una funzione come "term" come un&#8217;entità a sé stante, senza riguardo a come "termine" potrebbe essere espresso con operazioni più primitive. Infatti, se non avessimo la nozione di `` una funzione '', è dubbio che penseremmo mai alla possibilità di definire un&#8217;operazione come "somma". Inoltre, per quanto riguarda l&#8217;esecuzione della sommatoria, i dettagli di come "termine" può essere costruito da operazioni più primitive sono irrilevanti.
 </div>
 </div>
 <div id="footer">
