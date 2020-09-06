@@ -1,6 +1,5 @@
 = Struttura e interpretazione dei programmi del calcolatore - adattato al JavaScript
 Gionata Massi <gionata.massi@savoiabenincasa.it>
-v0.1.1, 2020-04-10: Prima bozza con paragrafo 1.1
 include::attributes.adoc[]
 :example-caption!:
 
@@ -9,6 +8,8 @@ include::attributes.adoc[]
 
 Questo testo è un adattamento in italiano, realizzato con l'auito di Google Translate, del testo https://sicp.comp.nus.edu.sg/[Structure and Interpretation of Computer Programs — JavaScript Adaptation], il quale, a sua volta, è un adattamento della seconda edizione del noto libro di testo di Harold Abelson e Gerald Jay Sussman dal titolo: "Structure and Interpretation of Computer Programs".
 Il testo ritiene è integrato con ulteriori esercizi in quanto per imparare l'arte della programmazione è necessario leggere del buon codice, ragionare su problemi, modelli e algoritmi, ed esercitarsi scrivendo programmi.
+
+v0.1.1, 2020-04-10: Prima bozza con paragrafo 1.1
 
 include::cap1/cap1_funzioni.adoc[]
 

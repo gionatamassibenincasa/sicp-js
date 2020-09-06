@@ -19,9 +19,9 @@
 <div class="details">
 <span id="author" class="author">Gionata Massi</span><br>
 <span id="email" class="email"><a href="mailto:gionata.massi@savoiabenincasa.it">gionata.massi@savoiabenincasa.it</a></span><br>
-<span id="revnumber">versione 0.1.1,</span>
-<span id="revdate">2020-04-10</span>
-<br><span id="revremark">Prima bozza con paragrafo 1.1</span>
+<span id="revnumber">versione ,</span>
+<span id="revdate">12345</span>
+<br><span id="revremark"></span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Indice</div>
@@ -95,7 +95,25 @@
 </li>
 </ul>
 </li>
-<li><a href="#building-abstractions-with-data">2. Costruire astrazioni con i dati</a></li>
+<li><a href="#building-abstractions-with-data">2. Costruire astrazioni con i dati</a>
+<ul class="sectlevel2">
+<li><a href="#sec:data-abstraction">2.1. Introduzione all&#8217;astrazione dei dati</a>
+<ul class="sectlevel3">
+<li><a href="#sec:rationals">2.1.1. Esempio: operazioni aritmetiche per numeri razionali</a>
+<ul class="sectlevel4">
+<li><a href="#pairs">Pairs</a></li>
+<li><a href="#representing-rational-numbers">Representing rational numbers</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#ex:unlabeled8">2.2. Exercise</a>
+<ul class="sectlevel3">
+<li><a href="#solution">2.2.1. Solution</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -105,6 +123,9 @@
 <div class="paragraph">
 <p>Questo testo è un adattamento in italiano, realizzato con l&#8217;auito di Google Translate, del testo <a href="https://sicp.comp.nus.edu.sg/">Structure and Interpretation of Computer Programs — JavaScript Adaptation</a>, il quale, a sua volta, è un adattamento della seconda edizione del noto libro di testo di Harold Abelson e Gerald Jay Sussman dal titolo: "Structure and Interpretation of Computer Programs".
 Il testo ritiene è integrato con ulteriori esercizi in quanto per imparare l&#8217;arte della programmazione è necessario leggere del buon codice, ragionare su problemi, modelli e algoritmi, ed esercitarsi scrivendo programmi.</p>
+</div>
+<div class="paragraph">
+<p>v0.1.1, 2020-04-10: Prima bozza con paragrafo 1.1</p>
 </div>
 </div>
 </div>
@@ -4971,6 +4992,17 @@ function metodo_newton(g, stima) {
 <div class="sect1">
 <h2 id="building-abstractions-with-data"><a class="anchor" href="#building-abstractions-with-data"></a>2. Costruire astrazioni con i dati</h2>
 <div class="sectionbody">
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>Veniamo ora al passaggio decisivo dell&#8217;astrazione matematica: dimentichiamo il significato dei simboli. &#8230;&#8203; [Il matematico] non deve essere inattivo; sono molte le operazioni che può compiere con questi simboli, senza mai dover guardare le cose che rappresentano.</p>
+</div>
+</blockquote>
+<div class="attribution">
+&#8212; Hermann Weyl<br>
+<cite>The Mathematical Way of Thinking. 1940.</cite>
+</div>
+</div>
 <div class="paragraph">
 <p>Ci siamo concentrati nel capitolo 1 sui processi computazionali e sul ruolo delle funzioni nella progettazione di programmi. Abbiamo visto come usare dati primitivi (numeri) e operazioni primitive (operazioni aritmetiche), come combinare funzioni per formare funzioni composte attraverso composizione, condizionali e l&#8217;uso di parametri e come astrarre processi usando dichiarazioni di funzione. Abbiamo visto che una funzione può essere considerata come un modello per l&#8217;evoluzione locale di un processo e abbiamo classificato, ragionato ed eseguito semplici analisi algoritmiche di alcuni modelli comuni per processi incorporati nelle funzioni. Abbiamo anche visto che le funzioni di ordine superiore aumentano la potenza del nostro linguaggio permettendoci di manipolare, e quindi di ragionare in termini di metodi generali di calcolo. Questa è gran parte dell&#8217;essenza della programmazione.</p>
 </div>
@@ -5020,6 +5052,246 @@ function metodo_newton(g, stima) {
 </div>
 <div class="paragraph">
 <p>Successivamente affronteremo il problema di lavorare con dati che possono essere rappresentati in modo diverso da parti diverse di un programma. Questo porta alla necessità di implementare, che deve gestire molti diversi tipi di dati. Il mantenimento della modularità in presenza di operazioni generiche richiede barriere di astrazione più potenti di quelle che possono essere erette con la semplice astrazione dei dati. In particolare, introduciamo la <em>programmazione diretta ai dati</em> come tecnica che consente di progettare singole rappresentazioni di dati isolatamente e quindi combinarle (cioè senza modifiche). Per illustrare la potenza di questo approccio alla progettazione del sistema, chiudiamo il capitolo applicando quanto appreso all&#8217;implementazione di un pacchetto per eseguire aritmetica simbolica su polinomi, in cui i coefficienti dei polinomi possono essere interi, numeri razionali, numeri complessi e anche altri polinomi.</p>
+</div>
+<div class="sect2">
+<h3 id="sec:data-abstraction"><a class="anchor" href="#sec:data-abstraction"></a>2.1. Introduzione all&#8217;astrazione dei dati</h3>
+<div class="paragraph">
+<p>Nella sezione <a href="#sec:black-box">paragrafo 1.1.8</a>, abbiamo notato che una funzione utilizzata come elemento nella creazione di una funzione più complessa potrebbe essere considerata non solo come una raccolta di operazioni particolari ma anche come un&#8217;astrazione funzionale. Cioè, i dettagli di come la funzione è stata implementata potrebbero essere soppressi e la particolare funzione stessa potrebbe essere sostituita da qualsiasi altra funzione con lo stesso comportamento generale. In altre parole, potremmo creare un&#8217;astrazione che separerebbe il modo in cui la funzione sarebbe usata dai dettagli di come la funzione sarebbe implementata in termini di funzioni più primitive. Viene chiamata la nozione analoga per i dati composti. L&#8217;astrazione dei dati è una metodologia che ci consente di isolare il modo in cui un oggetto di dati composto viene utilizzato dai dettagli di come è costruito da oggetti di dati più primitivi.</p>
+</div>
+<div class="paragraph">
+<p>L&#8217;idea di base dell&#8217;astrazione dei dati è strutturare i programmi che devono utilizzare oggetti di dati composti in modo che operino su "dati astratti". Cioè, i nostri programmi dovrebbero utilizzare i dati in modo tale da non fare supposizioni sui dati che non sono strettamente necessari per eseguire il compito in questione. Allo stesso tempo, viene definita una rappresentazione "concreta" dei dati indipendentemente dai programmi che utilizzano i dati. L&#8217;interfaccia tra queste due parti del nostro sistema sarà un insieme di funzioni, chiamate e, che implementano i dati astratti in termini di rappresentazione concreta. Per illustrare questa tecnica, considereremo come progettare un insieme di funzioni per manipolare numeri razionali.</p>
+</div>
+<div class="sect3">
+<h4 id="sec:rationals"><a class="anchor" href="#sec:rationals"></a>2.1.1. Esempio: operazioni aritmetiche per numeri razionali</h4>
+<div class="paragraph">
+<p>Supponiamo di voler eseguire operazioni aritmetiche con numeri razionali. Vogliamo essere in grado di sommarli, sottrarli, moltiplicarli e dividerli e verificare se due numeri razionali sono uguali.</p>
+</div>
+<div class="paragraph">
+<p>Cominciamo assumendo di avere già un modo per costruire un numero razionale da un numeratore e un denominatore. Assumiamo anche che, dato un numero razionale, abbiamo un modo per estrarre (o selezionare) il suo numeratore e il suo denominatore. Supponiamo inoltre che il costruttore e i selettori siano disponibili come funzioni:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>make_rat (</code> latexmath: [$ n $] <code>,</code> latexmath: [$ d $] <code>)</code> restituisce il numero razionale il cui numeratore è il numero intero latexmath: [$ n $] e il cui denominatore è il numero intero latexmath: [ $ d $].</p>
+</li>
+<li>
+<p><code>numer (</code> latexmath: [$ x $] <code>)</code> restituisce il numeratore del numero razionale latexmath: [$ x $].</p>
+</li>
+<li>
+<p><code>denom (</code> latexmath: [$ x $] <code>)</code> restituisce il denominatore del numero razionale latexmath: [$ x $].</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>We are using here a powerful strategy of synthesis: . We haven’t yet said how a rational number is represented, or how the functions <code>numer</code>, <code>denom</code>, and <code>make_rat</code> should be implemented. Even so, if we did have these three functions, we could then add, subtract, multiply, divide, and test equality by using the following relations: \(\[\frac{n_{1}}{d_{1}}+\frac{n_{2}}{d_{2}}
+      =\frac{n_{1}d_{2}+n_{2}d_{1}}{d_{1}d_{2}}]\)</p>
+</div>
+<div class="paragraph">
+<p>\(\[\frac{n_{1}}{d_{1}}-\frac{n_{2}}{d_{2}}
+      =\frac{n_{1}d_{2}-n_{2}d_{1}}{d_{1}d_{2}}]\)</p>
+</div>
+<div class="paragraph">
+<p>\(\[\frac{n_{1}}{d_{1}}\cdot\frac{n_{2}}{d_{2}}
+      =\frac{n_{1}n_{2}}{d_{1}d_{2}}]\)</p>
+</div>
+<div class="paragraph">
+<p>\(\[\frac{n_{1}/d_{1}}{n_{2}/d_{2}}
+      =\frac{n_{1}d_{2}}{d_{1}n_{2}}]\)</p>
+</div>
+<div class="paragraph">
+<p>\(\[\frac{n_{1}}{d_{1}}
+      =\frac{n_{2}}{d_{2}}\ \textrm{if  and only if} \  n_{1}d_{2}=n_{2}d_{1}]\)</p>
+</div>
+<div class="paragraph">
+<p>We can express these rules as functions:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>function add_rat(x, y) {
+    return make_rat(numer(x) * denom(y) + numer(y) * denom(x),
+                    denom(x) * denom(y));
+}
+function sub_rat(x, y) {
+    return make_rat(numer(x) * denom(y) - numer(y) * denom(x),
+                    denom(x) * denom(y));
+}
+function mul_rat(x, y) {
+    return make_rat(numer(x) * numer(y),
+                    denom(x) * denom(y));
+}
+function div_rat(x, y) {
+    return make_rat(numer(x) * denom(y),
+                    denom(x) * numer(y));
+}
+function equal_rat(x, y) {
+    return numer(x) * denom(y) === numer(y) * denom(x);
+}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now we have the operations on rational numbers defined in terms of the selector and constructor functions <code>numer</code>, <code>denom</code>, and <code>make_rat</code>. But we haven’t yet defined these. What we need is some way to glue together a numerator and a denominator to form a rational number.</p>
+</div>
+<div class="sect4">
+<h5 id="pairs"><a class="anchor" href="#pairs"></a>Pairs</h5>
+<div class="paragraph">
+<p>To enable us to implement the concrete level of our data abstraction, our JavaScript environment provides a compound structure called a , which can be constructed with the function <code>pair</code>. This function takes two arguments and returns a compound data object that contains the two arguments as parts. Given a pair, we can extract the parts using the functions <code>head</code> and <code>tail</code>. Thus, we can use <code>pair</code>, <code>head</code>, and <code>tail</code> as follows:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>const x = pair(1, 2);</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>head(x);</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>tail(x);</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Notice that a pair is a data object that can be given a name and manipulated, just like a primitive data object. Moreover, <code>pair</code> can be used to form pairs whose elements are pairs, and so on:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>const x = pair(1, 2);
+const y = pair(3, 4);
+const z = pair(x, y);</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>head(head(z));</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>head(tail(z));</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In section [sec:hierarchical-data] we will see how this ability to combine pairs means that pairs can be used as general-purpose building blocks to create all sorts of complex data structures. The single compound-data primitive <em>pair</em>, implemented by the functions <code>pair</code>, <code>head</code>, and <code>tail</code>, is the only glue we need. Data objects constructed from pairs are called data.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="representing-rational-numbers"><a class="anchor" href="#representing-rational-numbers"></a>Representing rational numbers</h5>
+<div class="paragraph">
+<p>Pairs offer a natural way to complete the rational-number system. Simply represent a rational number as a pair of two integers: a numerator and a denominator. Then <code>make_rat</code>, <code>numer</code>, and <code>denom</code> are readily implemented as follows:[multiblock footnote omitted]</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>function make_rat(n, d) {
+    return pair(n, d);
+}
+function numer(x) {
+    return head(x);
+}</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>function denom(x) {
+    return tail(x);
+}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Also, in order to display the results of our computations, we can print rational numbers by printing the numerator, a slash, and the denominator:<sup class="footnote">[<a id="_footnoteref_41" class="footnote" href="#_footnotedef_41" title="View footnote.">41</a>]</sup> returns its argument, but in the uses of <code>print_rat</code> below, we show only what the interpreter prints as the value returned by <code>print_rat</code>.]</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>function print_rat(x) {
+    display(numer(x));
+    display("/");
+    display(denom(x));
+}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now we can try our rational-number functions:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>const one_half = make_rat(1, 2);
+
+print_rat(one_half);</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>const one_third = make_rat(1, 3);</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>print_rat(add_rat(one_half, one_third));</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>print_rat(mul_rat(one_half, one_third));</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>print_rat(add_rat(one_third, one_third));</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>As the final example shows, our rational-number implementation does not reduce rational numbers to lowest terms. We can remedy this by changing <code>make_rat</code>. If we have a function like the one in section [sec:gcd] that produces the greatest common divisor of two integers, we can use <code>gcd</code> to reduce the numerator and the denominator to lowest terms before constructing the pair:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>function make_rat(n, d) {
+    const g = gcd(n, d);
+    return pair(n / g, d / g);
+}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now we have</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>print_rat(add_rat(one_third, one_third));</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>as desired. This modification was accomplished by changing the constructor <code>make_rat</code> without changing any of the functions (such as <code>add_rat</code> and <code>mul_rat</code>) that implement the actual operations.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="ex:unlabeled8"><a class="anchor" href="#ex:unlabeled8"></a>2.2. Exercise</h3>
+<div class="paragraph">
+<p>Define a better version of <code>make_rat</code> that handles both positive and negative arguments. The function <code>make_rat</code> should normalize the sign so that if the rational number is positive, both the numerator and denominator are positive, and if the rational number is negative, only the numerator is negative.</p>
+</div>
+<div class="sect3">
+<h4 id="solution"><a class="anchor" href="#solution"></a>2.2.1. Solution</h4>
+<div class="literalblock">
+<div class="content">
+<pre>function sign(x) {
+    return x &lt; 0
+           ? -1
+       : x &gt; 0
+         ? 1
+         : 0;</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>}
+function make_rat(n, d) {
+    const g = gcd(n, d);
+    return pair(sign(n) * sign(d) * abs(n / g),
+                abs(d / g));
+}</pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -5146,10 +5418,13 @@ function metodo_newton(g, stima) {
 <div class="footnote" id="_footnotedef_40">
 <a href="#_footnoteref_40">40</a>. La capacità di manipolare direttamente le funzioni fornisce un analogo aumento della potenza espressiva di un linguaggio di programmazione. Ad esempio, nella sezione <a href="#sec:procedures-as-parameters">paragrafo 1.3.1</a> abbiamo introdotto la funzione <code>sum</code>, che accetta una funzione <code>term</code> come argomento e calcola la somma dei valori di <code>term</code> su un intervallo specificato. Per definire "sum", è cruciale poter parlare di una funzione come "term" come un&#8217;entità a sé stante, senza riguardo a come "termine" potrebbe essere espresso con operazioni più primitive. Infatti, se non avessimo la nozione di `` una funzione '', è dubbio che penseremmo mai alla possibilità di definire un&#8217;operazione come "somma". Inoltre, per quanto riguarda l&#8217;esecuzione della sommatoria, i dettagli di come "termine" può essere costruito da operazioni più primitive sono irrilevanti.
 </div>
+<div class="footnote" id="_footnotedef_41">
+<a href="#_footnoteref_41">41</a>. The primitive function <code>display</code> introduced in exercise [ex:search-for-primes
+</div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Versione 0.1.1<br>
+Versione <br>
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css">

@@ -1,0 +1,188 @@
+[[sec:rationals]]
+==== Esempio: operazioni aritmetiche per numeri razionali
+
+//Suppose we want to do arithmetic with rational numbers. We want to be able to add, subtract, multiply, and divide them and to test whether two rational numbers are equal.
+Supponiamo di voler eseguire operazioni aritmetiche con numeri razionali. Vogliamo essere in grado di sommarli, sottrarli, moltiplicarli e dividerli e verificare se due numeri razionali sono uguali.
+
+//Let us begin by assuming that we already have a way of constructing a rational number from a numerator and a denominator. We also assume that, given a rational number, we have a way of extracting (or selecting) its numerator and its denominator. Let us further assume that the constructor and selectors are available as functions:
+Cominciamo assumendo di avere già un modo per costruire un numero razionale da un numeratore e un denominatore. Assumiamo anche che, dato un numero razionale, abbiamo un modo per estrarre (o selezionare) il suo numeratore e il suo denominatore. Supponiamo inoltre che il costruttore e i selettori siano disponibili come funzioni:
+
+//* `make_rat(`latexmath:[$n$]`, `latexmath:[$d$]`)` returns the rational number whose numerator is the integer latexmath:[$n$] and whose denominator is the integer latexmath:[$d$].
+//* `numer(`latexmath:[$x$]`)` returns the numerator of the rational number latexmath:[$x$].
+//* `denom(`latexmath:[$x$]`)` returns the denominator of the rational number latexmath:[$x$].
+* `make_rat (` latexmath: [$ n $] `,` latexmath: [$ d $] `)` restituisce il numero razionale il cui numeratore è il numero intero latexmath: [$ n $] e il cui denominatore è il numero intero latexmath: [ $ d $].
+* `numer (` latexmath: [$ x $] `)` restituisce il numeratore del numero razionale latexmath: [$ x $].
+* `denom (` latexmath: [$ x $] `)` restituisce il denominatore del numero razionale latexmath: [$ x $].
+
+We are using here a powerful strategy of synthesis: . We haven’t yet said how a rational number is represented, or how the functions `numer`, `denom`, and `make_rat` should be implemented. Even so, if we did have these three functions, we could then add, subtract, multiply, divide, and test equality by using the following relations: latexmath:[\[\frac{n_{1}}{d_{1}}+\frac{n_{2}}{d_{2}}
+      =\frac{n_{1}d_{2}+n_{2}d_{1}}{d_{1}d_{2}}\]]
+
+latexmath:[\[\frac{n_{1}}{d_{1}}-\frac{n_{2}}{d_{2}}
+      =\frac{n_{1}d_{2}-n_{2}d_{1}}{d_{1}d_{2}}\]]
+
+latexmath:[\[\frac{n_{1}}{d_{1}}\cdot\frac{n_{2}}{d_{2}}
+      =\frac{n_{1}n_{2}}{d_{1}d_{2}}\]]
+
+latexmath:[\[\frac{n_{1}/d_{1}}{n_{2}/d_{2}}
+      =\frac{n_{1}d_{2}}{d_{1}n_{2}}\]]
+
+latexmath:[\[\frac{n_{1}}{d_{1}}
+      =\frac{n_{2}}{d_{2}}\ \textrm{if  and only if} \  n_{1}d_{2}=n_{2}d_{1}\]]
+
+We can express these rules as functions:
+
+....
+function add_rat(x, y) {
+    return make_rat(numer(x) * denom(y) + numer(y) * denom(x),
+                    denom(x) * denom(y));
+}
+function sub_rat(x, y) {
+    return make_rat(numer(x) * denom(y) - numer(y) * denom(x),
+                    denom(x) * denom(y));
+}
+function mul_rat(x, y) {
+    return make_rat(numer(x) * numer(y),
+                    denom(x) * denom(y));
+}
+function div_rat(x, y) {
+    return make_rat(numer(x) * denom(y),
+                    denom(x) * numer(y));
+}
+function equal_rat(x, y) {
+    return numer(x) * denom(y) === numer(y) * denom(x);
+}
+....
+
+Now we have the operations on rational numbers defined in terms of the selector and constructor functions `numer`, `denom`, and `make_rat`. But we haven’t yet defined these. What we need is some way to glue together a numerator and a denominator to form a rational number.
+
+[[pairs]]
+===== Pairs
+
+To enable us to implement the concrete level of our data abstraction, our JavaScript environment provides a compound structure called a , which can be constructed with the function `pair`. This function takes two arguments and returns a compound data object that contains the two arguments as parts. Given a pair, we can extract the parts using the functions `head` and `tail`. Thus, we can use `pair`, `head`, and `tail` as follows:
+
+....
+const x = pair(1, 2);
+....
+
+....
+head(x);
+....
+
+....
+tail(x);
+....
+
+Notice that a pair is a data object that can be given a name and manipulated, just like a primitive data object. Moreover, `pair` can be used to form pairs whose elements are pairs, and so on:
+
+....
+const x = pair(1, 2);
+const y = pair(3, 4);
+const z = pair(x, y);
+....
+
+....
+head(head(z));
+....
+
+....
+head(tail(z));
+....
+
+In section [sec:hierarchical-data] we will see how this ability to combine pairs means that pairs can be used as general-purpose building blocks to create all sorts of complex data structures. The single compound-data primitive _pair_, implemented by the functions `pair`, `head`, and `tail`, is the only glue we need. Data objects constructed from pairs are called data.
+
+[[representing-rational-numbers]]
+===== Representing rational numbers
+
+Pairs offer a natural way to complete the rational-number system. Simply represent a rational number as a pair of two integers: a numerator and a denominator. Then `make_rat`, `numer`, and `denom` are readily implemented as follows:[multiblock footnote omitted]
+
+....
+function make_rat(n, d) {
+    return pair(n, d);
+}
+function numer(x) {
+    return head(x);
+}
+....
+
+....
+function denom(x) {
+    return tail(x);
+}
+....
+
+Also, in order to display the results of our computations, we can print rational numbers by printing the numerator, a slash, and the denominator:footnote:[The primitive function `display` introduced in exercise [ex:search-for-primes] returns its argument, but in the uses of `print_rat` below, we show only what the interpreter prints as the value returned by `print_rat`.]
+
+....
+function print_rat(x) {
+    display(numer(x));
+    display("/");
+    display(denom(x));
+}
+....
+
+Now we can try our rational-number functions:
+
+....
+const one_half = make_rat(1, 2);
+
+print_rat(one_half);
+....
+
+....
+const one_third = make_rat(1, 3);
+....
+
+....
+print_rat(add_rat(one_half, one_third));
+....
+
+....
+print_rat(mul_rat(one_half, one_third));
+....
+
+....
+print_rat(add_rat(one_third, one_third));
+....
+
+As the final example shows, our rational-number implementation does not reduce rational numbers to lowest terms. We can remedy this by changing `make_rat`. If we have a function like the one in section [sec:gcd] that produces the greatest common divisor of two integers, we can use `gcd` to reduce the numerator and the denominator to lowest terms before constructing the pair:
+
+....
+function make_rat(n, d) {
+    const g = gcd(n, d);
+    return pair(n / g, d / g);
+}
+....
+
+Now we have
+
+....
+print_rat(add_rat(one_third, one_third));
+....
+
+as desired. This modification was accomplished by changing the constructor `make_rat` without changing any of the functions (such as `add_rat` and `mul_rat`) that implement the actual operations.
+
+[[ex:unlabeled8]]
+=== Exercise
+
+Define a better version of `make_rat` that handles both positive and negative arguments. The function `make_rat` should normalize the sign so that if the rational number is positive, both the numerator and denominator are positive, and if the rational number is negative, only the numerator is negative.
+
+[[solution]]
+==== Solution
+
+....
+function sign(x) {
+    return x < 0 
+           ? -1
+       : x > 0
+         ? 1
+         : 0;
+....
+
+....
+}
+function make_rat(n, d) {
+    const g = gcd(n, d);
+    return pair(sign(n) * sign(d) * abs(n / g), 
+                abs(d / g));
+}
+....
