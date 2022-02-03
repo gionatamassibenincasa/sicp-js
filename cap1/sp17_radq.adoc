@@ -56,7 +56,7 @@ a|latexmath:[$1$] a|latexmath:[$\frac 2 1$]
 a|latexmath:[$\frac{1 + 2}2=\frac 3 2=1.5$]
 
 a|latexmath:[$1.5$] a|latexmath:[$\frac 4 3$]
-a|latexmath:[$\frac 1 2\left(\frac 3 2 + \frac 4 3\right)=\frac 17 12 \approx 1.4167$]
+a|latexmath:[$\frac 1 2\left(\frac 3 2 + \frac 4 3\right)=\frac{17}{12} \approx 1.4167$]
 
 a|latexmath:[$1.4167$] a|latexmath:[$\frac{24}{17}$]
 a|latexmath:[$\frac 1 2\left(\frac{17}{12}+\frac{24}{17}\right)=\frac{577}{408}\approx 1.4142$]

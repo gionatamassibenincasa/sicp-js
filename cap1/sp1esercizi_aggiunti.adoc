@@ -75,9 +75,9 @@ Dichiarare i valori costanti della tabella seguente:
 |Nome        | Valore
 |raggio      a| 1
 |pi_greco    a| 3.141592653589793
-|diametro    a| latexmath:[2 \cdot \text{raggio}]
-|perimetro   a| latexmath:[\text{pi\_greco} \cdot \text{diametro}]
-|area        a| latexmath:[\text{pi\_greco} \cdot \text{raggio}^2]
+|diametro    a| 2 · raggio
+|perimetro   a| pi_greco · diametro
+|area        a| pi_greco · raggio^2^
 |====
 
 Verificare che abbiano il valore atteso.

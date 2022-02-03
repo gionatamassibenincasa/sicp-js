@@ -6,7 +6,11 @@ do
     case "$opt" in
         "html" )
             echo "Compilazione in HTML"
-	    asciidoctor -a revdate=$(cat revdate) -a revnumber=$(cat revnumber) -a revremark=$(cat revremark)  --verbose -r asciidoctor-diagram -a  attribute-missing=warn --failure-level=INFO sicp-js-it.adoc;;
+	    asciidoctor -a revdate="$(cat revdate)" -a revnumber="$(cat revnumber)" -a revremark="$(cat revremark)"  --verbose -r asciidoctor-diagram -a  attribute-missing=warn --failure-level=INFO sicp-js-it.adoc
+	    cp asciidoctor.css public
+	    cp sicp-js-it.html public/index.html
+	    cp -rf img public/
+	    surge public sicp-js-it.surge.sh;;
         "pdf" )
             echo "Compilazione in PDF"
             asciidoctor-pdf --verbose -r asciidoctor-diagram -r asciidoctor-mathematical -a mathematical-format=svg -a rouge-style=github -a attribute-missing=warn --failure-level=INFO -a pdf-stylesdir=resources/themes -a pdf-style=sicpit -a pdf-themesdir=resources/themes -a pdf-fontsdir=resources/fonts -a pdf-theme=sicpit sicp-js-it.adoc;;

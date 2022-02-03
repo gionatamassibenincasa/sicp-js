@@ -24,11 +24,53 @@ function fattoriale (n) {
 }
 ----
 
+////
+function stampa_albero_fattoriale(n) {
+  let albero = 'fattoriale(' + n + ')\n';
+  const n_tonde = (t, n) =>{
+    let str = '';
+    while (n-- > 0)
+    str += t;
+    return str;
+  };
+  const fattoriale = (n, testo, tonde) =>{
+    if (n === 1) {
+      albero += (testo + 1 + n_tonde(')', tonde) + '\n');
+      return 1;
+    } else {
+      //console.log("TESTO:", testo);
+      albero += testo + '(' + n + ' * fattoriale(' + (n - 1) + '))' + n_tonde(')', tonde) + '\n';
+      const nuovo_testo = testo + '(' + n + ' * ';
+      //console.log(visualizza);
+      let r = n * fattoriale(n - 1, nuovo_testo, tonde + 1, albero);
+      albero += testo + r + n_tonde(')', tonde) + '\n'      //console.log(testo + r + n_tonde(')', tonde));
+      return r;
+    }
+  }
+  fattoriale(n, '', 0, albero);
+  console.log(albero);
+};
+stampa_albero_fattoriale(6);
+////
+
 Usando il modello di sostituzione del <<sp_modello_sostituzione>> si ottiene il processo illustrato nella <<fig1_3>>.
 
 .Un processo ricorsivo lineare per calcolare 6!
 [[fig1_3]]
-image::https://sicp.comp.nus.edu.sg/chapters/img_javascript/ch1-Z-G-7.svg[]
+....
+fattoriale(6)
+(6 * fattoriale(5))
+(6 * (5 * fattoriale(4)))
+(6 * (5 * (4 * fattoriale(3))))
+(6 * (5 * (4 * (3 * fattoriale(2)))))
+(6 * (5 * (4 * (3 * (2 * fattoriale(1))))))
+(6 * (5 * (4 * (3 * (2 * 1)))))
+(6 * (5 * (4 * (3 * 2))))
+(6 * (5 * (4 * 6)))
+(6 * (5 * 24))
+(6 * 120)
+720
+....
 
 Possiamo assumere un diverso punto di vista per il calcolo del fattoriale.
 Potremmo descrivere una regola per il calcolo di latexmath:[n!] 
@@ -64,11 +106,41 @@ function fattoriale (n) {
 }
 ----
 
+//
+function stampa_albero_fattoriale(n) {
+  let albero = 'fattoriale(' + n + ')\n';
+  const fattoriale = (n) =>{
+    const iter = (prodotto, contatore) =>{
+      albero += 'iter(' + prodotto + ', ' + contatore + ', ' + n + ')\n';
+      if (contatore > n) {
+        albero += prodotto + '\n';
+        return prodotto;
+      }
+      return iter(contatore * prodotto, contatore + 1);
+    };
+    return iter(1, 1);
+  };
+  fattoriale(n);
+  console.log(albero);
+};
+stampa_albero_fattoriale(6);
+//
+
 Come sopra, possiamo usare il modello di sostuzione per visualizzare il processo di calcolo di latexmath:[6!] come mostrato in <<fig1_4>>.
 
 [[fig1_4]]
 .Un processo iterativo lineare per calcolare il fattoriale di 6
-image::https://sicp.comp.nus.edu.sg/chapters/img_javascript/ch1-Z-G-10.svg[]
+....
+fattoriale(6)
+iter(1, 1, 6)
+iter(1, 2, 6)
+iter(2, 3, 6)
+iter(6, 4, 6)
+iter(24, 5, 6)
+iter(120, 6, 6)
+iter(720, 7, 6)
+720
+....
 
 Confronta i due processi. Da un punto di vista, non sembrano così diversi. Entrambi calcolano la stessa funzione matematica sullo stesso dominio e ciascuno richiede un numero di passaggi proporzionale a latexmath:[n] per calcolare latexmath:[n!]. In effetti, entrambi i processi eseguono anche la stessa sequenza di moltiplicazioni, ottenendo la stessa sequenza di prodotti parziali. D'altra parte, quando consideriamo le forme dei due processi, scopriamo che si evolvono in modo abbastanza diverso.
 

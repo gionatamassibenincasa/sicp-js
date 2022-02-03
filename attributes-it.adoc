@@ -28,6 +28,8 @@
 :warning-caption: Attenzione
 //:part-refsig: ???
 //:section-refsig: ???
+ifdef::literal-caption[:literal-caption: Figura]
+ifdef::literal-refsig:[:literal-refsig: fig.]
 ifdef::listing-caption[:listing-caption: Elenco]
 ifdef::manname-title[:manname-title: Nome]
 ifdef::preface-title[:preface-title: Prefazione]

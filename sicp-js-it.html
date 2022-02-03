@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 2.0.10">
+<meta name="generator" content="Asciidoctor 2.0.16">
 <meta name="description" content="Struttura e interpretazione dei programmi del calcolatore adattato al JavaScript">
 <meta name="keywords" content="SICP, JS, JavaScript">
 <meta name="author" content="Gionata Massi">
@@ -12,6 +12,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <link rel="stylesheet" href="./asciidoctor.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/styles/github.min.css">
 </head>
 <body class="book toc2 toc-left">
 <div id="header">
@@ -19,9 +20,9 @@
 <div class="details">
 <span id="author" class="author">Gionata Massi</span><br>
 <span id="email" class="email"><a href="mailto:gionata.massi@savoiabenincasa.it">gionata.massi@savoiabenincasa.it</a></span><br>
-<span id="revnumber">versione ,</span>
-<span id="revdate">12345</span>
-<br><span id="revremark"></span>
+<span id="revnumber">versione 0.1.0,</span>
+<span id="revdate">2022-02-03</span>
+<br><span id="revremark">Capitolo 1, prima passata</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Indice</div>
@@ -385,7 +386,7 @@ una <strong>espressione</strong><sup class="footnote">[<a id="_footnoteref_1" cl
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">486;</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">486;</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -396,27 +397,27 @@ tali numeri. Ad esempio:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">137 + 349;</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">137 + 349;</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">1000 - 334;</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">1000 - 334;</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">5 * 99;</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">5 * 99;</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">10 / 5;</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">10 / 5;</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">2.7 + 10;</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">2.7 + 10;</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -432,7 +433,7 @@ che sono esse stesse combinazioni di operatori:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">(3 * 5) + (10 - 6);</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">(3 * 5) + (10 - 6);</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -444,7 +445,7 @@ sottrazioni. Per esempio,</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">3 * 5 + 10 / 2;</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">3 * 5 + 10 / 2;</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -452,7 +453,7 @@ sottrazioni. Per esempio,</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">(3 * 5) + (10 / 2);</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">(3 * 5) + (10 / 2);</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -462,7 +463,7 @@ così come le sequenze di moltiplicazioni e divisioni. Così,</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">3 / 5 * 2 - 4 + 3;</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">3 / 5 * 2 - 4 + 3;</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -470,7 +471,7 @@ così come le sequenze di moltiplicazioni e divisioni. Così,</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">(((3 / 5) * 2) - 4) + 3;</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">(((3 / 5) * 2) - 4) + 3;</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -485,7 +486,7 @@ valutando con semplici espressioni come:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">3 * 2 * (4 + (3 - 5)) + 10 * (27 / 6);</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">3 * 2 * (4 + (3 - 5)) + 10 * (27 / 6);</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -494,7 +495,7 @@ Possiamo aiutarci scrivendo una tale espressione nella forma</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">3 * 2 * (4 + (3 - 5))
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">3 * 2 * (4 + (3 - 5))
 +
 10 * (27 / 6);</code></pre>
 </div>
@@ -526,7 +527,7 @@ Diciamo che il nome identifica una costante il cui valore è l&#8217;oggetto.</p
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">const dimensione = 2;</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">const dimensione = 2;</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -537,7 +538,7 @@ Il valore che l&#8217;interprete JavaScript stampa dopo aver definito la costant
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">dimensione;</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">dimensione;</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -545,7 +546,7 @@ Il valore che l&#8217;interprete JavaScript stampa dopo aver definito la costant
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">5 * dimensione;</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">5 * dimensione;</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -564,7 +565,7 @@ sequenza.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">const pi_greco = 3.14159;
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">const pi_greco = 3.14159;
 const raggio = 10;
 pi_greco * raggio * raggio;
 const circonferenza =  2 * pi_greco * raggio;
@@ -634,7 +635,7 @@ esempio, valutare</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">(2 + 4 * 6) * (3 + 12);</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">(2 + 4 * 6) * (3 + 12);</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -695,7 +696,7 @@ nella dichiarazione di costante</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">const x = 3;</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">const x = 3;</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -753,7 +754,7 @@ stesso. Questo è espresso in JavaScript come</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function quadrato (x) {
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">function quadrato (x) {
 	return x * x;
 }</code></pre>
 </div>
@@ -763,7 +764,7 @@ stesso. Questo è espresso in JavaScript come</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function quadrato(	x   ) { return	  x		*		   x; }
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">function quadrato(	x   ) { return	  x		*		   x; }
 //  ^	   ^		 ^		 ^		 ^		^		   ^
 // Per	quadrare un numero,			 lo moltiplichi per se stesso.</code></pre>
 </div>
@@ -801,7 +802,7 @@ un&#8217;istruzione usando un punto e virgola:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">quadrato (21);</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">quadrato (21);</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -857,7 +858,7 @@ un&#8217;istruzione usando un punto e virgola:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">quadrato (2 + 5);</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">quadrato (2 + 5);</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -866,7 +867,7 @@ l'<em>espressione mediante operatore</em> <code>2 + 5</code>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">quadrato (quadrato (3));</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">quadrato (quadrato (3));</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -877,7 +878,7 @@ mattoncino con cui definire altre funzioni. Ad esempio,
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">quadrato (x) + quadrato (y);</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">quadrato (x) + quadrato (y);</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -886,7 +887,7 @@ numeri qualsiasi come argomenti, produce la somma dei loro quadrati:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function somma_di_quadrati (x, y) {
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">function somma_di_quadrati (x, y) {
 	return quadrato (x) + quadrato (y);
 }</code></pre>
 </div>
@@ -897,7 +898,7 @@ costruzione di ulteriori funzioni:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function f (a) {
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">function f (a) {
 	return somma_di_quadrati (a + 1, a * 2);
 }</code></pre>
 </div>
@@ -967,7 +968,7 @@ dell&#8217;applicazione di una funzione</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">f (5);</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">f (5);</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -978,7 +979,7 @@ dell&#8217;argomento 5. Ora, recuperiamo l&#8217;espressione da restituire di <c
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">somma_di_quadrati (a + 1, a * 2)</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">somma_di_quadrati (a + 1, a * 2)</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -986,7 +987,7 @@ dell&#8217;argomento 5. Ora, recuperiamo l&#8217;espressione da restituire di <c
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">somma_di_quadrati (5 + 1, 5 * 2)</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">somma_di_quadrati (5 + 1, 5 * 2)</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1003,7 +1004,7 @@ riducendo l&#8217;espressione a</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">quadrato (6) + quadrato (10)</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">quadrato (6) + quadrato (10)</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1011,7 +1012,7 @@ riducendo l&#8217;espressione a</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">(6 * 6) + quadrato (10)</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">(6 * 6) + quadrato (10)</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1019,7 +1020,7 @@ riducendo l&#8217;espressione a</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">36 + quadrato (10)</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">36 + quadrato (10)</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1028,7 +1029,7 @@ per mezzo di operatori</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">36 + (10 * 10)</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">36 + (10 * 10)</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1036,7 +1037,7 @@ per mezzo di operatori</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">36 + 100</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">36 + 100</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1045,7 +1046,7 @@ argomenti primitivi ottenendo, finalmente</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">136</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">136</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1092,7 +1093,7 @@ questo metodo, la valutazione di</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">f (5)</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">f (5)</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1100,22 +1101,22 @@ questo metodo, la valutazione di</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">somma_di_quadrati (5 + 1, 5 * 2)</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">somma_di_quadrati (5 + 1, 5 * 2)</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">quadrato (5 + 1) + quadrato (5 * 2)</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">quadrato (5 + 1) + quadrato (5 * 2)</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">(5 + 1) * (5 + 1) + quadrato (5 * 2)</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">(5 + 1) * (5 + 1) + quadrato (5 * 2)</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">(5 + 1) * (5 + 1) + (5 * 2) * (5 * 2)</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">(5 + 1) * (5 + 1) + (5 * 2) * (5 * 2)</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1123,37 +1124,37 @@ questo metodo, la valutazione di</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">6 * (5 + 1) + (5 * 2) * (5 * 2)</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">6 * (5 + 1) + (5 * 2) * (5 * 2)</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">6 * 6 + (5 * 2) * (5 * 2)</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">6 * 6 + (5 * 2) * (5 * 2)</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">36 + (5 * 2) * (5 * 2)</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">36 + (5 * 2) * (5 * 2)</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">36 + 10 * (5 * 2)</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">36 + 10 * (5 * 2)</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">36 + 10 * 10</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">36 + 10 * 10</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">36 + 100</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">36 + 100</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">136</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">136</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1202,7 +1203,7 @@ JavaScript usando un&#8217;espressione condizionale come segue:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function valore_assoluto (x) {
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">function valore_assoluto (x) {
 	return x &gt;= 0 ? x : -x;
 }</code></pre>
 </div>
@@ -1289,7 +1290,7 @@ può essere espressa come</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">x &gt; 5 &amp;&amp; x &lt; 10</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">x &gt; 5 &amp;&amp; x &lt; 10</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1302,7 +1303,7 @@ un numero diverso a un altro numero.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function diverso (x, y) {
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">function diverso (x, y) {
 	return x &gt; y || x &lt; y;
 }</code></pre>
 </div>
@@ -1312,7 +1313,7 @@ un numero diverso a un altro numero.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function diverso (x, y) {
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">function diverso (x, y) {
 	return !(x &lt;= y &amp;&amp; x &gt;= y);
 }</code></pre>
 </div>
@@ -1331,68 +1332,68 @@ delle seguenti espressioni in JavaScript:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">10;</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">10;</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">5 + 3 + 4;</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">5 + 3 + 4;</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">9 - 1;</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">9 - 1;</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">6 / 2;</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">6 / 2;</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">2 * 4 + (4 - 6);</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">2 * 4 + (4 - 6);</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">const a = 3;</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">const a = 3;</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">const b = a + 1;</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">const b = a + 1;</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">a + b + a * b;</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">a + b + a * b;</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">a === b;</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">a === b;</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">b &gt; a &amp;&amp; b &lt; a * b
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">b &gt; a &amp;&amp; b &lt; a * b
    ? b : a;</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">a === 4 ? 6 : b === 4 ? 6 + 7 + a : 25;</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">a === 4 ? 6 : b === 4 ? 6 + 7 + a : 25;</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">2 + (b &gt; a ? b : a);</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">2 + (b &gt; a ? b : a);</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">(a &gt; b
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">(a &gt; b
  ? a
  : a &lt; b
    ? b
@@ -1408,7 +1409,7 @@ delle seguenti espressioni in JavaScript:</p>
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">10
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">10
 
 12
 
@@ -1454,7 +1455,7 @@ nell&#8217;equivalente espressione JavaScript:</p>
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">// Soluzione dell'esercizio 1.2
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">// Soluzione dell'esercizio 1.2
 (5 + 4 + (2 - (3 - (6 + 4 / 5))))
 /
 (3 * (6 - 2) * (2 - 7));</code></pre>
@@ -1476,7 +1477,7 @@ numerici e restituisce la somma dei quadrati dei due numeri più grandi.</p>
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">// Soluzione dell'esercizio 1.3
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">// Soluzione dell'esercizio 1.3
 function esercizio_1_3 (x, y, z) {
 	return quadrato (x) + quadrato (y) + quadrato (z) -
 	 quadrato ( (x &lt; y ? x : y) &lt; z ? (x &lt; y ? x : y) : z );
@@ -1496,7 +1497,7 @@ comportamento della seguente funzione:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function piu (a, b) { return a + b; }
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">function piu (a, b) { return a + b; }
 
 function meno (a, b) { return a - b; }
 
@@ -1562,7 +1563,7 @@ normale. Dichiara le seguenti due funzioni:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function p() {
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">function p() {
 	return p();
 }
 
@@ -1576,7 +1577,7 @@ function test(x, y) {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">test (0, p ());</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">test (0, p ());</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1645,7 +1646,7 @@ le cose a riformulare questa definizione in pseudo-JavaScript:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function radice_quadrata (x) {
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">function radice_quadrata (x) {
 	return y con y&gt; = 0 &amp;&amp;
 		quadrato (y) === x;
 }</code></pre>
@@ -1704,7 +1705,7 @@ quadrata di 2 come segue. Supponiamo che la nostra ipotesi iniziale sia
 <p>\(\frac 4 3\)</p>
 </div></div></td>
 <td class="tableblock halign-center valign-top"><div class="content"><div class="paragraph">
-<p>\(\frac 1 2\left(\frac 3 2 + \frac 4 3\right)=\frac 17 12 \approx 1.4167\)</p>
+<p>\(\frac 1 2\left(\frac 3 2 + \frac 4 3\right)=\frac{17}{12} \approx 1.4167\)</p>
 </div></div></td>
 </tr>
 <tr>
@@ -1745,7 +1746,7 @@ Scriviamo questa strategia di base come funzione:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function radice_quadrata_iter (stima, x) {
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">function radice_quadrata_iter (stima, x) {
 	return suff_accurata (stima, x)
 		? stima
 		: radice_quadrata_iter (migliora (stima, x), x);
@@ -1758,7 +1759,7 @@ radicando e la vecchia stima:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function migliora (stima, x) {
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">function migliora (stima, x) {
 	return valor_medio (stima, x / stima);
 }</code></pre>
 </div>
@@ -1768,7 +1769,7 @@ radicando e la vecchia stima:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function valor_medio (x, y)
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">function valor_medio (x, y)
 	return (x + y) / 2;
 }</code></pre>
 </div>
@@ -1782,7 +1783,7 @@ predeterminata soglia (qui 0,001):</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function suff_accurata (stima, x) {
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">function suff_accurata (stima, x) {
 	return valore_assoluto (quadrato (stima) - x) &lt; 0.001;
 }</code></pre>
 </div>
@@ -1793,7 +1794,7 @@ sempre supporre che la radice quadrata di qualsiasi numero sia 1:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function radice_quadrata (x) {
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">function radice_quadrata (x) {
 	return radice_quadrata_iter (1, x);
 }</code></pre>
 </div>
@@ -1805,7 +1806,7 @@ così come possiamo usare qualsiasi funzione.</p>
 <div id="radq1" class="listingblock">
 <div class="title">Elenco 1. Programma per il calcolo della radice quadrata e funzioni da cui dipende</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function radice_quadrata_iter (stima, x) {
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">function radice_quadrata_iter (stima, x) {
 	return suff_accurata (stima, x)
 		? stima
 		: radice_quadrata_iter (migliora (stima, x), x);
@@ -1841,22 +1842,22 @@ function quadrato (x) {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">radice_quadrata (9);</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">radice_quadrata (9);</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">radice_quadrata (100 + 37);</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">radice_quadrata (100 + 37);</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">radice_quadrata (radice_quadrata (2) + radice_quadrata (3));</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">radice_quadrata (radice_quadrata (2) + radice_quadrata (3));</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">quadrato (radice_quadrata (1000));</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">quadrato (radice_quadrata (1000));</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1883,7 +1884,7 @@ fatto e dichiara una funzione condizionale come segue:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function condizionale (predicato, clausola_allora, clausola_altrimenti) {
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">function condizionale (predicato, clausola_allora, clausola_altrimenti) {
 	return predicato ? clausola_allora: clausola_altrimenti;
 }</code></pre>
 </div>
@@ -1893,7 +1894,7 @@ fatto e dichiara una funzione condizionale come segue:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">condizionale (2 === 3, 0, 5);</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">condizionale (2 === 3, 0, 5);</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1901,7 +1902,7 @@ fatto e dichiara una funzione condizionale come segue:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">condizionale (1 === 1, 0, 5);</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">condizionale (1 === 1, 0, 5);</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1911,7 +1912,7 @@ quadrata:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function radice_quadrata_iter (stima, x) {
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">function radice_quadrata_iter (stima, x) {
 	return condizionale (suff_accurata (stima, x),
 		stima,
 		radice_quadrata_iter (migliora (stima, x),
@@ -1963,7 +1964,7 @@ terminazione. Funziona meglio?</p>
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">// Soluzione esercizio 1.7
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">// Soluzione esercizio 1.7
 
 /*
 La tolleranza assoluta di 0,001 è troppo grande quando si calcola la radice quadrata di un valore piccolo.
@@ -2035,7 +2036,7 @@ calcolo della radice cubica analoga alla funzione <code>radice_quadrata</code>.<
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">// Soluzione dell'esercizio 1.8
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">// Soluzione dell'esercizio 1.8
 
 function suff_accurata (stima, x) {
 	return valore_assoluto (cubo (stima) - x) &lt; 0.001;
@@ -2116,7 +2117,7 @@ numero come valore.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function quadrato (x) {
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">function quadrato (x) {
 	return x * x;
 }
 
@@ -2146,7 +2147,7 @@ seguenti funzioni non dovrebbero essere distinguibili:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function quadrato (x) {
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">function quadrato (x) {
 	return x * x;
 }
 
@@ -2167,7 +2168,7 @@ locali al corpo della funzione. Ad esempio, abbiamo usato
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function suff_accurata(stima, x) {
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">function suff_accurata(stima, x) {
 	return valore_assoluto ( quadrato (stima) - x) &lt; 0.001;
 }</code></pre>
 </div>
@@ -2250,7 +2251,7 @@ della radice quadrata possiamo scrivere</p>
 <div id="radq2" class="listingblock">
 <div class="title">Elenco 2. Programma per il calcolo della radice quadrata con funzioni annidate</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function radice_quadrata (x) {
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">function radice_quadrata (x) {
 	function radice_quadrata_iter (stima, x) {
 		return suff_accurata (stima, x)
 			? stima
@@ -2300,7 +2301,7 @@ Questa disciplina si chiama visibilità lessicale, o visibilità statica (static
 <div id="radq3" class="listingblock">
 <div class="title">Elenco 3. Programma per il calcolo della radice quadrata che sfrutta la visibilià statica</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function radice_quadrata (x) {
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">function radice_quadrata (x) {
 	function radice_quadrata_iter (stima) {
 		return suff_accurata (stima)
 			? stima
@@ -2513,19 +2514,19 @@ risolto.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">diametro</p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>\(2 \cdot \text{raggio}\)</p>
+<p>2 · raggio</p>
 </div></div></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">perimetro</p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>\(\text{pi\_greco} \cdot \text{diametro}\)</p>
+<p>pi_greco · diametro</p>
 </div></div></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">area</p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>\(\text{pi\_greco} \cdot \text{raggio}^2\)</p>
+<p>pi_greco · raggio<sup>2</sup></p>
 </div></div></td>
 </tr>
 </tbody>
@@ -2552,7 +2553,7 @@ Quale valore viene restituito dalla dichiarazione? Quale valore è prodotto dall
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">1 + 2;
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">1 + 2;
 3;
 4 * 5;</code></pre>
 </div>
@@ -2567,7 +2568,7 @@ Quale valore viene restituito dalla dichiarazione? Quale valore è prodotto dall
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">2 * 10 - 19.62 * 7;</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">2 * 10 - 19.62 * 7;</code></pre>
 </div>
 </div>
 </div>
@@ -2746,7 +2747,7 @@ Le funzioni che considereremo sono molto semplici.</p>
 <div class="listingblock">
 <div class="title">Elenco 4. Definizione della funzione fattoriale</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function fattoriale (n) {
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">function fattoriale (n) {
 	return n === 1
 			? 1
 			: n * fattoriale (n - 1);
@@ -2754,13 +2755,24 @@ Le funzioni che considereremo sono molto semplici.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Usando il modello di sostituzione del <a href="#sp_modello_sostituzione">paragrafo 1.1.5</a> si ottiene il processo illustrato nella <a href="#fig1_3">Figura 3</a>.</p>
+<p>Usando il modello di sostituzione del <a href="#sp_modello_sostituzione">paragrafo 1.1.5</a> si ottiene il processo illustrato nella <a href="#fig1_3">Un processo ricorsivo lineare per calcolare 6!</a>.</p>
 </div>
-<div id="fig1_3" class="imageblock">
+<div id="fig1_3" class="literalblock">
+<div class="title">Un processo ricorsivo lineare per calcolare 6!</div>
 <div class="content">
-<img src="https://sicp.comp.nus.edu.sg/chapters/img_javascript/ch1-Z-G-7.svg" alt="ch1 Z G 7">
+<pre>fattoriale(6)
+(6 * fattoriale(5))
+(6 * (5 * fattoriale(4)))
+(6 * (5 * (4 * fattoriale(3))))
+(6 * (5 * (4 * (3 * fattoriale(2)))))
+(6 * (5 * (4 * (3 * (2 * fattoriale(1))))))
+(6 * (5 * (4 * (3 * (2 * 1)))))
+(6 * (5 * (4 * (3 * 2))))
+(6 * (5 * (4 * 6)))
+(6 * (5 * 24))
+(6 * 120)
+720</pre>
 </div>
-<div class="title">Figura 3. Un processo ricorsivo lineare per calcolare 6!</div>
 </div>
 <div class="paragraph">
 <p>Possiamo assumere un diverso punto di vista per il calcolo del fattoriale.
@@ -2788,7 +2800,7 @@ Possiamo descrivere il calcolo dicendo che il contatore e il prodotto cambiano s
 <div class="listingblock">
 <div class="title">Elenco 5. Definizione della funzione fattoriale come processo iterativo lineare</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function fattoriale (n) {
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">function fattoriale (n) {
     function iter (prodotto, contatore) {
         return contatore &gt; n
                ? prodotto
@@ -2800,19 +2812,46 @@ Possiamo descrivere il calcolo dicendo che il contatore e il prodotto cambiano s
 </div>
 </div>
 <div class="paragraph">
-<p>Come sopra, possiamo usare il modello di sostuzione per visualizzare il processo di calcolo di \(6!\) come mostrato in <a href="#fig1_4">Figura 4</a>.</p>
+<p>function stampa_albero_fattoriale(n) {
+  let albero = 'fattoriale(' + n + ')\n';
+  const fattoriale = (n) &#8658;{
+    const iter = (prodotto, contatore) &#8658;{
+      albero += 'iter(' + prodotto + ', ' + contatore + ', ' + n + ')\n';
+      if (contatore &gt; n) {
+        albero += prodotto + '\n';
+        return prodotto;
+      }
+      return iter(contatore * prodotto, contatore + 1);
+    };
+    return iter(1, 1);
+  };
+  fattoriale(n);
+  console.log(albero);
+};
+stampa_albero_fattoriale(6);</p>
 </div>
-<div id="fig1_4" class="imageblock">
+<div class="paragraph">
+<p>Come sopra, possiamo usare il modello di sostuzione per visualizzare il processo di calcolo di \(6!\) come mostrato in <a href="#fig1_4">Un processo iterativo lineare per calcolare il fattoriale di 6</a>.</p>
+</div>
+<div id="fig1_4" class="literalblock">
+<div class="title">Un processo iterativo lineare per calcolare il fattoriale di 6</div>
 <div class="content">
-<img src="https://sicp.comp.nus.edu.sg/chapters/img_javascript/ch1-Z-G-10.svg" alt="ch1 Z G 10">
+<pre>fattoriale(6)
+iter(1, 1, 6)
+iter(1, 2, 6)
+iter(2, 3, 6)
+iter(6, 4, 6)
+iter(24, 5, 6)
+iter(120, 6, 6)
+iter(720, 7, 6)
+720</pre>
 </div>
-<div class="title">Figura 4. Un processo iterativo lineare per calcolare il fattoriale di 6</div>
 </div>
 <div class="paragraph">
 <p>Confronta i due processi. Da un punto di vista, non sembrano così diversi. Entrambi calcolano la stessa funzione matematica sullo stesso dominio e ciascuno richiede un numero di passaggi proporzionale a \(n\) per calcolare \(n!\). In effetti, entrambi i processi eseguono anche la stessa sequenza di moltiplicazioni, ottenendo la stessa sequenza di prodotti parziali. D&#8217;altra parte, quando consideriamo le forme dei due processi, scopriamo che si evolvono in modo abbastanza diverso.</p>
 </div>
 <div class="paragraph">
-<p>Considera il primo processo. Il modello di sostituzione rivela una forma con un&#8217;espansione seguita da una contrazione, indicata dalla freccia nella <a href="#fig1_3">Figura 3</a>. L&#8217;espansione avviene quando il processo crea una catena di <strong>operazioni differite</strong> (in questo caso, una catena di moltiplicazioni). La contrazione si verifica quando le operazioni vengono effettivamente eseguite. Questo tipo di processo, caratterizzato da una catena di operazioni differite, è chiamato <strong>processo ricorsivo</strong>. L&#8217;esecuzione di questo processo richiede che l&#8217;interprete tenga traccia delle operazioni da eseguire in seguito. Nel calcolo di \(n!\), la lunghezza della catena di moltiplicazioni differite, e quindi la quantità di informazioni necessarie per tenerne traccia, cresce linearmente con \(n\) (è proporzionale a \(n\)), proprio come il numero di passi. Tale processo è chiamato processo ricorsivo lineare.</p>
+<p>Considera il primo processo. Il modello di sostituzione rivela una forma con un&#8217;espansione seguita da una contrazione, indicata dalla freccia nella <a href="#fig1_3">Un processo ricorsivo lineare per calcolare 6!</a>. L&#8217;espansione avviene quando il processo crea una catena di <strong>operazioni differite</strong> (in questo caso, una catena di moltiplicazioni). La contrazione si verifica quando le operazioni vengono effettivamente eseguite. Questo tipo di processo, caratterizzato da una catena di operazioni differite, è chiamato <strong>processo ricorsivo</strong>. L&#8217;esecuzione di questo processo richiede che l&#8217;interprete tenga traccia delle operazioni da eseguire in seguito. Nel calcolo di \(n!\), la lunghezza della catena di moltiplicazioni differite, e quindi la quantità di informazioni necessarie per tenerne traccia, cresce linearmente con \(n\) (è proporzionale a \(n\)), proprio come il numero di passi. Tale processo è chiamato processo ricorsivo lineare.</p>
 </div>
 <div class="paragraph">
 <p>Al contrario, il secondo processo né cresce né si restringe. Ad ogni passaggio, tutto ciò di cui abbiamo bisogno per tenere traccia, per ogni \(n\), sono i valori correnti dei nomi <em>prodotto</em>, contatore<em> e </em>contatore_max__. Questo è un <strong>processo iterativo</strong>. In generale, un processo iterativo è quello il cui stato può essere riassunto dai valori di un numero fisso di nomi di stato, insieme a una regola fissa che descrive come i valori dei nomi di stato dovrebbero essere aggiornati mentre il processo si sposta da stato a stato e un controllo finale (facoltativo) che specifica le condizioni alle quali il processo dovrebbe terminare. Nel calcolo di \(n!\), Il numero di passaggi richiesti cresce linearmente con \(n\). Tale processo è chiamato <strong>processo iterativo lineare</strong>.</p>
@@ -2839,7 +2878,7 @@ argomento di 1, e della funzione <code>dec</code>, che decrementa il suo argomen
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function piu(a, b) {  <i class="conum" data-value="1"></i><b>(1)</b>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">function piu(a, b) {  <i class="conum" data-value="1"></i><b>(1)</b>
     return a === 0 ? b : inc(piu(dec(a), b));
 }
 function piu(a, b) {  <i class="conum" data-value="2"></i><b>(2)</b>
@@ -2860,7 +2899,7 @@ function piu(a, b) {  <i class="conum" data-value="2"></i><b>(2)</b>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">piu(4, 5)
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">piu(4, 5)
 4 === 0 ? 5 : inc(piu(dec(4), 5))
 inc(piu(dec(4), 5))
 ...
@@ -2884,7 +2923,7 @@ inc( 8 )
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">piu(4, 5)
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">piu(4, 5)
 4 === 0 ? 5 : piu(dec(4), inc(5))
 piu(dec(4), inc(5))
 ...
@@ -2911,7 +2950,7 @@ funzione di Ackermann.</p>
 <div class="listingblock">
 <div class="title">Elenco 6. Funzione di Ackermann</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function A(x,y) {
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">function A(x,y) {
     return y === 0
            ? 0
            : x === 0
@@ -2927,7 +2966,7 @@ funzione di Ackermann.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">A(1, 10);
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">A(1, 10);
 A(2, 4);
 A(3, 3);</code></pre>
 </div>
@@ -2937,7 +2976,7 @@ A(3, 3);</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function f(n) {
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">function f(n) {
     return A(0, n);
 }
 function g(n) {
@@ -3025,7 +3064,7 @@ e che \(g (n) = A (1, n) = A \left(0, A (1, n - 1)\right) = f ( g (n -1)) = 2 \c
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function fib(n) {
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">function fib(n) {
     return n === 0
            ? 0
            : n === 1
@@ -3072,7 +3111,7 @@ e che \(g (n) = A (1, n) = A \left(0, A (1, n - 1)\right) = f ( g (n -1)) = 2 \c
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function fib(n) {
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">function fib(n) {
     return fib_iter(1, 0, n);
 }
 function fib_iter(a, b, count) {
@@ -3133,7 +3172,7 @@ function fib_iter(a, b, count) {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function conta_cambi(importo) {
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">function conta_cambi(importo) {
     return cc(importo, 5);
 }
 function cc(importo, num_tagli) {
@@ -3162,7 +3201,7 @@ function primo_valore_nominale (num_tagli) {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">conta_cambi(100);</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">conta_cambi(100);</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -3195,7 +3234,7 @@ function primo_valore_nominale (num_tagli) {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function f (n) {
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">function f (n) {
     return n &lt; 3
            ? n
            : f (n - 1) +
@@ -3210,7 +3249,7 @@ Per calcolare la funzione con argomento il numero 3, devono essere definite \(f 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function f (n) {
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">function f (n) {
     function f_iter (fn1, fn2, fn3, contatore) {
         return contatore === 0
             ? fn1
@@ -3259,7 +3298,7 @@ in quanto la riga \(n\)-esima è formata dai coefficienti dei termini dell&#8217
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function triangolo_tartaglia(riga, indice) {
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">function triangolo_tartaglia(riga, indice) {
     return indice &gt; riga
            ? false
            : indice === 1 || indice === riga
@@ -3348,7 +3387,7 @@ Queste idee sono racchiuse nelle funzioni seguenti:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function cubo(x) {
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">function cubo(x) {
     return x * x * x;
 }
 function p(x) {
@@ -3394,7 +3433,7 @@ Un modo per farlo è tramite la definizione ricorsiva</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function potenza (b, n) {
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">function potenza (b, n) {
     return n === 0 ? 1 : b * potenza (b, n - 1);
 }</code></pre>
 </div>
@@ -3405,7 +3444,7 @@ Proprio come per il fattoriale, possiamo facilmente riformularlo per generare un
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function potenza (b,n) {
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">function potenza (b,n) {
     return potenza_iter (b, n, 1);
  }
 
@@ -3443,7 +3482,7 @@ Possiamo sfruttare i ripetuti elevamenti al quadrato anche nel calcolo degli ele
 <div class="content">
 \[\begin{array}{ll}
     b^{n} =(b^{n/2})^{2}  &amp; \mbox{se } n \mbox{ pari}\\
-    b^{n} =b\cdot b^{n-1} &amp; \mbox{se } n &amp; \mbox{ dispari}\\
+    b^{n} =b\cdot b^{n-1} &amp; \mbox{se } n \mbox{ dispari}\\
 \end{array}\]
 </div>
 </div>
@@ -3452,7 +3491,7 @@ Possiamo sfruttare i ripetuti elevamenti al quadrato anche nel calcolo degli ele
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function potenza_veloce(b, n) {
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">function potenza_veloce(b, n) {
     return n === 0
            ? 1
            : pari(n)
@@ -3466,7 +3505,7 @@ Possiamo sfruttare i ripetuti elevamenti al quadrato anche nel calcolo degli ele
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function pari(n) {
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">function pari(n) {
     return n % 2 === 0;
 }</code></pre>
 </div>
@@ -3506,7 +3545,7 @@ La seguente funzione di moltiplicazione (in cui si presume che il nostro linguag
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function per (a, b) {
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">function per (a, b) {
     return b === 0
            ? 0
            : a + per (a, b - 1);
@@ -3546,7 +3585,7 @@ Metti tutto insieme per completare la seguente funzione, che viene eseguita in u
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function fib(n) {
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">function fib(n) {
     return fib_iter(1, 0, 0, 1, n);
 }
 function fib_iter(a, b, p, q, contatore) {
@@ -3606,7 +3645,7 @@ Questo metodo per calcolare il MCD è noto come <em>Algoritmo di Euclide</em>.<s
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function mcd(a, b) {
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">function mcd(a, b) {
     return b === 0 ? a : mcd(b, a % b);
 }</code></pre>
 </div>
@@ -3657,7 +3696,7 @@ Quante operazioni <em>resto</em> sono effettivamente eseguite nella valutazione 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function divisore_minimo(n) {
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">function divisore_minimo(n) {
     return cerca_divisore(n, 2);
 }
 function cerca_divisore(n, divisore_prova) {
@@ -3677,7 +3716,7 @@ function divide(a, b) {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function primo(n) {
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">function primo(n) {
     return n === divisore_minimo(n);
 }</code></pre>
 </div>
@@ -3705,7 +3744,7 @@ function divide(a, b) {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function potenza_modulo(base, esponente, m) {
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">function potenza_modulo(base, esponente, m) {
     return esponente === 0
            ? 1
            : pari(esponente)
@@ -3723,7 +3762,7 @@ function divide(a, b) {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function test_fermat(n) {
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">function test_fermat(n) {
     function prova(a) {
         return potenza_modulo(a, n, n) === a;
     }
@@ -3736,7 +3775,7 @@ function divide(a, b) {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function primo_veloce(n, num_volte) {
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">function primo_veloce(n, num_volte) {
     return num_volte === 0
         ? true
         : test_fermat(n)
@@ -3776,7 +3815,7 @@ function divide(a, b) {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function test_primalita_cronometrato(n) {
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">function test_primalita_cronometrato(n) {
     display(n);
     return inizia_test_primalita(n, get_time());
 }
@@ -3820,7 +3859,7 @@ function stampa_primo(tempo_trascorso) {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function potenza_modulo(base, esponente, m) {
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">function potenza_modulo(base, esponente, m) {
     return potenza_veloce(base, esponente) % m;
 }</code></pre>
 </div>
@@ -3838,7 +3877,7 @@ function stampa_primo(tempo_trascorso) {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function potenza_modulo(base, esponente, m) {
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">function potenza_modulo(base, esponente, m) {
     return esponente === 0
            ? 1
            : pari(esponente)
@@ -3883,7 +3922,7 @@ ingannano davvero il test di Fermat. Cioè, scrivi una funzione che accetta un i
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function cubo(x) {
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">function cubo(x) {
     return x * x * x;
 }</code></pre>
 </div>
@@ -3893,7 +3932,7 @@ ingannano davvero il test di Fermat. Cioè, scrivi una funzione che accetta un i
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">3 * 3 * 3;
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">3 * 3 * 3;
 x * x * x;
 y * y * y;</code></pre>
 </div>
@@ -3914,7 +3953,7 @@ y * y * y;</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function somma_interi(a, b) {
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">function somma_interi(a, b) {
     return a &gt; b
            ? 0
            : a + somma_interi(a + 1, b);
@@ -3926,7 +3965,7 @@ y * y * y;</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function somma_cubi(a, b) {
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">function somma_cubi(a, b) {
     return a &gt; b
            ? 0
            : cubo(a) + somma_cubi(a + 1, b);
@@ -3946,7 +3985,7 @@ y * y * y;</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function somma_pi(a, b) {
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">function somma_pi(a, b) {
     return a &gt; b
            ? 0
            : 1.0 / (a * (a + 2)) +
@@ -3959,7 +3998,7 @@ y * y * y;</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function $nome$(a, b) {
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">function $nome$(a, b) {
     return a &gt; b
            ? 0
            : $termine$(a) + $nome$($prossimo$(a), b);
@@ -3982,7 +4021,7 @@ y * y * y;</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function somma(termine, a, prossimo, b) {
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">function somma(termine, a, prossimo, b) {
     return a &gt; b
            ? 0
            : termine(a) + somma(termine, prossimo(a), prossimo, b);
@@ -3994,7 +4033,7 @@ y * y * y;</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function inc(n) {
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">function inc(n) {
     return n + 1;
 }
 function somma_cubi(a, b) {
@@ -4007,7 +4046,7 @@ function somma_cubi(a, b) {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">somma_cubi(1, 10);</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">somma_cubi(1, 10);</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -4015,7 +4054,7 @@ function somma_cubi(a, b) {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function identita(x) {
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">function identita(x) {
     return x;
 }
 
@@ -4029,7 +4068,7 @@ function somma_interi(a, b) {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">somma_interi(1, 10);</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">somma_interi(1, 10);</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -4037,7 +4076,7 @@ function somma_interi(a, b) {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function somma_pi(a, b) {
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">function somma_pi(a, b) {
     function pi_termine(x) {
         return 1.0 / (x * (x + 2));
     }
@@ -4053,7 +4092,7 @@ function somma_interi(a, b) {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">8 * somma_pi(1, 1000);</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">8 * somma_pi(1, 1000);</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -4075,7 +4114,7 @@ function somma_interi(a, b) {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function integrale(f, a, b, dx) {
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">function integrale(f, a, b, dx) {
     function aggiungi_dx(x) {
         return x + dx;
     }
@@ -4112,7 +4151,7 @@ integrale(cubo, 0, 1, 0.01);</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function somma(termine, a, prossimo, b) {
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">function somma(termine, a, prossimo, b) {
     function iter(a, risultato) {
         return &lt; ?? &gt;
                ? &lt; ?? &gt;
@@ -4159,7 +4198,7 @@ integrale(cubo, 0, 1, 0.01);</code></pre>
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">accumula(operatore, elemento_neutro, termine, a, prossimo, b);</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">accumula(operatore, elemento_neutro, termine, a, prossimo, b);</code></pre>
 </div>
 </div>
 </div>
@@ -4201,7 +4240,7 @@ integrale(cubo, 0, 1, 0.01);</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">x =&gt; x + 4;</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">x =&gt; x + 4;</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -4209,7 +4248,7 @@ integrale(cubo, 0, 1, 0.01);</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">x =&gt; 1.0 / (x * (x + 2));</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">x =&gt; 1.0 / (x * (x + 2));</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -4217,7 +4256,7 @@ integrale(cubo, 0, 1, 0.01);</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function somma_pi(a, b) {
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">function somma_pi(a, b) {
     return somma(x =&gt; 1.0 / (x * (x + 2)),
                a,
                x =&gt; x + 4,
@@ -4230,7 +4269,7 @@ integrale(cubo, 0, 1, 0.01);</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function integrale(f, a, b, dx) {
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">function integrale(f, a, b, dx) {
     return somma(f,
                a + dx / 2.0,
                x =&gt; x + dx,
@@ -4256,7 +4295,7 @@ integrale(cubo, 0, 1, 0.01);</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function piu4(x) {
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">function piu4(x) {
     return x + 4;
 }</code></pre>
 </div>
@@ -4266,7 +4305,7 @@ integrale(cubo, 0, 1, 0.01);</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">const piu4 = x =&gt; x + 4;</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">const piu4 = x =&gt; x + 4;</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -4274,7 +4313,7 @@ integrale(cubo, 0, 1, 0.01);</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">//                         x       =&gt;             x     +   4
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">//                         x       =&gt;             x     +   4
 //                         ^       ^              ^     ^   ^
 //                         |       |              |     |   |
 // la funzione di argomento x che restituisce il valore piu' 4</code></pre>
@@ -4285,7 +4324,7 @@ integrale(cubo, 0, 1, 0.01);</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">((x, y, z) =&gt; x + y + quadrato(z))(1, 2, 3);</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">((x, y, z) =&gt; x + y + quadrato(z))(1, 2, 3);</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -4313,7 +4352,7 @@ integrale(cubo, 0, 1, 0.01);</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function f(x, y) {
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">function f(x, y) {
     function f_ausiliaria(a, b) {
         return x * quadrato(a) +
                y * b +
@@ -4329,7 +4368,7 @@ integrale(cubo, 0, 1, 0.01);</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function f(x,y) {
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">function f(x,y) {
     return ( (a, b) =&gt; x * quadrato(a) +
                       y * b +
                       a * b
@@ -4342,7 +4381,7 @@ integrale(cubo, 0, 1, 0.01);</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function f(x, y) {
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">function f(x, y) {
     const a = 1 + x * y;
     const b = 1 - y;
     return x * quadrato(a) +
@@ -4362,7 +4401,7 @@ integrale(cubo, 0, 1, 0.01);</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function potenza_modulo(base, esponente, m) {
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">function potenza_modulo(base, esponente, m) {
     return esponente === 0
            ? 1
            : pari(esponente)
@@ -4380,7 +4419,7 @@ integrale(cubo, 0, 1, 0.01);</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">potenza_modulo(base, esponente / 2, m)</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">potenza_modulo(base, esponente / 2, m)</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -4388,7 +4427,7 @@ integrale(cubo, 0, 1, 0.01);</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function potenza_modulo(base, esponente, m) {
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">function potenza_modulo(base, esponente, m) {
     const da_quadrare = potenza_modulo(base, esponente / 2, m);
     return esponente === 0
            ? 1
@@ -4407,7 +4446,7 @@ integrale(cubo, 0, 1, 0.01);</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function potenza_modulo(base, esponente, m) {
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">function potenza_modulo(base, esponente, m) {
     if (esponente === 0) {
         return 1;
     } else {
@@ -4443,7 +4482,7 @@ integrale(cubo, 0, 1, 0.01);</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function f(g) {
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">function f(g) {
    return g(2);
 }</code></pre>
 </div>
@@ -4453,12 +4492,12 @@ integrale(cubo, 0, 1, 0.01);</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">f(quadrato);</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">f(quadrato);</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">f(z =&gt; z * (z + 1));</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">f(z =&gt; z * (z + 1));</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -4480,7 +4519,7 @@ integrale(cubo, 0, 1, 0.01);</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function cerca(f, punto_negativo, punto_positivo) {
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">function cerca(f, punto_negativo, punto_positivo) {
     const punto_medio = valor_medio(punto_negativo,punto_positivo);
     if (abbastanza_vicino(punto_negativo, punto_positivo)) {
         return punto_medio;
@@ -4502,7 +4541,7 @@ integrale(cubo, 0, 1, 0.01);</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function abbastanza_vicino(x,y) {
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">function abbastanza_vicino(x,y) {
     return valore_assoluto(x - y) &lt; 0.001;
 }</code></pre>
 </div>
@@ -4512,7 +4551,7 @@ integrale(cubo, 0, 1, 0.01);</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function metodo_bisezione(f, a, b) {
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">function metodo_bisezione(f, a, b) {
     const valore_in_a = f(a);
     const valore_in_b = f(b);
     return negativo(valore_in_a) &amp;&amp; positivo(valore_in_b)
@@ -4528,7 +4567,7 @@ integrale(cubo, 0, 1, 0.01);</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">metodo_bisezione(Math.sin, 2.0, 4.0);</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">metodo_bisezione(Math.sin, 2.0, 4.0);</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -4536,7 +4575,7 @@ integrale(cubo, 0, 1, 0.01);</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">metodo_bisezione(
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">metodo_bisezione(
   x =&gt; x * x * x - 2 * x - 3,
   1.0,
   2.0);</code></pre>
@@ -4550,7 +4589,7 @@ integrale(cubo, 0, 1, 0.01);</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">const tolleranza = 0.00001;
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">const tolleranza = 0.00001;
 function punto_fisso(f, stima_iniziale) {
     function abbastanza_vicino(x, y) {
         return valore_assoluto(x - y) &lt; tolleranza;
@@ -4570,7 +4609,7 @@ function punto_fisso(f, stima_iniziale) {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">punto_fisso(math_cos, 1.0);</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">punto_fisso(math_cos, 1.0);</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -4578,17 +4617,17 @@ function punto_fisso(f, stima_iniziale) {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">punto_fisso(
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">punto_fisso(
     y =&gt; math_sin(y) + math_cos(y),
     1.0);</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Il processo a virgola fissa ricorda il processo che abbiamo usato per trovare le radici quadrate nel <a href="#sec:sqrt">paragrafo 1.1.7</a>. Entrambi si basano sull&#8217;idea di migliorare ripetutamente un&#8217;ipotesi finché il risultato non soddisfa un criterio. In effetti, possiamo facilmente formulare il calcolo della radice quadrata come una ricerca di un punto fisso. Il calcolo della radice quadrata di un numero \(x\) richiede di trovare un \(y\) tale che \(y^2 = x\). Mettendo questa equazione nella forma equivalente \(y = x / y\), riconosciamo che stiamo cercando un punto fisso della nota funzione: <sup class="footnote">[<a id="_footnoteref_31" class="footnote" href="#_footnotedef_31" title="View footnote.">31</a>]</sup> \(y \mapsto x / y\), e possiamo quindi provare a calcolare le radici quadrate come</p>
+<p>Il processo a di ricerca del punto fisso ricorda il processo che abbiamo usato per trovare le radici quadrate nel <a href="#sec:sqrt">paragrafo 1.1.7</a>. Entrambi si basano sull&#8217;idea di migliorare ripetutamente un&#8217;ipotesi finché il risultato non soddisfa un criterio. In effetti, possiamo facilmente formulare il calcolo della radice quadrata come una ricerca di un punto fisso. Il calcolo della radice quadrata di un numero \(x\) richiede di trovare un \(y\) tale che \(y^2 = x\). Mettendo questa equazione nella forma equivalente \(y = x / y\), riconosciamo che stiamo cercando un punto fisso della nota funzione: <sup class="footnote">[<a id="_footnoteref_31" class="footnote" href="#_footnotedef_31" title="View footnote.">31</a>]</sup> \(y \mapsto x / y\), e possiamo quindi provare a calcolare le radici quadrate come</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function radice_quadrata() {
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">function radice_quadrata() {
     return punto_fisso(y =&gt; x / y, 1.0);
 }</code></pre>
 </div>
@@ -4601,7 +4640,7 @@ function punto_fisso(f, stima_iniziale) {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function radice_quadrata() {
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">function radice_quadrata() {
     return punto_fisso(
                y =&gt; valor_medio(y, x / y),
                1.0);
@@ -4661,7 +4700,7 @@ function punto_fisso(f, stima_iniziale) {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">fraz_cont(i =&gt; 1.0,
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">fraz_cont(i =&gt; 1.0,
           i =&gt; 1.0,
           k);</code></pre>
 </div>
@@ -4721,7 +4760,7 @@ function punto_fisso(f, stima_iniziale) {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function smorazmento(f) {
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">function smorazmento(f) {
     return x =&gt; valor_medio(x, f(x));
 }</code></pre>
 </div>
@@ -4731,7 +4770,7 @@ function punto_fisso(f, stima_iniziale) {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">smorzameto(quadrato)(10);</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">smorzameto(quadrato)(10);</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -4739,7 +4778,7 @@ function punto_fisso(f, stima_iniziale) {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function radice_quadrata(x) {
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">function radice_quadrata(x) {
     return punto_fisso(smorzamento(y =&gt; x / y),
                        1.0);
 }</code></pre>
@@ -4750,7 +4789,7 @@ function punto_fisso(f, stima_iniziale) {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function radice_cubica(x) {
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">function radice_cubica(x) {
     return punto_fisso(smorzamento(y =&gt; x / quadrato(y)),
                        1.0);
 }</code></pre>
@@ -4782,7 +4821,7 @@ function punto_fisso(f, stima_iniziale) {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function derivata(g) {
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">function derivata(g) {
     return x =&gt; (g(x + dx) - g(x)) / dx;
 }</code></pre>
 </div>
@@ -4792,7 +4831,7 @@ function punto_fisso(f, stima_iniziale) {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">const dx = 0.00001;</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">const dx = 0.00001;</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -4800,7 +4839,7 @@ function punto_fisso(f, stima_iniziale) {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function cubo(x) { return x * x * x; }
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">function cubo(x) { return x * x * x; }
 
 derivata(cubo)(5);</code></pre>
 </div>
@@ -4810,7 +4849,7 @@ derivata(cubo)(5);</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function trasformata_newton(g) {
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">function trasformata_newton(g) {
    return x =&gt; x - g(x) / derivata(g)(x);
 }
 function metodo_newton(g, stima) {
@@ -4823,7 +4862,7 @@ function metodo_newton(g, stima) {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function radice_quadrata(x) {
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">function radice_quadrata(x) {
     return metodo_newton(y =&gt; quadrato(y) - x,
                           1.0);
 }</code></pre>
@@ -4837,7 +4876,7 @@ function metodo_newton(g, stima) {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function punto_fisso_di_trasformata(g, trasformata, stima) {
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">function punto_fisso_di_trasformata(g, trasformata, stima) {
     return punto_fisso(transformata(g), stima);
 }</code></pre>
 </div>
@@ -4850,7 +4889,7 @@ function metodo_newton(g, stima) {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function radice_quadrata(x) {
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">function radice_quadrata(x) {
     return punto_fisso_di_trasformata(
                y =&gt; x / y,
                smorzamento,
@@ -4863,7 +4902,7 @@ function metodo_newton(g, stima) {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function radice_quadrata(x) {
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">function radice_quadrata(x) {
     return punto_fisso_di_trasformata(
                y =&gt; square(y) - x,
                trasformata_newton,
@@ -4907,7 +4946,7 @@ function metodo_newton(g, stima) {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">metodo_newton(cubica(a, b, c), 1);</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">metodo_newton(cubica(a, b, c), 1);</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -4923,7 +4962,7 @@ function metodo_newton(g, stima) {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">applica_due_volte(applica_due_volte(applica_due_volte))(inc)(5);</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">applica_due_volte(applica_due_volte(applica_due_volte))(inc)(5);</code></pre>
 </div>
 </div>
 </div>
@@ -4936,7 +4975,7 @@ function metodo_newton(g, stima) {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">componi(quadrato, inc)(6);</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">componi(quadrato, inc)(6);</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -4952,7 +4991,7 @@ function metodo_newton(g, stima) {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">ripeti_applicazione(quadrato, 2)(5);</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">ripeti_applicazione(quadrato, 2)(5);</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -5023,7 +5062,7 @@ function metodo_newton(g, stima) {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function linear_combination(a, b, x, y) {
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">function linear_combination(a, b, x, y) {
     return a * x + b * y;
 }</code></pre>
 </div>
@@ -5033,7 +5072,7 @@ function metodo_newton(g, stima) {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function linear_combination(a, b, x, y) {
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">function linear_combination(a, b, x, y) {
     return add(mul(a, x), mul(b, y));
 }</code></pre>
 </div>
@@ -5424,12 +5463,16 @@ function make_rat(n, d) {
 </div>
 <div id="footer">
 <div id="footer-text">
-Versione <br>
+Versione 0.1.0<br>
 </div>
 </div>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
-<script>hljs.initHighlighting()</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/highlight.min.js"></script>
+<script>
+if (!hljs.initHighlighting.called) {
+  hljs.initHighlighting.called = true
+  ;[].slice.call(document.querySelectorAll('pre.highlight > code')).forEach(function (el) { hljs.highlightBlock(el) })
+}
+</script>
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
   messageStyle: "none",
@@ -5446,13 +5489,13 @@ MathJax.Hub.Config({
 })
 MathJax.Hub.Register.StartupHook("AsciiMath Jax Ready", function () {
   MathJax.InputJax.AsciiMath.postfilterHooks.Add(function (data, node) {
-    if ((node = data.script.parentNode) && (node = node.parentNode) && node.classList.contains('stemblock')) {
+    if ((node = data.script.parentNode) && (node = node.parentNode) && node.classList.contains("stemblock")) {
       data.math.root.display = "block"
     }
     return data
   })
 })
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>
 </body>
 </html>

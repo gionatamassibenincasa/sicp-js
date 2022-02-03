@@ -63,7 +63,7 @@ Possiamo sfruttare i ripetuti elevamenti al quadrato anche nel calcolo degli ele
 ++++
 \begin{array}{ll}
     b^{n} =(b^{n/2})^{2}  & \mbox{se } n \mbox{ pari}\\
-    b^{n} =b\cdot b^{n-1} & \mbox{se } n & \mbox{ dispari}\\
+    b^{n} =b\cdot b^{n-1} & \mbox{se } n \mbox{ dispari}\\
 \end{array}
 ++++
  

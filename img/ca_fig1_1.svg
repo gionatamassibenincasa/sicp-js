@@ -1,111 +1,123 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
-<svg viewBox="0 0 1792 360" xmlns="http://www.w3.org/2000/svg" xmlns:inkspace="http://www.inkscape.org/namespaces/inkscape" xmlns:xlink="http://www.w3.org/1999/xlink">
-  <defs id="defs_block">
-    <filter height="1.504" id="filter_blur" inkspace:collect="always" width="1.1575" x="-0.07875" y="-0.252">
-      <feGaussianBlur id="feGaussianBlur3780" inkspace:collect="always" stdDeviation="4.2" />
+<svg viewBox='0 0 1792 360' xmlns='http://www.w3.org/2000/svg' xmlns:inkspace='http://www.inkscape.org/namespaces/inkscape' xmlns:xlink='http://www.w3.org/1999/xlink' preserveAspectRatio='xMidYMid meet'>
+  <defs id='defs_block'>
+    <filter height='1.504' id='filter_blur' inkspace:collect='always' width='1.1575' x='-0.07875' y='-0.252'>
+      <feGaussianBlur id='feGaussianBlur3780' inkspace:collect='always' stdDeviation='4.2'/>
     </filter>
   </defs>
-  <title>blockdiag</title>
-  <desc>blockdiag {
-  orientation = portrait
-
-
-  // (2 + 4 * 6) * (3 + 12);
-  390 -&gt; 26;
-  390 -&gt; "*";
-  390 -&gt; 15;
-
-  26 -&gt; 2;
-  26 -&gt; "+";
-  26 -&gt; 24;
-  24 -&gt; 4;
-  24 -&gt; m1;
-  24 -&gt; 6;
-
-  15 -&gt; 3;
-  p1 [label = "+"];
-  15 -&gt; p1;
-  15 -&gt; 12;
-
-}</desc>
-  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="128" x="67" y="46" />
-  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="128" x="67" y="126" />
-  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="128" x="1027" y="126" />
-  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="128" x="1219" y="126" />
-  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="128" x="67" y="206" />
-  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="128" x="259" y="206" />
-  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="128" x="451" y="206" />
-  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="128" x="451" y="286" />
-  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="128" x="643" y="286" />
-  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="128" x="835" y="286" />
-  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="128" x="1219" y="206" />
-  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="128" x="1411" y="206" />
-  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="128" x="1603" y="206" />
-  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="128" x="64" y="40" />
-  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="18" x="128.0" y="66">390</text>
-  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="128" x="64" y="120" />
-  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="12" x="128.0" y="146">26</text>
-  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="128" x="1024" y="120" />
-  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="6" x="1088.0" y="146">*</text>
-  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="128" x="1216" y="120" />
-  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="12" x="1280.0" y="146">15</text>
-  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="128" x="64" y="200" />
-  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="6" x="128.0" y="226">2</text>
-  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="128" x="256" y="200" />
-  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="6" x="320.0" y="226">+</text>
-  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="128" x="448" y="200" />
-  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="12" x="512.0" y="226">24</text>
-  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="128" x="448" y="280" />
-  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="6" x="512.0" y="306">4</text>
-  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="128" x="640" y="280" />
-  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="12" x="704.0" y="306">m1</text>
-  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="128" x="832" y="280" />
-  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="6" x="896.0" y="306">6</text>
-  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="128" x="1216" y="200" />
-  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="6" x="1280.0" y="226">3</text>
-  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="128" x="1408" y="200" />
-  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="6" x="1472.0" y="226">+</text>
-  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="128" x="1600" y="200" />
-  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="12" x="1664.0" y="226">12</text>
-  <path d="M 128 80 L 128 112" fill="none" stroke="rgb(0,0,0)" />
-  <polygon fill="rgb(0,0,0)" points="128,119 124,112 132,112 128,119" stroke="rgb(0,0,0)" />
-  <path d="M 128 80 L 128 100" fill="none" stroke="rgb(0,0,0)" />
-  <path d="M 128 100 L 1088 100" fill="none" stroke="rgb(0,0,0)" />
-  <path d="M 1088 100 L 1088 112" fill="none" stroke="rgb(0,0,0)" />
-  <polygon fill="rgb(0,0,0)" points="1088,119 1084,112 1092,112 1088,119" stroke="rgb(0,0,0)" />
-  <path d="M 128 80 L 128 100" fill="none" stroke="rgb(0,0,0)" />
-  <path d="M 128 100 L 1280 100" fill="none" stroke="rgb(0,0,0)" />
-  <path d="M 1280 100 L 1280 112" fill="none" stroke="rgb(0,0,0)" />
-  <polygon fill="rgb(0,0,0)" points="1280,119 1276,112 1284,112 1280,119" stroke="rgb(0,0,0)" />
-  <path d="M 128 160 L 128 192" fill="none" stroke="rgb(0,0,0)" />
-  <polygon fill="rgb(0,0,0)" points="128,199 124,192 132,192 128,199" stroke="rgb(0,0,0)" />
-  <path d="M 128 160 L 128 180" fill="none" stroke="rgb(0,0,0)" />
-  <path d="M 128 180 L 320 180" fill="none" stroke="rgb(0,0,0)" />
-  <path d="M 320 180 L 320 192" fill="none" stroke="rgb(0,0,0)" />
-  <polygon fill="rgb(0,0,0)" points="320,199 316,192 324,192 320,199" stroke="rgb(0,0,0)" />
-  <path d="M 128 160 L 128 180" fill="none" stroke="rgb(0,0,0)" />
-  <path d="M 128 180 L 512 180" fill="none" stroke="rgb(0,0,0)" />
-  <path d="M 512 180 L 512 192" fill="none" stroke="rgb(0,0,0)" />
-  <polygon fill="rgb(0,0,0)" points="512,199 508,192 516,192 512,199" stroke="rgb(0,0,0)" />
-  <path d="M 1280 160 L 1280 192" fill="none" stroke="rgb(0,0,0)" />
-  <polygon fill="rgb(0,0,0)" points="1280,199 1276,192 1284,192 1280,199" stroke="rgb(0,0,0)" />
-  <path d="M 1280 160 L 1280 180" fill="none" stroke="rgb(0,0,0)" />
-  <path d="M 1280 180 L 1472 180" fill="none" stroke="rgb(0,0,0)" />
-  <path d="M 1472 180 L 1472 192" fill="none" stroke="rgb(0,0,0)" />
-  <polygon fill="rgb(0,0,0)" points="1472,199 1468,192 1476,192 1472,199" stroke="rgb(0,0,0)" />
-  <path d="M 1280 160 L 1280 180" fill="none" stroke="rgb(0,0,0)" />
-  <path d="M 1280 180 L 1664 180" fill="none" stroke="rgb(0,0,0)" />
-  <path d="M 1664 180 L 1664 192" fill="none" stroke="rgb(0,0,0)" />
-  <polygon fill="rgb(0,0,0)" points="1664,199 1660,192 1668,192 1664,199" stroke="rgb(0,0,0)" />
-  <path d="M 512 240 L 512 272" fill="none" stroke="rgb(0,0,0)" />
-  <polygon fill="rgb(0,0,0)" points="512,279 508,272 516,272 512,279" stroke="rgb(0,0,0)" />
-  <path d="M 512 240 L 512 260" fill="none" stroke="rgb(0,0,0)" />
-  <path d="M 512 260 L 704 260" fill="none" stroke="rgb(0,0,0)" />
-  <path d="M 704 260 L 704 272" fill="none" stroke="rgb(0,0,0)" />
-  <polygon fill="rgb(0,0,0)" points="704,279 700,272 708,272 704,279" stroke="rgb(0,0,0)" />
-  <path d="M 512 240 L 512 260" fill="none" stroke="rgb(0,0,0)" />
-  <path d="M 512 260 L 896 260" fill="none" stroke="rgb(0,0,0)" />
-  <path d="M 896 260 L 896 272" fill="none" stroke="rgb(0,0,0)" />
-  <polygon fill="rgb(0,0,0)" points="896,279 892,272 900,272 896,279" stroke="rgb(0,0,0)" />
+  <title>
+    blockdiag
+  </title>
+  <desc>
+    blockdiag { orientation = portrait // (2 + 4 * 6) * (3 + 12); 390 -&gt; 26;
+    390 -&gt; "*"; 390 -&gt; 15; 26 -&gt; 2; 26 -&gt; "+"; 26 -&gt; 24; 24 -&gt;
+    4; 24 -&gt; m1; 24 -&gt; 6; 15 -&gt; 3; p1 [label = "+"]; 15 -&gt; p1; 15
+    -&gt; 12; }
+  </desc>
+  <rect fill='rgb(0,0,0)' height='40' stroke='rgb(0,0,0)' style='filter:url(#filter_blur);opacity:0.7;fill-opacity:1' width='128' x='67' y='46'/>
+  <rect fill='rgb(0,0,0)' height='40' stroke='rgb(0,0,0)' style='filter:url(#filter_blur);opacity:0.7;fill-opacity:1' width='128' x='67' y='126'/>
+  <rect fill='rgb(0,0,0)' height='40' stroke='rgb(0,0,0)' style='filter:url(#filter_blur);opacity:0.7;fill-opacity:1' width='128' x='1027' y='126'/>
+  <rect fill='rgb(0,0,0)' height='40' stroke='rgb(0,0,0)' style='filter:url(#filter_blur);opacity:0.7;fill-opacity:1' width='128' x='1219' y='126'/>
+  <rect fill='rgb(0,0,0)' height='40' stroke='rgb(0,0,0)' style='filter:url(#filter_blur);opacity:0.7;fill-opacity:1' width='128' x='67' y='206'/>
+  <rect fill='rgb(0,0,0)' height='40' stroke='rgb(0,0,0)' style='filter:url(#filter_blur);opacity:0.7;fill-opacity:1' width='128' x='259' y='206'/>
+  <rect fill='rgb(0,0,0)' height='40' stroke='rgb(0,0,0)' style='filter:url(#filter_blur);opacity:0.7;fill-opacity:1' width='128' x='451' y='206'/>
+  <rect fill='rgb(0,0,0)' height='40' stroke='rgb(0,0,0)' style='filter:url(#filter_blur);opacity:0.7;fill-opacity:1' width='128' x='451' y='286'/>
+  <rect fill='rgb(0,0,0)' height='40' stroke='rgb(0,0,0)' style='filter:url(#filter_blur);opacity:0.7;fill-opacity:1' width='128' x='643' y='286'/>
+  <rect fill='rgb(0,0,0)' height='40' stroke='rgb(0,0,0)' style='filter:url(#filter_blur);opacity:0.7;fill-opacity:1' width='128' x='835' y='286'/>
+  <rect fill='rgb(0,0,0)' height='40' stroke='rgb(0,0,0)' style='filter:url(#filter_blur);opacity:0.7;fill-opacity:1' width='128' x='1219' y='206'/>
+  <rect fill='rgb(0,0,0)' height='40' stroke='rgb(0,0,0)' style='filter:url(#filter_blur);opacity:0.7;fill-opacity:1' width='128' x='1411' y='206'/>
+  <rect fill='rgb(0,0,0)' height='40' stroke='rgb(0,0,0)' style='filter:url(#filter_blur);opacity:0.7;fill-opacity:1' width='128' x='1603' y='206'/>
+  <rect fill='rgb(255,255,255)' height='40' stroke='rgb(0,0,0)' width='128' x='64' y='40'/>
+  <text fill='rgb(0,0,0)' font-family='sans-serif' font-size='11' font-style='normal' font-weight='normal' text-anchor='middle' textLength='18' x='128.0' y='66'>
+    390
+  </text>
+  <rect fill='rgb(255,255,255)' height='40' stroke='rgb(0,0,0)' width='128' x='64' y='120'/>
+  <text fill='rgb(0,0,0)' font-family='sans-serif' font-size='11' font-style='normal' font-weight='normal' text-anchor='middle' textLength='12' x='128.0' y='146'>
+    26
+  </text>
+  <rect fill='rgb(255,255,255)' height='40' stroke='rgb(0,0,0)' width='128' x='1024' y='120'/>
+  <text fill='rgb(0,0,0)' font-family='sans-serif' font-size='11' font-style='normal' font-weight='normal' text-anchor='middle' textLength='6' x='1088.0' y='146'>
+    *
+  </text>
+  <rect fill='rgb(255,255,255)' height='40' stroke='rgb(0,0,0)' width='128' x='1216' y='120'/>
+  <text fill='rgb(0,0,0)' font-family='sans-serif' font-size='11' font-style='normal' font-weight='normal' text-anchor='middle' textLength='12' x='1280.0' y='146'>
+    15
+  </text>
+  <rect fill='rgb(255,255,255)' height='40' stroke='rgb(0,0,0)' width='128' x='64' y='200'/>
+  <text fill='rgb(0,0,0)' font-family='sans-serif' font-size='11' font-style='normal' font-weight='normal' text-anchor='middle' textLength='6' x='128.0' y='226'>
+    2
+  </text>
+  <rect fill='rgb(255,255,255)' height='40' stroke='rgb(0,0,0)' width='128' x='256' y='200'/>
+  <text fill='rgb(0,0,0)' font-family='sans-serif' font-size='11' font-style='normal' font-weight='normal' text-anchor='middle' textLength='6' x='320.0' y='226'>
+    +
+  </text>
+  <rect fill='rgb(255,255,255)' height='40' stroke='rgb(0,0,0)' width='128' x='448' y='200'/>
+  <text fill='rgb(0,0,0)' font-family='sans-serif' font-size='11' font-style='normal' font-weight='normal' text-anchor='middle' textLength='12' x='512.0' y='226'>
+    24
+  </text>
+  <rect fill='rgb(255,255,255)' height='40' stroke='rgb(0,0,0)' width='128' x='448' y='280'/>
+  <text fill='rgb(0,0,0)' font-family='sans-serif' font-size='11' font-style='normal' font-weight='normal' text-anchor='middle' textLength='6' x='512.0' y='306'>
+    4
+  </text>
+  <rect fill='rgb(255,255,255)' height='40' stroke='rgb(0,0,0)' width='128' x='640' y='280'/>
+  <text fill='rgb(0,0,0)' font-family='sans-serif' font-size='11' font-style='normal' font-weight='normal' text-anchor='middle' textLength='12' x='704.0' y='306'>
+    m1
+  </text>
+  <rect fill='rgb(255,255,255)' height='40' stroke='rgb(0,0,0)' width='128' x='832' y='280'/>
+  <text fill='rgb(0,0,0)' font-family='sans-serif' font-size='11' font-style='normal' font-weight='normal' text-anchor='middle' textLength='6' x='896.0' y='306'>
+    6
+  </text>
+  <rect fill='rgb(255,255,255)' height='40' stroke='rgb(0,0,0)' width='128' x='1216' y='200'/>
+  <text fill='rgb(0,0,0)' font-family='sans-serif' font-size='11' font-style='normal' font-weight='normal' text-anchor='middle' textLength='6' x='1280.0' y='226'>
+    3
+  </text>
+  <rect fill='rgb(255,255,255)' height='40' stroke='rgb(0,0,0)' width='128' x='1408' y='200'/>
+  <text fill='rgb(0,0,0)' font-family='sans-serif' font-size='11' font-style='normal' font-weight='normal' text-anchor='middle' textLength='6' x='1472.0' y='226'>
+    +
+  </text>
+  <rect fill='rgb(255,255,255)' height='40' stroke='rgb(0,0,0)' width='128' x='1600' y='200'/>
+  <text fill='rgb(0,0,0)' font-family='sans-serif' font-size='11' font-style='normal' font-weight='normal' text-anchor='middle' textLength='12' x='1664.0' y='226'>
+    12
+  </text>
+  <path d='M 128 80 L 128 112' fill='none' stroke='rgb(0,0,0)'/>
+  <polygon fill='rgb(0,0,0)' points='128,119 124,112 132,112 128,119' stroke='rgb(0,0,0)'/>
+  <path d='M 128 80 L 128 100' fill='none' stroke='rgb(0,0,0)'/>
+  <path d='M 128 100 L 1088 100' fill='none' stroke='rgb(0,0,0)'/>
+  <path d='M 1088 100 L 1088 112' fill='none' stroke='rgb(0,0,0)'/>
+  <polygon fill='rgb(0,0,0)' points='1088,119 1084,112 1092,112 1088,119' stroke='rgb(0,0,0)'/>
+  <path d='M 128 80 L 128 100' fill='none' stroke='rgb(0,0,0)'/>
+  <path d='M 128 100 L 1280 100' fill='none' stroke='rgb(0,0,0)'/>
+  <path d='M 1280 100 L 1280 112' fill='none' stroke='rgb(0,0,0)'/>
+  <polygon fill='rgb(0,0,0)' points='1280,119 1276,112 1284,112 1280,119' stroke='rgb(0,0,0)'/>
+  <path d='M 128 160 L 128 192' fill='none' stroke='rgb(0,0,0)'/>
+  <polygon fill='rgb(0,0,0)' points='128,199 124,192 132,192 128,199' stroke='rgb(0,0,0)'/>
+  <path d='M 128 160 L 128 180' fill='none' stroke='rgb(0,0,0)'/>
+  <path d='M 128 180 L 320 180' fill='none' stroke='rgb(0,0,0)'/>
+  <path d='M 320 180 L 320 192' fill='none' stroke='rgb(0,0,0)'/>
+  <polygon fill='rgb(0,0,0)' points='320,199 316,192 324,192 320,199' stroke='rgb(0,0,0)'/>
+  <path d='M 128 160 L 128 180' fill='none' stroke='rgb(0,0,0)'/>
+  <path d='M 128 180 L 512 180' fill='none' stroke='rgb(0,0,0)'/>
+  <path d='M 512 180 L 512 192' fill='none' stroke='rgb(0,0,0)'/>
+  <polygon fill='rgb(0,0,0)' points='512,199 508,192 516,192 512,199' stroke='rgb(0,0,0)'/>
+  <path d='M 1280 160 L 1280 192' fill='none' stroke='rgb(0,0,0)'/>
+  <polygon fill='rgb(0,0,0)' points='1280,199 1276,192 1284,192 1280,199' stroke='rgb(0,0,0)'/>
+  <path d='M 1280 160 L 1280 180' fill='none' stroke='rgb(0,0,0)'/>
+  <path d='M 1280 180 L 1472 180' fill='none' stroke='rgb(0,0,0)'/>
+  <path d='M 1472 180 L 1472 192' fill='none' stroke='rgb(0,0,0)'/>
+  <polygon fill='rgb(0,0,0)' points='1472,199 1468,192 1476,192 1472,199' stroke='rgb(0,0,0)'/>
+  <path d='M 1280 160 L 1280 180' fill='none' stroke='rgb(0,0,0)'/>
+  <path d='M 1280 180 L 1664 180' fill='none' stroke='rgb(0,0,0)'/>
+  <path d='M 1664 180 L 1664 192' fill='none' stroke='rgb(0,0,0)'/>
+  <polygon fill='rgb(0,0,0)' points='1664,199 1660,192 1668,192 1664,199' stroke='rgb(0,0,0)'/>
+  <path d='M 512 240 L 512 272' fill='none' stroke='rgb(0,0,0)'/>
+  <polygon fill='rgb(0,0,0)' points='512,279 508,272 516,272 512,279' stroke='rgb(0,0,0)'/>
+  <path d='M 512 240 L 512 260' fill='none' stroke='rgb(0,0,0)'/>
+  <path d='M 512 260 L 704 260' fill='none' stroke='rgb(0,0,0)'/>
+  <path d='M 704 260 L 704 272' fill='none' stroke='rgb(0,0,0)'/>
+  <polygon fill='rgb(0,0,0)' points='704,279 700,272 708,272 704,279' stroke='rgb(0,0,0)'/>
+  <path d='M 512 240 L 512 260' fill='none' stroke='rgb(0,0,0)'/>
+  <path d='M 512 260 L 896 260' fill='none' stroke='rgb(0,0,0)'/>
+  <path d='M 896 260 L 896 272' fill='none' stroke='rgb(0,0,0)'/>
+  <polygon fill='rgb(0,0,0)' points='896,279 892,272 900,272 896,279' stroke='rgb(0,0,0)'/>
 </svg>
